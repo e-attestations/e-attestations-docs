@@ -8,8 +8,8 @@
 module.exports = {
   title: 'API e-Attestations',
   tagline: 'Connect your systems with e-Attestations',
-  url: 'https://www.e-attestations.com',
-  baseUrl: '/',
+  url: 'https://e-attestations.github.io',
+  baseUrl: '/e-attestations-docs/',
   favicon: 'img/favicon.png',
   organizationName: 'e-attestations', // Usually your GitHub org/user name.
   projectName: 'e-attestations-docs', // Usually your repo name.
@@ -47,7 +47,7 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Discord',
+              label: 'Slack',
               href: 'https://discordapp.com/invite/docusaurus',
             },
           ],
