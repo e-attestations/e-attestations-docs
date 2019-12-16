@@ -9,7 +9,7 @@ module.exports = {
   title: 'API e-Attestations',
   tagline: 'Connect your systems with e-Attestations',
   url: 'https://e-attestations.github.io',
-  baseUrl: '/e-attestations-docs/',
+  baseUrl: '/',
   favicon: 'img/favicon.png',
   organizationName: 'e-attestations', // Usually your GitHub org/user name.
   projectName: 'e-attestations-docs', // Usually your repo name.
