@@ -40,3 +40,13 @@
   height: 200px;
   width: 200px;
 }
+
+.bloc {
+  border-radius: var(--ifm-card-border-radius) !important;  
+  box-shadow: 0 0 10px 0 rgba(0,27,61,.05) !important;
+  border: 1px solid #dadde1 !important;
+  border-color: var(--ifm-panel-border-color) !important;
+  flex-grow: 1 !important;
+  display: block !important; 
+  margin: .2em;
+}

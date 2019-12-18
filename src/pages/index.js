@@ -12,6 +12,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
+import Cube from '../components/Cube';
 
 const features = [
   {
@@ -49,7 +50,7 @@ const features = [
 function Feature({imageUrl, title, description}) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
-    <div className={classnames('col col--4', styles.feature)}>
+    <div className={classnames('col col--4', styles.feature, styles.bloc)}>
       {imgUrl && (
         <div className="text--center">
           <img className={styles.featureImage} src={imgUrl} alt={title} />
@@ -85,6 +86,22 @@ function Home() {
         </div>
       </header>
       <main>
+
+        <section className={styles.features}>
+          <div className="container">
+            <div className="row">
+              <h1>Welcome to our technical resources center</h1>
+              <p>
+                You're a developer and you want to find more information, tools, SDK, samples codes for you project ?
+                You're at the good place.
+              </p>
+              <p>
+                This project aims to offer the best documnetations, tools, tips and tricks for you e-Attestations API integration project.
+              </p>
+            </div>
+          </div>
+        </section>
+            
         {features && features.length && (
           <section className={styles.features}>
             <div className="container">

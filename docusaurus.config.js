@@ -6,9 +6,9 @@
  */
 
 module.exports = {
-  title: 'API e-Attestations',
-  tagline: 'Connect your systems with e-Attestations',
-  url: 'https://www.e-attestations.io',
+  title: 'e-Attestations',
+  tagline: 'Technical resources for your project',
+  url: 'https://e-attestations.io',
   baseUrl: '/',
   favicon: 'img/favicon.png',
   organizationName: 'e-attestations', // Usually your GitHub org/user name.
@@ -48,7 +48,7 @@ module.exports = {
           items: [
             {
               label: 'Discord',
-              href: 'https://discord.gg/txcJa8',
+              href: 'https://discordapp.com/channels/656160917591162903',
             },
           ],
         },
@@ -63,11 +63,11 @@ module.exports = {
         },
       ],
       logo: {
-        alt: 'Facebook Open Source Logo',
-        src: 'https://docusaurus.io/img/oss_logo.png',
-        href: 'https://opensource.facebook.com/',
+        alt: 'e-Attestations',
+        src: 'https://www.e-attestations.com/images/logo-eattestations.png',
+        href: 'https://www.e-attestations.com',
       },
-      copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc. Built with Docusaurus.`,
+      copyright: `Developed with ❤️ by l'Atelier with Docusaurus - e-Attestations ${new Date().getFullYear()}`,
     },
   },
   presets: [
