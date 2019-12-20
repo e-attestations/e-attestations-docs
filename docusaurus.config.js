@@ -6,8 +6,8 @@
  */
 
 module.exports = {
-  title: 'e-Attestations',
-  tagline: 'Technical resources for your project',
+  title: 'e-Attestations REST APIs',
+  tagline: 'API technical resources for your projects',
   url: 'https://e-attestations.io',
   baseUrl: '/',
   favicon: 'img/favicon.png',
@@ -21,9 +21,9 @@ module.exports = {
         src: 'img/cropped-logo-eattestations-2.png',
       },
       links: [
-        {to: 'docs/doc2', label: 'QuickStart', position: 'left'},
-        {to: 'docs/doc1', label: 'Docs', position: 'left'},
-        {to: 'blog', label: 'Blog', position: 'left'},
+        {to: 'docs/b-1-get-started', label: 'QuickStart', position: 'right'},
+        {to: 'docs/a-1-introduction', label: 'Docs', position: 'right'},
+        {to: 'blog', label: 'Blog', position: 'right'},
         {
           href: 'https://github.com/e-attestations',
           label: 'GitHub',
@@ -35,11 +35,27 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Documentations',
           items: [
             {
-              label: 'Docs',
-              to: 'docs/doc1',
+              label: 'Introduction',
+              to: 'docs/a-1-introduction',
+            },
+            {
+              label: 'Get started',
+              to: 'docs/b-1-get-started',
+            },
+            {
+              label: 'Tutorials',
+              to: 'docs/t-1-create-dossier',
+            },
+            {
+              label: 'API Reference',
+              to: 'docs/c-1-account',
+            },
+            {
+              label: 'Lists and codes',
+              to: 'docs/d-2-error-codes',
             },
           ],
         },

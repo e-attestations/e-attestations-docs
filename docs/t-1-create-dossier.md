@@ -52,25 +52,5 @@ Il vous faudra l'utiliser pour connaître le résultat de l'import de façon asy
 
 Le endpoint **GET /account/{accountId}/dossier/process/{processId}** permet de suivre le résultat de l'import grâce à l'identifiant du process d'import renvoyé lors de l'appel "Création d'un dossier" (POST /account/{accountId}/dossiers).
 
-
-
 > Il est important de bien vérifier les paramètres d'appel et de bien prendre en compte les codes d'erreurs et leur signification.
 
-
-export const Diagram = () => {
-  return (
-    <div className="mermaid">
-    graph TB
-      A((Start))
-      A --> B(Call Import dossier endpoint, returns processId)
-      B --processId--> C(Call Get import result endpoint for processId)
-      C --> D{Status}
-      D --complete=true AND success=true--> E
-      D --complete=true ANDsuccess=false--> R
-      D --complete=false--> C
-      E((End))
-      R(Error Handling)
-    </div>
-    
-  )
-};
