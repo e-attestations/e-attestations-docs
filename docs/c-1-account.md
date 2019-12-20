@@ -1,8 +1,10 @@
 ---
-id: b-1-account
-title: Compte
-sidebar_label: Compte
+id: c-1-account
+title: Account
+sidebar_label: Account
 ---
+
+Le compte eAttestations donneur d'ordres et souscripteur au service.
 
 > Exemple de contenu de '/account'
 

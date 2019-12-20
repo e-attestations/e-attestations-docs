@@ -1,7 +1,7 @@
 ---
-id: a-3-mise-en-place
-title: Mise en place
-sidebar_label: Mise en place
+id: b-1-get-started
+title: Subscribe
+sidebar_label: Subscribe
 ---
 
 Pour souscrire à l'un ou l'autre des environnements vous devez tout d'abord en **émettre la demande auprès de votre gestionnaire** de compte eAttestations habituel.

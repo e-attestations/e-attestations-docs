@@ -1,8 +1,18 @@
 ---
-id: a-5-response-format
-title: Format des réponses
-sidebar_label: Format des réponses
+id: c-0-response-format
+title: Responses format
+sidebar_label: Responses format
 ---
+
+
+Les réponses sont au format JSON composées des attributs (optionnels) suivants:
+
+* **content**, contenant le résultat de l'opération, en cas de succès.
+* **page**, le numéro de la page. **Renvoyé en cas de contenu paginé.**
+* **size**, taille de la page. **Renvoyé en cas de contenu paginé.**
+* **totalElements**, le nombre total d'éléments. **Renvoyé en cas de contenu paginé.**
+* **messages** contenant **d'éventuels messages** d'information, d'avertissement ou d'erreur.
+
 
 ```json
 {
@@ -23,16 +33,11 @@ sidebar_label: Format des réponses
 }
 ```
 
-Les réponses sont au format JSON composées des attributs (optionnels) suivants:
+## Encoding
 
-* **content**, contenant le résultat de l'opération, en cas de succès.
-* **page**, le numéro de la page. **Renvoyé en cas de contenu paginé.**
-* **size**, taille de la page. **Renvoyé en cas de contenu paginé.**
-* **totalElements**, le nombre total d'éléments. **Renvoyé en cas de contenu paginé.**
-* **messages** contenant **d'éventuels messages** d'information, d'avertissement ou d'erreur.
+L'API REST doit être utilisée et consommée en UTF8.
 
 
-Pour plus de détails lisez la section <a href="#schemas">Schemas</a> et plus spécifiquement sur le format des <a href="#tocSmessages">Messages</a>.
 
 ## Exemple d'erreur (protocolaire)
 
@@ -54,7 +59,4 @@ Nous poursuivons les développements pour permettre la généralisation du contr
 </aside>
 
 
-## Encoding
-
-L'API REST doit être utilisée et consommée en UTF8.
 

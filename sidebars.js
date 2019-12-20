@@ -7,9 +7,40 @@
 
 module.exports = {
   docs: {    
-    'API REST': ['a-1-introduction', 'a-2-description', 'a-3-mise-en-place', 'a-4-environments', 'a-5-response-format', 'a-6-postman', 'a-7-security'],
-    'Ressources' : ['b-1-account'],
-    Docusaurus: ['doc1', 'doc2', 'doc3'],
-    Features: ['mdx'],
+    'Introduction': [
+      'a-1-introduction', 
+      'a-2-motivations', 
+      'a-7-security'
+    ],
+    'Get started': [
+      'b-1-get-started', 
+      'b-2-environments',
+      'doc3'
+    ],
+    'Tutorials': [
+      't-1-create-dossier'
+    ],
+    'API Reference' : [
+      'c-0-response-format', 
+      'c-1-account', 
+      'c-2-thirdparties', 
+      'c-3-dossiers', 
+      'c-4-requirement', 
+      'c-5-documents', 
+      'c-6-files'
+    ],
+    'Lists and codes': [
+      'd-1-types', 
+      'd-2-error-codes'
+    ],      
+    'Resources': [
+      'r-1-postman', 
+      'r-2-openapiv3'
+    ],
+    'Under the hood': [
+      'doc1', 
+      'doc2', 
+      'doc3'
+    ],
   },
 };

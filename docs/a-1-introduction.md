@@ -1,7 +1,7 @@
 ---
 id: a-1-introduction
-title: Introduction
-sidebar_label: Introduction
+title: What are e-Attestations REST API ?
+sidebar_label: What are e-Attestations REST API ?
 ---
 
 L'API REST/Json est utilisée pour **interfacer** un système d'information '**client**' à la plate-forme d'eAttestations suivant le protocole HTTP.
@@ -17,23 +17,10 @@ Contactez eAttestations pour plus d'information à <a href="mailto:contact@e-att
 
 ## Objectifs de cette documentation
 
- * Donner des éléments de réponses sur la sécurité des environnements mis à dispotision
- * Expliciter le support
- * Décrire chaque ressources et chaque endpoint, les modèles associés et les erreurs liées
- * Proposer des snippets de codes pour faciliter l'intégration de l'API
+* Donner des éléments de réponses sur la sécurité des environnements mis à disposition
+* Expliciter la mise en place et le support de l'API
+* Présenter les sources documentaires en ligne.
+* Décrire chaque ressources et chaque endpoint, les modèles associés et les erreurs liées
+* Proposer des snippets de codes pour faciliter l'intégration de l'API
 
-## Documentation OpenAPI V3
-
-Une documentation Open API v3 est aussi disponible ici :
-
-[https://ea-api-edge.test-uservice.dev-e-attestations.com/doc/swagger.yml](https://ea-api-edge.test-uservice.dev-e-attestations.com/doc/swagger.yml)
-
-
-Une documentation Open API v2 est aussi disponible ici :
-
-[https://ea-api-edge.test-uservice.dev-e-attestations.com/swagger-ui.html](https://ea-api-edge.test-uservice.dev-e-attestations.com/swagger-ui.html)
-
-La documentation Swagger/OpenAPI v2 au format JSON est disponible ici **/v2/api-docs** :
-
-[https://ea-api-edge.test-uservice.dev-e-attestations.com/v2/api-docs](https://ea-api-edge.test-uservice.dev-e-attestations.com/v2/api-docs)
 
