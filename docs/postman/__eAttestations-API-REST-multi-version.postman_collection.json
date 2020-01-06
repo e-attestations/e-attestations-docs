@@ -4161,13 +4161,13 @@
 	],
 	"variable": [
 		{
-			"id": "556b3aec-85f5-4e48-baea-99e9b69bf1b5",
+			"id": "b49c28ea-9383-43cf-9eb3-e04a9bebb906",
 			"key": "client",
 			"value": "ea-api-edge",
 			"type": "string"
 		},
 		{
-			"id": "1d15cb28-0123-47c0-82df-0cd6e300d9d6",
+			"id": "157a4448-ccc1-4998-a8ba-9f2a8a8d9128",
 			"key": "realm",
 			"value": "eat_realm",
 			"type": "string"

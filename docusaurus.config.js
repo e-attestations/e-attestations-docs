@@ -28,6 +28,10 @@ module.exports = {
           href: 'https://github.com/e-attestations',
           label: 'GitHub',
           position: 'right',
+        },{
+          to: 'docs/s-1-support',
+          label: 'Support',
+          position: 'right',
         },
       ],
     },
