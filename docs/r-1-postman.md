@@ -4,7 +4,7 @@ title: Collection Postman
 sidebar_label: Collection Postman
 ---
 
-Pour aller encore plus vite et faciliter l'intégration et l'exploration de notre API nous fournissons <a href="/static/postman/__eAttestations-API-REST-multi-version.postman_collection.json">une collection Postman</a> que vous pouvez importer dans postman et tester rapidement.
+Pour aller encore plus vite et faciliter l'intégration et l'exploration de notre API nous fournissons <a href="https://raw.githubusercontent.com/e-attestations/ea-api-rest-postman/master/eAttestations-API-REST-multi-version.postman_collection.json">une collection Postman</a> que vous pouvez importer dans postman et tester rapidement.
 
 Vous devrez définir quelques variables (user, password et server_url) pour exploiter cette suite de test.
 
