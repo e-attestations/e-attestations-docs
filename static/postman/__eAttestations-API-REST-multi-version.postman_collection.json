@@ -2175,70 +2175,6 @@
 										"description": "GET account statistics"
 									},
 									"response": []
-								},
-								{
-									"name": "Account advanced search thirdparties",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
-												"exec": [
-													"var jsonData = JSON.parse(responseBody);",
-													"",
-													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
-													"",
-													"pm.test(\"Verify if response is HTTP 200\", function () {",
-													"    pm.response.to.have.status(200);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{token}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"url": {
-											"raw": "{{ea_api_edge}}/api/v1/account/{{account_id}}/thirdparties/q?search=monitored!null",
-											"host": [
-												"{{ea_api_edge}}"
-											],
-											"path": [
-												"api",
-												"v1",
-												"account",
-												"{{account_id}}",
-												"thirdparties",
-												"q"
-											],
-											"query": [
-												{
-													"key": "search",
-													"value": "monitored!null"
-												}
-											]
-										},
-										"description": "GET thirdparties by name"
-									},
-									"response": []
 								}
 							],
 							"protocolProfileBehavior": {},
@@ -2853,7 +2789,7 @@
 									"response": []
 								},
 								{
-									"name": "Account all dossiers by dossierReference with 'like' operator",
+									"name": "Account all dossiers with 'like' operator",
 									"event": [
 										{
 											"listen": "test",
@@ -3967,6 +3903,70 @@
 										"description": "GET thirdparty details by its id"
 									},
 									"response": []
+								},
+								{
+									"name": "Account advanced search thirdparties",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_edge}}/api/v1/account/{{account_id}}/thirdparties/q?search=monitored!null",
+											"host": [
+												"{{ea_api_edge}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties",
+												"q"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": "monitored!null"
+												}
+											]
+										},
+										"description": "GET thirdparties by name"
+									},
+									"response": []
 								}
 							],
 							"protocolProfileBehavior": {},
@@ -4161,13 +4161,13 @@
 	],
 	"variable": [
 		{
-			"id": "b49c28ea-9383-43cf-9eb3-e04a9bebb906",
+			"id": "e5fae39c-6a97-4e32-8916-cf38613e2553",
 			"key": "client",
 			"value": "ea-api-edge",
 			"type": "string"
 		},
 		{
-			"id": "157a4448-ccc1-4998-a8ba-9f2a8a8d9128",
+			"id": "f0414f75-6bfa-4655-9fc7-ef5dcd7604df",
 			"key": "realm",
 			"value": "eat_realm",
 			"type": "string"

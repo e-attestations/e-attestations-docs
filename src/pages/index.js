@@ -16,12 +16,12 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: <>Easy to Use</>,
+    title: <>Easy to implement</>,
     imageUrl: 'img/undraw_docusaurus_mountain.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        API e-Attestation are very easy to use and to implement in the programming language of your choice.
+        Using OpenAPI v3 API contrat format give you the capability of generate your client side code faster.
       </>
     ),
   },
@@ -30,28 +30,28 @@ const features = [
     imageUrl: 'img/undraw_docusaurus_tree.svg',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        e-Attestations resources are presented clearly and we offer standard implementation scenarios.
+        You develop faster on what matters quickly.
       </>
     ),
   },
   {
-    title: <>Powered by React</>,
+    title: <>Powered by OpenAPI v3</>,
     imageUrl: 'img/undraw_docusaurus_react.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Using OpenAPI V3 standard, e-Attestations API are very easy to discover, test and code with.
+        Our imersive documentation provides in depth discovery over JSON response and requests.        
       </>
     ),
   },
   {
-    title: <>Powered by React</>,
+    title: <>Use the power of Postman by React</>,
     imageUrl: 'img/undraw_docusaurus_react.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        You go even quicker with the Postman collection we provide. 
+        Install postman, complete variables with your credentials and you can test the API right away without writing a single line of code.
       </>
     ),
   }

@@ -29,7 +29,7 @@ module.exports = {
           label: 'GitHub',
           position: 'right',
         },{
-          to: 'docs/s-1-support',
+          to: 'https://jira-e-attestations.atlassian.net/servicedesk/customer/portals',
           label: 'Support',
           position: 'right',
         },
