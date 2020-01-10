@@ -4,9 +4,9 @@ title: Thirdparties
 sidebar_label: Thirdparties
 ---
 
-Le tiers, le fournisseur, le sous-traitant, etc... est en relation avec le compte donneur d'ordres et fait l'objet de l'évaluation continue au titre de sa conformité, suivant la souscription et/ou les option du compte eAttestations.
+Le tiers, le fournisseur, le sous-traitant, etc... est en relation avec le compte donneur d'ordres et fait l'objet de l'évaluation continue au titre de sa conformité, suivant la souscription et/ou les option du compte e-Attestations.
 
-Dans le cadre de cette relation, le compte eAttestations utilisateur de l'API REST/JSON est aussi appelé compte "donneur d'ordres".
+Dans le cadre de cette relation, le compte e-Attestations utilisateur de l'API REST/JSON est aussi appelé compte "donneur d'ordres".
 
 > Exemple d'appel GET sur "/api/v1/account/{{account_id}}/thirdparties?siret=50382936800045"
 

@@ -10,7 +10,7 @@
  * and scoped locally.
  */
 
-.heroBanner {
+ .heroBanner {
   padding: 4rem 0;
   text-align: center;
   position: relative;
@@ -37,21 +37,8 @@
 }
 
 .featureImage {
-  height: 200px;
-  width: 200px;
-}
-
-.bloc {
-  border-radius: var(--ifm-card-border-radius) !important;  
-  box-shadow: 0 0 10px 0 rgba(0,27,61,.05) !important;
-  border: 1px solid #dadde1 !important;
-  flex-grow: 1 !important;
-  display: block !important; 
-  margin-right: 1em;
-  margin-bottom: 1em;
-}
-
-.bloc:hover {
-  box-shadow: 1px 1px 10px 1px rgba(52, 104, 21, 0.411) !important;
-  cursor: pointer;  
+  max-height: 140px;
+  padding-top: 4em;
+  padding-bottom: 2em;
+  max-width: 200px;
 }

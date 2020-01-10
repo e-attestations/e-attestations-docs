@@ -250,7 +250,7 @@ paths:
                     $ref: '#/components/schemas/Messages'
           description: >-
             Retourne un tableau d'objets JSON. Chaque item contient les informations
-            d'identification d'un tiers (L'identifiant eAttestations du tiers, le type
+            d'identification d'un tiers (L'identifiant e-Attestations du tiers, le type
             d'identifiant compagnie, l'identifiant compagnie du tiers et le code tiers).
         '400':
           description: Requête mal formée
@@ -287,7 +287,7 @@ paths:
           required: true
         -
           name: thirdpartyId
-          description: Identifiant eAttestations du tiers.
+          description: Identifiant e-Attestations du tiers.
           schema:
             type: integer
           in: path
@@ -344,9 +344,9 @@ paths:
         -
           name: thirdpartyId
           description: >-
-            Identifiant eAttestations du tiers. Celui-ci est différent du companyIdValue. Le
+            Identifiant e-Attestations du tiers. Celui-ci est différent du companyIdValue. Le
             thirdpartyId est un identifiant technique qui identifie de façon unique le tiers dans
-            la plateforme eAttestations.
+            la plateforme e-Attestations.
           schema:
             type: integer
           in: query
@@ -520,7 +520,7 @@ paths:
         tiers sur un certain nombre de pièces demandées (appelées également Requirements).
 
 
-        Si le tiers n'existe pas, celui-ci est créé dans la plateforme eAttestations.
+        Si le tiers n'existe pas, celui-ci est créé dans la plateforme e-Attestations.
 
 
         L'import de dossier est un processus asynchrone. Cet asynchronisme est induit par le processus
@@ -1226,7 +1226,7 @@ paths:
 components:
   schemas:
     Account:
-      title: Compte eAttestations
+      title: Compte e-Attestations
       description: 'Contient les informations du ou des comptes et de sa/leur(s) souscriptions. '
       type: object
       properties:
@@ -1235,7 +1235,7 @@ components:
           description: Identifiant du compte. A utiliser dans tous les appels à l'API
           type: integer
         account:
-          description: Appellation du compte eAttestations
+          description: Appellation du compte e-Attestations
           type: string
         company:
           description: Nom de l'entité légale du compte
@@ -1424,7 +1424,7 @@ components:
           description: >-
             Liste des emails des responsables du dossier côté donneur d'ordres. Si un email ne
             correspond à aucun utilisateur inscrit, une invitation à s'inscrire sur le plateforme
-            eAttestations donneur d'ordres, est envoyé à cet Email.
+            e-Attestations donneur d'ordres, est envoyé à cet Email.
           type: array
           items:
             format: email
@@ -1493,9 +1493,9 @@ components:
       properties:
         thirdpartyId:
           description: >-
-            Identifiant eAttestations du tiers. Celui-ci est différent du companyIdValue. Le
+            Identifiant e-Attestations du tiers. Celui-ci est différent du companyIdValue. Le
             thirdpartyId est un identifiant technique qui identifie de façon unique le tiers dans
-            la plateforme eAttestations.
+            la plateforme e-Attestations.
           type: integer
         companyIdType:
           description: Type d'identifiant compagnie.
@@ -1522,9 +1522,9 @@ components:
         thirdpartyId:
           format: int64
           description: >-
-            Identifiant eAttestations du tiers. Celui-ci est différent du companyIdValue. Le
+            Identifiant e-Attestations du tiers. Celui-ci est différent du companyIdValue. Le
             thirdpartyId est un identifiant technique qui identifie de façon unique le tiers dans
-            la plateforme eAttestations.
+            la plateforme e-Attestations.
           type: integer
         accountId:
           format: int64
@@ -1607,7 +1607,7 @@ components:
           type: string
         datecreation:
           format: date
-          description: Date de création du tiers dans la base eAttestations
+          description: Date de création du tiers dans la base e-Attestations
           type: string
         lastBalanceSheetDate:
           format: date
@@ -1767,9 +1767,9 @@ components:
         thirdpartyId:
           format: int64
           description: >-
-            Identifiant eAttestations du tiers. Celui-ci est différent du companyIdValue. Le
+            Identifiant e-Attestations du tiers. Celui-ci est différent du companyIdValue. Le
             thirdpartyId est un identifiant technique qui identifie de façon unique le tiers dans
-            la plateforme eAttestations.
+            la plateforme e-Attestations.
           type: integer
         companyIdType:
           description: Type d'identifiant compagnie.

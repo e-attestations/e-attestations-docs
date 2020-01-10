@@ -4,11 +4,11 @@ title: Documents
 sidebar_label: Documents
 ---
 
-Les documents sont les éléments constituant la demande d'exigence de conformité, définis en type de document (généralement un type de document par exigence) et pour lequel une réponse est apportée par eAttestations ou le tiers lui même.
+Les documents sont les éléments constituant la demande d'exigence de conformité, définis en type de document (généralement un type de document par exigence) et pour lequel une réponse est apportée par e-Attestations ou le tiers lui même.
 
 Un document peut être une signature, une donnée, un ou plusieurs fichiers, un ensemble de données issues d'un formulaire à remplir par le déclarant.
 
-Un document a une validité et donc une péremption que la plateforme eAttestations surveille en continu.
+Un document a une validité et donc une péremption que la plateforme e-Attestations surveille en continu.
 
 > Exemple d'obtention des documents d'un dossier GET "/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents"
 

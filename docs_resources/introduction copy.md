@@ -4,18 +4,18 @@ title: Introduction
 sidebar_label: Introduction
 ---
 
-# API REST/Json eAttestations (PREVIEW)
+# API REST/Json e-Attestations (PREVIEW)
 
-L'API REST/Json est utilisée pour **interfacer** un système d'information '**client**' à la plate-forme d'eAttestations suivant le protocole HTTP.
+L'API REST/Json est utilisée pour **interfacer** un système d'information '**client**' à la plate-forme d'e-Attestations suivant le protocole HTTP.
 
 REST (Representational State Transfer) ou RESTful est un style d'architecture permettant de construire des applications (Web, Intranet, Web Service) en exploitant des points terminateurs (des endpoints urls) et référençant des ressources à exploiter suivant les verbes du protocole HTTP (GET, POST, PUT, DELETE etc...).
 
-Les applications 'clientes' utilisant l'API REST eAttestations enrichisent le Système d'Information du client avec le catalogue des données et services d'eAttestations de façon sécurisée et très souple.
+Les applications 'clientes' utilisant l'API REST e-Attestations enrichisent le Système d'Information du client avec le catalogue des données et services d'e-Attestations de façon sécurisée et très souple.
 
 L'API peut également être utilisée par les intégrateurs, éditeurs logiciels, des solutions SAAS ou des connecteurs.
 
-l'API REST/Json eAttestations est actuellement en **PREVIEW** et n'est proposée qu'aux partenaires et clients du programme d'adoption de cette nouvelle offre de service.
-Contactez eAttestations pour plus d'information à <a href="mailto:contact@e-attestations.com">contact@e-attestations.com</a>
+l'API REST/Json e-Attestations est actuellement en **PREVIEW** et n'est proposée qu'aux partenaires et clients du programme d'adoption de cette nouvelle offre de service.
+Contactez e-Attestations pour plus d'information à <a href="mailto:contact@e-attestations.com">contact@e-attestations.com</a>
 
 ## Objectifs de cette documentation
 
@@ -42,15 +42,15 @@ La documentation Swagger/OpenAPI v2 au format JSON est disponible ici **/v2/api-
 
 ## Mise en place
 
-Pour souscrire à l'un ou l'autre des environnements vous devez tout d'abord en **émettre la demande auprès de votre gestionnaire** de compte eAttestations habituel.
+Pour souscrire à l'un ou l'autre des environnements vous devez tout d'abord en **émettre la demande auprès de votre gestionnaire** de compte e-Attestations habituel.
 
 Nous vous conseillons de bien discuter de la configuration de votre compte concernant les documents de compliance avec votre gestionnaire de compte afin de parfaitement comprendre votre cas d'usage et vous conseiller au mieux.
 
 **Attention** : L'usage de l'API n'est pas multicomptes.
 
-Votre gestionnaire de compte informera l'équipe technique pour la création d'une organisation liée à votre compte et un ou plusieurs contacts techniques (emails) seront alors invités au **Tech'Desk eAttestations**.
+Votre gestionnaire de compte informera l'équipe technique pour la création d'une organisation liée à votre compte et un ou plusieurs contacts techniques (emails) seront alors invités au **Tech'Desk e-Attestations**.
 
-## Le support Tech'Desk eAttestations
+## Le support Tech'Desk e-Attestations
 
 C'est un système de ticketing et de support **TECHNIQUE** dédié au API et WebServices dans lequel vous pouvez poster questions et demandes.
 
@@ -63,17 +63,17 @@ Cette plateforme sécurisée vous permet aussi de partager dans votre organisati
 **Note** : les users et mots de passe de connexion ne sont fournis que dans le Tech'Desk.
 
 <a href="https://jira-e-attestations.atlassian.net/servicedesk/customer/portals" title="Accédez au Tech'Desk" target="_blank">
-<img alt="Home page du Tech'Desk eAttestations" src="./images/TechDesk_Home.png" width="480" />
+<img alt="Home page du Tech'Desk e-Attestations" src="./images/TechDesk_Home.png" width="480" />
 </a>
 
 ## Evironnements
 
-eAttestations met à disposition deux environnements : 
+e-Attestations met à disposition deux environnements : 
 
 - **TEST** :
 L'ouverture d'un accès de TEST de type API REST connecté à un compte client de TEST vous permettra, de façon pleinement sécurisée, d'accéder à une infrastructure partagée et identique à celle de production. 
 
-<aside class="warning">
+<aside className="warning">
 **ATTENTION** : dans l'environnement de TEST et afin d'éviter que vos tests n'interfèrent pas avec votre activité de production les envois d'emails sont inhibés (pas d'invitation des tiers ou d'envoi de rapport).
 </aside>
 
@@ -131,7 +131,7 @@ Pour plus de détails lisez la section <a href="#schemas">Schemas</a> et plus sp
 }
 ```
 
-<aside class="warning">
+<aside className="warning">
 Nous avons développé un contrat d'interface (présenté ci dessus) qui se veut le plus pratique pour le développeur.
 Il est toute fois important de noter que durant la PREVIEW certains messages pourront ne pas encore présenter le même format.
 Auquel cas un format 'standard' de réponse d'erreur 'protocolaire' est utilisé.
@@ -148,7 +148,7 @@ L'API REST doit être utilisée et consommée en UTF8.
 
 ### OpenID Connect (OIDC)
 
-L'API REST eAttestations utilise **[OpenID Connect (OIDC)](https://openid.net/connect/)** pour identifier et authentifier les clients. Toute requête vers l'API doit obligatoirement inclure un Token [ (Json Web Token)](https://jwt.io/) valide.
+L'API REST e-Attestations utilise **[OpenID Connect (OIDC)](https://openid.net/connect/)** pour identifier et authentifier les clients. Toute requête vers l'API doit obligatoirement inclure un Token [ (Json Web Token)](https://jwt.io/) valide.
 
 Ce dernier doit être envoyé dans le header 'Authorization' (cf. l'exemple qui suit).
 
@@ -191,12 +191,12 @@ curl -X GET \
 
 Le Json Web TOKEN (JWT) est à utiliser dans tous les requetes vers l'API suivantes est la valeur du token étant renvoyé dans la propriété **"access_token"**.
 
-<aside class="warning">
+<aside className="warning">
 La durée de validité du tocken est de quelques minutes. Vous devez vous assurer de la durée de validité de votre TOKEN grace à **"expires_in"** qui vous indique en nombre de secondes avant qu'il n'expire au moment de son obtention (par exemple 1800 secondes correspondant à 30').
 </aside>
 
-<aside class="info">
-Rappel : vos identifiants sont délivrés à votre demande **UNIQUEMENT** via un ticket envoyé au <a href="#le-support-tech-39-desk-eattestations">Tech'Desk</a> et après activation de votre souscription par votre gestionnaire de comptes.
+<aside className="info">
+Rappel : vos identifiants sont délivrés à votre demande **UNIQUEMENT** via un ticket envoyé au <a href="#le-support-tech-39-desk-e-Attestations">Tech'Desk</a> et après activation de votre souscription par votre gestionnaire de comptes.
 </aside>
 
 ### Sécurité renforcée par Trust IP
@@ -206,13 +206,13 @@ Ainsi, il faudra toujours **préciser les adresses IP de vos infrastructures cli
 
 Les échanges sont sécurisés par un chiffrement SSL/TLS. Le certificat public 'e-attestations.com' supporte les protocoles TLS depuis le 1.0, 1.1 jusqu'au 1.2 pour s'adpater à la diversité de configuration de nos clients.
 
-<aside class="warning">
-eAttestations considère comme sûr le protocole TLS 1.2 uniquement.
+<aside className="warning">
+e-Attestations considère comme sûr le protocole TLS 1.2 uniquement.
 </aside>
 
 Ainsi, lors de la souscription au service ou via le Tech'Desk vous devez communiquer les adresses IP des serveurs 'client' et qui consommeront l'API REST JSON. 
 
-Si vous avez un ou plusieurs serveurs clients, il faut que chaque adresse IP soit communiquée pour qu'elle soit ajoutée à la liste des IP de confiance (Trust IP) d'eAttestations.
+Si vous avez un ou plusieurs serveurs clients, il faut que chaque adresse IP soit communiquée pour qu'elle soit ajoutée à la liste des IP de confiance (Trust IP) d'e-Attestations.
 
 L'adresse IP doit être fournie par serveur et sous la forme d'un CIDR.
 
@@ -223,7 +223,7 @@ le `/32` désigne la masque pour une adresse IP unique.
 
 ## Compte ('account')
 
-Le compte eAttestations donneur d'ordres et souscripteur au service.
+Le compte e-Attestations donneur d'ordres et souscripteur au service.
 
 Chaque compte dispose d'un identifiant de **compte unique**. Par construction, toutes les requêtes doivent obligatoirement inclure l'identifiant du client dans l'URL d'appel à l'exception du point terminateur **/account** qui vous donnes des informations sur votre l'identifiant du compte.
 
@@ -250,13 +250,13 @@ Des informations complémentaires sur votre souscription au service sont aussi r
 
 ## Tiers ('thirdparties')
 
-Cette appellation désigne le tiers, le fournisseur, le sous-traitant, etc... en relation avec le compte donneur d'ordres et fait l'objet de l'évaluation continue au titre de sa conformité, suivant la souscription et/ou les option du compte eAttestations.
+Cette appellation désigne le tiers, le fournisseur, le sous-traitant, etc... en relation avec le compte donneur d'ordres et fait l'objet de l'évaluation continue au titre de sa conformité, suivant la souscription et/ou les option du compte e-Attestations.
 
-Dans le cadre de cette relation, le compte eAttestations utilisateur de l'API REST/JSON est aussi appelé compte "donneur d'ordres".
+Dans le cadre de cette relation, le compte e-Attestations utilisateur de l'API REST/JSON est aussi appelé compte "donneur d'ordres".
 
 ## Dossiers ('dossiers')
 
-Le dossier est une materialisation de la relation donneur d'ordres / tiers. Un dossier comporte des demandes (exigences de conformité) formulées par le donneur d'ordres auxquelles correspondent des réponses le plus souvent automatiquement apportée par le plateforme eAttestations ou par le tiers (fichiers, signatures, autres données ...).
+Le dossier est une materialisation de la relation donneur d'ordres / tiers. Un dossier comporte des demandes (exigences de conformité) formulées par le donneur d'ordres auxquelles correspondent des réponses le plus souvent automatiquement apportée par le plateforme e-Attestations ou par le tiers (fichiers, signatures, autres données ...).
 
 La référence d'un dossier est une donnée renseignée par le donneur d'ordres lors de la création d'un dossier ou la modification d'un dossier. La référence d'un dossier doit être unique pour un couple tiers/donneur d'ordres. Autrement dit, un tiers ne peut avoir plus d'un dossier portant la même référence par donneur d'ordres.
 
@@ -264,15 +264,15 @@ Cette référence de dossier peut être modifiée à n'importe quel moment sauf 
 
 ## Exigences ('requirements')
 
-Correspond à un ensemble d'exigence (légale, compliance, métier, etc...) et une demande du donneur d'ordres. Une exigence fait l'objet d'une **demande** et en attente d'une **réponse** qu'elle soit apportée par eAttestations et pour le tiers lui même tels qu'une donnée spécifique, un ou plusieurs documents et leur(s) fichier(s) lié(s), une signature ou tout autre élément demandé constituant un preuve de conformité dans le cadre du suivi.
+Correspond à un ensemble d'exigence (légale, compliance, métier, etc...) et une demande du donneur d'ordres. Une exigence fait l'objet d'une **demande** et en attente d'une **réponse** qu'elle soit apportée par e-Attestations et pour le tiers lui même tels qu'une donnée spécifique, un ou plusieurs documents et leur(s) fichier(s) lié(s), une signature ou tout autre élément demandé constituant un preuve de conformité dans le cadre du suivi.
 
 # Autres définitions
 
 ## Identifiant de compagnie
 
-Un établissement ou une entreprise (au sens personne morale) est indentifiée dans le système eAttestations à l'aide d'un code identifiant national (SIRET, SIREN pour la France) ou d'un numéro internationnal (ex. l'identifiant TVA).
+Un établissement ou une entreprise (au sens personne morale) est indentifiée dans le système e-Attestations à l'aide d'un code identifiant national (SIRET, SIREN pour la France) ou d'un numéro internationnal (ex. l'identifiant TVA).
 
-l'API eAttestations propose deux types d'identifiants :
+l'API e-Attestations propose deux types d'identifiants :
 
 Type                         | Description
 -----------------------------|---------------------------------------
@@ -317,7 +317,7 @@ Il vous faudra l'utiliser pour connaître le résultat de l'import de façon asy
 
 Le endpoint **GET /account/{accountId}/dossier/process/{processId}** permet de suivre le résultat de l'import grâce à l'identifiant du process d'import renvoyé lors de l'appel "Création d'un dossier" (POST /account/{accountId}/dossiers).
 
-<p class="mermaid">
+<p className="mermaid">
 graph TB
 	A((<strong>Start</strong>)) 
 	A --> B(Call <strong>Import dossier endpoint</strong><br/>returns processId)
@@ -330,6 +330,6 @@ graph TB
 	R(Error Handling)
 </p>
 
-<aside class="notice">
+<aside className="notice">
 Il est important de bien vérifier les paramètres d'appel et de bien prendre en compte les codes d'erreurs et leur signification.
 </aside>

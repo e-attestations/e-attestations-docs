@@ -27,19 +27,19 @@ sidebar_label: Description
 
 # Documentation
 
-L'API REST/Json eAttestations est utilisée pour **interfacer** un système d'information '**client**' à la plate-forme d'eAttestations suivant le protocole HTTP.
+L'API REST/Json e-Attestations est utilisée pour **interfacer** un système d'information '**client**' à la plate-forme d'e-Attestations suivant le protocole HTTP.
 
 [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) (Representational State Transfer) ou RESTful est un style d'architecture permettant de construire des applications (Web, Intranet, Web Service) en exploitant des points terminateurs (des endpoints urls) et référençant des ressources à exploiter suivant les verbes du protocole HTTP (GET, POST, PUT, DELETE etc...).
 
 Notre API contient des URL prévisibles orientées ressources, accepte les corps de requête codés au format [JSON](https://en.wikipedia.org/wiki/JSON), renvoie les réponses codées [JSON](https://en.wikipedia.org/wiki/JSON) et utilise les codes de réponse HTTP standard, l'authentification et les verbes.
 
-Les applications 'clientes' utilisant l'API REST eAttestations enrichisent le Système d'Information du client avec le catalogue des données et services d'eAttestations de façon sécurisée et très souple.
+Les applications 'clientes' utilisant l'API REST e-Attestations enrichisent le Système d'Information du client avec le catalogue des données et services d'e-Attestations de façon sécurisée et très souple.
 
 L'API peut également être utilisée par les intégrateurs, éditeurs logiciels, des solutions SAAS ou des connecteurs.
 
-<aside class="success">
-L'API REST/Json eAttestations est actuellement en V1.1 et est proposée à l'ensemble des partenaires et clients eAttestations.
-Contactez eAttestations pour plus d'information à <a href="mailto:contact@e-attestations.com">contact@e-attestations.com</a>
+<aside className="success">
+L'API REST/Json e-Attestations est actuellement en V1.1 et est proposée à l'ensemble des partenaires et clients e-Attestations.
+Contactez e-Attestations pour plus d'information à <a href="mailto:contact@e-attestations.com">contact@e-attestations.com</a>
 </aside>
 
 ## Objectifs de cette documentation
@@ -72,7 +72,7 @@ npx newman run "EA_API_REST.postman_collection.json" \
   --global-var server_url="https://rs.dev-e-attestations.com"
 ```
 
-Pour aller encore plus vite et faciliter l'intégration et l'exploration de notre API nous fournissons <a href="eAttestations-API REST-Json-v1.1.postman_collection.json">une collection Postman</a> que vous pouvez importer dans postman et tester rapidement.
+Pour aller encore plus vite et faciliter l'intégration et l'exploration de notre API nous fournissons <a href="https://raw.githubusercontent.com/e-attestations/ea-api-rest-postman/master/eAttestations-API-REST-multi-version.postman_collection.json">une collection Postman</a> que vous pouvez importer dans postman et tester rapidement.
 
 Vous devrez définir quelques variables (user, password et server_url) pour exploiter cette suite de test.
 
@@ -82,17 +82,17 @@ Vous pouvez télécharger Postman via <a href="https://www.getpostman.com/downlo
 
 # Mise en place
 
-Pour souscrire à l'un ou l'autre des environnements vous devez tout d'abord en **émettre la demande auprès de votre gestionnaire de compte** eAttestations habituel.
+Pour souscrire à l'un ou l'autre des environnements vous devez tout d'abord en **émettre la demande auprès de votre gestionnaire de compte** e-Attestations habituel.
 
 Nous vous conseillons de bien discuter de la configuration de votre compte concernant les documents de compliance avec votre gestionnaire de compte afin de parfaitement comprendre votre cas d'usage et vous conseiller au mieux.
 
 **Attention** : L'usage de l'API n'est pas multicomptes !
 
-Votre gestionnaire de compte informera l'équipe technique pour la création d'une organisation liée à votre compte et un ou plusieurs contacts techniques (emails) seront alors invités au **Tech'Desk eAttestations**.
+Votre gestionnaire de compte informera l'équipe technique pour la création d'une organisation liée à votre compte et un ou plusieurs contacts techniques (emails) seront alors invités au **Tech'Desk e-Attestations**.
 
-# Le support TechDesk eAttestations
+# Le support TechDesk e-Attestations
 
-C'est un système de ticketing et de support **TECHNIQUE** dédié aux API eAttestations dans lequel vous pouvez poster questions et demandes au experts techniques eAttestations.
+C'est un système de ticketing et de support **TECHNIQUE** dédié aux API e-Attestations dans lequel vous pouvez poster questions et demandes au experts techniques e-Attestations.
 
 Après avoir reçu votre email d'invitation, créez votre user et mot de passe en toute autonomie pour accéder aux services et documentation de cette plateforme de support.
 
@@ -103,13 +103,13 @@ Cette plateforme sécurisée vous permet aussi de partager dans votre organisati
 **Rappel** : les identifiant (users et mots de passe) de connexion aux APIs ne sont fournis que dans le Tech'Desk !
 
 <a href="https://jira-e-attestations.atlassian.net/servicedesk/customer/portals" title="Accédez au Tech'Desk" target="_blank">
-<img class="imglink" alt="Home page du Tech'Desk eAttestations" src="/doc/images/TechDesk_Home.png" width="70%"/>
+<img class="imglink" alt="Home page du Tech'Desk e-Attestations" src="/doc/images/TechDesk_Home.png" width="70%"/>
 </a>
 
 # Environnements
 
 
-eAttestations met à disposition deux environnements :
+e-Attestations met à disposition deux environnements :
 
 - **TEST** :
 L'ouverture d'un accès de TEST de type API REST connecté à un compte client de TEST vous permettra, de façon pleinement sécurisée, d'accéder à une infrastructure sécurisée, semblable à celle de production mais avec une base de données unique et la garantie que **les emails ne seront jamais expédiés**.
@@ -122,13 +122,13 @@ Environnement | URL
 TEST | [https://rs.dev-e-attestations.com/api/v1/](https://rs.dev-e-attestations.com/api/v1/)
 PRODUCTION | [https://rs.e-attestations.com/api/v1/](https://rs.e-attestations.com/api/v1/)
 
-<aside class="warning">
-L'accès aux environnements est autorisé après demande auprès d'eAttestations.com.
+<aside className="warning">
+L'accès aux environnements est autorisé après demande auprès d'e-Attestations.com.
 L'obtention d'un user/mot de passe se fait de façon sécurisée grace exclusivement via le tech'Desk.
 Merci d'adresser vos demandes de user et mot de passe via ce biais uniquement (aucune partage de mot de passe par email).
 </aside>
 
-<aside class="notice">
+<aside className="notice">
 Dans l'environnement de TEST les envois d'emails sont inhibés (pas d'invitation des tiers ou d'envoi de rapport) afin d'éviter que vos tests n'interfèrent pas avec votre activité de production.
 </aside>
 
@@ -187,7 +187,7 @@ L'API REST doit être utilisée et consommée en UTF-8.
 
 ## OpenID Connect (OIDC)
 
-L'API REST eAttestations utilise **[OpenID Connect (OIDC)](https://openid.net/connect/)** pour identifier et authentifier les clients. Toute requête vers l'API doit obligatoirement inclure un Token [ (Json Web Token)](https://jwt.io/) valide.
+L'API REST e-Attestations utilise **[OpenID Connect (OIDC)](https://openid.net/connect/)** pour identifier et authentifier les clients. Toute requête vers l'API doit obligatoirement inclure un Token [ (Json Web Token)](https://jwt.io/) valide.
 
 Ce dernier doit être envoyé dans le header 'Authorization' (cf. l'exemple qui suit).
 
@@ -274,7 +274,7 @@ Pour chaque environnement, une URL spécifique vous permet de récupérer le JWT
 
 ## Utilisation du JSON Web Token
 
-<aside class="warning">
+<aside className="warning">
 La durée de validité du tocken est de quelques minutes. Vous devez vous assurer de la durée de validité de votre TOKEN grace à la donnée "expires_in" qui vous indique en nombre de secondes avant qu'il n'expire au moment de son obtention (par exemple 1800 secondes correspondant à 30').
 </aside>
 
@@ -294,8 +294,8 @@ curl -X GET \
     -H "Authorization: Bearer <JWT_TOKEN>"
 ```
 
-<aside class="notice">
-Vos identifiants sont délivrés à votre demande <strong>UNIQUEMENT</strong> via un ticket envoyé au <a href="#le-support-tech-39-desk-eattestations">Tech'Desk</a> et après activation de votre souscription par votre gestionnaire de comptes.
+<aside className="notice">
+Vos identifiants sont délivrés à votre demande <strong>UNIQUEMENT</strong> via un ticket envoyé au <a href="#le-support-tech-39-desk-e-Attestations">Tech'Desk</a> et après activation de votre souscription par votre gestionnaire de comptes.
 </aside>
 
 # Ressources
@@ -330,7 +330,7 @@ Vos identifiants sont délivrés à votre demande <strong>UNIQUEMENT</strong> vi
 }
 ```
 
-Le compte eAttestations donneur d'ordres et souscripteur au service.
+Le compte e-Attestations donneur d'ordres et souscripteur au service.
 
 Chaque compte dispose d'un identifiant de **compte unique** avec un identifiant.
 
@@ -338,7 +338,7 @@ Par construction, toutes les requêtes doivent obligatoirement inclure l'identif
 
 Les urls sont ainsi toutes prefixées par **/account/{account_id}/****
 
-<aside class="notice">
+<aside className="notice">
 Vous pouvez mémoriser dans votre jeux de configuration votre identifiant de compte ou choisir de le récupérer dynamiquement.
 Cette dernière solution étant la plus souple.
 </aside>
@@ -353,9 +353,9 @@ Des informations complémentaires sur votre souscription au service sont aussi r
 
 ## Tiers (thirdparties)
 
-Le tiers, le fournisseur, le sous-traitant, etc... est en relation avec le compte donneur d'ordres et fait l'objet de l'évaluation continue au titre de sa conformité, suivant la souscription et/ou les option du compte eAttestations.
+Le tiers, le fournisseur, le sous-traitant, etc... est en relation avec le compte donneur d'ordres et fait l'objet de l'évaluation continue au titre de sa conformité, suivant la souscription et/ou les option du compte e-Attestations.
 
-Dans le cadre de cette relation, le compte eAttestations utilisateur de l'API REST/JSON est aussi appelé compte "donneur d'ordres".
+Dans le cadre de cette relation, le compte e-Attestations utilisateur de l'API REST/JSON est aussi appelé compte "donneur d'ordres".
 
 > Exemple d'appel GET sur "/api/v1/account/{{account_id}}/thirdparties?siret=50382936800045"
 
@@ -395,7 +395,7 @@ Dans le cadre de cette relation, le compte eAttestations utilisateur de l'API RE
 ## Dossiers (dossiers)
 
 Le dossier est une materialisation de la relation donneur d'ordres / tiers.
-Un dossier comporte des demandes (exigences de conformité) formulées par le donneur d'ordres auxquelles correspondent des réponses le plus souvent automatiquement apportée par le plateforme eAttestations ou par le tiers (fichiers, signatures, autres données ...).
+Un dossier comporte des demandes (exigences de conformité) formulées par le donneur d'ordres auxquelles correspondent des réponses le plus souvent automatiquement apportée par le plateforme e-Attestations ou par le tiers (fichiers, signatures, autres données ...).
 
 La référence d'un dossier (dossierReference) est une donnée renseignée par le donneur d'ordres lors de la création d'un dossier ou la modification d'un dossier. La référence d'un dossier doit être unique pour un couple tiers/donneur d'ordres. Autrement dit, un tiers ne peut avoir plus d'un dossier portant la même référence par donneur d'ordres.
 
@@ -454,7 +454,7 @@ Cette référence de dossier peut être modifiée à n'importe quel moment sauf 
 
 ## Exigences (requirements)
 
-L'exigence est un ensemble de demande d'un domaine du donneur d'ordres (légale, compliance, métier, etc...). Une exigence fait l'objet d'une **demande** et en attente d'une **réponse** qu'elle soit apportée par eAttestations et pour le tiers lui même tels qu'une donnée spécifique, un ou plusieurs documents et leur(s) fichier(s) lié(s), une signature ou tout autre élément demandé constituant un preuve de conformité dans le cadre du suivi.
+L'exigence est un ensemble de demande d'un domaine du donneur d'ordres (légale, compliance, métier, etc...). Une exigence fait l'objet d'une **demande** et en attente d'une **réponse** qu'elle soit apportée par e-Attestations et pour le tiers lui même tels qu'une donnée spécifique, un ou plusieurs documents et leur(s) fichier(s) lié(s), une signature ou tout autre élément demandé constituant un preuve de conformité dans le cadre du suivi.
 
 > Exemple d'interrogation des exigences d'un dossier GET "/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/requirements"
 
@@ -481,11 +481,11 @@ L'exigence est un ensemble de demande d'un domaine du donneur d'ordres (légale,
 
 ## Documents (documents)
 
-Les documents sont les éléments constituant la demande d'exigence de conformité, définis en type de document (généralement un type de document par exigence) et pour lequel une réponse est apportée par eAttestations ou le tiers lui même.
+Les documents sont les éléments constituant la demande d'exigence de conformité, définis en type de document (généralement un type de document par exigence) et pour lequel une réponse est apportée par e-Attestations ou le tiers lui même.
 
 Un document peut être une signature, une donnée, un ou plusieurs fichiers, un ensemble de données issues d'un formulaire à remplir par le déclarant.
 
-Un document a une validité et donc une péremption que la plateforme eAttestations surveille en continu.
+Un document a une validité et donc une péremption que la plateforme e-Attestations surveille en continu.
 
 > Exemple d'obtention des documents d'un dossier GET "/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents"
 
@@ -565,9 +565,9 @@ curl --request POST \
 
 La création de dossier de suivi de la conformité des tiers est au coeur du processus de recrutement d'un tiers pour lequel vous souhaitez suivre la conformité et la principale étape permettant de démarrer le processus de suivi.
 
-<aside class="success">
+<aside className="success">
 La conformité à exiger dépend de votre besoin de la nature de votre tiers, du marché, de paramètres exogènes...
-<strong>Votre gestionnaire de compte eAttestations est là pour vous conseiller.</strong>
+<strong>Votre gestionnaire de compte e-Attestations est là pour vous conseiller.</strong>
 </aside>
 
 Elle est aussi la phase de recrutement de votre tiers qui sera alors informé par email qu'un dossier de suivi est encours.
@@ -576,7 +576,7 @@ Un workflow continu démarre alors pour le tiers qui devra alors déposer les pr
 
 Lors de la création d'un dossier le workflow déclenché est asynchrone et se décrit ainsi :
 
-- la récupération automatique des données du tiers (y compris s'il n'est pas déjà dans la base eAttestations)
+- la récupération automatique des données du tiers (y compris s'il n'est pas déjà dans la base e-Attestations)
 - son invitation grâce à l'email de contact
 - **éventuellement** l'envoi d'emails de demande pour les documents ou preuves demandés et non déjà présents
 - la production d'un indicateur de complétude ('I001') représentant la bonne santé du suivi au regard de l'exigence du dossier de suivi
@@ -620,9 +620,9 @@ graph TB
 
 ## Identifiant de compagnie
 
-Un établissement ou une entreprise (au sens personne morale) est indentifiée dans le système eAttestations à l'aide d'un code identifiant national (SIRET, SIREN pour la France) ou d'un numéro internationnal (ex. l'identifiant TVA).
+Un établissement ou une entreprise (au sens personne morale) est indentifiée dans le système e-Attestations à l'aide d'un code identifiant national (SIRET, SIREN pour la France) ou d'un numéro internationnal (ex. l'identifiant TVA).
 
-l'API eAttestations propose deux types d'identifiants :
+l'API e-Attestations propose deux types d'identifiants :
 
 Type                         | Description
 -----------------------------|---------------------------------------
@@ -633,7 +633,7 @@ Des types d'identifiants nouveaux pourront être implémenté au fil des évolut
 
 ## Indicateur de complétude
 
-L'indicateur de complétude eAttestations permet de renseigner de façon simple que le tiers a couvert entièrement les besoins ('requirements') au titre de la conformité exigée par la compliance client.
+L'indicateur de complétude e-Attestations permet de renseigner de façon simple que le tiers a couvert entièrement les besoins ('requirements') au titre de la conformité exigée par la compliance client.
 
 Exemple : un dossier de surveillance d'un tiers est jugé complet pour l'indicateur "obligation de vigilance", si tous les documents relatifs à l'obligation de vigilance sont présents et validés.
 

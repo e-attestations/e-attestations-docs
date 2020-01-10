@@ -4,7 +4,7 @@ title: Account
 sidebar_label: Account
 ---
 
-Le compte eAttestations donneur d'ordres et souscripteur au service.
+Le compte e-Attestations donneur d'ordres et souscripteur au service.
 
 > Exemple de contenu de '/account'
 
@@ -34,7 +34,7 @@ Le compte eAttestations donneur d'ordres et souscripteur au service.
 }
 ```
 
-Le compte eAttestations donneur d'ordres et souscripteur au service.
+Le compte e-Attestations donneur d'ordres et souscripteur au service.
 
 Chaque compte dispose d'un identifiant de **compte unique** avec un identifiant.
 
@@ -42,7 +42,7 @@ Par construction, toutes les requêtes doivent obligatoirement inclure l'identif
 
 Les urls sont ainsi toutes prefixées par **/account/{account_id}/****
 
-<aside class="notice">
+<aside className="notice">
 Vous pouvez mémoriser dans votre jeux de configuration votre identifiant de compte ou choisir de le récupérer dynamiquement.
 Cette dernière solution étant la plus souple.
 </aside>

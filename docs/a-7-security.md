@@ -6,11 +6,13 @@ sidebar_label: Sécurité
 
 ## OpenID Connect (OIDC)
 
-L'API REST eAttestations utilise **[OpenID Connect (OIDC)](https://openid.net/connect/)** pour identifier et authentifier les clients. Toute requête vers l'API doit obligatoirement inclure un Token [ (Json Web Token)](https://jwt.io/) valide.
+L'API REST e-Attestations utilise **[OpenID Connect (OIDC)](https://openid.net/connect/)** pour identifier et authentifier les clients. 
+
+Toute requête vers l'API doit obligatoirement inclure un Token [ (Json Web Token)](https://jwt.io/) valide.
 
 Ce dernier doit être envoyé dans le header 'Authorization' (cf. l'exemple qui suit).
 
-Si l'header n'est pas renseigner la requête sera considérée comme non authentifiée (HTTP code 401).
+Si le header 'Authorization' n'est pas renseigné la requête sera considérée comme non authentifiée (HTTP code 401).
 
 Plus d'informations sur OpenID Connect et JWT sur :
 
@@ -51,7 +53,7 @@ Le serveur d'authentification renverra un mot JSON dans lequel il faut préserve
 
 
 
-<div class="mermaid">sequenceDiagram
+<div className="mermaid">sequenceDiagram
   participant Client
   participant API_Server
   participant Authorizer
@@ -93,7 +95,7 @@ Pour chaque environnement, une URL spécifique vous permet de récupérer le JWT
 
 ## Utilisation du JSON Web Token
 
-<aside class="warning">
+<aside className="warning">
 La durée de validité du tocken est de quelques minutes. Vous devez vous assurer de la durée de validité de votre TOKEN grace à la donnée "expires_in" qui vous indique en nombre de secondes avant qu'il n'expire au moment de son obtention (par exemple 1800 secondes correspondant à 30').
 </aside>
 
@@ -113,6 +115,6 @@ curl -X GET \
     -H "Authorization: Bearer <JWT_TOKEN>"
 ```
 
-<aside class="notice">
-Vos identifiants sont délivrés à votre demande <strong>UNIQUEMENT</strong> via un ticket envoyé au <a href="#le-support-tech-39-desk-eattestations">Tech'Desk</a> et après activation de votre souscription par votre gestionnaire de comptes.
+<aside className="notice">
+Vos identifiants sont délivrés à votre demande <strong>UNIQUEMENT</strong> via un ticket envoyé au <a href="#le-support-tech-39-desk-e-Attestations">Tech'Desk</a> et après activation de votre souscription par votre gestionnaire de comptes.
 </aside>

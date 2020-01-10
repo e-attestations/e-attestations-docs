@@ -51,7 +51,7 @@ L'API REST doit être utilisée et consommée en UTF8.
 }
 ```
 
-<aside class="warning">
+<aside className="warning">
 Nous avons développé un contrat d'interface (présenté ci dessus) qui se veut le plus pratique pour le développeur.
 Il est toute fois important de noter que durant la PREVIEW certains messages pourront ne pas encore présenter le même format.
 Auquel cas un format 'standard' de réponse d'erreur 'protocolaire' est utilisé.
