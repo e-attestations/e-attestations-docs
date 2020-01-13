@@ -930,8 +930,8 @@ paths:
                         (dossierId).
                 5XX:
                     description: Unexpected error
-            summary: Réactiver un dossier
-            description: Réactiver le suivi d'un dossier.
+            summary: Dossier re-activation
+            description: Re-activation for a specific dossier
     '/account/{accountId}/requirements':
         get:
             tags:
@@ -958,7 +958,7 @@ paths:
                                             $ref: '#/components/schemas/Requirement'
                                     messages:
                                         $ref: '#/components/schemas/Messages'
-                    description: Retourne un tableau JSON. Chaque item contient un document requis.
+                    description: Returns a JSON array. Each item contains a required document.
                 '400':
                     description: Malformed request
                 '401':
@@ -967,8 +967,8 @@ paths:
                     description: No account with this identifier (accountId).
                 5XX:
                     description: Unexpected error
-            summary: Documents requis
-            description: 'Liste des documents requis, disponibles pour un donneur d''ordres'
+            summary: Requiered documents
+            description: List of required documents, available for a client
     '/account/{accountId}/dossiers/{dossierId}/requirements':
         get:
             tags:
@@ -985,7 +985,7 @@ paths:
                     required: true
                 -
                     name: dossierId
-                    description: Identifiant du dossier
+                    description: Dossier ID
                     schema:
                         format: int64
                         type: integer
@@ -1004,7 +1004,7 @@ paths:
                                             $ref: '#/components/schemas/Requirement'
                                     messages:
                                         $ref: '#/components/schemas/Messages'
-                    description: Retourne un tableau JSON. Chaque item contient un document requis pour le dossier.
+                    description: Returns a JSON array. Each item contains a document required for the file.
                 '400':
                     description: Malformed request
                 '401':
@@ -1015,18 +1015,18 @@ paths:
                         (dossierId).
                 5XX:
                     description: Unexpected error
-            summary: Documents requis pour un dossier
-            description: Restituer les documents demandés pour un dossier actif.
+            summary: Documents required for a file
+            description: Restore the documents requested for an active file.
         post:
             requestBody:
-                description: Liste des requirements (documents demandés).
+                description: List of requirements (documents requested).
                 content:
                     application/json:
                         schema:
-                            title: Liste des document demandés
+                            title: List of requested documents
                             type: array
                             items:
-                                title: code du document demandé
+                                title: document code requested
                                 type: string
             tags:
                 - Dossiers
@@ -1042,7 +1042,7 @@ paths:
                     required: true
                 -
                     name: dossierId
-                    description: Identifiant du dossier
+                    description: File ID
                     schema:
                         format: int64
                         type: integer
@@ -1057,19 +1057,18 @@ paths:
                                 properties:
                                     messages:
                                         $ref: '#/components/schemas/Messages'
-                    description: Les documents requis pour le dossier ont été mis à jour avec succès.
+                    description: The documents required for the file have been successfully updated.
                 '400':
                     description: >-
-                        Malformed request ou Erreurs dans les valeurs transmises au serveur. Voir la liste des
-                        erreurs.
+                        Malformed request or Errors in the values ​​transmitted to the server. See the list of errors.
                 '401':
                     description: Authorization not understood or invalid
                 '404':
-                    description: Aucun dossier ayant cet identifiant
+                    description: No dossier with this identifier
                 5XX:
                     description: Unexpected error
-            summary: Mettre à jour les documents requis
-            description: Mettre à jour les documents demandés pour un dossier actif.
+            summary: Update required documents
+            description: Update the documents requested for an active file
     '/account/{accountId}/dossiers/process/{processId}':
         get:
             tags:
@@ -1101,7 +1100,7 @@ paths:
                                         $ref: '#/components/schemas/DossierProcessResult'
                                     messages:
                                         $ref: '#/components/schemas/Messages'
-                    description: envoie un mot JSON indiquant le statut et le résultat de l'import.
+                    description: send a JSON word indicating the status and the result of the import.
                 '400':
                     description: Malformed request
                 '401':
@@ -1110,11 +1109,9 @@ paths:
                     description: Aucun process avec cet identifiant
                 5XX:
                     description: Unexpected error
-            summary: Statut de création d'un dossier
+            summary: Dossier creation status
             description: >
-                Permet de connaître le statut et le résultat d'un import de dossier à partir de l'identifiant
-                d'import.
-    '/account/{accountId}/dossiers/processes':
+                Enables you to find out the status and result of a file import from the import identifier. '/account/{accountId}/dossiers/processes':
         get:
             tags:
                 - Dossiers
@@ -1129,7 +1126,7 @@ paths:
                     required: true
                 -
                     name: fromDate
-                    description: Date de lancement min des imports.
+                    description: Minimum launch date for imports.
                     schema:
                         format: date
                         type: string
@@ -1144,36 +1141,27 @@ paths:
                                 properties:
                                     content:
                                         description: >-
-                                            Tableau contenant des objets JSON, indiquant les statuts d'import
-                                            d'un ou plusieurs dossiers.
+                                            Table containing JSON objects, indicating the import status of one or more folders.
                                         type: array
                                         items:
                                             $ref: '#/components/schemas/DossierProcessResult'
                                     messages:
                                         $ref: '#/components/schemas/Messages'
-                    description: 'Renvoie un tableau d''objets JSON, indiquant le statut et le résultat des imports.'
+                    description: Returns an array of JSON objects, indicating the status and the result of imports.
                 '400':
                     description: Malformed request
                 '401':
                     description: Authorization not understood or invalid
                 '404':
-                    description: Aucun process avec cet identifiant
+                    description: No process with this identifier
                 5XX:
                     description: Unexpected error
-            summary: Statut de création de dossiers
-            description: >
-
-                Permet de connaître les résultats d'import de plusieurs dossiers.
-
-
-                Si le paramètre fromDate est renseigné, les résultats d'imports qui seront retournée sont ceux
-                qui ont été lancés à partir de cette date.
-
-
-                Par défaut, les résultats d'imports lancés dans les dernières 24h sont retrounés.
-    '/account/{accountId}/dossiers/search':
-        summary: Recherche par critères
-        description: Recherches par critères spécifiés en paramètre de la requête
+            summary: Folder creation status
+            description: >-
+              Enables you to find out the import results of several folders. If the fromDate parameter is specified, the import results that will be returned are those that were launched from this date. By default, the import results launched in the last 24 hours are returned.
+              '/account/{accountId}/dossiers/search':
+        summary: Search by criteria
+        description: Searches by criteria specified in query parameters
         get:
             tags:
                 - Dossiers
@@ -1211,10 +1199,9 @@ paths:
             security:
                 -
                     Bearer: []
-            summary: Recherche par critères
+            summary: Search by criteria
             description: >-
-                La recheche des dossiers est possible en spécifiant la donnée sur laquelle on veut effectuer
-                une recherche 'q' et une valeur 'val' qui peut être partielle (grace au caractère '*')
+              The search of the files is possible by specifying the data on which one wants to carry out a search 'q' and a value 'val' which can be partial (thanks to the character '*')
         parameters:
             -
                 name: accountId
@@ -1225,24 +1212,24 @@ paths:
                     Recherche sur par marché/référence dossier:
                         value: '"MARCH_PUB*"'
                 name: q
-                description: |-
-                    Type de recherche : 
-                    - reference : reference dossier
-                    - credate : date de création du dossier
-                    - enddate : fin de dossier
-                    - status : true = status actif du dossier
+                description: >-
+                  Type of research :
+                    - reference: reference dossier
+                    - credate: file creation date
+                    - enddate: end of file
+                    - status: true = active status of the folder
                 schema:
                     type: string
                 in: query
                 required: true
             -
                 name: val
-                description: |-
-                    Valeur du critère cherché et dépendant du type de recherche. 
-                    La valeur cherchée peut être 'partielle' grace au caractère '*'.
-                    La valeur '*' remplace une partie de la valeur de type chaine recherchée 
-                    La recherche sur '*' seule est interdite. 
-                    Par exemple : MARCH_PUB* est équivalant à "commence part MARCH_PUB*".
+                description: >-
+                  Value of the criterion sought and dependent on the type of research.
+                  The value sought can be 'partial' thanks to the character '*'.
+                  The value '*' replaces part of the value of type string sought
+                  Searching on '*' alone is prohibited.
+                  For example: MARCH_PUB * is equivalent to "starts part MARCH_PUB *".
                 schema:
                     type: string
                 in: query
@@ -1250,7 +1237,7 @@ paths:
 components:
     schemas:
         Account:
-            title: Compte eAttestations
+            title: e-Attestations account
             description: Contains the information of the account (s) and its / their subscription (s).
             type: object
             properties:
