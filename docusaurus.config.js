@@ -21,13 +21,26 @@ module.exports = {
         src: 'img/cropped-logo-eattestations-2.png',
       },
       links: [
+        {href: 'openapi/swagger.html', label: 'Swagger'},
+        {href: 'openapi/redoc.html', label: 'Redoc'},
         {to: 'docs/b-1-get-started', label: 'QuickStart', position: 'right'},
         {to: 'docs/a-1-introduction', label: 'Docs', position: 'right'},
+        {
+          label: 'Tutorials',
+          to: 'docs/t-1-create-dossier',
+          position: 'right'
+        },
         {
           href: 'https://github.com/e-attestations',
           label: 'GitHub',
           position: 'right',
-        },{
+        },
+        {
+          href: 'https://api.dev-e-attestations.com',
+          label: 'Blog',
+          position: 'right',
+        },
+        {
           to: 'https://jira-e-attestations.atlassian.net/servicedesk/customer/portals',
           label: 'Support',
           position: 'right',
