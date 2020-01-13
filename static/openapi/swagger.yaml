@@ -44,9 +44,23 @@ servers:
         description: SANDBOX
 paths:
     /account:
+        summary: This resource is the ordering customer and service subscriber to e-Attestations account.
+        description: >-
+            This resource is the ordering customer and service subscriber to e-Attestations account.
+
+
+            The account identifier is returned in the `account_ids` returned in the JWT token.
+
+
+            In addition, you can also retrieve your account identifier from the `/account` endpoint without
+            any parameters.
+
+
+            All requests must include the customer identifier so that every time the account's activation and
+            subscription to the service are verified
         get:
             tags:
-                - Compte
+                - Account
             responses:
                 '200':
                     content:
@@ -79,16 +93,18 @@ paths:
                     description: No account with this identifier (accountId).
                 5XX:
                     description: Unexpected error
-            summary: Information du compte
-            description: |
+            security:
+                -
+                    Bearer: []
+            summary: Account information
+            description: |-
 
-                Restituer les informations du compte associé au TOKEN validé dans la requete.
-
-                Les informations détaillent la souscription au service.
+                Restore the information of the account associated with the TOKEN validated in the request.
+                The information details the subscription to the service.
     '/account/{accountId}':
         get:
             tags:
-                - Compte
+                - Account
             parameters:
                 -
                     name: accountId
@@ -134,12 +150,13 @@ paths:
                     description: Unexpected error
             summary: Statistiques globales
             description: >-
-                Restore the overall statistics of the account. The statistics relate only to the third parties monitored. A monitored third party is a third party for which there is at least one active file. The statistics relate to third parties and files and their completeness.
-
+                Restore the overall statistics of the account. The statistics relate only to the third parties
+                monitored. A monitored third party is a third party for which there is at least one active
+                file. The statistics relate to third parties and files and their completeness.
     '/account/{accountId}/thirdparties':
         get:
             tags:
-                - Tiers
+                - Thirdparties
             parameters:
                 -
                     name: accountId
@@ -151,7 +168,8 @@ paths:
                 -
                     name: monitored
                     description: >-
-                        Allows filtering on monitored third parties (monitored = true) or non-monitored third parties (monitored = false)
+                        Allows filtering on monitored third parties (monitored = true) or non-monitored third
+                        parties (monitored = false)
                     schema:
                         type: boolean
                     in: query
@@ -194,15 +212,15 @@ paths:
                 -
                     name: companyIdValue
                     description: >-
-                        Allows you to filter by third party company identifier. The identifier can be a SIRET or a VAT Number.
+                        Allows you to filter by third party company identifier. The identifier can be a SIRET
+                        or a VAT Number.
                     schema:
                         type: string
                     in: query
                     required: false
                 -
                     name: stateLastChangeDate
-                    description: >-
-                        Filter to return third parties whose overall status has changed since that date.
+                    description: Filter to return third parties whose overall status has changed since that date.
                     schema:
                         format: date
                         type: string
@@ -211,7 +229,8 @@ paths:
                 -
                     name: thirdpartyGlobalState
                     description: >-
-                        Filter to return third parties whose overall completeness is "complete" (true) or "incomplete" (false)
+                        Filter to return third parties whose overall completeness is "complete" (true) or
+                        "incomplete" (false)
                     schema:
                         type: boolean
                     in: query
@@ -219,7 +238,9 @@ paths:
                 -
                     name: subscriptionState
                     description: >-
-                        Allows you to filter on the registration status of a third party. This parameter allows to return the registered (subscriptionState = true) or non-registered (subscriptionState = false) third parties
+                        Allows you to filter on the registration status of a third party. This parameter
+                        allows to return the registered (subscriptionState = true) or non-registered
+                        (subscriptionState = false) third parties
                     schema:
                         type: boolean
                     in: query
@@ -261,7 +282,9 @@ paths:
                                     messages:
                                         $ref: '#/components/schemas/Messages'
                     description: >-
-                        Returns an array of JSON objects. Each item contains the identification information of a third party (The eAttestations identifier of the third party, the type of company identifier, the company identifier of the third party and the third party code).
+                        Returns an array of JSON objects. Each item contains the identification information of
+                        a third party (The eAttestations identifier of the third party, the type of company
+                        identifier, the company identifier of the third party and the third party code).
                 '400':
                     description: Malformed request
                 '401':
@@ -277,13 +300,15 @@ paths:
                     description: No account with this identifier (accountId).
                 5XX:
                     description: Unexpected error
-            summary: Liste des tiers
+            summary: Thirdparty list
             description: >-
-                Restore the third repository of the account. This terminator makes it possible to retrieve only the identification information of third parties. For more detailed information on the third party, use the terminator (GET '/ account / {accountId} / thirdparty / {thirdpartyId}')
+                Restore the third repository of the account. This terminator makes it possible to retrieve
+                only the identification information of third parties. For more detailed information on the
+                third party, use the terminator (GET '/ account / {accountId} / thirdparty / {thirdpartyId}')
     '/account/{accountId}/thirdparties/{thirdpartyId}':
         get:
             tags:
-                - Tiers
+                - Thirdparty
             parameters:
                 -
                     name: accountId
@@ -294,7 +319,7 @@ paths:
                     required: true
                 -
                     name: thirdpartyId
-                    description: Identifier e-Attestations of the third party.
+                    description: Thirdparty ID
                     schema:
                         type: integer
                     in: path
@@ -312,7 +337,7 @@ paths:
                                         $ref: '#/components/schemas/Messages'
                     description: Returns a JSON word containing detailed information from the third party
                 '400':
-                    description: Malformed request  
+                    description: Malformed request
                 '401':
                     description: Authorization not understood or invalid
                 '404':
@@ -332,10 +357,8 @@ paths:
             description: >-
                 Used to restore detailed information from a third party. Are reassembled:
 
-                * Third party "identity" information
-                * Third party address
-                * The list of third party users
-                * Different states (Active?, Registered? ...)
+                * Third party "identity" information * Third party address * The list of third party users *
+                Different states (Active?, Registered? ...)
     '/account/{accountId}/dossiers':
         get:
             tags:
@@ -351,13 +374,15 @@ paths:
                 -
                     name: thirdpartyId
                     description: >-
-                      Identify e-Attestations of the third party. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the third party in the eAttestations platform.
+                        Identify e-Attestations of the third party. This is different from the companyIdValue.
+                        The thirdpartyId is a technical identifier that uniquely identifies the third party in
+                        the eAttestations platform.
                     schema:
                         type: integer
                     in: query
                 -
                     name: companyIdType
-                    description: Permet de filtrer par type d'identifiant compagnie du tiers.
+                    description: Permet de filtrer par Type of company identifier du tiers.
                     schema:
                         type: string
                     in: query
@@ -371,15 +396,15 @@ paths:
                     required: false
                 -
                     name: thirdpartyCode
-                    description: Code tiers. Il s'agit d'un identifiant interne au client.
+                    description: Thirdparty external ID (from user input or external system)
                     schema:
                         type: string
                     in: query
                 -
                     name: dossierReference
                     description: >-
-                        Permet de filtrer par référence du dossier. La référence de dossier étant unique pour
-                        un tiers/dossier, si ce paramètre est renseigné, au maximum un dossier sera renvoyé.
+                        Allows you to filter by file reference. As the file reference is unique for a third
+                        party / file, if this parameter is entered, a maximum of one file will be returned.
                     schema:
                         type: string
                     in: query
@@ -387,8 +412,8 @@ paths:
                 -
                     name: monitored
                     description: >-
-                        Filtre permettant de retourner les dossiers suivis (monitored=true) ou non suivis
-                        (monitored=false)
+                        Filter allowing to return the files followed (monitored = true) or not followed
+                        (monitored = false)
                     schema:
                         type: boolean
                     in: query
@@ -396,8 +421,8 @@ paths:
                 -
                     name: stateLastChangeDate
                     description: >-
-                        Filtre permettant de ne retourner que les dossiers dont l'état de complétude a changé
-                        depuis une date donnée.
+                        Filter allowing you to return only files whose completeness has changed since a given
+                        date.
                     schema:
                         format: date
                         type: string
@@ -405,21 +430,21 @@ paths:
                     required: false
                 -
                     name: siren
-                    description: Le siren du tiers recherché
+                    description: Thirdpary SIREN code
                     schema:
                         type: string
                     in: query
                     required: false
                 -
                     name: siret
-                    description: Le siren du tiers recherché
+                    description: Thirdpary SIRET code
                     schema:
                         type: string
                     in: query
                     required: false
                 -
                     name: tva
-                    description: Le numéro TVA du tiers recherché
+                    description: Thirdpary TVA code
                     schema:
                         type: string
                     in: query
@@ -451,7 +476,7 @@ paths:
                                             $ref: '#/components/schemas/Dossier'
                                     messages:
                                         $ref: '#/components/schemas/Messages'
-                    description: Retourne un tableau d'objets JSON. Chaque item contient les informations d'un dossier.
+                    description: Returns an array of JSON objects. Each item contains information from a folder.
                 '400':
                     description: Malformed request
                 '401':
@@ -469,13 +494,13 @@ paths:
                     description: Unexpected error
             summary: Recherche dossiers (multi-critères)
             description: >-
-                Permet de restituer les informations d'un ou plusieurs dossiers. Il est possible de combiner
-                les filtres disponibles afin d'affiner le résultat.
+                Used to restore information from one or more files. It is possible to combine the available
+                filters to refine the result.
         post:
             requestBody:
                 description: >-
-                    Le dossier à importer. Contient les informations du dossier, mais également les
-                    informations d'identification du tiers.
+                    The folder to import. Contains file information, but also third party identification
+                    information.
                 content:
                     application/json:
                         schema:
@@ -502,7 +527,7 @@ paths:
                                         $ref: '#/components/schemas/DossierProcess'
                                     messages:
                                         $ref: '#/components/schemas/Messages'
-                    description: Renvoie un mot JSON contenant l'identifiant du process d'import.
+                    description: Returns an array of JSON objects. Each item contains information from a folder.
                 '400':
                     description: Malformed request
                 '401':
@@ -519,24 +544,20 @@ paths:
                 5XX:
                     description: Unexpected error
             summary: Importer un dossier
-            description: >
+            description: >-
 
-                Permet de créer un dossier pour un tiers. Un dossier permet à un donneur d'ordre de suivre un
-                tiers sur un certain nombre de pièces demandées (appelées également Requirements).
+                Create a folder for a third party. A file allows a client to follow a third party on a certain
+                number of requested documents (also called Requirements).
 
+                If the third party does not exist, it is created in the eAttestations platform.
 
-                Si le tiers n'existe pas, celui-ci est créé dans la plateforme eAttestations.
+                File import is an asynchronous process. This asynchronism is induced by the process (itself of
+                an asynchronous nature) of qualification of third party information by our Data Provider.
 
-
-                L'import de dossier est un processus asynchrone. Cet asynchronisme est induit par le processus
-                (lui même de nature asynchone) de qualification des informations du tiers par notre Data
-                Provider.
-
-
-                Ce point terminateur lance le processus d'import et renvoie un identifiant de process
-                (processId). Le traitement pouvant durer plusieurs minutes, ainsi pour suivre l'état
-                d'avancement du processus d'import et pour connaître son résultat, un client peut utiliser le
-                point terminateur (GET '/account/{accountId}/dossier/{processId}') décrit ci-dessous.
+                This terminating point launches the import process and returns a process identifier
+                (processId). The processing can last several minutes, so to follow the progress of the import
+                process and to know its result, a client can use the terminator (GET '/ account / {accountId}
+                / dossier / {processId}' ) described below.
     '/account/{accountId}/dossiers/{dossierId}':
         get:
             tags:
@@ -552,7 +573,7 @@ paths:
                     required: true
                 -
                     name: dossierId
-                    description: Identifiant d'un dossier.
+                    description: File identifier.
                     schema:
                         format: int64
                         type: integer
@@ -569,7 +590,7 @@ paths:
                                         $ref: '#/components/schemas/Dossier'
                                     messages:
                                         $ref: '#/components/schemas/Messages'
-                    description: Retourne les informations d'un dossier.
+                    description: Returns the information of a folder.
                 '400':
                     description: Malformed request
                 '401':
@@ -587,11 +608,11 @@ paths:
                         (dossierId).
                 5XX:
                     description: Unexpected error
-            summary: Détails d'un dossier
-            description: Restituer les informations d'un dossier.
+            summary: File details
+            description: Restore information from a file.
         post:
             requestBody:
-                description: données à mettre à jour dans le dossier.
+                description: data to update in the folder.
                 content:
                     application/json:
                         schema:
@@ -610,7 +631,7 @@ paths:
                     required: true
                 -
                     name: dossierId
-                    description: Identifiant du dossier.
+                    description: Dossier ID
                     schema:
                         format: int64
                         type: integer
@@ -625,9 +646,9 @@ paths:
                                 properties:
                                     messages:
                                         $ref: '#/components/schemas/Messages'
-                    description: Mise à jour du dossier effectuée avec succès.
+                    description: File update successfully completed.
                 '400':
-                    description: Erreurs dans les valeurs transmises au serveur. Voir la liste des erreurs.
+                    description: Errors in the values ​​transmitted to the server. See the list of errors.
                 '401':
                     description: Authorization not understood or invalid
                 '404':
@@ -643,8 +664,8 @@ paths:
                         (dossierId).
                 5XX:
                     description: Unexpected error
-            summary: Mettre à jour un dossier
-            description: Mettre à jour les informations d’un dossier suivi (monitored=true).
+            summary: Update a file
+            description: Update the information in a monitored file (monitored = true).
     '/account/{accountId}/dossiers/{dossierId}/documents':
         get:
             tags:
@@ -661,7 +682,7 @@ paths:
                     required: true
                 -
                     name: dossierId
-                    description: Identifiant d'un dossier.
+                    description: Dossier ID
                     schema:
                         format: int64
                         type: integer
@@ -680,7 +701,7 @@ paths:
                                             $ref: '#/components/schemas/Document'
                                     messages:
                                         $ref: '#/components/schemas/Messages'
-                    description: Retourne les documents d'un dossier.
+                    description: Returns documents from a folder.
                 '400':
                     description: Malformed request
                 '401':
@@ -698,8 +719,8 @@ paths:
                         (dossierId).
                 5XX:
                     description: Unexpected error
-            summary: Documents d'un dossier
-            description: Restituer les documents d'un dossier.
+            summary: Documents in a file
+            description: Return the documents in a file.
     '/account/{accountId}/dossiers/{dossierId}/documents/{documentId}':
         get:
             tags:
@@ -716,7 +737,7 @@ paths:
                     required: true
                 -
                     name: dossierId
-                    description: Identifiant d'un dossier.
+                    description: Dossier ID
                     schema:
                         format: int64
                         type: integer
@@ -724,7 +745,7 @@ paths:
                     required: true
                 -
                     name: documentId
-                    description: Identifiant d'un document.
+                    description: Document ID.
                     schema:
                         format: int64
                         type: integer
@@ -741,7 +762,7 @@ paths:
                                         $ref: '#/components/schemas/Document'
                                     messages:
                                         $ref: '#/components/schemas/Messages'
-                    description: Retourne les détails d'un documents d'un dossier.
+                    description: Returns the details of a document in a folder.
                 '400':
                     description: Malformed request
                 '401':
@@ -759,8 +780,8 @@ paths:
                         (dossierId) ou aucun document avec et identiant
                 5XX:
                     description: Unexpected error
-            summary: Détails d'un document d'un dossier
-            description: Restituer les détails d'un document d'un dossier.
+            summary: Details of a file document
+            description: Retrieve the details of a document in a file.
     '/account/{accountId}/dossiers/{dossierId}/documents/{documentId}/files/{fileId}':
         get:
             tags:
@@ -777,7 +798,7 @@ paths:
                     required: true
                 -
                     name: dossierId
-                    description: Identifiant d'un dossier.
+                    description: Dossier ID
                     schema:
                         format: int64
                         type: integer
@@ -785,7 +806,7 @@ paths:
                     required: true
                 -
                     name: documentId
-                    description: Identifiant d'un document.
+                    description: Document ID
                     schema:
                         format: int64
                         type: integer
@@ -793,7 +814,7 @@ paths:
                     required: true
                 -
                     name: fileId
-                    description: Identifiant d'un fichier.
+                    description: File ID
                     schema:
                         format: int64
                         type: integer
@@ -806,20 +827,18 @@ paths:
                             schema:
                                 format: binary
                                 type: string
-                    description: Retourne le fichier
+                    description: A copy of the file content is returned back
                 '400':
                     description: Malformed request
                 '401':
                     description: Authorization not understood or invalid
                 '404':
                     description: >-
-                        Aucun fichier avec cet identifiant (accountId), ou aucun dossier avec cet identifiant
-                        (dossierId) ou aucun document avec cet identiant (documentId) ou aucun fichier avec
-                        cet identiant (fileId)
+                      No file with this identifier (accountId), or no file with this identifier (dossierId) or no document with this identifier (documentId) or no file with this identifier (fileId)
                 5XX:
                     description: Unexpected error
-            summary: Téléchargement d'un fichier d'un document d'un dossier
-            description: Télécharger le fichier
+            summary: Downloading a document file from a folder
+            description: Download the file
     '/account/{accountId}/dossiers/{dossierId}/stop':
         post:
             tags:
@@ -835,7 +854,7 @@ paths:
                     required: true
                 -
                     name: dossierId
-                    description: Identifiant du dossier.
+                    description: Dossier ID
                     schema:
                         format: int64
                         type: integer
@@ -885,7 +904,7 @@ paths:
                     required: true
                 -
                     name: dossierId
-                    description: Identifiant du dossier.
+                    description: Dossier ID
                     schema:
                         format: int64
                         type: integer
@@ -1041,8 +1060,8 @@ paths:
                     description: Les documents requis pour le dossier ont été mis à jour avec succès.
                 '400':
                     description: >-
-                        Malformed request ou Erreurs dans les valeurs transmises au serveur. Voir la liste
-                        des erreurs.
+                        Malformed request ou Erreurs dans les valeurs transmises au serveur. Voir la liste des
+                        erreurs.
                 '401':
                     description: Authorization not understood or invalid
                 '404':
@@ -1172,7 +1191,7 @@ paths:
                                     messages:
                                         $ref: '#/components/schemas/Messages'
                     description: >-
-                        Retourne un tableau d'objets JSON. Chaque item contient les informations d'un dossier.
+                        Returns an array of JSON objects. Each item contains information from a folder.
                         Renvoie la ou les valeurs trouvées suivant les critères 'q' et 'val'
                 '400':
                     description: Malformed request ou incorrecte
@@ -1232,36 +1251,36 @@ components:
     schemas:
         Account:
             title: Compte eAttestations
-            description: 'Contient les informations du ou des comptes et de sa/leur(s) souscriptions. '
+            description: Contains the information of the account (s) and its / their subscription (s).
             type: object
             properties:
                 id:
                     format: int64
-                    description: Account ID A utiliser dans tous les appels à l'API
+                    description: Account ID To be used in all API calls
                     type: integer
                 account:
-                    description: Appellation du compte eAttestations
+                    description: Name of the eAttestations account
                     type: string
                 company:
-                    description: Nom de l'entité légale du compte
+                    description: Name of the legal entity of the account
                     type: string
                 creation:
                     format: date-time
-                    description: Date de création du compte
+                    description: Date the account
                     type: string
                 maxDossiers:
                     format: int32
-                    description: Limite en nombre de dossiers
+                    description: Limit on number of files
                     type: integer
                 name:
-                    description: Nom du compte
+                    description: Account name
                     type: string
                 subscriptionDate:
                     format: date-time
-                    description: Date de souscription au service
+                    description: Date of subscription to the service
                     type: string
                 subscriptions:
-                    description: Liste des soucriptions pour ce compte
+                    description: List of subscriptions for this account
                     type: array
                     items:
                         $ref: '#/components/schemas/Subscription'
@@ -1283,36 +1302,34 @@ components:
                                 startSubscriptionDate: '2019-04-29T13:20:02.102973'
                                 status: ACTIVE
         GlobalInformation:
-            title: Informations globales
-            description: Ce mot JSON contient les statistiques globales et les statistiques par indicateur.
+            title: Global Informations
+            description: This JSON word contains global statistics and statistics by indicator.
             type: object
             properties:
                 numberOfThirdparties:
                     format: int64
-                    description: Le nombre total de tiers du compte.
+                    description: The total number of thirds of the account.
                     type: integer
                 numberOfSubscribedThirdparties:
                     format: int64
-                    description: Le nombre total de tiers inscrits pour un donneur d'ordres.
+                    description: The total number of third parties registered for a client.
                     type: integer
                 numberOfCompleteThirdparties:
                     format: int64
                     description: >-
-                        Le nombre total de tiers dont tous les dossiers actifs sont complets. Autrement dit,
-                        les tiers qui ont déposé tous les documents requis par ce donneur d'ordres.
+                        The total number of third parties for which all active files are complete. In other words, the third parties who have submitted all the documents required by this client.
                     type: integer
                 numberOfDossiers:
                     format: int64
-                    description: Le nombre total de dossiers actifs.
+                    description: The total number of active files.
                     type: integer
                 numberOfCompleteDossiers:
                     format: int64
                     description: >-
-                        Le nombre total de dossiers complets. Autrement dit, les dossiers pour lesquels tous
-                        les documents requis ont été déposés.
+                        The total number of complete files. In other words, the files for which all the required documents have been filed.
                     type: integer
                 listIndicatorsStatistics:
-                    description: Tableau contenant des statistiques par indicateur (E.g. Obligation de vigilance).
+                    description: Table containing statistics by indicator (E.g. Obligation of vigilance).
                     type: array
                     items:
                         $ref: '#/components/schemas/StatisticsIndicator'
@@ -1338,34 +1355,33 @@ components:
                         numberOfDossiers: 35
                         numberOfCompleteDossiers: 41
         StatisticsIndicator:
-            title: Indicateur de statistiques
-            description: Mot Json contenant des statistiques sur un indicateur (E.g. Obligation de vigilance).
+            title: Statistics indicator
+            description: Word Json containing statistics on an indicator (E.g. Obligation of vigilance).
             type: object
             properties:
                 indicatorCode:
-                    description: Code de l'indicateur.
+                    description: Indicator code.
                     type: string
                 numberOfThirdparties:
                     format: int64
-                    description: Le nombre de tiers du compte donneurs d'ordres restreint sur cet indicateur.
+                    description: The number of thirds of the ordering customer account restricted on this indicator.
                     type: integer
                 numberOfSubscribedThirdparties:
                     format: int64
-                    description: Le nombre de tiers inscrits restreints sur cet indicateur.
+                    description: The number of third parties registered restricted on this indicator.
                     type: integer
                 numberOfCompleteThirdparties:
                     format: int64
                     description: >-
-                        Le nombre de tiers dont tous les dossiers sont complets, restreints sur cet
-                        indicateur.
+                        The number of third parties for which all the files are complete, restricted on this indicator.
                     type: integer
                 numberOfDossiers:
                     format: int64
-                    description: 'Le nombre de dossiers du compte, restreints sur cet indicateur.'
+                    description: The number of accounts in the account, restricted on this indicator.
                     type: integer
                 numberOfCompleteDossiers:
                     format: int64
-                    description: 'Le nombre de dossiers complets du compte, restreints sur cet indicateur.'
+                    description: The number of complete accounts in the account, restricted on this indicator.
                     type: integer
             example:
                 indicatorCode: some text
@@ -1375,10 +1391,9 @@ components:
                 numberOfDossiers: 69
                 numberOfCompleteDossiers: 71
         NewDossier:
-            title: Nouveau dossier
+            title: Dossier to be created
             description: >-
-                Mot JSON représentant un dossier, envoyé dans le corps (body) de la requête POST d'import d'un
-                dossier.
+                JSON word representing a file, sent in the body of the POST request to import a file.
             required:
                 - companyIdType
                 - companyIdValue
@@ -1386,50 +1401,41 @@ components:
             type: object
             properties:
                 companyIdType:
-                    description: Type d'identifiant compagnie.
+                    description: Type of company identifier
                     type: string
                 companyIdValue:
-                    description: Identifiant compagnie du tiers (SIRET ou TVA intra communautaire).
+                    description: Third party company identifier (SIRET or intra community VAT)
                     type: string
                 thirdpartyCode:
-                    description: Code tiers. Il s'agit d'un identifiant interne au donneur d'ordres.
+                    description: Third party code. It is an internal identifier for the client
                     type: string
                 dossierReference:
-                    description: Référence du dossier.
+                    description: Dossier reference code
                     type: string
                 description:
-                    description: Description du dossier.
+                    description: Dossier description
                     type: string
                 purchasingCategory:
-                    description: Catégorie achat du dossier.
+                    description: Dossier purchase category
                     type: string
                 expirationDate:
                     format: date
-                    description: >-
-                        Date d'expiration du dossier. Passée cette date, le dossier n'est plus suivi (Attribut
-                        "monitored" du dossier passe à false)
+                    description: File expiration date. After this date, the file is no longer followed (Attribute "monitored" of the file changes to false)
                     type: string
                 requiredDocuments:
-                    description: >-
-                        Liste des documents (requirements) demandés dans ce dossier pour ce tiers. Si aucun
-                        document n'est demandé, le set de documents par défault est demandé, c'est-à-dire les
-                        documents de l'obligation de vigilance.
+                    description: List of documents (requirements) requested in this file for this third party. If no document is requested, the default set of documents is requested, i.e. the documents of the obligation of vigilance.
                     type: array
                     items:
                         type: string
                 thirdpartyEmail:
-                    description: >-
-                        Liste des emails de contacts tiers. Si un tiers est non inscrit, ces emails serviront
-                        à envoyer les invitations.
+                    description: List of emails from third-party contacts. If a third party is not registered, these emails will be used to send the invitations.
                     type: array
                     items:
                         format: email
                         type: string
                 userInCharge:
                     description: >-
-                        Liste des emails des responsables du dossier côté donneur d'ordres. Si un email ne
-                        correspond à aucun utilisateur inscrit, une invitation à s'inscrire sur le plateforme
-                        eAttestations donneur d'ordres, est envoyé à cet Email.
+                      List of emails from those responsible for the file on the ordering side. If an email does not correspond to any registered user, an invitation to register on the ordering e-Attestations platform is sent to this Email.
                     type: array
                     items:
                         format: email
@@ -1452,31 +1458,31 @@ components:
                     - ''
                     - ''
         DossierProcess:
-            title: Process Dossier
-            description: Mot Json contenant l'identifiant du process d'import de dossier.
+            title: Dossier processing
+            description: Dossier processing details
             type: object
             properties:
                 processId:
-                    description: Identifiant du process d'import de dossier.
+                    description: Process ID
                     type: string
             example:
                 processId: some text
         DossierProcessResult:
             title: DossierProcessResult
-            description: Mot JSON contenant l'identifiant et le statut du process d'import de dossier.
+            description: Processing details of the dossier
             type: object
             properties:
                 processId:
-                    description: Identifiant du process d'import de dossier.
+                    description: Process ID for dossier creation
                     type: string
                 complete:
-                    description: 'True si le process d''import s''est terminé, false sinon.'
+                    description: If completed
                     type: boolean
                 success:
-                    description: True si le dossier a été importé avec succès. False sinon.
+                    description: If success
                     type: boolean
                 errors:
-                    description: Erreurs survenues lors de l'import de dossier.
+                    description: Array of errors
                     type: array
                     items:
                         $ref: '#/components/schemas/Message'
@@ -1492,24 +1498,22 @@ components:
                         code: some text
                         message: some text
         ThirdpartyIdentifier:
-            title: Identifiant tiers
-            description: Mot JSON représentant les informations d'identification d'un tiers.
+            title: Thirdparty identifier
+            description: JSON word representing the identifying information of a third party.
             type: object
             properties:
                 thirdpartyId:
                     description: >-
-                        Identifier e-Attestations of the third party. Celui-ci est différent du companyIdValue. Le
-                        thirdpartyId est un identifiant technique qui identifie de façon unique le tiers dans
-                        la plateforme eAttestations.
+                      Identify e-Attestations of the third party. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the third party in the eAttestations platform.
                     type: integer
                 companyIdType:
-                    description: Type d'identifiant compagnie.
+                    description: Type of company identifier.
                     type: string
                 companyIdValue:
-                    description: Identifiant compagnie du tiers (SIRET ou TVA intra communautaire).
+                    description: Third-party company identifier (SIRET or intra-community VAT).
                     type: string
                 thirdpartyCode:
-                    description: Code tiers. Il s'agit d'un identifiant interne au client.
+                    description: Third party code. It is an internal client identifier.
                     type: string
             example:
                 thirdpartyId: 79
@@ -1518,134 +1522,120 @@ components:
                 thirdpartyCode: some text
         ThirdpartyDetails:
             title: Details of a third party
-            description: >-
-                Mot JSON représentant les Details of a third party. Les informations constituant l'adresse ainsi que
-                la dénomination sociale du tiers sont fournis par notre Data Provider à partir de
-                l'identifiant du tiers.
+            description: JSON word representing Details of a third party. The information constituting the address as well as the corporate name of the third party is provided by our Data Provider from the identifier of the third party.
             type: object
             properties:
                 thirdpartyId:
                     format: int64
-                    description: >-
-                        Identifier e-Attestations of the third party. Celui-ci est différent du companyIdValue. Le
-                        thirdpartyId est un identifiant technique qui identifie de façon unique le tiers dans
-                        la plateforme eAttestations.
+                    description: Identify e-Attestations of the third party. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the third party in the eAttestations platform.
                     type: integer
                 accountId:
                     format: int64
                     description: Account ID
                     type: integer
                 companyIdType:
-                    description: Type d'identifiant compagnie.
+                    description: Type of company identifier.
                     type: string
                 companyIdValue:
-                    description: Identifiant compagnie du tiers (SIRET ou TVA intra communautaire).
+                    description: Third-party company identifier (SIRET or intra-community VAT).
                     type: string
                 thirdpartyCode:
-                    description: Code tiers. Il s'agit d'un identifiant interne au client.
+                    description: Thirdparty code. It is an internal client identifier.
                     type: string
                 monitored:
-                    description: >-
-                        Indique si le tiers est suivi. Cet attribut est à true si le tiers est suivi, false
-                        sinon. Un tiers est suivi dès lors qu'il a un dossier suivi.
+                    description: Indicates whether the third party is being followed. This attribute is true if the third party is followed, false otherwise. A third party is followed up as soon as they have a followed up file.
                     type: boolean
                 name:
-                    description: >-
-                        Dénomination sociale du tiers. Celle-ci est automatiquement fournie par notre data
-                        provider à partir de l'identifiant du tiers (Numéro Siret ou Numéro TVA)
+                    description: Third party company name. This is automatically provided by our data provider using the third party identifier (Siret number or VAT number)
                     type: string
                 addressStreet:
-                    description: Elément "Rue" de l'adresse du tiers.
+                    description: Street part of Thirdparty's address
                     type: string
                 addressCity:
-                    description: Elément "Ville" de l'adresse du tiers.
+                    description: City part of Thirdparty's address
                     type: string
                 addressPostCode:
-                    description: Elément "Code postal" de l'adresse du tiers.
+                    description: Zipcode part of Thirdparty's address
                     type: string
                 addressCountryCode:
-                    description: Elément "Pays" de l'adresse du tiers.
+                    description: Country part of Thirdparty's address
                     type: string
                 subscriptionState:
-                    description: 'Statut d''inscription du tiers. True si le tiers est inscrit, False sinon.'
+                    description: Third party registration status. True if the third party is registered, False otherwise.
                     type: boolean
                 subscriptionDate:
                     format: date
-                    description: Date d'inscription du tiers.
+                    description: Third party registration date.
                     type: string
                 subscriptionKey:
-                    description: >-
-                        Clé d'inscription. Elle est demandée au tiers au moment de son adhésion. Elle doit lui
-                        être communiquée lors de relances d'inscription.
+                    description: Key registration code.
                     type: string
                 outOfBusiness:
-                    description: 'Indique si l''établissement est fermé. True si c''est le cas, False sinon.'
+                    description: Indicates whether the establishment is closed. True if it is, False otherwise.
                     type: boolean
                 stateLastChangeDate:
                     format: date
-                    description: Dernière date à laquelle l'état global du tiers a changé.
+                    description: Last date on which the overall state of the third party changed.
                     type: string
-                thirdpartyGlobalState":
+                thirdpartyGlobalState:
                     description: >-
-                        Etat de complétude global du tiers. Une valeur true (Complet) signifie que tous les
-                        dossiers sont dans l'état complet. Une valeur false (Incomplet) signifie qu'au moins
-                        un ou plusieurs dossiers sont dans l'état incomplet.
+                      Overall completeness of the third party. A value of true means that all files are in the complete state. A value of false (Incomplete) means that at least one or more files are in the incomplete state.
                     type: boolean
                 acronym:
-                    description: Acronym du tiers
+                    description: Thirdpary acronym
                     type: string
                 activityCode:
-                    description: Code APE de l'activité du tiers
+                    description: Thirdpary APE activity wording
                     type: string
                 activityLabel:
-                    description: Libellé APE de l'activité du tiers
+                    description: Thirdpary APE activity wording
                     type: string
                 capital:
                     format: int64
-                    description: Capital connu pour le tiers
+                    description: Known capital for the third party
                     type: integer
                 capitalCurrency:
-                    description: Devise du capital connu pour le tiers
+                    description: Currency of known capital for the third party
                     type: string
                 ceo:
-                    description: Dirigeant
+                    description: Company Executive Officier
                     type: string
                 datecreation:
                     format: date
-                    description: Date de création du tiers dans la base eAttestations
+                    description: Date of creation of the third party in the eAttestations database
                     type: string
                 lastBalanceSheetDate:
                     format: date
-                    description: Dernier date du résultat d'exploitation connu
+                    description: Last date of known operating income
                     type: string
                 legalCategoryCode:
-                    description: Code jurisique d'activité
+                    description: Legal code of activity
                     type: string
                 legalCategoryLabel:
-                    description: Libellé jurisique d'activité
+                    description: Legal wording of activity
                     type: string
                 siren:
-                    description: Identifiant SIREN (pour les français)
+                    description: SIREN identifier (for French)
                     type: string
                 siret:
-                    description: Identifiant SIRET de l'établissement (pour les français)
+                    description: SIRET identifier of the establishment (for French thirdparties)
                     type: string
                 turnover:
                     format: double
-                    description: Dernier chiffre d'affaire connu du tiers
+                    description: Last known third-party turnover
                     type: number
                 turnoverCurrency:
-                    description: Devise du dernier chiffre d'affaire connu du tiers
+                    description: Currency of last known third-party turnover
                     type: string
                 tva:
-                    description: Identifiant intra communautaire
+                    description: Thirdparty's TVA code
                     type: string
                 workforce:
                     format: int32
-                    description: Effectifs du tiers
+                    description: Thirdpary's workforce
                     type: integer
                 thirdpartyUsers:
-                    description: Informations sur les utilisateurs du compte tiers.
+                    description: Information about the users of the third-party account.
                     type: array
                     items:
                         $ref: '#/components/schemas/UserInformation'
@@ -1695,19 +1685,19 @@ components:
                         email: ''
                         phone: some text
         UserInformation:
-            title: Informations utilisateur
-            description: Mot JSON contenant des informations sur les utilisateurs du tiers.
+            title: User information
+            description: User information and details.
             type: object
             properties:
                 firstname:
-                    description: Prénom de l'utilisateur.
+                    description: user's firstname
                     type: string
                 lastname:
-                    description: Nom de l'utilisateur.
+                    description: user's lastname
                     type: string
                 email:
                     format: email
-                    description: E-mail de l'utilisateur.
+                    description: user's email
                     type: string
                 phone:
                     description: Numéro de téléphone de l'utilisateur au format international.
@@ -1718,31 +1708,29 @@ components:
                 email: ''
                 phone: some text
         DossierUpdate:
-            title: Mise à jour du dossier
+            title: Dossier content for update
             type: object
             properties:
                 dossierReference:
-                    description: Référence du dossier.
+                    description: Dossier refence code
                     type: string
                 description:
-                    description: Description du dossier.
+                    description: Dossier description
                     type: string
                 purchasingCategory:
-                    description: Catégorie achat du dossier.
+                    description: Category purchase of the dossier
                     type: string
                 expirationDate:
                     format: date
                     description: >-
-                        Date d'expiration du dossier. Passée cette date, le dossier n'est plus suivi (Attribut
-                        "monitored" du dossier passe à false)
+                      File expiration date. After this date, the file is no longer followed (Attribute "monitored" of the file changes to false)
                     type: string
                 thirdpartyCode:
-                    description: Code tiers. Il s'agit d'un identifiant interne au client.
+                    description: Third party code. It is an internal client identifier.
                     type: string
                 thirdpartyEmail:
                     description: >-
-                        Liste des emails de contacts tiers. Si un tiers est n'est pas inscrit, ces emails
-                        serviront à envoyer les invitations.
+                      List of emails from third-party contacts. If a third party is not registered, these emails will be used to send the invitations.
                     type: array
                     items:
                         format: email
@@ -1758,12 +1746,12 @@ components:
                     - ''
         Dossier:
             title: Dossier
-            description: Mot JSON représentant un dossier.
+            description: Dossier content information, details, documents etc.
             type: object
             properties:
                 dossierId:
                     format: int64
-                    description: Identifiant du dossier.
+                    description: Dossier ID
                     type: integer
                 accountId:
                     format: int64
@@ -1772,71 +1760,64 @@ components:
                 thirdpartyId:
                     format: int64
                     description: >-
-                        Identifier e-Attestations of the third party. Celui-ci est différent du companyIdValue. Le
-                        thirdpartyId est un identifiant technique qui identifie de façon unique le tiers dans
-                        la plateforme eAttestations.
+                      Identify e-Attestations of the third party. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the third party in the eAttestations platform.
                     type: integer
                 companyIdType:
-                    description: Type d'identifiant compagnie.
+                    description: Thirdpary's company type code (CIT001, CIT002, etc.)
                     type: string
                 companyIdValue:
-                    description: Identifiant compagnie du tiers (SIRET ou TVA intra communautaire).
+                    description: Principal Thirdpary's company ID code (which is SIRET or TVA codes most of the time).
                     type: string
                 thirdpartyCode:
-                    description: Code tiers. Il s'agit d'un identifiant interne au client.
+                    description: Thirdparty Code. This code is an external key (a.k.a from within client system)
                     type: string
                 companyCountryCode:
-                    description: Code pays du tiers. Il s'agit d'un code alpha-3 du standard ISO 3166-1.
+                    description: Third country code. This is an alpha-3 code from the ISO 3166-1 standard.
                     type: string
                 monitored:
-                    description: Indique si le dossier est suivi (True) ou non suivi (False)
+                    description: Indicates if the file is followed (True) or not followed (False)
                     type: boolean
                 dossierReference:
-                    description: Référence du dossier.
+                    description: Dossier reference code
                     type: string
                 description:
-                    description: Description du dossier.
+                    description: Dossier description
                     type: string
                 purchasingCategory:
-                    description: Catégorie achat du dossier.
+                    description: Category purchase/market of the file
                     type: string
                 startingDate:
                     format: date
-                    description: Date de début de suivi du dossier.
+                    description: Start date for monitoring the 'dossier'
                     type: string
                 expirationDate:
                     format: date
                     description: >-
-                        Date d'expiration du suivi du dossier. A partir de cette date, le dossier passe
-                        automatiquement à l'état "non suivi".
+                      Expiration date for follow-up From this date, the file automatically changes to the "not followed" state
                     type: string
                 stoppingDate:
                     format: date
-                    description: Date d'arrêt de suivi du dossier.
+                    description: Stop date for monitoring the 'dossier'
                     type: string
                 stoppingReason:
                     description: >
-                        Détails concernant l'arrêt du dossier: OUTOFBUSINESS (entreprise radiée), EXPIRATION
-                        (le dossier a atteint sa date d'expiration), STOPREQUEST (une demande d'arrêt a été
-                        faite de manière explicite et immédiate), UNKNOWN (information absente). Non nul
-                        uniquement si dossier désactivé.
+                      Details concerning the termination of the file: OUTOFBUSINESS (company canceled), EXPIRATION (the file has reached its expiration date), STOPREQUEST (a request to stop was made in an explicit and immediate manner), UNKNOWN (information absent). Not null only if folder deactivated.
                     type: string
                 state:
                     description: >-
-                        Indicateur de complétude du dossier. True si l'ensemble des documents demandés sont
-                        présents, false sinon.
+                      File completeness indicator. True if all the requested documents are present, false otherwise.
                     type: boolean
                 stateLastChangeDate:
                     format: date
-                    description: Date du dernier changement de l'état de complétude du dossier.
+                    description: Date of the last change in the completeness of the file.
                     type: string
                 indicators:
-                    description: Liste des indicateurs du dossier.
+                    description: List of indicators in the dossier.
                     type: array
                     items:
-                        $ref: '#/components/schemas/DossierIndicator'
+                      $ref: '#/components/schemas/DossierIndicator'
                 documents:
-                    description: Liste des documents demandés pour le dossier.
+                    description: List of documents requested for the file.
                     type: array
                     items:
                         $ref: '#/components/schemas/Document'
@@ -1912,32 +1893,32 @@ components:
                                 expirationDate: '2018-01-17'
         Requirement:
             title: Requirement
-            description: Une exigence (un document/preuve requis/e)
+            description: A requirement, document or evidence proof required
             type: object
             properties:
                 documentId:
-                    description: id interne
+                    description: Requirment ID
                     type: integer
                 accountId:
-                    description: id du compte
+                    description: Account ID
                     type: integer
                 code:
-                    description: Code identifiant le document.
+                    description: Internal Code identifying the requirement
                     type: string
                 name:
-                    description: Nom de l'exigence
+                    description: Name of requirement or evidence
                     type: string
                 descriptionCategoryFr:
-                    description: Description de la catégorie de l'exigence en français
+                    description: Description of the category of the requirement in French
                     type: string
                 descriptionCategoryEn:
-                    description: Description de la catégorie de de l'exigence en anglais
+                    description: Description of the category of the requirement in English
                     type: string
                 descriptionFr:
-                    description: Description de l'exigence en français
+                    description: Description of the requirement in French
                     type: string
                 descriptionEn:
-                    description: Description de l'exigence en anglais
+                    description: Description of the requirement in English
                     type: string
             example:
                 documentId: 88
@@ -1949,50 +1930,49 @@ components:
                 descriptionFr: some text
                 descriptionEn: some text
         DossierIndicator:
-            title: Indicateur de dossier
-            description: Un indicateur un dossier.
+            title: Dossier indicator
+            description: Status of a dossier for completness or other kind of information
             type: object
             properties:
                 indicatorCode:
-                    description: Code de l'indicateur
+                    description: Indicator Code
                     type: string
                 state:
                     description: >-
-                        État de l'indicateur. True si l'ensemble des documents demandés de l'indicateur sont
-                        présents, false sinon.
+                      State of the indicator. True if all the requested documents of the indicator are present, false otherwise.
                     type: boolean
                 lastChangeDate:
                     format: date
-                    description: Date du dernier changement de l'état de l'indicateur.
+                    description: Date of the last change in the status of the indicator.
                     type: string
             example:
                 indicatorCode: some text
                 state: true
                 lastChangeDate: '2018-01-17'
         Document:
-            title: Document ou preuve demandée pour le dossier
-            description: 'Une exigence comme un document demandé, une signature, une donnée à apporter au dossier'
+            title: Document or evidence requested for the file
+            description: A requirement such as a requested document, a signature, something to bring to the file
             type: object
             properties:
                 documentId:
                     format: int64
-                    description: Identifiant unique du document.
+                    description: Document ID
                     type: integer
                 documentCode:
-                    description: Code qui identifie le document.
+                    description: Document Code
                     type: string
                 name:
-                    description: Nom du document.
+                    description: Document name
                     type: string
                 requestDate:
                     format: date
-                    description: Date à laquelle le document a été demandé.
+                    description: Date the document was requested.
                     type: string
                 present:
-                    description: 'Présence ou non du document. True si document présent, False sinon.'
+                    description: Document presence
                     type: boolean
                 listFileInformation:
-                    description: Informations du (ou des) fichiers présents pour ce document.
+                    description: Information of the file (s) present for this document.
                     type: array
                     items:
                         $ref: '#/components/schemas/FileInformation'
@@ -2018,33 +1998,33 @@ components:
                         fileSize: 40
                         expirationDate: '2018-01-17'
         FileInformation:
-            title: Information du document présent
-            description: Informations d'un fichier déposé pour un document ou une preuve.
+            title: File information
+            description: File informations uploaded by the thirdparty or automaticaly by e-Attestations
             type: object
             properties:
                 fileId:
                     format: int64
-                    description: Identifiant du fichier.
+                    description: File ID
                     type: integer
                 uploadDate:
                     format: date
-                    description: Date de dépôt du document.
+                    description: Document upload date
                     type: string
                 fileUUID:
                     format: string
-                    description: Identifiant UUID du fichier.
+                    description: File unique identifier (UUID v4)
                     type: string
                 fileCreation:
                     format: date
-                    description: Date de création du fichier.
+                    description: File creation date
                     type: string
                 fileSize:
                     format: int64
-                    description: Taille en octet du fichier.
+                    description: File size (bytes)
                     type: integer
                 expirationDate:
                     format: date
-                    description: Date d'expiration du document.
+                    description: Document expiration date
                     type: string
             example:
                 fileId: 96
@@ -2054,14 +2034,13 @@ components:
                 fileSize: 77
                 expirationDate: '2018-01-17'
         ReactivateDossierData:
-            description: Informations du dossier à mettre à jour lors de la réactivation du suivi.
+            description: Information of the file to be updated when reactivating the follow-up.
             type: object
             properties:
                 expirationDate:
                     format: date
                     description: >-
-                        Date d'expiration du suivi du dossier. Passée cette date, le dossier n'est plus suivi
-                        (Attribut "monitored" du dossier passe à false).
+                      Expiration date of the follow-up of the file. After this date, the file is no longer followed (Attribute "monitored" of the file changes to false).
                     type: string
             example:
                 expirationDate: '2018-01-17'
@@ -2079,22 +2058,21 @@ components:
                 message: some text
         Messages:
             description: >-
-                Messages d'une réponse à un appel de l'API REST / JSON. Il contient des messages
-                d'informations, d'avertissement et d'erreurs.
+                Messages from a response to a REST / JSON API call. It contains information, warning and error messages.
             type: object
             properties:
                 info:
-                    description: Tableau contenant les messages d'information.
+                    description: Information messages
                     type: array
                     items:
                         $ref: '#/components/schemas/Message'
                 warning:
-                    description: Tableau contenant les messages d'avertissement.
+                    description: Warning messages
                     type: array
                     items:
                         $ref: '#/components/schemas/Message'
                 error:
-                    description: Tableau contenant les messages d'erreurs.
+                    description: Error messages
                     type: array
                     items:
                         $ref: '#/components/schemas/Message'
@@ -2126,21 +2104,21 @@ components:
             properties:
                 accountId:
                     format: int64
-                    description: Le compte lié à la souscription.
+                    description: Subscription linked account
                     type: integer
                 endSubscriptionDate:
                     format: date-time
-                    description: Date de fin de la souscription.
+                    description: subscription ending date
                     type: string
                 key:
-                    description: Code de la souscription
+                    description: Subscription product code
                     type: string
                 startSubscriptionDate:
                     format: date-time
-                    description: Date de début de la souscription.
+                    description: Subscription starting date
                     type: string
                 status:
-                    description: Statut de la souscription.
+                    description: Subscription status
                     type: string
             example:
                 accountId: 85
@@ -2182,7 +2160,7 @@ x-tagGroups:
     -
         name: Account Management
         tags:
-            - Compte
+            - Account
     -
         name: Documents Management
         tags:
@@ -2191,6 +2169,6 @@ x-tagGroups:
     -
         name: Thirdparty Management
         tags:
-            - Tiers
+            - Thirdparties
             - Dossiers
             - Requirements
