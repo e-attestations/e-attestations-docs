@@ -4,10 +4,10 @@ title: Motivations
 sidebar_label: Motivations
 ---
 
-* Donner des éléments de réponses sur la sécurité des environnements mis à disposition
-* Expliciter la mise en place et le support de l'API
-* Présenter les sources documentaires en ligne.
-* Décrire chaque ressources et chaque endpoint, les modèles associés et les erreurs liées
-* Proposer des snippets de codes pour faciliter l'intégration de l'API
-
-
+* Provide information on security model
+* Provide details on available environments
+* Explain the client implementation model and support services
+* Present documentations and resource available to you
+* Describe each resource and each endpoint with associated models
+* Provide nomenclatures and errors codes
+* Offer code snippets to facilitate API integration

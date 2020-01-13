@@ -4,25 +4,26 @@ title: Nomenclature
 sidebar_label: Nomenclature
 ---
 
-## Type d'identifiant
+## Identifier type
 
-Un établissement ou une entreprise (au sens personne morale) est indentifiée dans le système e-Attestations à l'aide d'un code identifiant national (SIRET, SIREN pour la France) ou d'un numéro internationnal (ex. l'identifiant TVA).
+An establishment or a company (in the legal person sense) is identified in the e-Attestations system using a national identifier code (SIRET, SIREN for France) or an international number (eg VAT identifier ).
 
-l'API e-Attestations propose deux types d'identifiants :
+e-Attestations APIs offer two types of identifiers for Thirdparties
 
-Type                         | Description
------------------------------|---------------------------------------
-CIT001                       | SIRET : identifiant utilisé en France pour qualifier les établissements. Nombre de 14 chiffres vérifiant l'algorithme de Luhn [Wikipedia](https://fr.wikipedia.org/wiki/Formule_de_Luhn)
-CIT002                       | Numéro TVA : identifiant utilisé par la CEE pour les entreprises soumises à l'impôt sur les sociétés. Plus d'informations sur [Wikipedia](https://en.wikipedia.org/wiki/VAT_identification_number)
+Code    |Type|Country|Description
+--------|----|----------|------------------------
+CIT001  |SIRET|France|Identifier used in France to qualify establishments. Number of 14 digits verifying Luhn's algorithm [Wikipedia](https://fr.wikipedia.org/wiki/Formule_de_Luhn)
+CIT002  |TVA|CEE|Identifier used by the EEC for companies subject to corporation tax. More information on [Wikipedia](https://en.wikipedia.org/wiki/VAT_identification_number)
 
-Des types d'identifiants nouveaux pourront être implémenté au fil des évolutions de l'API.
+New types of identifiers may be implemented as the API evolves.
 
-## Indicateur de complétude
+## Completeness indicator
 
-L'indicateur de complétude e-Attestations permet de renseigner de façon simple que le tiers a couvert entièrement les besoins ('requirements') au titre de la conformité exigée par la compliance client.
+e-Attestations completeness indicator provides simple information that the third party has fully covered the requirements for compliance required by client compliance.
 
-Exemple : un dossier de surveillance d'un tiers est jugé complet pour l'indicateur "obligation de vigilance", si tous les documents relatifs à l'obligation de vigilance sont présents et validés.
+Example: a third party surveillance file is considered complete for the "due diligence" indicator, if all the documents relating to the due diligence are present and validated.
 
-Code indicateur| Description
----------------|------------------------
-I001           | Obligation de vigilance
+
+Code |Description
+-----|------------------------
+I001 |Due diligence

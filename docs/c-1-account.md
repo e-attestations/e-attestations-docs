@@ -4,9 +4,22 @@ title: Account
 sidebar_label: Account
 ---
 
-Le compte e-Attestations donneur d'ordres et souscripteur au service.
+This resource is the ordering customer and service subscriber to e-Attestations account.
 
-> Exemple de contenu de '/account'
+The account identifier is returned in the `account_ids` returned in the JWT token.
+
+In addition, you can also retrieve your account identifier from the `/account` endpoint without any parameters.
+
+All requests must include the customer identifier so that every time the account's activation and subscription to the service are verified
+
+`/account/<your_account_id_goes_here>`
+
+<aside>
+You can store your account identifier in your configuration sets or choose to retrieve it dynamically.
+The latter solution being the most flexible.
+</aside>
+
+    > Example for '/account'
 
 ```json
 {
@@ -33,24 +46,3 @@ Le compte e-Attestations donneur d'ordres et souscripteur au service.
    ]
 }
 ```
-
-Le compte e-Attestations donneur d'ordres et souscripteur au service.
-
-Chaque compte dispose d'un identifiant de **compte unique** avec un identifiant.
-
-Par construction, toutes les requêtes doivent obligatoirement inclure l'identifiant du client dans l'URL d'appel à l'exception du point terminateur **/account** qui vous donnes des informations sur votre l'identifiant du compte.
-
-Les urls sont ainsi toutes prefixées par **/account/{account_id}/****
-
-<aside className="notice">
-Vous pouvez mémoriser dans votre jeux de configuration votre identifiant de compte ou choisir de le récupérer dynamiquement.
-Cette dernière solution étant la plus souple.
-</aside>
-
-L'identifiant de compte (de type string) est renvoyé dans le **payload** du token JWT, comme illustré ci-dessous:
-
-De façon complémentaire vous pouvez récupérer votre identifiant de compte via l'url **/account** (sans aucun paramètre).
-
-Les données du TOKEN seront utilisées pour restituer et vérifier votre compte et la souscription au service.
-
-Des informations complémentaires sur votre souscription au service sont aussi restituées.

@@ -4,26 +4,21 @@ title: Subscribe
 sidebar_label: Subscribe
 ---
 
-Pour souscrire à l'un ou l'autre des environnements vous devez tout d'abord en **émettre la demande auprès de votre gestionnaire** de compte e-Attestations habituel.
+To subscribe to one or other of the environments, you must first **send your request to your usual e-Attestations account manager**.
 
-Nous vous conseillons de bien discuter de la configuration de votre compte concernant les documents de compliance avec votre gestionnaire de compte afin de parfaitement comprendre votre cas d'usage et vous conseiller au mieux.
+We advise you to discuss the configuration for your account concerning compliance documents with your account manager in order to fully understand your use case and advise you best.
 
-**Attention** : L'usage de l'API n'est pas multicomptes.
+**Warning**: The use of the API is not multi-account.
 
-Votre gestionnaire de compte informera l'équipe technique pour la création d'une organisation liée à votre compte et un ou plusieurs contacts techniques (emails) seront alors invités au **Tech'Desk e-Attestations**.
+Your account manager will inform the technical team for the creation of an organization linked to your account and one or more technical contacts (emails) will then be invited to the **Tech'Desk e-Attestations**.
 
-## Le support Tech'Desk e-Attestations
+## Tech'Desk e-Attestations support
 
-C'est un système de ticketing et de support **TECHNIQUE** dédié au API et WebServices dans lequel vous pouvez poster questions et demandes.
+It's the **TECHNICAL** ticketing and support system dedicated to APIs in which you can post questions and requests.
 
-Après avoir reçu un email d'invitation créez votre user et mot de passe en toute autonomie pour accéder aux services et documentation de cette plateforme de support.
+After receiving an invitation email, create your user and password independently to access the services and documentation of this support platform.
 
-La plateforme Tech'Desk : [https://jira-e-attestations.atlassian.net/servicedesk/customer/portals](https://jira-e-attestations.atlassian.net/servicedesk/customer/portals).
 
-Cette plateforme sécurisée vous permet aussi de partager dans votre organisation les tickets de support.
-
-**Note** : les users et mots de passe de connexion ne sont fournis que dans le Tech'Desk.
-
-<a href="https://jira-e-attestations.atlassian.net/servicedesk/customer/portals" title="Accédez au Tech'Desk" target="_blank">
-<img alt="Home page du Tech'Desk e-Attestations" src="/img/techdesk1.png" width="480" />
+<a href="https://jira-e-attestations.atlassian.net/servicedesk/customer/portals" title="Access Tech'Desk" target="_blank">
+<img alt="Tech'Desk e-Attestations" src="/img/techdesk1.png" width="480" />
 </a>

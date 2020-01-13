@@ -4,15 +4,24 @@ title: Dossiers
 sidebar_label: Dossiers
 ---
 
-Le dossier est la materialisation de la relation donneur d'ordres / tiers.
+The 'dossier' resource is the materialization of the client / third party relationship.
 
-Un dossier comporte des demandes (exigences de conformité) formulées par le donneur d'ordres auxquelles correspondent des réponses le plus souvent automatiquement apportée par le plateforme e-Attestations ou par le tiers (fichiers, signatures, autres données ...).
+A 'dossier' includes requests (compliance requirements) made by the client to which correspond answers most often automatically provided by the e-Attestations platform or by the third party (files, signatures, other data ...).
 
-La référence d'un dossier (dossierReference) est une donnée renseignée par le donneur d'ordres lors de la création d'un dossier ou la modification d'un dossier. La référence d'un dossier doit être unique pour un couple tiers/donneur d'ordres. Autrement dit, un tiers ne peut avoir plus d'un dossier portant la même référence par donneur d'ordres.
+The reference of a 'dossier' (dossierReference) is data entered by the client when creating a file or modifying a file. The reference for a file must be unique for a third party / client. 
 
-Cette référence de dossier peut être modifiée à n'importe quel moment sauf s'il le dossier a été archivé.
+In other words, a third party cannot have more than one file with the same reference per client.
 
-> Exemple d'interrogation au siren GET "/api/v1/account/{{account_id}}/dossiers?siren=503829368"
+### dossierReference
+
+'dossierReference' is very powerful data that gives capacity to establish a link from an id provided by he customer information system to e-Attestations that is sent back to the information system.
+
+We advice you to use it often, if it's not always.
+
+Plus ! This 'dossierReference' can be changed at any time unless the file has been archived.
+
+
+> Example of 'dossiers' GET request with sirent id "/api/v1/account/{{account_id}}/dossiers?siren=503829368"
 
 ```json
 {

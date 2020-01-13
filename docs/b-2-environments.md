@@ -1,24 +1,23 @@
 ---
 id: b-2-environments
-title: Environements
-sidebar_label: Environements
+title: Environments
+sidebar_label: Environments
 ---
 
-e-Attestations met à disposition deux environnements : 
+e-Attestations provides several environments
 
-- **TEST** :
-L'ouverture d'un accès de TEST de type API REST connecté à un compte client de TEST vous permettra, de façon pleinement sécurisée, d'accéder à une infrastructure partagée et identique à celle de production. 
+Environment | Description
+------------|--------------------------------------
+SANDBOX|SANDBOX is the test environment we provide. You will use a test account that will allow you, in a fully secure manner, to access a shared infrastructure quite identical to production. Every data is anonymized and no emails will be emitted from SANDBOX.
+PRODUCTION|Opening a PROD REST API access connected to a PROD customer account allows you to use it for your account.
 
-<aside className="warning">
-**ATTENTION** : dans l'environnement de TEST et afin d'éviter que vos tests n'interfèrent pas avec votre activité de production les envois d'emails sont inhibés (pas d'invitation des tiers ou d'envoi de rapport).
+<aside>
+**WARNING**: in the TEST environment and in order to avoid that your tests do not interfere with your production activity, email sending is inhibited (no invitation to thirdparties, no reports etc.).
 </aside>
 
-<br/>
-
-- **PRODUCTION** :
-L'ouverture d'un accès de PROD de type API REST connecté à un compte client de PROD vous permet de l'utiliser pour votre compte.
+## Services' URLs
 
 Environnement | URL
 --------------|-------
-TEST | [https://rs-test.e-attestations.com/api/v1/](https://rs-test.e-attestations.com/api/v1/)
+TEST | [https://rs.dev-e-attestations.com/api/v1/](https://rs.dev-e-attestations.com/api/v1/)
 PRODUCTION | [https://rs.e-attestations.com/api/v1/](https://rs.e-attestations.com/api/v1/)

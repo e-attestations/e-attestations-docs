@@ -4,13 +4,19 @@ title: Documents
 sidebar_label: Documents
 ---
 
-Les documents sont les éléments constituant la demande d'exigence de conformité, définis en type de document (généralement un type de document par exigence) et pour lequel une réponse est apportée par e-Attestations ou le tiers lui même.
+Documents are elements of the compliance evidence for requirement's request and defined by e-Attestations as a document type with generally one type of document per requirement and for which a response is provided by e-Attestations or the third party itself.
 
-Un document peut être une signature, une donnée, un ou plusieurs fichiers, un ensemble de données issues d'un formulaire à remplir par le déclarant.
+A 'document' can also be called as an evidence and can be :
 
-Un document a une validité et donc une péremption que la plateforme e-Attestations surveille en continu.
+- a signature
+- data
+- one or more files
+- a set of data from a form to be completed by the declarant
+etc.
 
-> Exemple d'obtention des documents d'un dossier GET "/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents"
+A 'document' has a validity and therefore an expiry that the e-Attestations platform monitors continuously.
+
+> Example of dossier's documents GET request `/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents`
 
 ```json
 {

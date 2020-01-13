@@ -4,9 +4,11 @@ title: Files
 sidebar_label: Files
 ---
 
-Les fichiers attachés aux documents d'exigence de conformité sont majoritairement des PDF.
+'files' attached to the compliance requirement documents are most of the time PDFs.
 
-> Exemple d'obtention des fichiers d'un document d'un dossier GET "/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents/{{documentId}}/files"
+You can obtain a copy of the file through an API call.
+
+> Example of GET request to a file `/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents/{{documentId}}/files`
 
 ```json
 {
@@ -22,5 +24,3 @@ Les fichiers attachés aux documents d'exigence de conformité sont majoritairem
     ]
 }
 ```
-
-Vous pouvez télécharger une copie du fichier grace à son id.

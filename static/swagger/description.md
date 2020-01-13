@@ -1,9 +1,3 @@
----
-id: description
-title: Description
-sidebar_label: Description
----
-
 <div class="banner">
 
 ```textmate
@@ -36,11 +30,6 @@ Notre API contient des URL prévisibles orientées ressources, accepte les corps
 Les applications 'clientes' utilisant l'API REST e-Attestations enrichisent le Système d'Information du client avec le catalogue des données et services d'e-Attestations de façon sécurisée et très souple.
 
 L'API peut également être utilisée par les intégrateurs, éditeurs logiciels, des solutions SAAS ou des connecteurs.
-
-<aside className="success">
-L'API REST/Json e-Attestations est actuellement en V1.1 et est proposée à l'ensemble des partenaires et clients e-Attestations.
-Contactez e-Attestations pour plus d'information à <a href="mailto:contact@e-attestations.com">contact@e-attestations.com</a>
-</aside>
 
 ## Objectifs de cette documentation
 
@@ -451,7 +440,6 @@ Cette référence de dossier peut être modifiée à n'importe quel moment sauf 
     "totalElements": 1
 }
 ```
-
 ## Exigences (requirements)
 
 L'exigence est un ensemble de demande d'un domaine du donneur d'ordres (légale, compliance, métier, etc...). Une exigence fait l'objet d'une **demande** et en attente d'une **réponse** qu'elle soit apportée par e-Attestations et pour le tiers lui même tels qu'une donnée spécifique, un ou plusieurs documents et leur(s) fichier(s) lié(s), une signature ou tout autre élément demandé constituant un preuve de conformité dans le cadre du suivi.

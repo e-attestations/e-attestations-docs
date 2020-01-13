@@ -1,0 +1,2191 @@
+openapi: 3.0.0
+info:
+  title: e-Attestations API REST/Json
+  version: 1.2.0a
+  description:
+    $ref: 'description.md'
+  termsOfService: 'https://www.e-attestations.com/api'
+  contact:
+    name: Support
+    url: 'https://www.e-attestations.com/nous-contacter2'
+    email: support@e-attestations.com
+  license:
+    name: e-attestations licence
+    url: 'https://www.e-attestations.com/index.php/qui-sommes-nous/nos-engagements'
+  x-logo:
+    url: 'https://www.e-attestations.com/images/logo-e-Attestations.png'
+    backgroundColor: '#FFFFFF'
+    altText: e-Attestations
+servers:
+  -
+    url: 'https://rs.e-attestations.com/api/v1'
+    description: PROD
+  -
+    url: 'https://rs.dev-e-attestations.com/api/v1'
+    description: TEST
+paths:
+  /account:
+    get:
+      tags:
+        - Compte
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: >-
+                  La réponse possède une propriété 'content' contenant les statistiques et
+                  un attribut optionel messages (info, warn ou error)
+                type: object
+                properties:
+                  content:
+                    $ref: '#/components/schemas/Account'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: >
+            Les informations du compte associé au TOKEN permettent de connaitre l'id du compte et
+            la souscription au service.
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Aucun compte avec cet identifiant (accountId).
+        5XX:
+          description: Erreur inattendue
+      summary: Information du compte
+      description: |
+
+        Restituer les informations du compte associé au TOKEN validé dans la requete.
+
+        Les informations détaillent la souscription au service.
+  '/account/{accountId}':
+    get:
+      tags:
+        - Compte
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: >-
+                  La réponse possède une propriété 'content' contenant les statistiques et
+                  un attribut optionel messages (info, warn ou error)
+                type: object
+                properties:
+                  content:
+                    $ref: '#/components/schemas/GlobalInformation'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: >
+            Statistiques gloables et statistiques par indicateurs. Un indicateur fait référence à
+            un sous-ensemble de documents requis. E.g. Pour l'indicateur "obligation de
+            vigilance", les statistiques vont porter uniquement sur les documents de l'obligation
+            de vigilance, à savoir l'attestation de vigilance, le justificatif d'immatriculation
+            et la liste des  salariés étrangers soumis à autorisation de travail.
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Aucun compte avec cet identifiant (accountId).
+        5XX:
+          description: Erreur inattendue
+      summary: Statistiques globales
+      description: >
+        Restituer les statistiques globales du compte. Les statistiques concernent uniquement les
+        tiers suivis. Un tiers suivi est un tiers pour lequel il existe au moins un dossier actif. Les
+        statistiques portent sur les tiers et les dossiers et leurs complétudes.
+  '/account/{accountId}/thirdparties':
+    get:
+      tags:
+        - Tiers
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            type: integer
+          in: path
+          required: true
+        -
+          name: monitored
+          description: >-
+            Permet de filtrer sur les tiers suivis (monitored=true) ou non suivis
+            (monitored=false)
+          schema:
+            type: boolean
+          in: query
+          required: false
+        -
+          name: companyIdType
+          description: Type d'identifiant compagnie.
+          schema:
+            type: string
+          in: query
+          required: false
+        -
+          name: name
+          description: Le nom du tiers
+          schema:
+            type: string
+          in: query
+          required: false
+        -
+          name: siren
+          description: Le siren du tiers (pour les français)
+          schema:
+            type: string
+          in: query
+          required: false
+        -
+          name: siret
+          description: Le siret (de l'établissement) du tiers (pour les français)
+          schema:
+            type: string
+          in: query
+          required: false
+        -
+          name: tva
+          description: L'identifiant intra communautaire TVA (pour les tiers de l'EU)
+          schema:
+            type: string
+          in: query
+          required: false
+        -
+          name: companyIdValue
+          description: >-
+            Permet de filtrer par identifiant compagnie du tiers. L'identifiant peut être un SIRET
+            ou un Numéro TVA.
+          schema:
+            type: string
+          in: query
+          required: false
+        -
+          name: stateLastChangeDate
+          description: >-
+            Filtre permettant de retourner les tiers dont le statut global a évolué depuis cette
+            date.
+          schema:
+            format: date
+            type: string
+          in: query
+          required: false
+        -
+          name: thirdpartyGlobalState
+          description: >-
+            Filtre permettant de retourner les tiers dont l'état de complétude global est
+            "complet" (true) ou "incomplet" (false)
+          schema:
+            type: boolean
+          in: query
+          required: false
+        -
+          name: subscriptionState
+          description: >-
+            Permet de filtrer sur le statut d'inscription d'un tiers. Ce paramètre permet de
+            retourner les tiers inscrits (subscriptionState=true) ou non inscrits
+            (subscriptionState=false)
+          schema:
+            type: boolean
+          in: query
+          required: false
+        -
+          name: page
+          description: Paramètre de pagination indiquant le numéro de page.
+          schema:
+            type: integer
+          in: query
+          required: false
+        -
+          name: pageSize
+          description: Paramètre de pagination indiquant la taille de page souhaité.
+          schema:
+            type: integer
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ThirdpartyIdentifier'
+                  page:
+                    description: Numéro de page.
+                    type: integer
+                  pageSize:
+                    description: taille de la page
+                    type: integer
+                  totalElements:
+                    description: nombre total d'éléments
+                    type: integer
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: >-
+            Retourne un tableau d'objets JSON. Chaque item contient les informations
+            d'identification d'un tiers (L'identifiant e-Attestations du tiers, le type
+            d'identifiant compagnie, l'identifiant compagnie du tiers et le code tiers).
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Aucun compte avec cet identifiant (accountId).
+        5XX:
+          description: Erreur inattendue
+      summary: Liste des tiers
+      description: >
+        Restituer le référentiel tiers du compte. Ce point terminateur permet de récupérer uniquement
+        les informations d'identification des tiers. Pour obtenir des informations plus détaillées sur
+        le tiers, il faudra utiliser le point terminateur (GET
+        '/account/{accountId}/thirdparty/{thirdpartyId}')
+  '/account/{accountId}/thirdparties/{thirdpartyId}':
+    get:
+      tags:
+        - Tiers
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            type: integer
+          in: path
+          required: true
+        -
+          name: thirdpartyId
+          description: Identifiant e-Attestations du tiers.
+          schema:
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    $ref: '#/components/schemas/ThirdpartyDetails'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Retourne un mot JSON contenant les informations détaillées du tiers.
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: >-
+            Aucun compte avec cet identifiant (accountId) ou aucun tiers avec cet
+            identifiant(thirdpartyId).
+        5XX:
+          description: Erreur inattendue
+      summary: Détails d'un tiers
+      description: |
+        Permet de restituer les informations détaillées d'un tiers. Sont remontées:
+
+          * Les informations "identité" du tiers
+          * L'adresse du tiers
+          * La liste des utilisateurs du tiers
+          * Différents états (En activité ?, Inscrit ? ...)
+  '/account/{accountId}/dossiers':
+    get:
+      tags:
+        - Dossiers
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            type: integer
+          in: path
+          required: true
+        -
+          name: thirdpartyId
+          description: >-
+            Identifiant e-Attestations du tiers. Celui-ci est différent du companyIdValue. Le
+            thirdpartyId est un identifiant technique qui identifie de façon unique le tiers dans
+            la plateforme e-Attestations.
+          schema:
+            type: integer
+          in: query
+        -
+          name: companyIdType
+          description: Permet de filtrer par type d'identifiant compagnie du tiers.
+          schema:
+            type: string
+          in: query
+          required: false
+        -
+          name: companyIdValue
+          description: Permet de filtrer par l'identifiant compagnie du tiers (SIRET ou Numéro TVA).
+          schema:
+            type: string
+          in: query
+          required: false
+        -
+          name: thirdpartyCode
+          description: Code tiers. Il s'agit d'un identifiant interne au client.
+          schema:
+            type: string
+          in: query
+        -
+          name: dossierReference
+          description: >-
+            Permet de filtrer par référence du dossier. La référence de dossier étant unique pour
+            un tiers/dossier, si ce paramètre est renseigné, au maximum un dossier sera renvoyé.
+          schema:
+            type: string
+          in: query
+          required: false
+        -
+          name: monitored
+          description: >-
+            Filtre permettant de retourner les dossiers suivis (monitored=true) ou non suivis
+            (monitored=false)
+          schema:
+            type: boolean
+          in: query
+          required: false
+        -
+          name: stateLastChangeDate
+          description: >-
+            Filtre permettant de ne retourner que les dossiers dont l'état de complétude a changé
+            depuis une date donnée.
+          schema:
+            format: date
+            type: string
+          in: query
+          required: false
+        -
+          name: siren
+          description: Le siren du tiers recherché
+          schema:
+            type: string
+          in: query
+          required: false
+        -
+          name: siret
+          description: Le siren du tiers recherché
+          schema:
+            type: string
+          in: query
+          required: false
+        -
+          name: tva
+          description: Le numéro TVA du tiers recherché
+          schema:
+            type: string
+          in: query
+          required: false
+        -
+          name: page
+          description: Paramètre de pagination indiquant le numéro de page.
+          schema:
+            type: integer
+          in: query
+          required: false
+        -
+          name: pageSize
+          description: Paramètre de pagination indiquant la taille de page souhaité.
+          schema:
+            type: integer
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Dossier'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Retourne un tableau d'objets JSON. Chaque item contient les informations d'un dossier.
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Aucun compte avec cet identifiant (accountId).
+        5XX:
+          description: Erreur inattendue
+      summary: Recherche dossiers (multi-critères)
+      description: >-
+        Permet de restituer les informations d'un ou plusieurs dossiers. Il est possible de combiner
+        les filtres disponibles afin d'affiner le résultat.
+    post:
+      requestBody:
+        description: >-
+          Le dossier à importer. Contient les informations du dossier, mais également les
+          informations d'identification du tiers.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewDossier'
+        required: true
+      tags:
+        - Dossiers
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    $ref: '#/components/schemas/DossierProcess'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Renvoie un mot JSON contenant l'identifiant du process d'import.
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Aucun compte avec cet identifiant (accountId).
+        5XX:
+          description: Erreur inattendue
+      summary: Importer un dossier
+      description: >
+
+        Permet de créer un dossier pour un tiers. Un dossier permet à un donneur d'ordre de suivre un
+        tiers sur un certain nombre de pièces demandées (appelées également Requirements).
+
+
+        Si le tiers n'existe pas, celui-ci est créé dans la plateforme e-Attestations.
+
+
+        L'import de dossier est un processus asynchrone. Cet asynchronisme est induit par le processus
+        (lui même de nature asynchone) de qualification des informations du tiers par notre Data
+        Provider.
+
+
+        Ce point terminateur lance le processus d'import et renvoie un identifiant de process
+        (processId). Le traitement pouvant durer plusieurs minutes, ainsi pour suivre l'état
+        d'avancement du processus d'import et pour connaître son résultat, un client peut utiliser le
+        point terminateur (GET '/account/{accountId}/dossier/{processId}') décrit ci-dessous.
+  '/account/{accountId}/dossiers/{dossierId}':
+    get:
+      tags:
+        - Dossiers
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: dossierId
+          description: Identifiant d'un dossier.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    $ref: '#/components/schemas/Dossier'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Retourne les informations d'un dossier.
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: >-
+            Aucun compte avec cet identifiant (accountId), ou aucun dossier avec cet identifiant
+            (dossierId).
+        5XX:
+          description: Erreur inattendue
+      summary: Détails d'un dossier
+      description: Restituer les informations d'un dossier.
+    post:
+      requestBody:
+        description: données à mettre à jour dans le dossier.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DossierUpdate'
+        required: true
+      tags:
+        - Dossiers
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: dossierId
+          description: Identifiant du dossier.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Mise à jour du dossier effectuée avec succès.
+        '400':
+          description: Erreurs dans les valeurs transmises au serveur. Voir la liste des erreurs.
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: >-
+            Aucun compte avec cet identifiant (accountId), ou aucun dossier avec cet identifiant
+            (dossierId).
+        5XX:
+          description: Erreur inattendue
+      summary: Mettre à jour un dossier
+      description: Mettre à jour les informations d’un dossier suivi (monitored=true).
+  '/account/{accountId}/dossiers/{dossierId}/documents':
+    get:
+      tags:
+        - Dossiers
+        - Documents
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: dossierId
+          description: Identifiant d'un dossier.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Document'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Retourne les documents d'un dossier.
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: >-
+            Aucun compte avec cet identifiant (accountId), ou aucun dossier avec cet identifiant
+            (dossierId).
+        5XX:
+          description: Erreur inattendue
+      summary: Documents d'un dossier
+      description: Restituer les documents d'un dossier.
+  '/account/{accountId}/dossiers/{dossierId}/documents/{documentId}':
+    get:
+      tags:
+        - Dossiers
+        - Documents
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: dossierId
+          description: Identifiant d'un dossier.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: documentId
+          description: Identifiant d'un document.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    $ref: '#/components/schemas/Document'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Retourne les détails d'un documents d'un dossier.
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: >-
+            Aucun compte avec cet identifiant (accountId), ou aucun dossier avec cet identifiant
+            (dossierId) ou aucun document avec et identiant
+        5XX:
+          description: Erreur inattendue
+      summary: Détails d'un document d'un dossier
+      description: Restituer les détails d'un document d'un dossier.
+  '/account/{accountId}/dossiers/{dossierId}/documents/{documentId}/files/{fileId}':
+    get:
+      tags:
+        - Fichiers
+        - Documents
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: dossierId
+          description: Identifiant d'un dossier.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: documentId
+          description: Identifiant d'un document.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: fileId
+          description: Identifiant d'un fichier.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: Retourne le fichier
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          description: >-
+            Aucun fichier avec cet identifiant (accountId), ou aucun dossier avec cet identifiant
+            (dossierId) ou aucun document avec cet identiant (documentId) ou aucun fichier avec
+            cet identiant (fileId)
+        5XX:
+          description: Erreur inattendue
+      summary: Téléchargement d'un fichier d'un document d'un dossier
+      description: Télécharger le fichier
+  '/account/{accountId}/dossiers/{dossierId}/stop':
+    post:
+      tags:
+        - Dossiers
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: dossierId
+          description: Identifiant du dossier.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Arrêt de la surveillance du dossier effectuée avec succès.
+        '400':
+          description: Requête mal formée ou Dossier déjà non suivi.
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          description: >-
+            Aucun compte avec cet identifiant (accountId), ou aucun dossier avec cet identifiant
+            (dossierId).
+        5XX:
+          description: Erreur inattendue
+      summary: Arrêter le suivi d'un dossier.
+      description: Arrêter le suivi d'un dossier
+  '/account/{accountId}/dossiers/{dossierId}/reactivate':
+    post:
+      requestBody:
+        description: Attributs du dossier à mettre à jour lors de la réactivation du suivi.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReactivateDossierData'
+        required: true
+      tags:
+        - Dossiers
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: dossierId
+          description: Identifiant du dossier.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Réactivation du suivi du dossier avec succès.
+        '400':
+          description: Requête mal formée ou Dossier déjà suivi ou date d'expiration dans le passé.
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          description: >-
+            Aucun compte avec cet identifiant (accountId), ou aucun dossier avec cet identifiant
+            (dossierId).
+        5XX:
+          description: Erreur inattendue
+      summary: Réactiver un dossier
+      description: Réactiver le suivi d'un dossier.
+  '/account/{accountId}/requirements':
+    get:
+      tags:
+        - Requirements
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Requirement'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Retourne un tableau JSON. Chaque item contient un document requis.
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          description: Aucun compte avec cet identifiant (accountId).
+        5XX:
+          description: Erreur inattendue
+      summary: Documents requis
+      description: 'Liste des documents requis, disponibles pour un donneur d''ordres'
+  '/account/{accountId}/dossiers/{dossierId}/requirements':
+    get:
+      tags:
+        - Dossiers
+        - Requirements
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: dossierId
+          description: Identifiant du dossier
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Requirement'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Retourne un tableau JSON. Chaque item contient un document requis pour le dossier.
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          description: >-
+            Aucun compte avec cet identifiant (accountId), ou aucun dossier avec cet identifiant
+            (dossierId).
+        5XX:
+          description: Erreur inattendue
+      summary: Documents requis pour un dossier
+      description: Restituer les documents demandés pour un dossier actif.
+    post:
+      requestBody:
+        description: Liste des requirements (documents demandés).
+        content:
+          application/json:
+            schema:
+              title: Liste des document demandés
+              type: array
+              items:
+                title: code du document demandé
+                type: string
+      tags:
+        - Dossiers
+        - Requirements
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: dossierId
+          description: Identifiant du dossier
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Les documents requis pour le dossier ont été mis à jour avec succès.
+        '400':
+          description: >-
+            Requête mal formée ou Erreurs dans les valeurs transmises au serveur. Voir la liste
+            des erreurs.
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          description: Aucun dossier ayant cet identifiant
+        5XX:
+          description: Erreur inattendue
+      summary: Mettre à jour les documents requis
+      description: Mettre à jour les documents demandés pour un dossier actif.
+  '/account/{accountId}/dossiers/process/{processId}':
+    get:
+      tags:
+        - Dossiers
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: processId
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    $ref: '#/components/schemas/DossierProcessResult'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: envoie un mot JSON indiquant le statut et le résultat de l'import.
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          description: Aucun process avec cet identifiant
+        5XX:
+          description: Erreur inattendue
+      summary: Statut de création d'un dossier
+      description: >
+        Permet de connaître le statut et le résultat d'un import de dossier à partir de l'identifiant
+        d'import.
+  '/account/{accountId}/dossiers/processes':
+    get:
+      tags:
+        - Dossiers
+      parameters:
+        -
+          name: accountId
+          description: Identifiant du compte.
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+        -
+          name: fromDate
+          description: Date de lancement min des imports.
+          schema:
+            format: date
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    description: >-
+                      Tableau contenant des objets JSON, indiquant les statuts d'import
+                      d'un ou plusieurs dossiers.
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DossierProcessResult'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: 'Renvoie un tableau d''objets JSON, indiquant le statut et le résultat des imports.'
+        '400':
+          description: Requête mal formée
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          description: Aucun process avec cet identifiant
+        5XX:
+          description: Erreur inattendue
+      summary: Statut de création de dossiers
+      description: >
+
+        Permet de connaître les résultats d'import de plusieurs dossiers.
+
+
+        Si le paramètre fromDate est renseigné, les résultats d'imports qui seront retournée sont ceux
+        qui ont été lancés à partir de cette date.
+
+
+        Par défaut, les résultats d'imports lancés dans les dernières 24h sont retrounés.
+  '/account/{accountId}/dossiers/search':
+    summary: Recherche dossiers par critères
+    description: Recherches des dossier par critères spécifiés en paramètre de la requête
+    get:
+      tags:
+        - Dossiers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Dossier'
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: >-
+            Retourne un tableau d'objets JSON. Chaque item contient les informations d'un dossier.
+            Renvoie la ou les valeurs trouvées suivant les critères 'q' et 'val'
+        '400':
+          description: Requête mal formée ou incorrecte
+        '401':
+          description: Authorisation non comprise ou invalide
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/Messages'
+          description: Aucun compte avec cet identifiant (accountId).
+        5XX:
+          description: Erreur inattendue
+      security:
+        -
+          Bearer: []
+      summary: Recherche par critères
+      description: >-
+        La recheche des dossiers est possible en spécifiant la donnée sur laquelle on veut effectuer
+        une recherche 'q' et une valeur 'val' qui peut être partielle (grace au caractère '*')
+    parameters:
+      -
+        name: accountId
+        in: path
+        required: true
+      -
+        examples:
+          Recherche sur par marché/référence dossier:
+            value: '"MARCH_PUB*"'
+        name: q
+        description: |-
+          Type de recherche :
+          - reference : reference dossier
+          - credate : date de création du dossier
+          - enddate : fin de dossier
+          - status : true = status actif du dossier
+        schema:
+          type: string
+        in: query
+        required: true
+      -
+        name: val
+        description: |-
+          Valeur du critère cherché et dépendant du type de recherche.
+          La valeur cherchée peut être 'partielle' grace au caractère '*'.
+          La valeur '*' remplace une partie de la valeur de type chaine recherchée
+          La recherche sur '*' seule est interdite.
+          Par exemple : MARCH_PUB* est équivalant à "commence part MARCH_PUB*".
+        schema:
+          type: string
+        in: query
+        required: true
+components:
+  schemas:
+    Account:
+      title: Compte e-Attestations
+      description: 'Contient les informations du ou des comptes et de sa/leur(s) souscriptions. '
+      type: object
+      properties:
+        id:
+          format: int64
+          description: Identifiant du compte. A utiliser dans tous les appels à l'API
+          type: integer
+        account:
+          description: Appellation du compte e-Attestations
+          type: string
+        company:
+          description: Nom de l'entité légale du compte
+          type: string
+        creation:
+          format: date-time
+          description: Date de création du compte
+          type: string
+        maxDossiers:
+          format: int32
+          description: Limite en nombre de dossiers
+          type: integer
+        name:
+          description: Nom du compte
+          type: string
+        subscriptionDate:
+          format: date-time
+          description: Date de souscription au service
+          type: string
+        subscriptions:
+          description: Liste des soucriptions pour ce compte
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+      example:
+        content:
+          -
+            id: 119631
+            creation: '2015-04-02T10:56:07.736'
+            account: CPTDO2E2FFC774EDD6637F
+            name: Compte Test
+            company: Compte Test
+            maxDossiers: 10
+            subscriptionDate: '2019-04-29T13:20:02.102973'
+            subscriptionStatus: ACTIVE
+            subscriptions:
+              -
+                accountId: 119631
+                key: APIEDGE
+                startSubscriptionDate: '2019-04-29T13:20:02.102973'
+                status: ACTIVE
+    GlobalInformation:
+      title: Informations globales
+      description: Ce mot JSON contient les statistiques globales et les statistiques par indicateur.
+      type: object
+      properties:
+        numberOfThirdparties:
+          format: int64
+          description: Le nombre total de tiers du compte.
+          type: integer
+        numberOfSubscribedThirdparties:
+          format: int64
+          description: Le nombre total de tiers inscrits pour un donneur d'ordres.
+          type: integer
+        numberOfCompleteThirdparties:
+          format: int64
+          description: >-
+            Le nombre total de tiers dont tous les dossiers actifs sont complets. Autrement dit,
+            les tiers qui ont déposé tous les documents requis par ce donneur d'ordres.
+          type: integer
+        numberOfDossiers:
+          format: int64
+          description: Le nombre total de dossiers actifs.
+          type: integer
+        numberOfCompleteDossiers:
+          format: int64
+          description: >-
+            Le nombre total de dossiers complets. Autrement dit, les dossiers pour lesquels tous
+            les documents requis ont été déposés.
+          type: integer
+        listIndicatorsStatistics:
+          description: Tableau contenant des statistiques par indicateur (E.g. Obligation de vigilance).
+          type: array
+          items:
+            $ref: '#/components/schemas/StatisticsIndicator'
+      example:
+        numberOfThirdparties: 97
+        numberOfSubscribedThirdparties: 62
+        numberOfCompleteThirdparties: 52
+        numberOfDossiers: 11
+        numberOfCompleteDossiers: 79
+        listIndicatorsStatistics:
+          -
+            indicatorCode: some text
+            numberOfThirdparties: 53
+            numberOfSubscribedThirdparties: 3
+            numberOfCompleteThirdparties: 6
+            numberOfDossiers: 70
+            numberOfCompleteDossiers: 75
+          -
+            indicatorCode: some text
+            numberOfThirdparties: 55
+            numberOfSubscribedThirdparties: 90
+            numberOfCompleteThirdparties: 0
+            numberOfDossiers: 35
+            numberOfCompleteDossiers: 41
+    StatisticsIndicator:
+      title: Indicateur de statistiques
+      description: Mot Json contenant des statistiques sur un indicateur (E.g. Obligation de vigilance).
+      type: object
+      properties:
+        indicatorCode:
+          description: Code de l'indicateur.
+          type: string
+        numberOfThirdparties:
+          format: int64
+          description: Le nombre de tiers du compte donneurs d'ordres restreint sur cet indicateur.
+          type: integer
+        numberOfSubscribedThirdparties:
+          format: int64
+          description: Le nombre de tiers inscrits restreints sur cet indicateur.
+          type: integer
+        numberOfCompleteThirdparties:
+          format: int64
+          description: >-
+            Le nombre de tiers dont tous les dossiers sont complets, restreints sur cet
+            indicateur.
+          type: integer
+        numberOfDossiers:
+          format: int64
+          description: 'Le nombre de dossiers du compte, restreints sur cet indicateur.'
+          type: integer
+        numberOfCompleteDossiers:
+          format: int64
+          description: 'Le nombre de dossiers complets du compte, restreints sur cet indicateur.'
+          type: integer
+      example:
+        indicatorCode: some text
+        numberOfThirdparties: 6
+        numberOfSubscribedThirdparties: 66
+        numberOfCompleteThirdparties: 63
+        numberOfDossiers: 69
+        numberOfCompleteDossiers: 71
+    NewDossier:
+      title: Nouveau dossier
+      description: >-
+        Mot JSON représentant un dossier, envoyé dans le corps (body) de la requête POST d'import d'un
+        dossier.
+      required:
+        - companyIdType
+        - companyIdValue
+        - dossierReference
+      type: object
+      properties:
+        companyIdType:
+          description: Type d'identifiant compagnie.
+          type: string
+        companyIdValue:
+          description: Identifiant compagnie du tiers (SIRET ou TVA intra communautaire).
+          type: string
+        thirdpartyCode:
+          description: Code tiers. Il s'agit d'un identifiant interne au donneur d'ordres.
+          type: string
+        dossierReference:
+          description: Référence du dossier.
+          type: string
+        description:
+          description: Description du dossier.
+          type: string
+        purchasingCategory:
+          description: Catégorie achat du dossier.
+          type: string
+        expirationDate:
+          format: date
+          description: >-
+            Date d'expiration du dossier. Passée cette date, le dossier n'est plus suivi (Attribut
+            "monitored" du dossier passe à false)
+          type: string
+        requiredDocuments:
+          description: >-
+            Liste des documents (requirements) demandés dans ce dossier pour ce tiers. Si aucun
+            document n'est demandé, le set de documents par défault est demandé, c'est-à-dire les
+            documents de l'obligation de vigilance.
+          type: array
+          items:
+            type: string
+        thirdpartyEmail:
+          description: >-
+            Liste des emails de contacts tiers. Si un tiers est non inscrit, ces emails serviront
+            à envoyer les invitations.
+          type: array
+          items:
+            format: email
+            type: string
+        userInCharge:
+          description: >-
+            Liste des emails des responsables du dossier côté donneur d'ordres. Si un email ne
+            correspond à aucun utilisateur inscrit, une invitation à s'inscrire sur le plateforme
+            e-Attestations donneur d'ordres, est envoyé à cet Email.
+          type: array
+          items:
+            format: email
+            type: string
+      example:
+        companyIdType: some text
+        companyIdValue: some text
+        thirdpartyCode: some text
+        dossierReference: some text
+        description: some text
+        purchasingCategory: some text
+        expirationDate: '2018-01-17'
+        requiredDocuments:
+          - some text
+          - some text
+        thirdpartyEmail:
+          - ''
+          - ''
+        userInCharge:
+          - ''
+          - ''
+    DossierProcess:
+      title: Process Dossier
+      description: Mot Json contenant l'identifiant du process d'import de dossier.
+      type: object
+      properties:
+        processId:
+          description: Identifiant du process d'import de dossier.
+          type: string
+      example:
+        processId: some text
+    DossierProcessResult:
+      title: DossierProcessResult
+      description: Mot JSON contenant l'identifiant et le statut du process d'import de dossier.
+      type: object
+      properties:
+        processId:
+          description: Identifiant du process d'import de dossier.
+          type: string
+        complete:
+          description: 'True si le process d''import s''est terminé, false sinon.'
+          type: boolean
+        success:
+          description: True si le dossier a été importé avec succès. False sinon.
+          type: boolean
+        errors:
+          description: Erreurs survenues lors de l'import de dossier.
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+      example:
+        processId: some text
+        complete: true
+        success: true
+        errors:
+          -
+            code: some text
+            message: some text
+          -
+            code: some text
+            message: some text
+    ThirdpartyIdentifier:
+      title: Identifiant tiers
+      description: Mot JSON représentant les informations d'identification d'un tiers.
+      type: object
+      properties:
+        thirdpartyId:
+          description: >-
+            Identifiant e-Attestations du tiers. Celui-ci est différent du companyIdValue. Le
+            thirdpartyId est un identifiant technique qui identifie de façon unique le tiers dans
+            la plateforme e-Attestations.
+          type: integer
+        companyIdType:
+          description: Type d'identifiant compagnie.
+          type: string
+        companyIdValue:
+          description: Identifiant compagnie du tiers (SIRET ou TVA intra communautaire).
+          type: string
+        thirdpartyCode:
+          description: Code tiers. Il s'agit d'un identifiant interne au client.
+          type: string
+      example:
+        thirdpartyId: 79
+        companyIdType: some text
+        companyIdValue: some text
+        thirdpartyCode: some text
+    ThirdpartyDetails:
+      title: Détails d'un tiers
+      description: >-
+        Mot JSON représentant les détails d'un tiers. Les informations constituant l'adresse ainsi que
+        la dénomination sociale du tiers sont fournis par notre Data Provider à partir de
+        l'identifiant du tiers.
+      type: object
+      properties:
+        thirdpartyId:
+          format: int64
+          description: >-
+            Identifiant e-Attestations du tiers. Celui-ci est différent du companyIdValue. Le
+            thirdpartyId est un identifiant technique qui identifie de façon unique le tiers dans
+            la plateforme e-Attestations.
+          type: integer
+        accountId:
+          format: int64
+          description: Identifiant du compte.
+          type: integer
+        companyIdType:
+          description: Type d'identifiant compagnie.
+          type: string
+        companyIdValue:
+          description: Identifiant compagnie du tiers (SIRET ou TVA intra communautaire).
+          type: string
+        thirdpartyCode:
+          description: Code tiers. Il s'agit d'un identifiant interne au client.
+          type: string
+        monitored:
+          description: >-
+            Indique si le tiers est suivi. Cet attribut est à true si le tiers est suivi, false
+            sinon. Un tiers est suivi dès lors qu'il a un dossier suivi.
+          type: boolean
+        name:
+          description: >-
+            Dénomination sociale du tiers. Celle-ci est automatiquement fournie par notre data
+            provider à partir de l'identifiant du tiers (Numéro Siret ou Numéro TVA)
+          type: string
+        addressStreet:
+          description: Elément "Rue" de l'adresse du tiers.
+          type: string
+        addressCity:
+          description: Elément "Ville" de l'adresse du tiers.
+          type: string
+        addressPostCode:
+          description: Elément "Code postal" de l'adresse du tiers.
+          type: string
+        addressCountryCode:
+          description: Elément "Pays" de l'adresse du tiers.
+          type: string
+        subscriptionState:
+          description: 'Statut d''inscription du tiers. True si le tiers est inscrit, False sinon.'
+          type: boolean
+        subscriptionDate:
+          format: date
+          description: Date d'inscription du tiers.
+          type: string
+        subscriptionKey:
+          description: >-
+            Clé d'inscription. Elle est demandée au tiers au moment de son adhésion. Elle doit lui
+            être communiquée lors de relances d'inscription.
+          type: string
+        outOfBusiness:
+          description: 'Indique si l''établissement est fermé. True si c''est le cas, False sinon.'
+          type: boolean
+        stateLastChangeDate:
+          format: date
+          description: Dernière date à laquelle l'état global du tiers a changé.
+          type: string
+        thirdpartyGlobalState":
+          description: >-
+            Etat de complétude global du tiers. Une valeur true (Complet) signifie que tous les
+            dossiers sont dans l'état complet. Une valeur false (Incomplet) signifie qu'au moins
+            un ou plusieurs dossiers sont dans l'état incomplet.
+          type: boolean
+        acronym:
+          description: Acronym du tiers
+          type: string
+        activityCode:
+          description: Code APE de l'activité du tiers
+          type: string
+        activityLabel:
+          description: Libellé APE de l'activité du tiers
+          type: string
+        capital:
+          format: int64
+          description: Capital connu pour le tiers
+          type: integer
+        capitalCurrency:
+          description: Devise du capital connu pour le tiers
+          type: string
+        ceo:
+          description: Dirigeant
+          type: string
+        datecreation:
+          format: date
+          description: Date de création du tiers dans la base e-Attestations
+          type: string
+        lastBalanceSheetDate:
+          format: date
+          description: Dernier date du résultat d'exploitation connu
+          type: string
+        legalCategoryCode:
+          description: Code jurisique d'activité
+          type: string
+        legalCategoryLabel:
+          description: Libellé jurisique d'activité
+          type: string
+        siren:
+          description: Identifiant SIREN (pour les français)
+          type: string
+        siret:
+          description: Identifiant SIRET de l'établissement (pour les français)
+          type: string
+        turnover:
+          format: double
+          description: Dernier chiffre d'affaire connu du tiers
+          type: number
+        turnoverCurrency:
+          description: Devise du dernier chiffre d'affaire connu du tiers
+          type: string
+        tva:
+          description: Identifiant intra communautaire
+          type: string
+        workforce:
+          format: int32
+          description: Effectifs du tiers
+          type: integer
+        thirdpartyUsers:
+          description: Informations sur les utilisateurs du compte tiers.
+          type: array
+          items:
+            $ref: '#/components/schemas/UserInformation'
+      example:
+        thirdpartyId: 39
+        accountId: 70
+        companyIdType: some text
+        companyIdValue: some text
+        thirdpartyCode: some text
+        monitored: true
+        name: some text
+        addressStreet: some text
+        addressCity: some text
+        addressPostCode: some text
+        addressCountryCode: some text
+        subscriptionState: true
+        subscriptionDate: '2018-01-17'
+        subscriptionKey: some text
+        outOfBusiness: true
+        stateLastChangeDate: '2018-01-17'
+        thirdpartyGlobalState": true
+        acronym: some text
+        activityCode: some text
+        activityLabel: some text
+        capital: 90
+        capitalCurrency: some text
+        ceo: some text
+        datecreation: '2018-01-17'
+        lastBalanceSheetDate: '2018-01-17'
+        legalCategoryCode: some text
+        legalCategoryLabel: some text
+        siren: some text
+        siret: some text
+        turnover: 32.85
+        turnoverCurrency: some text
+        tva: some text
+        workforce: 82
+        thirdpartyUsers:
+          -
+            firstname: some text
+            lastname: some text
+            email: ''
+            phone: some text
+          -
+            firstname: some text
+            lastname: some text
+            email: ''
+            phone: some text
+    UserInformation:
+      title: Informations utilisateur
+      description: Mot JSON contenant des informations sur les utilisateurs du tiers.
+      type: object
+      properties:
+        firstname:
+          description: Prénom de l'utilisateur.
+          type: string
+        lastname:
+          description: Nom de l'utilisateur.
+          type: string
+        email:
+          format: email
+          description: E-mail de l'utilisateur.
+          type: string
+        phone:
+          description: Numéro de téléphone de l'utilisateur au format international.
+          type: string
+      example:
+        firstname: some text
+        lastname: some text
+        email: ''
+        phone: some text
+    DossierUpdate:
+      title: Mise à jour du dossier
+      type: object
+      properties:
+        dossierReference:
+          description: Référence du dossier.
+          type: string
+        description:
+          description: Description du dossier.
+          type: string
+        purchasingCategory:
+          description: Catégorie achat du dossier.
+          type: string
+        expirationDate:
+          format: date
+          description: >-
+            Date d'expiration du dossier. Passée cette date, le dossier n'est plus suivi (Attribut
+            "monitored" du dossier passe à false)
+          type: string
+        thirdpartyCode:
+          description: Code tiers. Il s'agit d'un identifiant interne au client.
+          type: string
+        thirdpartyEmail:
+          description: >-
+            Liste des emails de contacts tiers. Si un tiers est n'est pas inscrit, ces emails
+            serviront à envoyer les invitations.
+          type: array
+          items:
+            format: email
+            type: string
+      example:
+        dossierReference: some text
+        description: some text
+        purchasingCategory: some text
+        expirationDate: '2018-01-17'
+        thirdpartyCode: some text
+        thirdpartyEmail:
+          - ''
+          - ''
+    Dossier:
+      title: Dossier
+      description: Mot JSON représentant un dossier.
+      type: object
+      properties:
+        dossierId:
+          format: int64
+          description: Identifiant du dossier.
+          type: integer
+        accountId:
+          format: int64
+          description: Identifiant du compte.
+          type: integer
+        thirdpartyId:
+          format: int64
+          description: >-
+            Identifiant e-Attestations du tiers. Celui-ci est différent du companyIdValue. Le
+            thirdpartyId est un identifiant technique qui identifie de façon unique le tiers dans
+            la plateforme e-Attestations.
+          type: integer
+        companyIdType:
+          description: Type d'identifiant compagnie.
+          type: string
+        companyIdValue:
+          description: Identifiant compagnie du tiers (SIRET ou TVA intra communautaire).
+          type: string
+        thirdpartyCode:
+          description: Code tiers. Il s'agit d'un identifiant interne au client.
+          type: string
+        companyCountryCode:
+          description: Code pays du tiers. Il s'agit d'un code alpha-3 du standard ISO 3166-1.
+          type: string
+        monitored:
+          description: Indique si le dossier est suivi (True) ou non suivi (False)
+          type: boolean
+        dossierReference:
+          description: Référence du dossier.
+          type: string
+        description:
+          description: Description du dossier.
+          type: string
+        purchasingCategory:
+          description: Catégorie achat du dossier.
+          type: string
+        startingDate:
+          format: date
+          description: Date de début de suivi du dossier.
+          type: string
+        expirationDate:
+          format: date
+          description: >-
+            Date d'expiration du suivi du dossier. A partir de cette date, le dossier passe
+            automatiquement à l'état "non suivi".
+          type: string
+        stoppingDate:
+          format: date
+          description: Date d'arrêt de suivi du dossier.
+          type: string
+        stoppingReason:
+          description: >
+            Détails concernant l'arrêt du dossier: OUTOFBUSINESS (entreprise radiée), EXPIRATION
+            (le dossier a atteint sa date d'expiration), STOPREQUEST (une demande d'arrêt a été
+            faite de manière explicite et immédiate), UNKNOWN (information absente). Non nul
+            uniquement si dossier désactivé.
+          type: string
+        state:
+          description: >-
+            Indicateur de complétude du dossier. True si l'ensemble des documents demandés sont
+            présents, false sinon.
+          type: boolean
+        stateLastChangeDate:
+          format: date
+          description: Date du dernier changement de l'état de complétude du dossier.
+          type: string
+        indicators:
+          description: Liste des indicateurs du dossier.
+          type: array
+          items:
+            $ref: '#/components/schemas/DossierIndicator'
+        documents:
+          description: Liste des documents demandés pour le dossier.
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+      example:
+        dossierId: 5
+        accountId: 51
+        thirdpartyId: 18
+        companyIdType: some text
+        companyIdValue: some text
+        thirdpartyCode: some text
+        companyCountryCode: some text
+        monitored: true
+        dossierReference: some text
+        description: some text
+        purchasingCategory: some text
+        startingDate: '2018-01-17'
+        expirationDate: '2018-01-17'
+        stoppingDate: '2018-01-17'
+        stoppingReason: some text
+        state: true
+        stateLastChangeDate: '2018-01-17'
+        indicators:
+          -
+            indicatorCode: some text
+            state: true
+            lastChangeDate: '2018-01-17'
+          -
+            indicatorCode: some text
+            state: true
+            lastChangeDate: '2018-01-17'
+        documents:
+          -
+            documentId: 14
+            documentCode: some text
+            name: some text
+            requestDate: '2018-01-17'
+            present: true
+            listFileInformation:
+              -
+                fileId: 70
+                uploadDate: '2018-01-17'
+                fileUUID: ''
+                fileCreation: '2018-01-17'
+                fileSize: 86
+                expirationDate: '2018-01-17'
+              -
+                fileId: 67
+                uploadDate: '2018-01-17'
+                fileUUID: ''
+                fileCreation: '2018-01-17'
+                fileSize: 29
+                expirationDate: '2018-01-17'
+          -
+            documentId: 0
+            documentCode: some text
+            name: some text
+            requestDate: '2018-01-17'
+            present: true
+            listFileInformation:
+              -
+                fileId: 4
+                uploadDate: '2018-01-17'
+                fileUUID: ''
+                fileCreation: '2018-01-17'
+                fileSize: 44
+                expirationDate: '2018-01-17'
+              -
+                fileId: 83
+                uploadDate: '2018-01-17'
+                fileUUID: ''
+                fileCreation: '2018-01-17'
+                fileSize: 50
+                expirationDate: '2018-01-17'
+    Requirement:
+      title: Requirement
+      description: Une exigence (un document/preuve requis/e)
+      type: object
+      properties:
+        documentId:
+          description: id interne
+          type: integer
+        accountId:
+          description: id du compte
+          type: integer
+        code:
+          description: Code identifiant le document.
+          type: string
+        name:
+          description: Nom de l'exigence
+          type: string
+        descriptionCategoryFr:
+          description: Description de la catégorie de l'exigence en français
+          type: string
+        descriptionCategoryEn:
+          description: Description de la catégorie de de l'exigence en anglais
+          type: string
+        descriptionFr:
+          description: Description de l'exigence en français
+          type: string
+        descriptionEn:
+          description: Description de l'exigence en anglais
+          type: string
+      example:
+        documentId: 88
+        accountId: 97
+        code: some text
+        name: some text
+        descriptionCategoryFr: some text
+        descriptionCategoryEn: some text
+        descriptionFr: some text
+        descriptionEn: some text
+    DossierIndicator:
+      title: Indicateur de dossier
+      description: Un indicateur un dossier.
+      type: object
+      properties:
+        indicatorCode:
+          description: Code de l'indicateur
+          type: string
+        state:
+          description: >-
+            État de l'indicateur. True si l'ensemble des documents demandés de l'indicateur sont
+            présents, false sinon.
+          type: boolean
+        lastChangeDate:
+          format: date
+          description: Date du dernier changement de l'état de l'indicateur.
+          type: string
+      example:
+        indicatorCode: some text
+        state: true
+        lastChangeDate: '2018-01-17'
+    Document:
+      title: Document ou preuve demandée pour le dossier
+      description: 'Une exigence comme un document demandé, une signature, une donnée à apporter au dossier'
+      type: object
+      properties:
+        documentId:
+          format: int64
+          description: Identifiant unique du document.
+          type: integer
+        documentCode:
+          description: Code qui identifie le document.
+          type: string
+        name:
+          description: Nom du document.
+          type: string
+        requestDate:
+          format: date
+          description: Date à laquelle le document a été demandé.
+          type: string
+        present:
+          description: 'Présence ou non du document. True si document présent, False sinon.'
+          type: boolean
+        listFileInformation:
+          description: Informations du (ou des) fichiers présents pour ce document.
+          type: array
+          items:
+            $ref: '#/components/schemas/FileInformation'
+      example:
+        documentId: 48
+        documentCode: some text
+        name: some text
+        requestDate: '2018-01-17'
+        present: true
+        listFileInformation:
+          -
+            fileId: 85
+            uploadDate: '2018-01-17'
+            fileUUID: ''
+            fileCreation: '2018-01-17'
+            fileSize: 7
+            expirationDate: '2018-01-17'
+          -
+            fileId: 12
+            uploadDate: '2018-01-17'
+            fileUUID: ''
+            fileCreation: '2018-01-17'
+            fileSize: 40
+            expirationDate: '2018-01-17'
+    FileInformation:
+      title: Information du document présent
+      description: Informations d'un fichier déposé pour un document ou une preuve.
+      type: object
+      properties:
+        fileId:
+          format: int64
+          description: Identifiant du fichier.
+          type: integer
+        uploadDate:
+          format: date
+          description: Date de dépôt du document.
+          type: string
+        fileUUID:
+          format: string
+          description: Identifiant UUID du fichier.
+          type: string
+        fileCreation:
+          format: date
+          description: Date de création du fichier.
+          type: string
+        fileSize:
+          format: int64
+          description: Taille en octet du fichier.
+          type: integer
+        expirationDate:
+          format: date
+          description: Date d'expiration du document.
+          type: string
+      example:
+        fileId: 96
+        uploadDate: '2018-01-17'
+        fileUUID: ''
+        fileCreation: '2018-01-17'
+        fileSize: 77
+        expirationDate: '2018-01-17'
+    ReactivateDossierData:
+      description: Informations du dossier à mettre à jour lors de la réactivation du suivi.
+      type: object
+      properties:
+        expirationDate:
+          format: date
+          description: >-
+            Date d'expiration du suivi du dossier. Passée cette date, le dossier n'est plus suivi
+            (Attribut "monitored" du dossier passe à false).
+          type: string
+      example:
+        expirationDate: '2018-01-17'
+    Message:
+      description: Un message.
+      properties:
+        code:
+          description: Code du message.
+          type: string
+        message:
+          description: texte du message.
+          type: string
+      example:
+        code: some text
+        message: some text
+    Messages:
+      description: >-
+        Messages d'une réponse à un appel de l'API REST / JSON. Il contient des messages
+        d'informations, d'avertissement et d'erreurs.
+      type: object
+      properties:
+        info:
+          description: Tableau contenant les messages d'information.
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        warning:
+          description: Tableau contenant les messages d'avertissement.
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        error:
+          description: Tableau contenant les messages d'erreurs.
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+      example:
+        info:
+          -
+            code: some text
+            message: some text
+          -
+            code: some text
+            message: some text
+        warning:
+          -
+            code: some text
+            message: some text
+          -
+            code: some text
+            message: some text
+        error:
+          -
+            code: some text
+            message: some text
+          -
+            code: some text
+            message: some text
+    Subscription:
+      title: Subscription
+      type: object
+      properties:
+        accountId:
+          format: int64
+          description: Le compte lié à la souscription.
+          type: integer
+        endSubscriptionDate:
+          format: date-time
+          description: Date de fin de la souscription.
+          type: string
+        key:
+          description: Code de la souscription
+          type: string
+        startSubscriptionDate:
+          format: date-time
+          description: Date de début de la souscription.
+          type: string
+        status:
+          description: Statut de la souscription.
+          type: string
+      example:
+        accountId: 85
+        endSubscriptionDate: '2018-02-10T09:30Z'
+        key: some text
+        startSubscriptionDate: '2018-02-10T09:30Z'
+        status: some text
+  securitySchemes:
+    Bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: >
+        Pour effectuer une autentification vous devez ajouter un header HTTP sous la forme
+        'Authorization: Bearer {JWT}' où 'access_code' est le JWT.
+security:
+  -
+    Bearer: []
+tags:
+  -
+    name: Compte
+    description: Information de votre ou de vos comptes ayant un souscription aux services
+  -
+    name: Tiers
+    description: Information et recherche de vos tiers pour un compte
+  -
+    name: Dossiers
+    description: Information et recherche de vos dossier de suivi continu de conformité de vos tiers
+  -
+    name: Documents
+    description: Informations sur les documents exigés dans le cadre d'un dossier
+  -
+    name: Fichiers
+    description: Fichiers attachés fournis par e-Attestations ou déposés par le tiers à votre demande
+  -
+    name: Requirements
+    description: Exigences de conformité e-Attestations
+x-tagGroups:
+  -
+    name: Account Management
+    tags:
+      - Compte
+  -
+    name: Documents Management
+    tags:
+      - Documents
+      - Fichiers
+  -
+    name: Thirdparty Management
+    tags:
+      - Tiers
+      - Dossiers
+      - Requirements

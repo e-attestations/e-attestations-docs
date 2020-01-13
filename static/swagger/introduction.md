@@ -1,9 +1,3 @@
----
-id: introduction
-title: Introduction
-sidebar_label: Introduction
----
-
 # API REST/Json e-Attestations (PREVIEW)
 
 L'API REST/Json est utilisée pour **interfacer** un système d'information '**client**' à la plate-forme d'e-Attestations suivant le protocole HTTP.
@@ -14,8 +8,10 @@ Les applications 'clientes' utilisant l'API REST e-Attestations enrichisent le S
 
 L'API peut également être utilisée par les intégrateurs, éditeurs logiciels, des solutions SAAS ou des connecteurs.
 
+<aside className="info">
 l'API REST/Json e-Attestations est actuellement en **PREVIEW** et n'est proposée qu'aux partenaires et clients du programme d'adoption de cette nouvelle offre de service.
 Contactez e-Attestations pour plus d'information à <a href="mailto:contact@e-attestations.com">contact@e-attestations.com</a>
+</aside>
 
 ## Objectifs de cette documentation
 
@@ -26,9 +22,14 @@ Contactez e-Attestations pour plus d'information à <a href="mailto:contact@e-at
 
 ## Documentation OpenAPI V3
 
+<aside className="info">
+Durant toute la vesion PREVIEW (au moins) de cette API la documentation OpenAPI v3 (Swagger) **est accessible librement**
+</aside>
+
 Une documentation Open API v3 est aussi disponible ici :
 
 [https://ea-api-edge.test-uservice.dev-e-attestations.com/doc/swagger.yml](https://ea-api-edge.test-uservice.dev-e-attestations.com/doc/swagger.yml)
+
 
 
 Une documentation Open API v2 est aussi disponible ici :
@@ -74,7 +75,7 @@ e-Attestations met à disposition deux environnements :
 L'ouverture d'un accès de TEST de type API REST connecté à un compte client de TEST vous permettra, de façon pleinement sécurisée, d'accéder à une infrastructure partagée et identique à celle de production. 
 
 <aside className="warning">
-**ATTENTION** : dans l'environnement de TEST et afin d'éviter que vos tests n'interfèrent pas avec votre activité de production les envois d'emails sont inhibés (pas d'invitation des tiers ou d'envoi de rapport).
+**ATTENTION**</span> : dans l'environnement de TEST et afin d'éviter que vos tests n'interfèrent pas avec votre activité de production les envois d'emails sont inhibés (pas d'invitation des tiers ou d'envoi de rapport).
 </aside>
 
 <br/>
@@ -231,12 +232,14 @@ Les urls sont ainsi toutes prefixées par **/account/{account_id}/****
 
 L'identifiant de compte (de type string) est renvoyé dans le **payload** du token JWT, comme illustré ci-dessous:
 
+<div class="center-column"></div>
 ```json
 {
   "name": ".....",
   "account_ids": "98545"
 }
 ```
+<br/>
 
 ## Informations du compte
 
@@ -317,7 +320,7 @@ Il vous faudra l'utiliser pour connaître le résultat de l'import de façon asy
 
 Le endpoint **GET /account/{accountId}/dossier/process/{processId}** permet de suivre le résultat de l'import grâce à l'identifiant du process d'import renvoyé lors de l'appel "Création d'un dossier" (POST /account/{accountId}/dossiers).
 
-<p className="mermaid">
+<p class="mermaid">
 graph TB
 	A((<strong>Start</strong>)) 
 	A --> B(Call <strong>Import dossier endpoint</strong><br/>returns processId)

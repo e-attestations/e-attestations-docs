@@ -4,36 +4,37 @@ title: Error Codes
 sidebar_label: Error Codes
 ---
 
-Le cas échéant, des codes erreurs sont renvoyées lors de certaines actions et notamment :
+If necessary, error codes are returned during certain actions and in particular:
 
-- lors de la création d'un dossier
-- lors d'une recherche de dossier
-- lors de la mise à jour d'un dossier
+- when creating a 'dossier'
+- when updating a 'dossier'
+- when activating a 'dossier'
+- when deactivating a 'dossier'
 
-Ces erreurs ont une nomenclature (code et description) qu'il faut prendre en compte pour les interpréter.
+These are errors codes with description which must be taken into account to interpret them.
 
-Codes          | Erreurs de recherche
----------------|------------------------------------------
-E001           | Paramètre manquant
-E002           | Paramètre inconnu
-E003           | Paramètre vide
-E010           | Format incorrect
-E011           | Taille maximale dépassée
-E021           | Date d'expiration dans le passé
-E022           | Date dans le futur
-E030           | Domaine de l’e-mail invalide
+Codes| Search errors
+-----|---------------------------------
+E001 | Missing parameter
+E002 | Unknown parameter
+E003 | Empty parameter
+E010 | Incorrect format
+E011 | Maximum size exceeded
+E021 | Expiration date in the past
+E022 | Date in the future
+E030 | Invalid email domain
 
-Codes          | Erreurs lors de la création d'un dossier
----------------|------------------------------------------
-E101           | Erreur lors de la qualification de l'établissement
-E102           | L'établissement n'existe pas.
-E103           | L'établissement est fermé.
-E112           | Le code fournisseur (thirdpartyCode) déjà utilisé pour un autre fournisseur.
-E113           | Compte donneur d'ordres non actif
+Codes | Errors when creating a folder
+-----|----------------------------------
+E101 | Error when qualifying the establishment
+E102 | The establishment does not exist.
+E103 | The establishment is closed.
+E112 | The supplier code (thirdpartyCode) already used for another supplier.
+E113 | Non active ordering account
 
-Codes          | Erreurs lors de la mise à jour d'un dossier
----------------|---------------------------------------------
-E201           | Le dossier est désactivé
-E202           | La référence du dossier existe déjà pour ce couple donneur d'ordres / Fournisseur
-E301           | Le document (requirement) est désactivé
-E302           | Le document (requirement) n'est pas autorisé
+Codes | Errors when updating a folder
+-----|---------------------------------
+E201 | The 'dossier' is disabled
+E202 | The 'dossier' reference already exists for this client / supplier couple
+E301 | The document (requirement) is deactivated
+E302 | The document (requirement) is not authorized

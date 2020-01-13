@@ -4,13 +4,15 @@ title: Collection Postman
 sidebar_label: Collection Postman
 ---
 
-Pour aller encore plus vite et faciliter l'intégration et l'exploration de notre API nous fournissons <a href="https://raw.githubusercontent.com/e-attestations/ea-api-rest-postman/master/eAttestations-API-REST-multi-version.postman_collection.json">une collection Postman</a> que vous pouvez importer dans postman et tester rapidement.
 
-Vous devrez définir quelques variables (user, password et server_url) pour exploiter cette suite de test.
+To go even faster and facilitate the integration and exploration of our API we provide <a href = "https://raw.githubusercontent.com/e-attestations/ea-api-rest-postman/master/eAttestations- API-REST-multi-version.postman_collection.json "> a Postman collection </a> which you can import into postman and test quickly.
 
-Vous pouvez aussi explorer chacun des scenarios pour foncionnellement comprendre l'usage possible de l'API.
+You will have to define some variables (user, password and server_url) to use this test suite.
 
-> Exemple d'utilisation de newman
+You can also explore each of the scenarios to functionally understand the possible use of the API.
+
+
+> Example of using newman
 
 ```shell
 npx newman run "EA_API_REST.postman_collection.json" \
@@ -19,5 +21,4 @@ npx newman run "EA_API_REST.postman_collection.json" \
   --global-var server_url="https://rs.dev-e-attestations.com"
 ```
 
-
-Vous pouvez télécharger Postman via <a href="https://www.getpostman.com/downloads/">ce lien</a> ou utiliser newman via <a href="https://github.com/postmanlabs/newman">ce lien</a>.
+You can download Postman via <a href="https://www.getpostman.com/downloads/"> this link </a> or use newman via <a href = "https://github.com/postmanlabs/newman "> this link </a>.

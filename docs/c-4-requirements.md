@@ -4,21 +4,23 @@ title: Requirements
 sidebar_label: Requirements
 ---
 
-L'exigence est un ensemble de demandes dans le domaine métier du donneur d'ordres (légale, compliance, métier, etc...). 
+Requirements are resource related to a set of requests in the business area of ​​the client (legal, compliance, business, etc.).
 
-Au titre du suivi continu de la conformité du tier, une exigence est matérialisée dans le workflow par une **demande** et en attente d'une **réponse**. 
+As part of the continuous monitoring of third party compliance, a requirement is materialized in the workflow by a requested evidence ('document') and awaiting a response.
 
-Cette réponse est le plus souvent apportée par e-Attestations qui catalise et aggrège les réponses de nombreuses sources de données provenant de diverses administration et fournisseurs de données de confiance. 
+In most case response has already been provided by thirdparty or e-Attestations.
 
-La réponse peut aussi être donnée par le tier lui-même pour :
+This response is most often provided by e-Attestations, which catalogs and aggregates the responses from numerous data sources from various administrations and trusted data providers.
 
-- un fichier portant un document exigé
-- la saisie d'une donnée spécifique
-- un ou plusieurs documents et leur(s) fichier(s) lié(s)
-- une signature électronique daté et auditable
-- tout autre élément demandé constituant un preuve de conformité dans le cadre du suivi.
+The answer can also be given by the thirdparty himself in several cases:
 
-> Exemple d'interrogation des exigences d'un dossier GET "/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/requirements"
+- a file with a required document
+- entering specific data
+- one or more documents and their linked file(s)
+- a dated and auditable electronic signature
+- any other element requested constituting proof of compliance in the context of monitoring.
+
+> Example of GET one's 'dossier' requirements `/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/requirements`
 
 ```json
 {

@@ -9,13 +9,17 @@ module.exports = {
   docs: {    
     'Introduction': [
       'a-1-introduction', 
-      'a-2-motivations', 
-      'a-7-security'
+      'a-2-motivations'
+    ],
+    'Security': [
+      's-1-security',
+      's-2-jwt',
+      's-6-jwt-2',
+      's-7-urls',
     ],
     'Get started': [
       'b-1-get-started', 
-      'b-2-environments',
-      'doc3'
+      'b-2-environments'
     ],
     'Tutorials': [
       't-1-create-dossier'
@@ -38,9 +42,8 @@ module.exports = {
       'r-2-openapiv3'
     ],
     'Under the hood': [
-      'doc1', 
-      'doc2', 
-      'doc3'
+      'z-about', 
+      'r-0-mdx'
     ],
   },
 };

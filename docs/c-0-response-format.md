@@ -5,22 +5,24 @@ sidebar_label: Responses format
 ---
 
 
-Les réponses sont au format JSON composées des attributs (optionnels) suivants:
+Responses are in JSON format composed of the following (optional) attributes:
 
-* **content**, contenant le résultat de l'opération, en cas de succès.
-* **page**, le numéro de la page. **Renvoyé en cas de contenu paginé.**
-* **size**, taille de la page. **Renvoyé en cas de contenu paginé.**
-* **totalElements**, le nombre total d'éléments. **Renvoyé en cas de contenu paginé.**
-* **messages** contenant **d'éventuels messages** d'information, d'avertissement ou d'erreur.
+Attributes|Description
+----------|--------------------------------------------------------------------
+content|containing the result of the operation, if successful
+page|requested the page number, returned only in case of paginated content
+size|requested page size, returned in case of paginated content
+totalElements|total number of items returned
+messages|information, warning or error messages
 
+
+> Example of messages
 
 ```json
 {
   content: [
     {
-      "companyIdType": "string",
-      "companyIdValue": "string",
-      "thirdpartyCode": "string"
+      ...
     }],
   messages: {
     warning: [
@@ -35,11 +37,25 @@ Les réponses sont au format JSON composées des attributs (optionnels) suivants
 
 ## Encoding
 
-L'API REST doit être utilisée et consommée en UTF8.
+eAttestations APIs use UTF8 encoding
 
 
+## HTTP codes
 
-## Exemple d'erreur (protocolaire)
+On every HTTP response a HTTP code with a value greater than 400 will indicate an error.
+
+These are the main HTTP code that developpers need to control on client side.
+ in order to behave accordingly.
+
+HTTP Code|Meaning|Description
+---------|-------|--------------
+401|Unauthenticated user|The request is not authenticated.
+403|Access denied|The request is not authorized
+404|resource not found|The requested resources or search did not fetch any result
+500|Internal server error|Something wrong happened on server
+503|Server error|Something wrong happened on server side due to the request
+
+> Example of messages send with HTTP error code > 400
 
 ```json
 {
@@ -50,13 +66,3 @@ L'API REST doit être utilisée et consommée en UTF8.
     "path": "/api/v1/account/1234567/876543"
 }
 ```
-
-<aside className="warning">
-Nous avons développé un contrat d'interface (présenté ci dessus) qui se veut le plus pratique pour le développeur.
-Il est toute fois important de noter que durant la PREVIEW certains messages pourront ne pas encore présenter le même format.
-Auquel cas un format 'standard' de réponse d'erreur 'protocolaire' est utilisé.
-Nous poursuivons les développements pour permettre la généralisation du contrat d'interface dans tous les cas d'erreur.
-</aside>
-
-
-
