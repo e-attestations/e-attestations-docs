@@ -89,7 +89,7 @@
                     }
                 ],
                 "summary": "Account information",
-                "description": "\nRestore the information of the account associated with the TOKEN validated in the request.\nThe information details the subscription to the service."
+                "description": "\nFetch information of the account associated with the TOKEN validated in the request.\nThe information details the subscription to the service."
             }
         },
         "/account/{accountId}": {
@@ -154,7 +154,7 @@
                     }
                 },
                 "summary": "Statistiques globales",
-                "description": "Restore the overall statistics of the account. The statistics relate only to the third parties monitored. A monitored Thirdparty is a Thirdparty for which there is at least one active file. The statistics relate to third parties and files and their completeness."
+                "description": "Fetch overall statistics of the account. The statistics relate only to the third parties monitored. A monitored Thirdparty is a Thirdparty for which there is at least one active file. The statistics relate to third parties and files and their completeness."
             }
         },
         "/account/{accountId}/thirdparties": {
@@ -415,7 +415,7 @@
                     }
                 },
                 "summary": "Details of a Thirdparty",
-                "description": "Used to restore detailed information from a Thirdparty. Are reassembled:\n* Thirdparty \"identity\" information * Thirdparty address * The list of Thirdparty users * Different states (Active?, Registered? ...)"
+                "description": "Used to Fetch detailed information from a Thirdparty. Are reassembled:\n* Thirdparty \"identity\" information * Thirdparty address * The list of Thirdparty users * Different states (Active?, Registered? ...)"
             }
         },
         "/account/{accountId}/dossiers": {
@@ -589,7 +589,7 @@
                     }
                 },
                 "summary": "Dossiers (multi-criteria)",
-                "description": "Used to restore information from one or more files. It is possible to combine the available filters to refine the result."
+                "description": "Used to Fetch information from one or more files. It is possible to combine the available filters to refine the result."
             },
             "post": {
                 "requestBody": {
@@ -785,7 +785,7 @@
                         "description": "Successful update"
                     },
                     "400": {
-                        "description": "Error in the body of the request. Check error message for details"
+                        "description": "Error in the body of one request. Check error message for details"
                     },
                     "401": {
                         "description": "Authorization not understood or invalid"
@@ -1052,7 +1052,7 @@
                     }
                 },
                 "summary": "Download file content",
-                "description": "Download a copy of the content of the last active evidence content of the file. Client system have to name it and save it."
+                "description": "Download a copy of the file content of the last active thirdparty's evidence/response. Client system have to name it and save it."
             }
         },
         "/account/{accountId}/dossiers/{dossierId}/stop": {
@@ -1613,7 +1613,7 @@
         "schemas": {
             "Account": {
                 "title": "Account",
-                "description": "Contains the information of the account (s) and its / their subscription (s).",
+                "description": "Fetch account information and subscription.",
                 "type": "object",
                 "properties": {
                     "id": {
@@ -1788,8 +1788,8 @@
                 }
             },
             "NewDossier": {
-                "title": "Dossier to be created",
-                "description": "Body of the dossier to be created",
+                "title": "Dossier to create",
+                "description": "Body of the dossier to create",
                 "required": [
                     "companyIdType",
                     "companyIdValue",
@@ -2518,7 +2518,7 @@
                         "type": "boolean"
                     },
                     "listFileInformation": {
-                        "description": "Information of the file (s) present for this document.",
+                        "description": "Information of the file(s) present for this document.",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/FileInformation"
@@ -2601,7 +2601,7 @@
                 }
             },
             "ReactivateDossierData": {
-                "description": "Information of the file to be updated when reactivating the follow-up.",
+                "description": "Information of the file to update when reactivating the follow-up.",
                 "type": "object",
                 "properties": {
                     "expirationDate": {
@@ -2615,14 +2615,14 @@
                 }
             },
             "Message": {
-                "description": "Un message.",
+                "description": "One message from backend services.",
                 "properties": {
                     "code": {
-                        "description": "Code du message.",
+                        "description": "The Code of the message.",
                         "type": "string"
                     },
                     "message": {
-                        "description": "texte du message.",
+                        "description": "The body of the message.",
                         "type": "string"
                     }
                 },
@@ -2936,7 +2936,7 @@
     "tags": [
         {
             "name": "Account",
-            "description": "Information of your account (s) having a subscription to the services"
+            "description": "Information of your account(s) having a subscription to the services"
         },
         {
             "name": "Thirdparties",

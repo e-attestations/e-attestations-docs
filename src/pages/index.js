@@ -53,9 +53,10 @@ const features = [
         Install postman, complete variables with your credentials and you can test the API right away without writing a single line of code.
       </>
     ),
-  },
+  }
+  /*,
   {
-    title: <>Wath our slide show</>,
+    title: <>Watch our slide show</>,
     imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
@@ -63,13 +64,13 @@ const features = [
         <a href="/presentation/index.html">Presentation</a>
       </>
     )
-  }
+  }*/
 ];
 
 function Feature({imageUrl, title, description}) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
-    <div className={classnames('col col--4', styles.feature, styles.bloc)}>
+    <div className={classnames('col col--5', styles.feature, styles.bloc)}>
       {imgUrl && (
         <div className="text--center">
           <img className={styles.featureImage} src={imgUrl} alt={title}/>
