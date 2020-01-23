@@ -1,0 +1,2985 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "e-Attestations RESTful APIs",
+        "version": "1.2.0a",
+        "description": "\nThe REST / Json e-Attestations API is used to ** interface ** a **client** information system with the e-Attestations platform following the HTTP protocol.\n\n[REST] (https://en.wikipedia.org/wiki/Representational_state_transfer) (Representational State Transfer) or RESTful is a style of architecture used to build applications (Web, Intranet, Web Service) by using endpoints ( endpoints urls) and referencing resources to be exploited according to the verbs of the HTTP protocol (GET, POST, PUT, DELETE etc ...).\n\nOur APIs contain predictable resource-oriented URLs, accept request bodies encoded in [JSON] format (https://en.wikipedia.org/wiki/JSON), return encoded responses [JSON] (https: // en. wikipedia.org/wiki/JSON) and uses standard HTTP response codes, authentication and verbs.\n\n'Client' applications using the e-Attestations REST API enrich the Client Information System with the catalog of e-Attestations data and services in a secure and very flexible manner.\n\nThe API can also be used by integrators, software publishers, SAAS solutions or connectors.",
+        "termsOfService": "https://www.e-attestations.com/api",
+        "contact": {
+            "name": "Support",
+            "url": "https://api.dev-e-attestations.com",
+            "email": "api-manager@e-attestations.com"
+        },
+        "license": {
+            "name": "e-attestations licence",
+            "url": "https://www.e-attestations.com/index.php/qui-sommes-nous/nos-engagements"
+        },
+        "x-logo": {
+            "url": "https://www.e-attestations.com/images/logo-eattestations.png",
+            "backgroundColor": "#FFFFFF",
+            "altText": "e-Attestations"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://rs.e-attestations.com/api/v1",
+            "description": "PROD"
+        },
+        {
+            "url": "https://rs.dev-e-attestations.com/api/v1",
+            "description": "SANDBOX"
+        }
+    ],
+    "paths": {
+        "/account": {
+            "summary": "This resource is the ordering customer and service subscriber to e-Attestations account.",
+            "description": "This resource is the ordering customer and service subscriber to e-Attestations account.\n\nThe account identifier is returned in the `account_ids` returned in the JWT token.\n\nIn addition, you can also retrieve your account identifier from the `/account` endpoint without any parameters.\n\nAll requests must include the customer identifier so that every time the account's activation and subscription to the service are verified",
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "The response has a 'content' property containing statistics and an optional messages attribute (info, warn or error)",
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "$ref": "#/components/schemas/Account"
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "The account information associated with the TOKEN allows to know the account id and subscription to the service."
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "No account with this identifier (accountId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Account information",
+                "description": "\nRestore the information of the account associated with the TOKEN validated in the request.\nThe information details the subscription to the service."
+            }
+        },
+        "/account/{accountId}": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "The response has a 'content' property containing statistics and an optional messages attribute (info, warn or error)",
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "$ref": "#/components/schemas/GlobalInformation"
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Gloable statistics and statistics by indicators. An indicator refers to a subset of required documents. Eg For the indicator \"obligation of vigilance\", the statistics will relate only to the documents of the obligation of vigilance, namely the certificate of vigilance, the proof of registration and the list of foreign employees subject to work authorization ."
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "No account with this identifier (accountId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Statistiques globales",
+                "description": "Restore the overall statistics of the account. The statistics relate only to the third parties monitored. A monitored Thirdparty is a Thirdparty for which there is at least one active file. The statistics relate to third parties and files and their completeness."
+            }
+        },
+        "/account/{accountId}/thirdparties": {
+            "get": {
+                "tags": [
+                    "Thirdparties"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "monitored",
+                        "description": "Allows filtering on monitored third parties (monitored = true) or non-monitored third parties (monitored = false)",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "companyIdType",
+                        "description": "Type of company identifier",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "name",
+                        "description": "Thirdpary name",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "siren",
+                        "description": "Thirdparty SIREN",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "siret",
+                        "description": "Thirdparty SIRET",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "tva",
+                        "description": "Thirdparty TVA number",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "companyIdValue",
+                        "description": "Allows you to filter by Thirdparty company identifier. The identifier can be a SIRET or a VAT Number.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "stateLastChangeDate",
+                        "description": "Filter to return third parties whose overall status has changed since that date.",
+                        "schema": {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "thirdpartyGlobalState",
+                        "description": "Filter to return third parties whose overall completeness is \"complete\" (true) or \"incomplete\" (false)",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "subscriptionState",
+                        "description": "Allows you to filter on the registration status of a Thirdparty. This parameter allows to return the registered (subscriptionState = true) or non-registered (subscriptionState = false) third parties",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "description": "Paging parameter indicating the page number.",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "pageSize",
+                        "description": "Pagination parameter indicating the desired page size.",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ThirdpartyIdentifier"
+                                            }
+                                        },
+                                        "page": {
+                                            "description": "Page number",
+                                            "type": "integer"
+                                        },
+                                        "pageSize": {
+                                            "description": "page size",
+                                            "type": "integer"
+                                        },
+                                        "totalElements": {
+                                            "description": "total number of items",
+                                            "type": "integer"
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returns an array of JSON objects. Each item contains the identification information of a Thirdparty (The eAttestations identifier of the Thirdparty, the type of company identifier, the company identifier of the Thirdparty and the Thirdparty code)."
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "No account with this identifier (accountId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Thirdparty list",
+                "description": "\n## Fetch thirdparties\n\nOn its simplest form, fetch thirparties with Pagination\n\nGet thirdparties :\n`/api/v1/account/{{account_id}}/thirdparties`\n\n\nUsing pagination :\n`/api/v1/account/{{account_id}}/thirdparties?page=0&pageSize=1`\n\nVarious request parameters can be used for searching any particular thirdparty by : \n\n### For non French :\n\n  - SIREN id : `/api/v1/account/{{account_id}}/thirdparties?siren=503829368`\n\n  - SIRET id : `/api/v1/account/{{account_id}}/thirdparties?siret=43258335900109`\n\n### For non French :\n\n  - TVA id : `/api/v1/account/{{account_id}}/thirdparties?tva=B26492108`"
+            }
+        },
+        "/account/{accountId}/thirdparties/{thirdpartyId}": {
+            "get": {
+                "tags": [
+                    "Thirdparties"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "thirdpartyId",
+                        "description": "Thirdparty ID",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "$ref": "#/components/schemas/ThirdpartyDetails"
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returns a JSON word containing detailed information from the Thirdparty"
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "No account with this identifier (accountId) ou aucun tiers avec cet identifiant(thirdpartyId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Details of a Thirdparty",
+                "description": "Used to restore detailed information from a Thirdparty. Are reassembled:\n* Thirdparty \"identity\" information * Thirdparty address * The list of Thirdparty users * Different states (Active?, Registered? ...)"
+            }
+        },
+        "/account/{accountId}/dossiers": {
+            "get": {
+                "tags": [
+                    "Dossiers"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "thirdpartyId",
+                        "description": "Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "companyIdType",
+                        "description": "Filtering by company type (CIT001 for SIRET, CIT002 for TVA, etc.)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "companyIdValue",
+                        "description": "Filtering by company value (depends on company type)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "thirdpartyCode",
+                        "description": "Thirdparty external ID (from user input or external system)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "dossierReference",
+                        "description": "Allows you to filter by file reference. As the file reference is unique for a third party / file, if this parameter is entered, a maximum of one file will be returned.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "monitored",
+                        "description": "Filter allowing to return the files followed (monitored = true) or not followed (monitored = false)",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "stateLastChangeDate",
+                        "description": "Filter allowing you to return only files whose completeness has changed since a given date.",
+                        "schema": {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "siren",
+                        "description": "Thirdpary SIREN code",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "siret",
+                        "description": "Thirdpary SIRET code",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "tva",
+                        "description": "Thirdpary TVA code",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "description": "Paging parameter indicating the page number.",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "pageSize",
+                        "description": "Pagination parameter indicating the desired page size.",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Dossier"
+                                            }
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returns an array of JSON objects. Each item contains information from a folder."
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "No account with this identifier (accountId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Dossiers (multi-criteria)",
+                "description": "Used to restore information from one or more files. It is possible to combine the available filters to refine the result."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "Dossier's Data to create. Contains thirdpary code information, dossier details etc. Check the body description for details",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NewDossier"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "Dossiers"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDossierCreation"
+                                }
+                            }
+                        },
+                        "description": "Success ful creation. ProcessId is provided."
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "No account with this identifier (accountId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Create/add a 'dossier'",
+                "description": "\n\nCreate a 'dossier' for a thirdparty.\n\nLaunch e-Attestations internal processes for continuus monitoring for thirdparty compliancy.\n\nCreate a dossier for a new thirdparty (not already monitored) starts the invitation workflow (by email). Thus, all information are important during this phase.\n\nThis 'dossier' allows the client to monitor one of his thirdparty for one or a number of required documents.\n\nAvailable documents depends on client subscription, configuration. Always ask you account manager for any questions. Documents are represented through 'document code' that you have to recognize in order to ask for the good requirements and reach evidences for this 'dossier'.\n\nIt's a veru powerful mecanism, giving a lot of flexibility and adaptability for the customer/system using APIs.\n\nIf the Thirdparty does not exist, it is created in the eAttestations platform.\n\n'Dossier' creation is an **asynchronous process**. This asynchronism is induced by the process (itself of an asynchronous nature) of qualification of Thirdparty information by our internal data sources.\n\nThis endpoint launches the import process and returns a process identifier (processId).\n\nThe processing can last few minutes. In order to follow the progress of the import process and to know its result, a client can check the specific processid and know if the asynchronous creation process is complete and successful."
+            }
+        },
+        "/account/{accountId}/dossiers/{dossierId}": {
+            "get": {
+                "tags": [
+                    "Dossiers"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "dossierId",
+                        "description": "Identifiant d'un dossier.",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "$ref": "#/components/schemas/Dossier"
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Retourne les informations d'un dossier."
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Dossier's details",
+                "description": "Dosiser's details"
+            },
+            "post": {
+                "requestBody": {
+                    "description": "Data to update for a dossier",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DossierUpdate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "Dossiers"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "dossierId",
+                        "description": "Dossier ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful update"
+                    },
+                    "400": {
+                        "description": "Error in the body of the request. Check error message for details"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Update on dossier",
+                "description": "Update one data's dossier (synchronously)"
+            }
+        },
+        "/account/{accountId}/dossiers/{dossierId}/documents": {
+            "get": {
+                "tags": [
+                    "Dossiers",
+                    "Documents"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "dossierId",
+                        "description": "Identifiant d'un dossier.",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Document"
+                                            }
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Retourne les documents d'un dossier."
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Documents d'un dossier",
+                "description": "Restituer les documents d'un dossier."
+            }
+        },
+        "/account/{accountId}/dossiers/{dossierId}/documents/{documentId}": {
+            "get": {
+                "tags": [
+                    "Dossiers",
+                    "Documents"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "dossierId",
+                        "description": "Identifiant d'un dossier.",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "documentId",
+                        "description": "Identifiant d'un document.",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "$ref": "#/components/schemas/Document"
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Retourne les détails d'un documents d'un dossier."
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId) ou aucun document avec et identiant"
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Détails d'un document d'un dossier",
+                "description": "Restituer les détails d'un document d'un dossier."
+            }
+        },
+        "/account/{accountId}/dossiers/{dossierId}/documents/{documentId}/files/{fileId}": {
+            "get": {
+                "tags": [
+                    "Files",
+                    "Documents"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "dossierId",
+                        "description": "Dossier's Id",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "documentId",
+                        "description": "Document's Id",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "fileId",
+                        "description": "File's id",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/octet-stream": {
+                                "schema": {
+                                    "format": "binary",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": "Copy a the evidence file content (binary)"
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "description": "No file content available"
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Download file content",
+                "description": "Download a copy of the content of the last active evidence content of the file. Client system have to name it and save it."
+            }
+        },
+        "/account/{accountId}/dossiers/{dossierId}/stop": {
+            "post": {
+                "tags": [
+                    "Dossiers"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "dossierId",
+                        "description": "Dossier ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Stop monitoring"
+                    },
+                    "400": {
+                        "description": "Malformed request ou Dossier déjà non suivi."
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "description": "No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Stop monitoring",
+                "description": "Stop monitoring and workflow. The thirdpary won't bas ask anymore for dossier's requirements"
+            }
+        },
+        "/account/{accountId}/dossiers/{dossierId}/reactivate": {
+            "post": {
+                "requestBody": {
+                    "description": "Data to update for one dossier",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReactivateDossierData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "Dossiers"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "dossierId",
+                        "description": "Dossier ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful dossier reactivation"
+                    },
+                    "400": {
+                        "description": "Malformed request ou Dossier déjà suivi ou date d'expiration dans le passé."
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "description": "No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Reactivate one dossier",
+                "description": "Reactivate this dossier and restart continuus monitoring"
+            }
+        },
+        "/account/{accountId}/requirements": {
+            "get": {
+                "tags": [
+                    "Requirements"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Requirement"
+                                            }
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Array of requirement as document type code"
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "description": "No account with this identifier (accountId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Documents requis",
+                "description": "List of available requirement configurer for this account"
+            }
+        },
+        "/account/{accountId}/dossiers/{dossierId}/requirements": {
+            "get": {
+                "tags": [
+                    "Dossiers",
+                    "Requirements"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "dossierId",
+                        "description": "Dossier's Id",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Requirement"
+                                            }
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "JSON Array of dossier's requirements"
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "description": "No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Requirements for this dossier",
+                "description": "List one dossier's requirements"
+            },
+            "post": {
+                "requestBody": {
+                    "description": "List of requirements",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "List of requirements",
+                                "type": "array",
+                                "items": {
+                                    "title": "Requirement as a document type code",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Dossiers",
+                    "Requirements"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "dossierId",
+                        "description": "Dossier's Id",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful dossier update"
+                    },
+                    "400": {
+                        "description": "Malformed request ou Erreurs dans les valeurs transmises au serveur. Voir la liste des erreurs."
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "description": "No dossier with this dossierId"
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Update requirement for an active dossier",
+                "description": "Update requirement for an active dossier"
+            }
+        },
+        "/account/{accountId}/dossiers/process/{processId}": {
+            "get": {
+                "tags": [
+                    "Dossiers"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "processId",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "$ref": "#/components/schemas/DossierProcessResult"
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Dossier async creation process status"
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "description": "No process for this processId"
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Status of dossier creation async process",
+                "description": "Status/completeness of a dossier creation by its processId\n"
+            }
+        },
+        "/account/{accountId}/dossiers/processes": {
+            "get": {
+                "tags": [
+                    "Dossiers"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "description": "Account ID",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "fromDate",
+                        "description": "Monitoring start date",
+                        "schema": {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "description": "JSON Array indicating the import status of one or more dossier creation from current day -1",
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/DossierProcessResult"
+                                            }
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returns an array of JSON objects, indicating the status and the result of imports."
+                    },
+                    "400": {
+                        "description": "Malformed request"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "description": "Aucun process avec cet identifiant"
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "summary": "Dossier creation status",
+                "description": "\nUsed to find out the results of on or several dossier creation.\n\nIf the fromDate parameter is specified, the import results that will be returned are those which were launched from that date.\n\nBy default, the dossier creation results launched in the last 24 hours are returned.\n"
+            }
+        },
+        "/account/{accountId}/dossiers/search": {
+            "summary": "Dossiers list depending on criterias",
+            "description": "Dossiers list search/filtering based on curated criterias",
+            "get": {
+                "tags": [
+                    "Dossiers"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "content": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Dossier"
+                                            }
+                                        },
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returns an array of JSON objects. Each item contains information from a folder. Renvoie la ou les valeurs trouvées suivant les critères 'q' et 'val'"
+                    },
+                    "400": {
+                        "description": "Malformed request ou incorrecte"
+                    },
+                    "401": {
+                        "description": "Authorization not understood or invalid"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messages": {
+                                            "$ref": "#/components/schemas/Messages"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "No account with this identifier (accountId)."
+                    },
+                    "5XX": {
+                        "description": "Unexpected error"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Recherche par critères",
+                "description": "La recheche des dossiers est possible en spécifiant la donnée sur laquelle on veut effectuer une recherche 'q' et une valeur 'val' qui peut être partielle (grace au caractère '*')"
+            },
+            "parameters": [
+                {
+                    "name": "accountId",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                },
+                {
+                    "examples": {
+                        "Recherche sur par marché/référence dossier": {
+                            "value": "\"MARCH_PUB*\""
+                        }
+                    },
+                    "name": "q",
+                    "description": "Type de recherche :\n- reference : reference dossier\n- credate : date de création du dossier\n- enddate : fin de dossier\n- status : true = status actif du dossier",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query",
+                    "required": true
+                },
+                {
+                    "name": "val",
+                    "description": "Valeur du critère cherché et dépendant du type de recherche.\nLa valeur cherchée peut être 'partielle' grace au caractère '*'.\nLa valeur '*' remplace une partie de la valeur de type chaine recherchée\nLa recherche sur '*' seule est interdite.\nPar exemple : MARCH_PUB* est équivalant à \"commence part MARCH_PUB*\".",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "Account": {
+                "title": "Account",
+                "description": "Contains the information of the account (s) and its / their subscription (s).",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "format": "int64",
+                        "description": "Account ID To be used in all API calls",
+                        "type": "integer"
+                    },
+                    "account": {
+                        "description": "Name of the eAttestations account",
+                        "type": "string"
+                    },
+                    "company": {
+                        "description": "Name of the legal entity of the account",
+                        "type": "string"
+                    },
+                    "creation": {
+                        "format": "date-time",
+                        "description": "Date the account",
+                        "type": "string"
+                    },
+                    "maxDossiers": {
+                        "format": "int32",
+                        "description": "Limit on number of files",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Account name",
+                        "type": "string"
+                    },
+                    "subscriptionDate": {
+                        "format": "date-time",
+                        "description": "Date of subscription to the service",
+                        "type": "string"
+                    },
+                    "subscriptions": {
+                        "description": "List of subscriptions for this account",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Subscription"
+                        }
+                    }
+                },
+                "example": {
+                    "content": [
+                        {
+                            "id": 119631,
+                            "creation": "2015-04-02T10:56:07.736",
+                            "account": "CPTDO2E2FFC774EDD6637F",
+                            "name": "Compte Test",
+                            "company": "Compte Test",
+                            "maxDossiers": 10,
+                            "subscriptionDate": "2019-04-29T13:20:02.102973",
+                            "subscriptionStatus": "ACTIVE",
+                            "subscriptions": [
+                                {
+                                    "accountId": 119631,
+                                    "key": "APIEDGE",
+                                    "startSubscriptionDate": "2019-04-29T13:20:02.102973",
+                                    "status": "ACTIVE"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "GlobalInformation": {
+                "title": "Global Informations",
+                "description": "This JSON word contains global statistics and statistics by indicator.",
+                "type": "object",
+                "properties": {
+                    "numberOfThirdparties": {
+                        "format": "int64",
+                        "description": "The total number of thirds of the account.",
+                        "type": "integer"
+                    },
+                    "numberOfSubscribedThirdparties": {
+                        "format": "int64",
+                        "description": "The total number of third parties registered for a client.",
+                        "type": "integer"
+                    },
+                    "numberOfCompleteThirdparties": {
+                        "format": "int64",
+                        "description": "The total number of third parties for which all active files are complete. In other words, the third parties who have submitted all the documents required by this client.",
+                        "type": "integer"
+                    },
+                    "numberOfDossiers": {
+                        "format": "int64",
+                        "description": "The total number of active files.",
+                        "type": "integer"
+                    },
+                    "numberOfCompleteDossiers": {
+                        "format": "int64",
+                        "description": "The total number of complete files. In other words, the files for which all the required documents have been filed.",
+                        "type": "integer"
+                    },
+                    "listIndicatorsStatistics": {
+                        "description": "Table containing statistics by indicator (E.g. Obligation of vigilance).",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/StatisticsIndicator"
+                        }
+                    }
+                },
+                "example": {
+                    "numberOfThirdparties": 97,
+                    "numberOfSubscribedThirdparties": 62,
+                    "numberOfCompleteThirdparties": 52,
+                    "numberOfDossiers": 11,
+                    "numberOfCompleteDossiers": 79,
+                    "listIndicatorsStatistics": [
+                        {
+                            "indicatorCode": "some text",
+                            "numberOfThirdparties": 53,
+                            "numberOfSubscribedThirdparties": 3,
+                            "numberOfCompleteThirdparties": 6,
+                            "numberOfDossiers": 70,
+                            "numberOfCompleteDossiers": 75
+                        },
+                        {
+                            "indicatorCode": "some text",
+                            "numberOfThirdparties": 55,
+                            "numberOfSubscribedThirdparties": 90,
+                            "numberOfCompleteThirdparties": 0,
+                            "numberOfDossiers": 35,
+                            "numberOfCompleteDossiers": 41
+                        }
+                    ]
+                }
+            },
+            "StatisticsIndicator": {
+                "title": "Statistics indicator",
+                "description": "Word Json containing statistics on an indicator (E.g. Obligation of vigilance).",
+                "type": "object",
+                "properties": {
+                    "indicatorCode": {
+                        "description": "Indicator code.",
+                        "type": "string"
+                    },
+                    "numberOfThirdparties": {
+                        "format": "int64",
+                        "description": "The number of thirds of the ordering customer account restricted on this indicator.",
+                        "type": "integer"
+                    },
+                    "numberOfSubscribedThirdparties": {
+                        "format": "int64",
+                        "description": "The number of third parties registered restricted on this indicator.",
+                        "type": "integer"
+                    },
+                    "numberOfCompleteThirdparties": {
+                        "format": "int64",
+                        "description": "The number of third parties for which all the files are complete, restricted on this indicator.",
+                        "type": "integer"
+                    },
+                    "numberOfDossiers": {
+                        "format": "int64",
+                        "description": "The number of accounts in the account, restricted on this indicator.",
+                        "type": "integer"
+                    },
+                    "numberOfCompleteDossiers": {
+                        "format": "int64",
+                        "description": "The number of complete accounts in the account, restricted on this indicator.",
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "indicatorCode": "some text",
+                    "numberOfThirdparties": 6,
+                    "numberOfSubscribedThirdparties": 66,
+                    "numberOfCompleteThirdparties": 63,
+                    "numberOfDossiers": 69,
+                    "numberOfCompleteDossiers": 71
+                }
+            },
+            "NewDossier": {
+                "title": "Dossier to be created",
+                "description": "Body of the dossier to be created",
+                "required": [
+                    "companyIdType",
+                    "companyIdValue",
+                    "dossierReference"
+                ],
+                "type": "object",
+                "properties": {
+                    "companyIdType": {
+                        "description": "Thirdparty company identifier type code (CIT001 for SIRET and CIT002 for intra-community VAT).",
+                        "type": "string"
+                    },
+                    "companyIdValue": {
+                        "description": "Thirdparty company identifier (SIRET or intra community VAT)",
+                        "type": "string"
+                    },
+                    "thirdpartyCode": {
+                        "description": "Thirdparty code. It is an internal identifier for the client",
+                        "type": "string"
+                    },
+                    "dossierReference": {
+                        "description": "Dossier reference code",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Dossier description",
+                        "type": "string"
+                    },
+                    "purchasingCategory": {
+                        "description": "Dossier purchase category",
+                        "type": "string"
+                    },
+                    "expirationDate": {
+                        "format": "date",
+                        "description": "File expiration date. After this date, the file is no longer followed (Attribute \"monitored\" of the file changes to false)",
+                        "type": "string"
+                    },
+                    "requiredDocuments": {
+                        "description": "List of documents (requirements) requested in this file for this Thirdparty. If no document is requested, the default set of documents is requested, i.e. the documents of the obligation of vigilance.",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "thirdpartyEmail": {
+                        "description": "List of emails from Thirdparty contacts. If a Thirdparty is not registered, these emails will be used to send the invitations.",
+                        "type": "array",
+                        "items": {
+                            "format": "email",
+                            "type": "string"
+                        }
+                    },
+                    "userInCharge": {
+                        "description": "List of emails from those responsible for the file on the ordering side. If an email does not correspond to any registered user, an invitation to register on the ordering e-Attestations platform is sent to this Email.",
+                        "type": "array",
+                        "items": {
+                            "format": "email",
+                            "type": "string"
+                        }
+                    }
+                },
+                "example": {
+                    "companyIdType": "CIT001",
+                    "companyIdValue": "43258335900109",
+                    "dossierReference": "DOSSIER_43258335900109_2"
+                  }
+            },
+            "DossierProcess": {
+                "title": "Dossier processing",
+                "description": "Dossier processing details",
+                "type": "object",
+                "properties": {
+                    "processId": {
+                        "description": "Process ID",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "processId": "some text"
+                }
+            },
+            "DossierProcessResult": {
+                "title": "DossierProcessResult",
+                "description": "Processing details of the dossier",
+                "type": "object",
+                "properties": {
+                    "processId": {
+                        "description": "Process ID for dossier creation",
+                        "type": "string"
+                    },
+                    "complete": {
+                        "description": "true if the dossier creation is complete, false otherwise",
+                        "type": "boolean"
+                    },
+                    "success": {
+                        "description": "true if the dossier creation is sucessful, false otherwise",
+                        "type": "boolean"
+                    },
+                    "errors": {
+                        "description": "Array of errors",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Message"
+                        }
+                    },
+                    "isComplete": {
+                        "description": "'true' if the dossier creation is complete, 'false' otherwise",
+                        "type": "string"
+                    },
+                    "isSuccessful": {
+                        "description": "'true' if the dossier creation is successful, 'false' otherwise",
+                        "type": "string"
+                    },
+                    "creation": {
+                        "description": "The timestamp of the creation",
+                        "type": "string"
+                    }
+                }
+            },
+            "ThirdpartyIdentifier": {
+                "title": "Thirdparty identifier",
+                "description": "JSON word representing the identifying information of a Thirdparty.",
+                "type": "object",
+                "properties": {
+                    "thirdpartyId": {
+                        "description": "Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.",
+                        "type": "integer"
+                    },
+                    "companyIdType": {
+                        "description": "Thirdparty company identifier type code (CIT001 for SIRET and CIT002 for intra-community VAT).",
+                        "type": "string"
+                    },
+                    "companyIdValue": {
+                        "description": "Thirdparty company identifier value (SIRET or intra-community VAT).",
+                        "type": "string"
+                    },
+                    "thirdpartyCode": {
+                        "description": "Thirdparty code. It is an internal client identifier.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "thirdpartyId": 79,
+                    "companyIdType": "some text",
+                    "companyIdValue": "some text",
+                    "thirdpartyCode": "some text"
+                }
+            },
+            "ThirdpartyDetails": {
+                "title": "Details of a Thirdparty",
+                "description": "JSON word representing Details of a Thirdparty. The information constituting the address as well as the corporate name of the Thirdparty is provided by our Data Provider from the identifier of the Thirdparty.",
+                "type": "object",
+                "properties": {
+                    "thirdpartyId": {
+                        "format": "int64",
+                        "description": "Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.",
+                        "type": "integer"
+                    },
+                    "accountId": {
+                        "format": "int64",
+                        "description": "Account ID",
+                        "type": "integer"
+                    },
+                    "companyIdType": {
+                        "description": "Thirdparty company identifier type code (CIT001 for SIRET and CIT002 for intra-community VAT).",
+                        "type": "string"
+                    },
+                    "companyIdValue": {
+                        "description": "Thirdparty company identifier (SIRET or intra-community VAT).",
+                        "type": "string"
+                    },
+                    "thirdpartyCode": {
+                        "description": "Thirdparty code. It is an internal client identifier.",
+                        "type": "string"
+                    },
+                    "monitored": {
+                        "description": "Indicates whether the Thirdparty is being followed. This attribute is true if the Thirdparty is followed, false otherwise. A Thirdparty is followed up as soon as they have a followed up file.",
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "description": "Thirdparty company name. This is automatically provided by our data provider using the Thirdparty identifier (Siret number or VAT number)",
+                        "type": "string"
+                    },
+                    "addressStreet": {
+                        "description": "Street part of Thirdparty's address",
+                        "type": "string"
+                    },
+                    "addressCity": {
+                        "description": "City part of Thirdparty's address",
+                        "type": "string"
+                    },
+                    "addressPostCode": {
+                        "description": "Zipcode part of Thirdparty's address",
+                        "type": "string"
+                    },
+                    "addressCountryCode": {
+                        "description": "Country part of Thirdparty's address",
+                        "type": "string"
+                    },
+                    "subscriptionState": {
+                        "description": "Thirdparty registration status. True if the Thirdparty is registered, False otherwise.",
+                        "type": "boolean"
+                    },
+                    "subscriptionDate": {
+                        "format": "date",
+                        "description": "Thirdparty registration date.",
+                        "type": "string"
+                    },
+                    "subscriptionKey": {
+                        "description": "Key registration code.",
+                        "type": "string"
+                    },
+                    "outOfBusiness": {
+                        "description": "Indicates whether the establishment is closed. True if it is, False otherwise.",
+                        "type": "boolean"
+                    },
+                    "stateLastChangeDate": {
+                        "format": "date",
+                        "description": "Last date on which the overall state of the Thirdparty changed.",
+                        "type": "string"
+                    },
+                    "thirdpartyGlobalState": {
+                        "description": "Overall completeness of the Thirdparty. A value of true means that all dossiers are in the complete state.\nA value of false (Incomplete) means that at least one or more dossiers are in the incomplete state.\nA value of null (n/a) means that the thirdparty is not currently under account's monitoring.",
+                        "type": "boolean"
+                    },
+                    "acronym": {
+                        "description": "Thirdpary acronym",
+                        "type": "string"
+                    },
+                    "activityCode": {
+                        "description": "Thirdpary APE activity wording",
+                        "type": "string"
+                    },
+                    "activityLabel": {
+                        "description": "Thirdpary APE activity wording",
+                        "type": "string"
+                    },
+                    "capital": {
+                        "format": "int64",
+                        "description": "Known capital for the Thirdparty",
+                        "type": "integer"
+                    },
+                    "capitalCurrency": {
+                        "description": "Currency of known capital for the Thirdparty",
+                        "type": "string"
+                    },
+                    "ceo": {
+                        "description": "Company Executive Officier",
+                        "type": "string"
+                    },
+                    "datecreation": {
+                        "format": "date",
+                        "description": "Date of creation of the Thirdparty in the eAttestations database",
+                        "type": "string"
+                    },
+                    "lastBalanceSheetDate": {
+                        "format": "date",
+                        "description": "Last date of known operating income",
+                        "type": "string"
+                    },
+                    "legalCategoryCode": {
+                        "description": "Legal code of activity",
+                        "type": "string"
+                    },
+                    "legalCategoryLabel": {
+                        "description": "Legal wording of activity",
+                        "type": "string"
+                    },
+                    "siren": {
+                        "description": "SIREN identifier (for French)",
+                        "type": "string"
+                    },
+                    "siret": {
+                        "description": "SIRET identifier of the establishment (for French thirdparties)",
+                        "type": "string"
+                    },
+                    "turnover": {
+                        "format": "double",
+                        "description": "Last known Thirdparty turnover",
+                        "type": "number"
+                    },
+                    "turnoverCurrency": {
+                        "description": "Currency of last known Thirdparty turnover",
+                        "type": "string"
+                    },
+                    "tva": {
+                        "description": "Thirdparty's TVA code",
+                        "type": "string"
+                    },
+                    "workforce": {
+                        "format": "int32",
+                        "description": "Thirdpary's workforce",
+                        "type": "integer"
+                    },
+                    "thirdpartyUsers": {
+                        "description": "Information about the users of the Thirdparty account.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserInformation"
+                        }
+                    },
+                    "isMonitored": {
+                        "description": "Indicates whether the Thirdparty is being followed. This attribute is true if the Thirdparty is followed, false otherwise. A Thirdparty is followed up as soon as they have a followed up file.",
+                        "type": "string"
+                    },
+                    "isOutOfBusiness": {
+                        "description": "Indicates whether the establishment is closed. True if it is, False otherwise.",
+                        "type": "string"
+                    },
+                    "isRegistered": {
+                        "description": "Thirdparty registration status. 'true' if the Thirdparty is registered, 'false' otherwise.",
+                        "type": "string"
+                    },
+                    "isComplete": {
+                        "description": "Overall completeness of the Thirdparty.\n- A value of 'true' (complete) means that all files are in the 'complete' state.\n- A value of 'false' (uncomplete) means that at least one or more files are in the 'incomplete' state.\n- A value of 'n/a' means that the thirdparty is not currently under account's monitoring.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "thirdpartyId": 39,
+                    "accountId": 70,
+                    "companyIdType": "some text",
+                    "companyIdValue": "some text",
+                    "thirdpartyCode": "some text",
+                    "monitored": true,
+                    "name": "some text",
+                    "addressStreet": "some text",
+                    "addressCity": "some text",
+                    "addressPostCode": "some text",
+                    "addressCountryCode": "some text",
+                    "subscriptionState": true,
+                    "subscriptionDate": "2018-01-17",
+                    "subscriptionKey": "some text",
+                    "outOfBusiness": true,
+                    "stateLastChangeDate": "2018-01-17",
+                    "thirdpartyGlobalState\"": true,
+                    "acronym": "some text",
+                    "activityCode": "some text",
+                    "activityLabel": "some text",
+                    "capital": 90,
+                    "capitalCurrency": "some text",
+                    "ceo": "some text",
+                    "datecreation": "2018-01-17",
+                    "lastBalanceSheetDate": "2018-01-17",
+                    "legalCategoryCode": "some text",
+                    "legalCategoryLabel": "some text",
+                    "siren": "some text",
+                    "siret": "some text",
+                    "turnover": 32.85,
+                    "turnoverCurrency": "some text",
+                    "tva": "some text",
+                    "workforce": 82,
+                    "thirdpartyUsers": [
+                        {
+                            "firstname": "some text",
+                            "lastname": "some text",
+                            "email": "",
+                            "phone": "some text"
+                        },
+                        {
+                            "firstname": "some text",
+                            "lastname": "some text",
+                            "email": "",
+                            "phone": "some text"
+                        }
+                    ]
+                }
+            },
+            "UserInformation": {
+                "title": "User information",
+                "description": "User information and details.",
+                "type": "object",
+                "properties": {
+                    "firstname": {
+                        "description": "user's firstname",
+                        "type": "string"
+                    },
+                    "lastname": {
+                        "description": "user's lastname",
+                        "type": "string"
+                    },
+                    "email": {
+                        "format": "email",
+                        "description": "user's email",
+                        "type": "string"
+                    },
+                    "phone": {
+                        "description": "Numéro de téléphone de l'utilisateur au format international.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "firstname": "some text",
+                    "lastname": "some text",
+                    "email": "",
+                    "phone": "some text"
+                }
+            },
+            "DossierUpdate": {
+                "title": "Dossier content for update",
+                "type": "object",
+                "properties": {
+                    "dossierReference": {
+                        "description": "Dossier refence code",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Dossier description",
+                        "type": "string"
+                    },
+                    "purchasingCategory": {
+                        "description": "Category purchase of the dossier",
+                        "type": "string"
+                    },
+                    "expirationDate": {
+                        "format": "date",
+                        "description": "File expiration date. After this date, the file is no longer followed (Attribute \"monitored\" of the file changes to false)",
+                        "type": "string"
+                    },
+                    "thirdpartyCode": {
+                        "description": "Thirdparty code. It is an internal client identifier.",
+                        "type": "string"
+                    },
+                    "thirdpartyEmail": {
+                        "description": "List of emails from Thirdparty contacts. If a Thirdparty is not registered, these emails will be used to send the invitations.",
+                        "type": "array",
+                        "items": {
+                            "format": "email",
+                            "type": "string"
+                        }
+                    }
+                },
+                "example": {
+                    "dossierReference": "some text",
+                    "description": "some text",
+                    "purchasingCategory": "some text",
+                    "expirationDate": "2018-01-17",
+                    "thirdpartyCode": "some text",
+                    "thirdpartyEmail": [
+                        "",
+                        ""
+                    ]
+                }
+            },
+            "Dossier": {
+                "title": "Dossier",
+                "description": "Dossier content information, details, documents etc.",
+                "type": "object",
+                "properties": {
+                    "dossierId": {
+                        "format": "int64",
+                        "description": "Dossier ID",
+                        "type": "integer"
+                    },
+                    "accountId": {
+                        "format": "int64",
+                        "description": "Account ID",
+                        "type": "integer"
+                    },
+                    "thirdpartyId": {
+                        "format": "int64",
+                        "description": "Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.",
+                        "type": "integer"
+                    },
+                    "companyIdType": {
+                        "description": "Thirdparty company identifier type code (CIT001 for SIRET and CIT002 for intra-community VAT).",
+                        "type": "string"
+                    },
+                    "companyIdValue": {
+                        "description": "Principal Thirdpary's company ID code (which is SIRET or TVA codes most of the time).",
+                        "type": "string"
+                    },
+                    "thirdpartyCode": {
+                        "description": "Thirdparty Code. This code is an external key (a.k.a from within client system)",
+                        "type": "string"
+                    },
+                    "companyCountryCode": {
+                        "description": "Third country code. This is an alpha-3 code from the ISO 3166-1 standard.",
+                        "type": "string"
+                    },
+                    "monitored": {
+                        "description": "Indicates if the dossier is followed/active (True) or not followed (False)",
+                        "type": "boolean"
+                    },
+                    "dossierReference": {
+                        "description": "Dossier reference code",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Dossier description",
+                        "type": "string"
+                    },
+                    "purchasingCategory": {
+                        "description": "Category purchase/market of the file",
+                        "type": "string"
+                    },
+                    "startingDate": {
+                        "format": "date",
+                        "description": "Start date for monitoring the 'dossier'",
+                        "type": "string"
+                    },
+                    "expirationDate": {
+                        "format": "date",
+                        "description": "Expiration date for follow-up From this date, the file automatically changes to the \"not followed\" state",
+                        "type": "string"
+                    },
+                    "stoppingDate": {
+                        "format": "date",
+                        "description": "Stop date for monitoring the 'dossier'",
+                        "type": "string"
+                    },
+                    "stoppingReason": {
+                        "description": "Details concerning the termination of the file: OUTOFBUSINESS (company canceled), EXPIRATION (the file has reached its expiration date), STOPREQUEST (a request to stop was made in an explicit and immediate manner), UNKNOWN (information absent). Not null only if folder deactivated.\n",
+                        "type": "string"
+                    },
+                    "state": {
+                        "description": "File completeness indicator. True if all the requested documents are present, false otherwise.",
+                        "type": "boolean"
+                    },
+                    "stateLastChangeDate": {
+                        "format": "date",
+                        "description": "Date of the last change in the completeness of the file.",
+                        "type": "string"
+                    },
+                    "indicators": {
+                        "description": "List of indicators in the dossier.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DossierIndicator"
+                        }
+                    },
+                    "documents": {
+                        "description": "List of documents requested for the file.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Document"
+                        }
+                    },
+                    "isMonitored": {
+                        "description": "Indicates if the dossier is followed/active (True) or not followed (False)",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "dossierId": 5,
+                    "accountId": 51,
+                    "thirdpartyId": 18,
+                    "companyIdType": "some text",
+                    "companyIdValue": "some text",
+                    "thirdpartyCode": "some text",
+                    "companyCountryCode": "some text",
+                    "monitored": true,
+                    "dossierReference": "some text",
+                    "description": "some text",
+                    "purchasingCategory": "some text",
+                    "startingDate": "2018-01-17",
+                    "expirationDate": "2018-01-17",
+                    "stoppingDate": "2018-01-17",
+                    "stoppingReason": "some text",
+                    "state": true,
+                    "stateLastChangeDate": "2018-01-17",
+                    "indicators": [
+                        {
+                            "indicatorCode": "some text",
+                            "state": true,
+                            "lastChangeDate": "2018-01-17"
+                        },
+                        {
+                            "indicatorCode": "some text",
+                            "state": true,
+                            "lastChangeDate": "2018-01-17"
+                        }
+                    ],
+                    "documents": [
+                        {
+                            "documentId": 14,
+                            "documentCode": "some text",
+                            "name": "some text",
+                            "requestDate": "2018-01-17",
+                            "present": true,
+                            "listFileInformation": [
+                                {
+                                    "fileId": 70,
+                                    "uploadDate": "2018-01-17",
+                                    "fileUUID": "",
+                                    "fileCreation": "2018-01-17",
+                                    "fileSize": 86,
+                                    "expirationDate": "2018-01-17"
+                                },
+                                {
+                                    "fileId": 67,
+                                    "uploadDate": "2018-01-17",
+                                    "fileUUID": "",
+                                    "fileCreation": "2018-01-17",
+                                    "fileSize": 29,
+                                    "expirationDate": "2018-01-17"
+                                }
+                            ]
+                        },
+                        {
+                            "documentId": 0,
+                            "documentCode": "some text",
+                            "name": "some text",
+                            "requestDate": "2018-01-17",
+                            "present": true,
+                            "listFileInformation": [
+                                {
+                                    "fileId": 4,
+                                    "uploadDate": "2018-01-17",
+                                    "fileUUID": "",
+                                    "fileCreation": "2018-01-17",
+                                    "fileSize": 44,
+                                    "expirationDate": "2018-01-17"
+                                },
+                                {
+                                    "fileId": 83,
+                                    "uploadDate": "2018-01-17",
+                                    "fileUUID": "",
+                                    "fileCreation": "2018-01-17",
+                                    "fileSize": 50,
+                                    "expirationDate": "2018-01-17"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "Requirement": {
+                "title": "Requirement",
+                "description": "A requirement, document or evidence proof required",
+                "type": "object",
+                "properties": {
+                    "documentId": {
+                        "description": "Requirment ID",
+                        "type": "integer"
+                    },
+                    "accountId": {
+                        "description": "Account ID",
+                        "type": "integer"
+                    },
+                    "code": {
+                        "description": "Internal Code identifying the requirement",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Name of requirement or evidence",
+                        "type": "string"
+                    },
+                    "descriptionCategoryFr": {
+                        "description": "Description of the category of the requirement in French",
+                        "type": "string"
+                    },
+                    "descriptionCategoryEn": {
+                        "description": "Description of the category of the requirement in English",
+                        "type": "string"
+                    },
+                    "descriptionFr": {
+                        "description": "Description of the requirement in French",
+                        "type": "string"
+                    },
+                    "descriptionEn": {
+                        "description": "Description of the requirement in English",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "documentId": 88,
+                    "accountId": 97,
+                    "code": "some text",
+                    "name": "some text",
+                    "descriptionCategoryFr": "some text",
+                    "descriptionCategoryEn": "some text",
+                    "descriptionFr": "some text",
+                    "descriptionEn": "some text"
+                }
+            },
+            "DossierIndicator": {
+                "title": "Dossier indicator",
+                "description": "Status of a dossier for completness or other kind of information",
+                "type": "object",
+                "properties": {
+                    "indicatorCode": {
+                        "description": "Indicator Code",
+                        "type": "string"
+                    },
+                    "state": {
+                        "description": "State of the indicator. True if all the requested documents of the indicator are present, false otherwise.",
+                        "type": "boolean"
+                    },
+                    "lastChangeDate": {
+                        "format": "date",
+                        "description": "Date of the last change in the status of the indicator.",
+                        "type": "string"
+                    },
+                    "isComplete": {
+                        "description": "State of the indicator. True if all the requested documents of the indicator are present, false otherwise.",
+                        "type": "string"
+                    }
+                },
+                "example": "{\n    \"indicatorCode\": \"I001\",\n    \"isComplete\": 'true',\n    \"state\": true,\n    \"lastChangeDate\": \"2018-01-17\"\n}"
+            },
+            "Document": {
+                "title": "Document or evidence requested for the file",
+                "description": "A requirement such as a requested document, a signature, something to bring to the file",
+                "type": "object",
+                "properties": {
+                    "documentId": {
+                        "format": "int64",
+                        "description": "Document ID",
+                        "type": "integer"
+                    },
+                    "documentCode": {
+                        "description": "Document Code",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Document name",
+                        "type": "string"
+                    },
+                    "requestDate": {
+                        "format": "date",
+                        "description": "Date the document was requested.",
+                        "type": "string"
+                    },
+                    "present": {
+                        "description": "Document presence",
+                        "type": "boolean"
+                    },
+                    "listFileInformation": {
+                        "description": "Information of the file (s) present for this document.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/FileInformation"
+                        }
+                    },
+                    "isPresent": {
+                        "description": "Document presence",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "documentId": 48,
+                    "documentCode": "some text",
+                    "name": "some text",
+                    "requestDate": "2018-01-17",
+                    "present": true,
+                    "listFileInformation": [
+                        {
+                            "fileId": 85,
+                            "uploadDate": "2018-01-17",
+                            "fileUUID": "",
+                            "fileCreation": "2018-01-17",
+                            "fileSize": 7,
+                            "expirationDate": "2018-01-17"
+                        },
+                        {
+                            "fileId": 12,
+                            "uploadDate": "2018-01-17",
+                            "fileUUID": "",
+                            "fileCreation": "2018-01-17",
+                            "fileSize": 40,
+                            "expirationDate": "2018-01-17"
+                        }
+                    ]
+                }
+            },
+            "FileInformation": {
+                "title": "File information",
+                "description": "File informations uploaded by the thirdparty or automaticaly by e-Attestations",
+                "type": "object",
+                "properties": {
+                    "fileId": {
+                        "format": "int64",
+                        "description": "File ID",
+                        "type": "integer"
+                    },
+                    "uploadDate": {
+                        "format": "date",
+                        "description": "Document upload date",
+                        "type": "string"
+                    },
+                    "fileUUID": {
+                        "format": "string",
+                        "description": "File unique identifier (UUID v4)",
+                        "type": "string"
+                    },
+                    "fileCreation": {
+                        "format": "date",
+                        "description": "File creation date",
+                        "type": "string"
+                    },
+                    "fileSize": {
+                        "format": "int64",
+                        "description": "File size (bytes)",
+                        "type": "integer"
+                    },
+                    "expirationDate": {
+                        "format": "date",
+                        "description": "Document expiration date",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "fileId": 96,
+                    "uploadDate": "2018-01-17",
+                    "fileUUID": "",
+                    "fileCreation": "2018-01-17",
+                    "fileSize": 77,
+                    "expirationDate": "2018-01-17"
+                }
+            },
+            "ReactivateDossierData": {
+                "description": "Information of the file to be updated when reactivating the follow-up.",
+                "type": "object",
+                "properties": {
+                    "expirationDate": {
+                        "format": "date",
+                        "description": "Expiration date of the follow-up of the file. After this date, the file is no longer followed (Attribute \"monitored\" of the file changes to false).",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "expirationDate": "2018-01-17"
+                }
+            },
+            "Message": {
+                "description": "Un message.",
+                "properties": {
+                    "code": {
+                        "description": "Code du message.",
+                        "type": "string"
+                    },
+                    "message": {
+                        "description": "texte du message.",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "code": "some text",
+                    "message": "some text"
+                }
+            },
+            "Messages": {
+                "description": "Messages from a response to a REST / JSON API call. It contains information, warning and error messages.",
+                "type": "object",
+                "properties": {
+                    "info": {
+                        "description": "Information messages",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Message"
+                        }
+                    },
+                    "warning": {
+                        "description": "Warning messages",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Message"
+                        }
+                    },
+                    "error": {
+                        "description": "Error messages",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Message"
+                        }
+                    }
+                },
+                "example": {
+                    "info": [
+                        {
+                            "code": "some text",
+                            "message": "some text"
+                        },
+                        {
+                            "code": "some text",
+                            "message": "some text"
+                        }
+                    ],
+                    "warning": [
+                        {
+                            "code": "some text",
+                            "message": "some text"
+                        },
+                        {
+                            "code": "some text",
+                            "message": "some text"
+                        }
+                    ],
+                    "error": [
+                        {
+                            "code": "some text",
+                            "message": "some text"
+                        },
+                        {
+                            "code": "some text",
+                            "message": "some text"
+                        }
+                    ]
+                }
+            },
+            "Subscription": {
+                "title": "Subscription",
+                "type": "object",
+                "properties": {
+                    "accountId": {
+                        "format": "int64",
+                        "description": "Subscription linked account",
+                        "type": "integer"
+                    },
+                    "endSubscriptionDate": {
+                        "format": "date-time",
+                        "description": "subscription ending date",
+                        "type": "string"
+                    },
+                    "key": {
+                        "description": "Subscription product code",
+                        "type": "string"
+                    },
+                    "startSubscriptionDate": {
+                        "format": "date-time",
+                        "description": "Subscription starting date",
+                        "type": "string"
+                    },
+                    "status": {
+                        "description": "Subscription status",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "accountId": 85,
+                    "endSubscriptionDate": "2018-02-10T09:30Z",
+                    "key": "some text",
+                    "startSubscriptionDate": "2018-02-10T09:30Z",
+                    "status": "some text"
+                }
+            },
+            "ResponseDossierCreation": {
+                "title": "Reponse for a dossier creation",
+                "description": "Information with processId of dossier's creation an messages",
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "$ref": "#/components/schemas/DossierProcess",
+                        "description": ""
+                    },
+                    "messages": {
+                        "$ref": "#/components/schemas/Messages",
+                        "description": ""
+                    }
+                }
+            },
+            "Response": {
+                "title": "Root Type for content",
+                "description": "The content of a reponse is an Array of JSON Object depending of the request.",
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "description": "The content of the reponse for the request (when HTTP 200)",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "dossierId": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "accountId": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "siren": {
+                                    "type": "string"
+                                },
+                                "siret": {
+                                    "type": "string"
+                                },
+                                "tva": {
+                                    "type": "string"
+                                },
+                                "thirdpartyId": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "companyIdType": {
+                                    "type": "string"
+                                },
+                                "companyIdValue": {
+                                    "type": "string"
+                                },
+                                "thirdpartyCode": {
+                                    "type": "string"
+                                },
+                                "companyCountryCode": {
+                                    "type": "string"
+                                },
+                                "monitored": {
+                                    "type": "boolean"
+                                },
+                                "isMonitored": {
+                                    "type": "string"
+                                },
+                                "dossierReference": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "purchasingCategory": {
+                                    "type": "string"
+                                },
+                                "startingDate": {
+                                    "type": "string"
+                                },
+                                "expirationDate": {
+                                    "type": "string"
+                                },
+                                "stoppingDate": {
+                                    "format": "date",
+                                    "type": "string"
+                                },
+                                "stoppingReason": {
+                                    "type": "string"
+                                },
+                                "state": {
+                                    "type": "string"
+                                },
+                                "isComplete": {
+                                    "type": "string"
+                                },
+                                "stateLastChangeDate": {
+                                    "type": "string"
+                                },
+                                "indicators": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "indicatorCode": {
+                                                "type": "string"
+                                            },
+                                            "state": {
+                                                "type": "boolean"
+                                            },
+                                            "isComplete": {
+                                                "type": "string"
+                                            },
+                                            "lastChangeDate": {
+                                                "format": "date",
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "documents": {
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    },
+                    "page": {
+                        "format": "int32",
+                        "description": "The page number when the response is paginated",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "format": "int32",
+                        "description": "The page size provided for this request",
+                        "type": "integer"
+                    },
+                    "totalElements": {
+                        "format": "int32",
+                        "description": "The total number of elements for the requested resources.",
+                        "type": "integer"
+                    },
+                    "messages": {
+                        "$ref": "#/components/schemas/Messages",
+                        "description": "The messages provided for this reponse"
+                    }
+                },
+                "example": {
+                    "content": [
+                        {
+                            "dossierId": 672112,
+                            "accountId": 119631,
+                            "siren": "380716696",
+                            "siret": "38071669600063",
+                            "tva": "FR29380716696",
+                            "thirdpartyId": 143023,
+                            "companyIdType": "CIT001",
+                            "companyIdValue": "38071669600063",
+                            "companyCountryCode": "FR",
+                            "monitored": false,
+                            "isMonitored": "false",
+                            "dossierReference": "-",
+                            "description": "",
+                            "purchasingCategory": "",
+                            "stoppingDate": "2018-04-03",
+                            "stoppingReason": "ACTION_VOLONTAIRE",
+                            "isComplete": "false",
+                            "indicators": [
+                                {
+                                    "indicatorCode": "I001",
+                                    "state": true,
+                                    "isComplete": "true",
+                                    "lastChangeDate": "2018-04-03"
+                                }
+                            ],
+                            "documents": []
+                        }
+                    ],
+                    "page": 2,
+                    "size": 1,
+                    "totalElements": 31
+                }
+            }
+        },
+        "responses": {
+            "response": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Response"
+                        }
+                    }
+                },
+                "description": "Reponses are provided with a :\n\n    - content (JSON Array) : provinding the content for the request when it exists (HTTP 200)\n\n    - messages (JSON Array) : (optinaly provided) proviging messages for INFO, WARM and ERRORS level.\n\n\nThe page number, page size and number total of elements are also provided (for main resources)."
+            }
+        },
+        "securitySchemes": {
+            "Bearer": {
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "type": "http",
+                "description": "To perform an authentication you must add an HTTP header in the form 'Authorization: Bearer {JWT}' where 'access_code' is the JWT provided by e-Attestations authentication service"
+            }
+        }
+    },
+    "security": [
+        {
+            "Bearer": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "Account",
+            "description": "Information of your account (s) having a subscription to the services"
+        },
+        {
+            "name": "Thirdparties",
+            "description": "Information and research of your third parties for an account"
+        },
+        {
+            "name": "Dossiers",
+            "description": "Information and research of your Thirdparty compliance monitoring files"
+        },
+        {
+            "name": "Documents",
+            "description": "Information on the documents required for a file"
+        },
+        {
+            "name": "Files",
+            "description": "Attachments automaticaly provided by e-Attestations or uploaded by the thirdparty at your request"
+        },
+        {
+            "name": "Requirements",
+            "description": "E-Attestations compliance requirements"
+        }
+    ],
+    "x-tagGroups": [
+        {
+            "name": "Account Management",
+            "tags": [
+                "Account"
+            ]
+        },
+        {
+            "name": "Documents Management",
+            "tags": [
+                "Documents",
+                "Files"
+            ]
+        },
+        {
+            "name": "Thirdparty Management",
+            "tags": [
+                "Thirdparties",
+                "Dossiers",
+                "Requirements"
+            ]
+        }
+    ]
+}
