@@ -53,6 +53,16 @@ const features = [
         Install postman, complete variables with your credentials and you can test the API right away without writing a single line of code.
       </>
     ),
+  },
+  {
+    title: <>Wath our slide show</>,
+    imageUrl: 'img/logo-e-Attestations.png',
+    description: (
+      <>
+        DO you want to discover our API' mindset ?
+        <a href="/presentation/index.html">Presentation</a>
+      </>
+    )
   }
 ];
 
