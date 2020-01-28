@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
+
+    <title>API Rest e-Attestations</title>
+
+    <style>
+        html, body {
+            color: #4c555a;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: white;
+            -webkit-text-size-adjust: none;
+            -ms-text-size-adjust: 100%;
+        }
+
+        div.banner {
+            width: fit-content;
+            height: 160px !important;
+        }
+
+        div.banner > pre {
+            transform: scale(0.7);
+            transform-origin: 0 0;
+        }
+
+        img.imglink {
+            transform: scale(0.8);
+            transform-origin: 0 0;
+            width: fit-content;
+            margin: auto;
+            padding: 1rem;
+        }
+
+        .menu-content {
+            border-right: gainsboro inset 1px;
+        }
+
+        article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+            display: block
+        }
+
+        b, strong {
+            font-weight: bold
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0.67em 0
+        }
+
+        mark {
+            background: #ff0;
+            color: #000
+        }
+
+        small {
+            font-size: 80%
+        }
+
+        hr {
+            box-sizing: content-box;
+            border: gainsboro inset 1px;
+            height: 1px
+        }
+
+        pre {
+            overflow: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);
+        }
+
+        code,  pre {
+            font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+            font-size: 10px;
+        }
+
+        code {
+            word-break: break-all;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+        }
+
+        .imglink {
+            width: 100%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+
+
+
+        .imglink:hover {
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);
+        }
+
+        aside {
+            padding: 1em;
+            line-height: 1.6;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);
+        }
+
+        aside:hover {
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+            text-shadow: 1px 1px 1px darkgray;
+            color: white;
+            cursor: help;
+        }
+
+        aside.warning:before, aside.notice:before, aside.success:before {
+            font-family: "Font Awesome 5 Free", monospace;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 600;
+            font-size: large;
+            margin: 0.5rem;
+        }
+
+        aside.warning {
+            background-color: orange;
+        }
+
+        aside.warning:before {
+            content: "\f071";
+        }
+
+        aside.notice {
+            background-color: #96caf6;
+        }
+
+        aside.notice:before {
+            content: "\f05a";
+        }
+
+        aside.success {
+            background-color: #92dd91;
+        }
+
+        aside.success:before {
+            content: "\f058";
+        }
+
+        div.mermaid {
+            /* font-family: 'trebuchet ms', verdana, arial; */
+            font-family: 'Courier New', Courier, monospace !important;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id='redoc-container'></div>
+<script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+<script src="https://unpkg.com/mermaid@8.4.1/dist/mermaid.js"></script>
+<script type="text/javascript">
+    (async function () {
+
+        console.log('Starting Redoc')
+
+        await Redoc.init('/openapi/swagger.json', {
+            scrollYOffset: 10,
+            expandResponses: "200",
+            hideHostname: false,
+            untrustedSpec: true
+        }, document.getElementById('redoc-container'), () => {
+            console.log('Redoc is done !')
+        });
+
+        mermaid.initialize({
+            logLevel: 3,
+            flowchart: {curve: 'basis'},
+            sequence: {actorMargin: 50},
+        });
+
+    })();
+</script>
+
+</body>
+</html>

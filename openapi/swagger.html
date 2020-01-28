@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Rest e-Attestations</title>
+    <!-- needed for adaptive design -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.23.11/swagger-ui.css" integrity="sha256-O3WBPOmqAcumrGlHJtGp6KtuKA4S9sbEu3NCSbacxZ8=" crossorigin="anonymous" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.23.11/swagger-ui-bundle.js" integrity="sha256-wmWvmMbIQjnhA5qXYJAw60JjO3/zvM2T/BMnbdBD26w=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.23.11/swagger-ui-standalone-preset.js" integrity="sha256-AGfcF/HKnhqGTZNL+pNGJ+yemAzr2tuvbP69pYbn+GU=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.23.11/swagger-ui.js" integrity="sha256-tcO8YLobJn1eRUlEo1lRgjNjapHvpRxUKvducWlX5zI=" crossorigin="anonymous"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mermaid/8.3.1/mermaid.min.js" integrity="sha256-vOIuDSYDirTfyr+S2MjFnhOz6Rgiz4ODFAHATG0rFxw=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+
+</head>
+<body>
+
+<div class="content" id="swagger-ui"></div>
+<script type="application/javascript">
+    SwaggerUIBundle({
+        url: "/openapi/swagger.json",
+        dom_id: '#swagger-ui',
+        presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        supportedSubmitMethods: ['get'],
+        docExpansion: "list",
+        jsonEditor: false,
+        defaultModelRendering: 'example',
+        showRequestHeaders: true,
+        showOperationIds: false,
+        validatorUrl:null,
+        //layout: "StandaloneLayout",
+        plugins: [
+            SwaggerUIBundle.plugins.DownloadUrl
+        ],
+    });
+
+    //mermaid.initialize({startOnLoad:true, theme: 'forest'});
+    mermaid.initialize({startOnLoad:true});
+
+
+</script>
+
+</body>
+</html>
