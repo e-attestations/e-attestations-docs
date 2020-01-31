@@ -20,6 +20,9 @@ We advice you to use it often, if it's not always.
 
 Plus ! This 'dossierReference' can be changed at any time unless the file has been archived.
 
+> The content of this field will be trimed (spaces removed) during the process.
+
+
 
 > Example of 'dossiers' GET request with sirent id "/api/v1/account/{{account_id}}/dossiers?siren=503829368"
 

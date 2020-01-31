@@ -4,53 +4,78 @@ title: Create a dossier
 sidebar_label: Create a dossier
 ---
 
-> Création d'un dossier
+## Why ?
+
+The creation of a compliance monitoring 'dossier' in e-Attestations is at the heart of the thirdparty recruitment process.
+
+This step is also the recruitment phase of your third party who will then be informed by email that a follow-up file is pending.
+
+## How ?
+
+You can create a dossier by using the POST http verb with `/account/{account}/dossiers` enpoint with a JSON body containing the parameters of your dossier.
+
+> Create a 'dossier' with POST to `/account/{account}/dossiers`
 
 ```shell
 curl --request POST \
   --url https://rs.dev-e-attestations.com/api/v1/account/119631/dossiers \
   --header 'Authorization: Bearer {{token}}' \
   --header 'Content-Type: application/json' \
-  --data '{\n  "companyIdType": "CIT001",\n  "companyIdValue": "50382936800045",\n  "thirdpartyCode": "",\n  "dossierReference": "DOSSIER_REST_9",\n  "description": "Dossier #5 de test importé depuis l'\''API REST",\n  "purchasingCategory": "",\n  "expirationDate": "2020-05-31",\n  "requiredDocuments": [ "JUSTIF_IMM" ],\n  "thirdpartyEmail": ["v.dagoury@e-attestations.com"],\n  "userInCharge": [\n    "v.dagoury@e-attestations.com"\n  ]\n}'
+  --data '{
+    "companyIdType": "CIT001",
+    "companyIdValue": "50382936800045",
+    "thirdpartyCode": "",
+    "dossierReference": "DOSSIER_REF_X",
+    "description": "This is dossier for xxx",
+    "purchasingCategory": "",
+    "expirationDate": "2020-05-31",
+    "requiredDocuments": [ "JUSTIF_IMM" ],
+    "thirdpartyEmail": ["nobody@e-attestations.com"],
+    "userInCharge": ["nobody@e-attestations.com"]
+    }'
 ```
 
-La création de dossier de suivi de la conformité des tiers est au coeur du processus de recrutement d'un tiers pour lequel vous souhaitez suivre la conformité et la principale étape permettant de démarrer le processus de suivi.
 
-<aside className="success">
-La conformité à exiger dépend de votre besoin de la nature de votre tiers, du marché, de paramètres exogènes...
-<strong>Votre gestionnaire de compte e-Attestations est là pour vous conseiller.</strong>
-</aside>
+<aside>The compliance to be required depends on your needs, the nature of your third party, the market, exogenous parameters, etc.
+Your e-Attestations account manager is there to advise you.</aside>
 
-Elle est aussi la phase de recrutement de votre tiers qui sera alors informé par email qu'un dossier de suivi est encours.
+## Create a dossier launches the workflow to thirdparty
 
-Un workflow continu démarre alors pour le tiers qui devra alors déposer les preuves exigées par votre dossier.
+A continuous workflow then starts for the third party who will then have to file the proofs required by your dossier.
 
-Lors de la création d'un dossier le workflow déclenché est asynchrone et se décrit ainsi :
+When creating a dossier, the triggered workflow is asynchronous and is described as follows:
 
-- la récupération automatique des données du tiers (y compris s'il n'est pas déjà dans la base e-Attestations)
-- son invitation grâce à l'email de contact
-- **éventuellement** l'envoi d'emails de demande pour les documents ou preuves demandés et non déjà présents
-- la production d'un indicateur de complétude ('I001') représentant la bonne santé du suivi au regard de l'exigence du dossier de suivi
+- automatic fetch of third party's data
+- third party's invitation is sent thanks to the contact email
+- **possibly** sending request emails for documents or evidence requested if they're not already present
+- the calculation of a completeness indicator ('I001') representing the good health of the monitoring with regard to the requirement of the monitoring dossier
 
-Mais aussi :
+But also :
 
-- des rappels réguliers par email envoyés aux tiers
-- la mise à jour des données régulièrement et sur événement
-- la production d'indicateurs complexes
-- du reporting
-- des diagnositiques
-- du conseil et l'expertise e-Attestations
+- regular reminders (by email) sent to third parties all along the dossier's life
+- updating data regularly and on events
+- production of other indicators and alarms
+- reporting services
+- diagnoses
+- e-Attestations advice and expertise
 
-Le endpoint **POST /account/{accountId}/dossiers** permet de créer un dossier de suivi continu de la conformité pour un tiers (thirdparty).
+## The asynchronous nature of dossier creation
 
-**Vous trouverez toutes les informations complémentaire sur ce endpoint dans la section <a href="#importer-un-dossier">Importer un dossier</a>.**
+Since the dossier creation processing can last several seconds, the process is **asynchronous **.
 
-Le traitement pouvant durer plusieurs minutes la réponse est **asynchrone**, comme illustré dans le schéma ci-dessous.
+When creating an identifier for monitoring the import processing (processId) is returned.
+You will need to use it to know the result of the import asynchronously.
 
-Lors de la création un identifiant de suivi du traitement de l'import (processId) est renvoyé.
-Il vous faudra l'utiliser pour connaître le résultat de l'import de façon asynchrone.
+![Async dossier creation](/img/ea-create-dossier-async.png)
 
-Le endpoint **GET /account/{accountId}/dossier/process/{processId}** permet de suivre le résultat de l'import grâce à l'identifiant du process d'import renvoyé lors de l'appel "Création d'un dossier" (POST /account/{accountId}/dossiers).
+### Fetch creation results
 
-> Il est important de bien vérifier les paramètres d'appel et de bien prendre en compte les codes d'erreurs et leur signification.
+The endpoint (GET) `/account/{accountId}/dossier/processes` makes it easy to follow and catch the import results.
+
+
+thanks to the identifier of the import process returned during the call "Creation of a folder "(POST / account / {accountId} / folders).
+
+> It is important to check the call parameters carefully and to take into account the error codes and their meaning.
+
+
 

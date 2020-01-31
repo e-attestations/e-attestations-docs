@@ -19,8 +19,8 @@ const features = [
     imageUrl: 'img/API-Interface.png',
     description: (
       <>
-        API e-Attestation are very easy to use and to implement in the programming language of your choice.
-        Using OpenAPI v3 API contrat format give you the capability of generate your client side code faster.
+        e-Attestation APIs are very easy to use and to implement in the programming language of your choice.
+        You should use OpenAPIv3 documentation as a standard and gives you various capabilities for generating your client side code.
       </>
     ),
   },
@@ -29,8 +29,8 @@ const features = [
     imageUrl: 'img/target-icon.png',
     description: (
       <>
-        e-Attestations resources are presented clearly and we offer standard implementation scenarios.
-        You develop faster on what matters quickly.
+        e-Attestations resources are presented clearly with standard implementation scenarios.
+        You will develop faster on be aware on what matters quickly.
       </>
     ),
   },
@@ -49,8 +49,8 @@ const features = [
     imageUrl: 'img/postman-logo.png',
     description: (
       <>
-        You can go even quicker with the Postman collection we provide.
-        Install postman, complete variables with your credentials and you can test the API right away without writing a single line of code.
+        You can go even quicker with the Postman collection we provide you.
+        Install postman, complete Postman variables with your credentials and you can test the API right away without writing a single line of code.
       </>
     ),
   }
@@ -106,16 +106,19 @@ function Home() {
         </div>
       </header>
       <main>
-      <section className={styles.features}>
-        <div className="container">
-          <h1>Welcome to our technical resources center</h1>          
+        <section className={styles.features}>
+          <div className="container">
+            <h1>Welcome to our technical resources center</h1>                      
+            <img src="img/logo-e-Attestations-tech.png" alt="welcome" className={styles.welcomeImage}/>            
             <p>
               You're a developer and you want to find more information, tools, SDK, samples codes for you project ?
-              You're at the good place.
+            </p>
+            <p>  
+              You're in the good place !
             </p>
             <p>
               e-Attestations offers the best documentations, tools, tips and tricks for you e-Attestations API integration project.
-            </p>        
+            </p>     
           </div>
         </section>
       </main>

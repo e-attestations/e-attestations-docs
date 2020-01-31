@@ -21,8 +21,8 @@ module.exports = {
         src: 'img/cropped-logo-eattestations-2.png',
       },
       links: [
-        {href: 'openapi/swagger.html', label: 'Swagger'},
-        {href: 'openapi/redoc.html', label: 'Redoc'},
+        {href: '/openapi/swagger.html', label: 'Swagger'},
+        {href: '/openapi/redoc.html', label: 'Redoc'},
         {to: 'docs/b-1-get-started', label: 'QuickStart', position: 'right'},
         {to: 'docs/a-1-introduction', label: 'Docs', position: 'right'},
         {
