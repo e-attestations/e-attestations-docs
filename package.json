@@ -1,6 +1,6 @@
 {
-  "name": "docusaurus-website",
-  "version": "0.0.0",
+  "name": "e-attestations-apirest-docs",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "docusaurus start",
@@ -9,11 +9,12 @@
     "deploy": "docusaurus deploy"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.40",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.40",
+    "@docusaurus/core": "2.0.0-alpha.56",
+    "@docusaurus/preset-classic": "2.0.0-alpha.56",
     "classnames": "^2.2.6",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "docusaurus": "2.0.0-alpha.56",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "three": "^0.112.1"
   },
   "browserslist": {
@@ -29,6 +30,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.8.3"
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "babel-loader": "^7.1.5"
   }
 }
