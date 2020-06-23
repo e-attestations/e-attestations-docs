@@ -5,7 +5,7 @@ sidebar_label: Collection Postman
 ---
 
 
-To go even faster and facilitate the integration and exploration of our API we provide <a href = "/static/openapi/eAttestations-API-REST-multi-version.postman_collection.json"> a Postman collection </a> that you should import into postman.
+To go even faster and facilitate the integration and exploration of our API we provide <a href = "/openapi/eAttestations-API-REST-multi-version.postman_collection.json"> a Postman collection </a> that you should import into postman.
 
 <h2>
 <a href = "/static/openapi/eAttestations-API-REST-multi-version.postman_collection.json">Download our Postman collection </a>
