@@ -38,8 +38,7 @@ module.exports = {
       'd-2-error-codes'
     ],      
     'Resources': [
-      'r-1-postman', 
-      'r-2-openapiv3'
+      'r-1-postman'
     ],
     'Under the hood': [
       'z-about', 
