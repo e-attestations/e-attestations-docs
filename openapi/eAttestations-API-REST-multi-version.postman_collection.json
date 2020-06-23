@@ -1,0 +1,5341 @@
+{
+	"info": {
+		"_postman_id": "5dd20f8e-a1d9-4bab-8357-b94c91de6ff5",
+		"name": "eAttestations-API-REST-multi-version",
+		"description": "# e-Attestation REST/JSON API REST\n\nFind more information : https://e-attestations.io\n\nThis collection use a script that automatic fetchs for :\n\n- access_token : the JWT access token needed for each request\n- account_id : the first account found in account_ids from the KWT\n\nThis 2 variables are mandatory for subsequent requests for the whole collection so they're kept in the environment.\n\nThe script save token_exp which is tested for token renewal.\n\n## Environment\n\nYou can swith from one to another and all variables are kept within a specific environment.\n\nPostman envs are mandatory for the following variables : \n\n- username : the given username\n- password : the given password\n- ea_auth_serv : the url for e-Attestations authorizer\n- ea_api_serv : the url for API services\n\nNote : you can use them with newman too !\n\n## Using newman\n\nYou should put the in a env json file as documented here : [https://learning.postman.com/docs/postman/collection-runs/command-line-integration-with-newman/#getting-started](https://learning.postman.com/docs/postman/collection-runs/command-line-integration-with-newman/#getting-started)\n\n\nThe file should be :\n\n```json\n{\n\t\"name\": \"DEV\",\n\t\"values\": [\n\t\t{\n\t\t\t\"key\": \"username\",\n\t\t\t\"value\": \"rsdevtest\",\n\t\t\t\"enabled\": true\n\t\t},\n\t\t{\n\t\t\t\"key\": \"password\",\n\t\t\t\"value\": \"thisisafakepassword\",\n\t\t\t\"enabled\": true\n\t\t},\n\t\t{\n\t\t\t\"key\": \"ea_auth_serv\",\n\t\t\t\"value\": \"https://auth.dev-e-attestations.com\",\n\t\t\t\"enabled\": true\n\t\t},\n\t\t{\n\t\t\t\"key\": \"ea_api_serv\",\n\t\t\t\"value\": \"https://rs.dev-e-attestations.com\",\n\t\t\t\"enabled\": true\n\t\t}\n\t],\n\t\"_postman_variable_scope\": \"environment\"\n}\n```\n\nThen you can :\n\n\n```shell\nnpx newman run eAttestations-API-REST-multi-version.json -e DEV.json\n```\n\nEnjoy !",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"item": [
+				{
+					"name": "Authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6778328e-189e-4f8d-b7bf-60437eee0b1d",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.globals.set(\"token\", jsonData.access_token);",
+									"pm.environment.set(\"processId\", \"\");",
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.not.be.error;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "ea-api-edge",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"type": "text"
+								}
+							],
+							"options": {}
+						},
+						"url": {
+							"raw": "{{ea_auth_serv}}/auth/realms/eat_realm/protocol/openid-connect/token",
+							"host": [
+								"{{ea_auth_serv}}"
+							],
+							"path": [
+								"auth",
+								"realms",
+								"eat_realm",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						},
+						"description": "## Authenticate to the API\n\n### Get a JWT from the authenticator server\n\nThis request consist of a POST request with user/password, and client identifier 'ea-api-edge' to the authentication server.\n\nCredential a verified by the server which send back a JWT (JSON Wen Token) that user have to keep in ordre to use it for all subsequent requests to the API.\n\nThe token has a limited time which can be verified with 'expires_in' expressed in seconds."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "v1.1",
+					"item": [
+						{
+							"name": "Account",
+							"item": [
+								{
+									"name": "Account",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account"
+											]
+										},
+										"description": "GET account information"
+									},
+									"response": []
+								},
+								{
+									"name": "Account statistics",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}"
+											]
+										},
+										"description": "GET account statistics"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Dossiers",
+							"item": [
+								{
+									"name": "Documents",
+									"item": [
+										{
+											"name": "Account dossiers documents",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															"",
+															"var jsonData = JSON.parse(responseBody);",
+															"for (let i=0; i<jsonData.content.length; i++) {",
+															"    if (jsonData.content[i].listFileInformation.length > 0",
+															"    && jsonData.content[i].listFileInformation[0].fileId !== '') {",
+															"        pm.environment.set(\"documentId\", jsonData.content[i].documentId);",
+															"        pm.environment.set(\"fileId\", jsonData.content[i].listFileInformation[0].fileId);",
+															"        break;",
+															"    }",
+															"}",
+															"",
+															"",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"documents"
+													]
+												},
+												"description": "GET dossier documents by its id"
+											},
+											"response": []
+										},
+										{
+											"name": "Account dossiers documents details",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents/{{documentId}}",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"documents",
+														"{{documentId}}"
+													]
+												},
+												"description": "GET one dossier's document details by its id"
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Files",
+									"item": [
+										{
+											"name": "Account dossiers documents files",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"",
+															"pm.environment.set(\"fileId\", jsonData.content[0].fileId);",
+															"",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents/{{documentId}}/files",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"documents",
+														"{{documentId}}",
+														"files"
+													]
+												},
+												"description": "GET one dossier's document related files by its id"
+											},
+											"response": []
+										},
+										{
+											"name": "Account file download",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/octet-stream"
+													}
+												],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents/{{documentId}}/files/{{fileId}}",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"documents",
+														"{{documentId}}",
+														"files",
+														"{{fileId}}"
+													]
+												},
+												"description": "GET one file content from the given dossierId, documentId and fileId"
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Create Dossier",
+									"item": [
+										{
+											"name": "Create a new dossier (minimal)",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "cc531f55-730e-46e2-986c-e78e8c595e00",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"pm.environment.set(\"processId\", jsonData.content.processId);",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyIdType\": \"CIT001\",\n  \"companyIdValue\": \"50382936800045\",\n  \"dossierReference\": \"TEST26\",\n  \"requiredDocuments\": [ \"JUSTIF_IMM\" ]\n}",
+													"options": {
+														"raw": {}
+													}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers"
+													]
+												},
+												"description": "Import/create a new dossier given the given body"
+											},
+											"response": []
+										},
+										{
+											"name": "Import dossier - Get Processes by processId",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "aa5b6827-8cbb-4a2f-9148-aa7fdf7521b1",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"id": "858e3e48-9a2c-4261-9ea6-3ff22e7fdcce",
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/process/{{processId}}",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"process",
+														"{{processId}}"
+													]
+												},
+												"description": "Get dossiers' import/create result for a given id"
+											},
+											"response": []
+										},
+										{
+											"name": "Import dossier - Get Processes",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "8111e66d-8a32-45bc-a8a4-a4e527e7f762",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/processes",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"processes"
+													]
+												},
+												"description": "Get dossiers' import/create processes ids"
+											},
+											"response": []
+										},
+										{
+											"name": "Import dossier - Get Processes from one date",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "8111e66d-8a32-45bc-a8a4-a4e527e7f762",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/processes?fromDate=2019-01-01",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"processes"
+													],
+													"query": [
+														{
+															"key": "fromDate",
+															"value": "2019-01-01"
+														}
+													]
+												},
+												"description": "Get dossiers' import/create results for a given date"
+											},
+											"response": []
+										},
+										{
+											"name": "Create a new dossier with verified identity document",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "cc531f55-730e-46e2-986c-e78e8c595e00",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"pm.environment.set(\"processId\", jsonData.content.processId);",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyIdType\": \"CIT001\",\n  \"companyIdValue\": \"43258335900109\",\n  \"dossierReference\": \"DOSSIER_43258335900109_2\",\n  \"requiredDocuments\": [ \"JUSTIF_IMM\" ]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers"
+													]
+												},
+												"description": "Import/create a new dossier given the given body"
+											},
+											"response": []
+										},
+										{
+											"name": "Create a new dossier for a non french tp",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "cc531f55-730e-46e2-986c-e78e8c595e00",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"pm.environment.set(\"processId\", jsonData.content.processId);",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyIdType\": \"CIT002\",\n  \"companyIdValue\": \"FR69503829368\",\n  \"thirdpartyCode\": \"\",\n  \"dossierReference\": \"DOSSIER_REST_TVA#1\",\n  \"description\": \"Dossier avec TVA\",\n  \"purchasingCategory\": \"\",\n  \"expirationDate\": \"2020-05-31\",\n  \"requiredDocuments\": [ \"JUSTIF_IMM\" ],\n  \"thirdpartyEmail\": [\"nobody@e-attestations.com\"],\n  \"userInCharge\": [\n    \"nobody@e-attestations.com\"\n  ]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers"
+													]
+												},
+												"description": "Import/create a new dossier given the given body"
+											},
+											"response": []
+										},
+										{
+											"name": "Create a new dossier with more information",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "cc531f55-730e-46e2-986c-e78e8c595e00",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"pm.environment.set(\"processId\", jsonData.content.processId);",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyIdType\": \"CIT002\",\n  \"companyIdValue\": \"FR69503829368\",\n  \"thirdpartyCode\": \"\",\n  \"dossierReference\": \"DOSSIER_REST_TVA#1\",\n  \"description\": \"Dossier avec TVA\",\n  \"purchasingCategory\": \"\",\n  \"expirationDate\": \"2020-05-31\",\n  \"requiredDocuments\": [ \"JUSTIF_IMM\" ],\n  \"thirdpartyEmail\": [\"nobody@e-attestations.com\"],\n  \"userInCharge\": [\n    \"nobody@e-attestations.com\"\n  ]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers"
+													]
+												},
+												"description": "Import/create a new dossier given the given body"
+											},
+											"response": []
+										},
+										{
+											"name": "Create a new dossier with a user in charge",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "cc531f55-730e-46e2-986c-e78e8c595e00",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"pm.environment.set(\"processId\", jsonData.content.processId);",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyIdType\": \"CIT002\",\n  \"companyIdValue\": \"FR69503829368\",\n  \"thirdpartyCode\": \"\",\n  \"dossierReference\": \"DOSSIER_REST_TVA#1\",\n  \"description\": \"Dossier avec TVA\",\n  \"purchasingCategory\": \"\",\n  \"expirationDate\": \"2020-05-31\",\n  \"requiredDocuments\": [ \"JUSTIF_IMM\" ],\n  \"thirdpartyEmail\": [\"nobody@e-attestations.com\"],\n  \"userInCharge\": [\n    \"nobody@e-attestations.com\"\n  ]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers"
+													]
+												},
+												"description": "Import/create a new dossier given the given body"
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Update Dossier",
+									"item": [
+										{
+											"name": "Activate one dossier",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "6e7d4252-35da-4e83-ba23-d4681ec364f8",
+														"exec": [
+															"// print environment",
+															"console.log(pm.globals.get(\"env\"));",
+															"",
+															"pm.test(\"response is ok\", function () {",
+															"    pm.response.to.have.status(200);",
+															"    pm.response.to.not.be.error;",
+															"});",
+															"",
+															"// getting answer from response json",
+															"console.log(\"test\")",
+															"console.log(pm.response.json());",
+															"var dossierResponse = pm.response.json().content;",
+															"pm.test(\"Verify the contents of the response payload are correct with dossierId and accountId\", function () { ",
+															"    pm.expect(dossierResponse.complete).to.eql(true);",
+															"     if(dossierResponse.success===false){",
+															"        console.log(\"The folder is already activated\")",
+															"    }",
+															"    else",
+															"        if(dossierResponse.success===true){",
+															"        console.log(\"You have activated the folder\")",
+															"        }",
+															"",
+															"    ",
+															"});",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n\t\"expirationDate\": \"2021-01-30\"\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/reactivate",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"reactivate"
+													]
+												},
+												"description": "(Re)Activate one dossier"
+											},
+											"response": []
+										},
+										{
+											"name": "De-Activate one dossier",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "5e0acf62-d689-4404-a7f3-9e886c247515",
+														"exec": [
+															"// print environment",
+															"console.log(pm.globals.get(\"env\"));",
+															"",
+															"pm.test(\"response is ok\", function () {",
+															"    pm.response.to.have.status(200);",
+															"    pm.response.to.not.be.error;",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/stop",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"stop"
+													]
+												},
+												"description": "(De)Activate one dossier"
+											},
+											"response": []
+										},
+										{
+											"name": "Update requirements of one dossier",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "abd8f5f1-6f25-4463-8f0f-a1c0df6fa22b",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n\"newRequiredDocuments\":[\"JUSTIF_IMM\"]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/requirements",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"requirements"
+													]
+												},
+												"description": "Update requirements of one dossier"
+											},
+											"response": []
+										},
+										{
+											"name": "Update details of one dossier",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "0f30a53a-8e7e-4920-84f5-2936d6457a03",
+														"exec": [
+															"// print environment",
+															"console.log(pm.globals.get(\"env\"));",
+															"pm.test(\"response is ok\", function () {",
+															"    pm.response.to.have.status(200);",
+															"    pm.response.to.not.be.error;",
+															"});",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n \"dossierReference\": \"EC7BJC6030/5920015318\",\n \"description\": \"NEW DESCRIPTION 1\",\n \"purchasingCategory\": \"NEW PURCHASSING CATEGORY 1\",\n \"expirationDate\": \"2021-03-15\",\n \"thirdpartyCode\": \"2133\",\n \"thirdpartyEmail\": [\"nobody@e-attestations.com\"]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}"
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Account all dossiers (paginated)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"pm.environment.set(\"dossierId\", jsonData.content[0].dossierId);",
+													"/*",
+													"pm.environment.set(\"dossierReference\", jsonData.content[0].dossierReference);",
+													"pm.environment.set(\"companyIdType\", jsonData.content[0].companyIdType);",
+													"pm.environment.set(\"companyIdValue\", jsonData.content[0].companyIdValue);",
+													"*/",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											]
+										},
+										"description": "GET paginated dossier list"
+									},
+									"response": []
+								},
+								{
+									"name": "Account dossiers details",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers",
+												"{{dossierId}}"
+											]
+										},
+										"description": "GET dossier details by its id"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers (paginated), spec page",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"pm.environment.set(\"dossierId\", jsonData.content[0].dossierId);",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?page=2&pageSize=10",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "2"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												}
+											]
+										},
+										"description": "GET paginated dossier list"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers ALL",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/all",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers",
+												"all"
+											]
+										},
+										"description": "GET all dossier at once (not paginated)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by SIRET",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?siret={{tp_SIRET}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "siret",
+													"value": "{{tp_SIRET}}"
+												}
+											]
+										},
+										"description": "GET dossier for a given SIRET (companyIdType & companyIdValue)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by CIT001",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?companyIdValue={{tp_SIRET}}&companyIdType=CIT001",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "companyIdValue",
+													"value": "{{tp_SIRET}}"
+												},
+												{
+													"key": "companyIdType",
+													"value": "CIT001"
+												}
+											]
+										},
+										"description": "GET dossier for a given SIRET (companyIdType & companyIdValue)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by CIT002 (FAILS)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?companyIdValue={{tp_TVA}}&companyIdType=CIT002",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "companyIdValue",
+													"value": "{{tp_TVA}}"
+												},
+												{
+													"key": "companyIdType",
+													"value": "CIT002"
+												}
+											]
+										},
+										"description": "GET dossier for a given SIRET (companyIdType & companyIdValue)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by SIREN",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?siren={{tp_SIREN}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "siren",
+													"value": "{{tp_SIREN}}"
+												}
+											]
+										},
+										"description": "GET dossier for a given SIREN (for French thirdparties)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by Reference",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?dossierReference={{doss_Ref}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "dossierReference",
+													"value": "{{doss_Ref}}"
+												}
+											]
+										},
+										"description": "GET dossier for a given SIREN (for French thirdparties)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by ThirdParty Code",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?thirdpartyCode={{tp_Code}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "thirdpartyCode",
+													"value": "{{tp_Code}}"
+												}
+											]
+										},
+										"description": "GET dossier for a given thirdPartyCode"
+									},
+									"response": []
+								},
+								{
+									"name": "Requirements of one dossier (840158)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "4eb7b8a3-7642-4326-9941-c1323cd2b4b9",
+												"exec": [
+													"pm.test(\"response is ok\", function () {",
+													"    pm.response.to.have.status(200);",
+													"    pm.response.to.not.be.error;",
+													"});",
+													"",
+													"// getting Requirements from response json",
+													"var codes = pm.response.json().content.map(req => req[\"code\"]);",
+													"console.log(codes);",
+													"pm.test(\"Verify the contents of the response contains some requirements\", function () { ",
+													"    console.log(codes)",
+													"    pm.expect(codes).to.include(\"ADO\");",
+													"    pm.expect(codes).to.include(\"JUSTIF_IMM\");",
+													"    //pm.expect(codes).to.include(\"LST_SAL_ETR\");",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/840158/requirements",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers",
+												"840158",
+												"requirements"
+											]
+										},
+										"description": "GET one dossier's requierements"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Thirdparties",
+							"item": [
+								{
+									"name": "Account thirdparties",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"pm.environment.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties"
+											]
+										},
+										"description": "GET (paginated) thirdparties"
+									},
+									"response": []
+								},
+								{
+									"name": "Account thirdparties details",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"var jsonData = pm.response.json();",
+													"pm.test(\"Check thirdpartyId is valid\", function () {",
+													"    pm.expect(jsonData.content).not.to.be.empty",
+													"    pm.expect(jsonData.content.thirdpartyId).to.eq(pm.environment.get(\"thirdpartyId\"))",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties/{{thirdpartyId}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties",
+												"{{thirdpartyId}}"
+											]
+										},
+										"description": "GET thirdparty details by its id"
+									},
+									"response": []
+								},
+								{
+									"name": "Account thirdparties search by SIREN",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"var jsonData = pm.response.json();",
+													"pm.test(\"Check SIREN is valid\", function () {",
+													"    pm.expect(jsonData.content).not.to.be.empty",
+													"    pm.expect(jsonData.content[0].tva).to.eq(pm.environment.get(\"tp_TVA\"))",
+													"    pm.expect(jsonData.content[0].siret).to.eq(pm.environment.get(\"tp_SIRET\"))",
+													"    pm.expect(jsonData.content[0].siren).to.eq(pm.environment.get(\"tp_SIREN\"))",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties?siren={{tp_SIREN}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties"
+											],
+											"query": [
+												{
+													"key": "siren",
+													"value": "{{tp_SIREN}}"
+												}
+											]
+										},
+										"description": "GET thirdparties by SIREN (for french entities)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account thirdparties search by SIRET",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"var jsonData = pm.response.json();",
+													"pm.test(\"Check SIRET is valid\", function () {",
+													"    pm.expect(jsonData.content).not.to.be.empty",
+													"    pm.expect(jsonData.content[0].tva).to.eq(pm.environment.get(\"tp_TVA\"))",
+													"    pm.expect(jsonData.content[0].siret).to.eq(pm.environment.get(\"tp_SIRET\"))",
+													"    pm.expect(jsonData.content[0].siren).to.eq(pm.environment.get(\"tp_SIREN\"))",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties?siret={{tp_SIRET}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties"
+											],
+											"query": [
+												{
+													"key": "siret",
+													"value": "{{tp_SIRET}}"
+												}
+											]
+										},
+										"description": "GET thirdparties by SIRET (for french entities)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account thirdparties search by TVA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"var jsonData = pm.response.json();",
+													"pm.test(\"Check SIRET is valid\", function () {",
+													"    pm.expect(jsonData.content).not.to.be.empty",
+													"    pm.expect(jsonData.content[0].tva).to.eq(pm.environment.get(\"tp_TVA\"))",
+													"    pm.expect(jsonData.content[0].siret).to.eq(pm.environment.get(\"tp_SIRET\"))",
+													"    pm.expect(jsonData.content[0].siren).to.eq(pm.environment.get(\"tp_SIREN\"))",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties?tva={{tp_TVA}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties"
+											],
+											"query": [
+												{
+													"key": "tva",
+													"value": "{{tp_TVA}}"
+												}
+											]
+										},
+										"description": "GET thirdparties by TVA number (for EU entities)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account thirdparties search by Name",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"var jsonData = pm.response.json();",
+													"pm.test(\"Check SIRET is valid\", function () {",
+													"    pm.expect(jsonData.content).not.to.be.empty",
+													"    pm.expect(jsonData.content[0].tva).to.eq(pm.environment.get(\"tp_TVA\"))",
+													"    pm.expect(jsonData.content[0].siret).to.eq(pm.environment.get(\"tp_SIRET\"))",
+													"    pm.expect(jsonData.content[0].siren).to.eq(pm.environment.get(\"tp_SIREN\"))",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties?name={{tp_Name}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties"
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "{{tp_Name}}"
+												}
+											]
+										},
+										"description": "GET thirdparties by name"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Requirements",
+							"item": [
+								{
+									"name": "Requirements for the account",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "4eb7b8a3-7642-4326-9941-c1323cd2b4b9",
+												"exec": [
+													"// print environment",
+													"console.log(pm.globals.get(\"env\"));",
+													"",
+													"pm.test(\"response is ok\", function () {",
+													"    pm.response.to.have.status(200);",
+													"    pm.response.to.not.be.error;",
+													"});",
+													"",
+													"// getting Requirements from response json",
+													"var codes = pm.response.json().content.map(req => req[\"code\"]);",
+													"console.log(codes);",
+													"pm.test(\"Verify the contents of the response contains some requirements\", function () { ",
+													"    pm.expect(codes).to.include(\"ATT_VIGI\");",
+													"    pm.expect(codes).to.include(\"JUSTIF_IMM\");",
+													"    pm.expect(codes).to.include(\"LST_SAL_ETR\");",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/requirements",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"requirements"
+											]
+										},
+										"description": "GET account's requierements"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"description": "## API REST 1.1.0\n\nBy e-Attestations - Vincent DAGOURY, 2019-09\n\nFirst iteration of e-Attestations RESTFUL API\n\n### Features\n\n- Presenting resources by account :\n\n\t* account details and subscription\n\t* thirdparties search, list and details\n\t* dossiers\n\t\t- search list and details\t\n\t\t- dossiers per thirddparties\n\t\t- documents per dossiers\n\t\t- files per document, download one file\n\t\t- requirements\n\t* account requirements\n",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c05a92e4-df18-44c2-85e6-d5ee363e5f69",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "798ab297-3745-4c7b-aeca-7fffa7f01cd5",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "v1.2a",
+					"item": [
+						{
+							"name": "Account",
+							"item": [
+								{
+									"name": "Account(s)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f6d8fbb0-e2d9-44c5-a6e6-4287f302b5e2",
+												"exec": [
+													"",
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"account_id\", jsonData.content[0].id);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "da79b5f5-bcaa-48ef-8a39-6b20dfdf5b1e",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account"
+											]
+										},
+										"description": "GET a request for the default account"
+									},
+									"response": []
+								},
+								{
+									"name": "Account statistics",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}"
+											]
+										},
+										"description": "GET account statistics"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Dossiers",
+							"item": [
+								{
+									"name": "Documents",
+									"item": [
+										{
+											"name": "Account dossiers documents",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															"",
+															"var jsonData = JSON.parse(responseBody);",
+															"for (let i=0; i<jsonData.content.length; i++) {",
+															"    if (jsonData.content[i].listFileInformation.length > 0",
+															"    && jsonData.content[i].listFileInformation[0].fileId !== '') {",
+															"        pm.environment.set(\"documentId\", jsonData.content[i].documentId);",
+															"        pm.environment.set(\"fileId\", jsonData.content[i].listFileInformation[0].fileId);",
+															"        break;",
+															"    }",
+															"}",
+															"",
+															"",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"documents"
+													]
+												},
+												"description": "GET dossier documents by its id"
+											},
+											"response": []
+										},
+										{
+											"name": "Account dossiers documents details",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents/{{documentId}}",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"documents",
+														"{{documentId}}"
+													]
+												},
+												"description": "GET one dossier's document details by its id"
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Files",
+									"item": [
+										{
+											"name": "Account dossiers documents files",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"",
+															"pm.globals.set(\"fileId\", jsonData.content[0].listFileInformation[0].fileId);",
+															"",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents/{{documentId}}/files",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"documents",
+														"{{documentId}}",
+														"files"
+													]
+												},
+												"description": "GET one dossier's document related files by its id"
+											},
+											"response": []
+										},
+										{
+											"name": "Account file download",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/octet-stream"
+													}
+												],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/documents/{{documentId}}/files/{{fileId}}",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"documents",
+														"{{documentId}}",
+														"files",
+														"{{fileId}}"
+													]
+												},
+												"description": "GET one file content from the given dossierId, documentId and fileId"
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Create Dossier",
+									"item": [
+										{
+											"name": "Import/create new dossier",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "cc531f55-730e-46e2-986c-e78e8c595e00",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"pm.environment.set(\"processId\", jsonData.content.processId);",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyIdType\": \"CIT001\",\n  \"companyIdValue\": \"43258335900109\",\n  \"thirdpartyCode\": \"TEST3\",\n  \"dossierReference\": \"TEST#3\",\n  \"description\": \"Dossier\",\n  \"purchasingCategory\": \"Dog\",\n  \"expirationDate\": \"2020-05-31\",\n  \"requiredDocuments\": [ \"JUSTIF_IMM\" ],\n  \"thirdpartyEmail\": [\"nobody@e-attestations.com\"],\n  \"userInCharge\": [\n    \"nobody@e-attestations.com\"\n  ]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers"
+													]
+												},
+												"description": "Import/create a new dossier given the given body"
+											},
+											"response": []
+										},
+										{
+											"name": "Create a new dossier (minimal)",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "cc531f55-730e-46e2-986c-e78e8c595e00",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"pm.environment.set(\"processId\", jsonData.content.processId);",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyIdType\": \"CIT001\",\n  \"companyIdValue\": \"49384180300056\",\n  \"dossierReference\": \"TEST#7\"\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers"
+													]
+												},
+												"description": "Import/create a new dossier given the given body"
+											},
+											"response": []
+										},
+										{
+											"name": "Create a new dossier with verified identity document",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "cc531f55-730e-46e2-986c-e78e8c595e00",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"pm.environment.set(\"processId\", jsonData.content.processId);",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyIdType\": \"CIT001\",\n  \"companyIdValue\": \"43258335900109\",\n  \"dossierReference\": \"DOSSIER_43258335900109_2\",\n  \"requiredDocuments\": [ \"JUSTIF_IMM\" ]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers"
+													]
+												},
+												"description": "Import/create a new dossier given the given body"
+											},
+											"response": []
+										},
+										{
+											"name": "Create a new dossier for a non french tp",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "cc531f55-730e-46e2-986c-e78e8c595e00",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"pm.environment.set(\"processId\", jsonData.content.processId);",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyIdType\": \"CIT002\",\n  \"companyIdValue\": \"FR69503829368\",\n  \"thirdpartyCode\": \"\",\n  \"dossierReference\": \"DOSSIER_REST_TVA#1\",\n  \"description\": \"Dossier avec TVA\",\n  \"purchasingCategory\": \"\",\n  \"expirationDate\": \"2020-05-31\",\n  \"requiredDocuments\": [ \"JUSTIF_IMM\" ],\n  \"thirdpartyEmail\": [\"nobody@e-attestations.com\"],\n  \"userInCharge\": [\n    \"nobody@e-attestations.com\"\n  ]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers"
+													]
+												},
+												"description": "Import/create a new dossier given the given body"
+											},
+											"response": []
+										},
+										{
+											"name": "Create a new dossier with more information",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "cc531f55-730e-46e2-986c-e78e8c595e00",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"pm.environment.set(\"processId\", jsonData.content.processId);",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyIdType\": \"CIT002\",\n  \"companyIdValue\": \"FR69503829368\",\n  \"thirdpartyCode\": \"\",\n  \"dossierReference\": \"DOSSIER_REST_TVA#1\",\n  \"description\": \"Dossier avec TVA\",\n  \"purchasingCategory\": \"\",\n  \"expirationDate\": \"2020-05-31\",\n  \"requiredDocuments\": [ \"JUSTIF_IMM\" ],\n  \"thirdpartyEmail\": [\"nobody@e-attestations.com\"],\n  \"userInCharge\": [\n    \"nobody@e-attestations.com\"\n  ]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers"
+													]
+												},
+												"description": "Import/create a new dossier given the given body"
+											},
+											"response": []
+										},
+										{
+											"name": "Create a new dossier with a user in charge",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "cc531f55-730e-46e2-986c-e78e8c595e00",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"pm.environment.set(\"processId\", jsonData.content.processId);",
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyIdType\": \"CIT002\",\n  \"companyIdValue\": \"FR69503829368\",\n  \"thirdpartyCode\": \"\",\n  \"dossierReference\": \"DOSSIER_REST_TVA#1\",\n  \"description\": \"Dossier avec TVA\",\n  \"purchasingCategory\": \"\",\n  \"expirationDate\": \"2020-05-31\",\n  \"requiredDocuments\": [ \"JUSTIF_IMM\" ],\n  \"thirdpartyEmail\": [\"nobody@e-attestations.com\"],\n  \"userInCharge\": [\n    \"nobody@e-attestations.com\"\n  ]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers"
+													]
+												},
+												"description": "Import/create a new dossier given the given body"
+											},
+											"response": []
+										},
+										{
+											"name": "Import dossier - Get Processes",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "8111e66d-8a32-45bc-a8a4-a4e527e7f762",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/processes",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"processes"
+													]
+												},
+												"description": "Get dossiers' import/create processes ids"
+											},
+											"response": []
+										},
+										{
+											"name": "Import dossier - Get Processes from one date",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "8111e66d-8a32-45bc-a8a4-a4e527e7f762",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/processes?fromDate=2019-01-01",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"processes"
+													],
+													"query": [
+														{
+															"key": "fromDate",
+															"value": "2019-01-01"
+														}
+													]
+												},
+												"description": "Get dossiers' import/create results for a given date"
+											},
+											"response": []
+										},
+										{
+											"name": "Import dossier - Get Processes by processId",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "aa5b6827-8cbb-4a2f-9148-aa7fdf7521b1",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"id": "858e3e48-9a2c-4261-9ea6-3ff22e7fdcce",
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/process/{{processId}}",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"process",
+														"{{processId}}"
+													]
+												},
+												"description": "Get dossiers' import/create result for a given id"
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Update Dossier",
+									"item": [
+										{
+											"name": "Activate one dossier",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "6e7d4252-35da-4e83-ba23-d4681ec364f8",
+														"exec": [
+															"// print environment",
+															"console.log(pm.globals.get(\"env\"));",
+															"",
+															"pm.test(\"response is ok\", function () {",
+															"    pm.response.to.have.status(200);",
+															"    pm.response.to.not.be.error;",
+															"});",
+															"",
+															"// getting answer from response json",
+															"console.log(\"test\")",
+															"console.log(pm.response.json());",
+															"var dossierResponse = pm.response.json().content;",
+															"pm.test(\"Verify the contents of the response payload are correct with dossierId and accountId\", function () { ",
+															"    pm.expect(dossierResponse.complete).to.eql(true);",
+															"     if(dossierResponse.success===false){",
+															"        console.log(\"The folder is already activated\")",
+															"    }",
+															"    else",
+															"        if(dossierResponse.success===true){",
+															"        console.log(\"You have activated the folder\")",
+															"        }",
+															"",
+															"    ",
+															"});",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n\t\"expirationDate\": \"2020-01-30\"\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/reactivate",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"reactivate"
+													]
+												},
+												"description": "(Re)Activate one dossier"
+											},
+											"response": []
+										},
+										{
+											"name": "De-Activate one dossier",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "5e0acf62-d689-4404-a7f3-9e886c247515",
+														"exec": [
+															"// print environment",
+															"console.log(pm.globals.get(\"env\"));",
+															"",
+															"pm.test(\"response is ok\", function () {",
+															"    pm.response.to.have.status(200);",
+															"    pm.response.to.not.be.error;",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/stop",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"stop"
+													]
+												},
+												"description": "(De)Activate one dossier"
+											},
+											"response": []
+										},
+										{
+											"name": "Update requirements of one dossier",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "abd8f5f1-6f25-4463-8f0f-a1c0df6fa22b",
+														"exec": [
+															"pm.test(\"Verify if response is HTTP 200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n\"newRequiredDocuments\":[\"JUSTIF_IMM\"]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/requirements",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}",
+														"requirements"
+													]
+												},
+												"description": "Update requirements of one dossier"
+											},
+											"response": []
+										},
+										{
+											"name": "Update details of one dossier",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "0f30a53a-8e7e-4920-84f5-2936d6457a03",
+														"exec": [
+															"// print environment",
+															"console.log(pm.globals.get(\"env\"));",
+															"pm.test(\"response is ok\", function () {",
+															"    pm.response.to.have.status(200);",
+															"    pm.response.to.not.be.error;",
+															"});",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n \"dossierReference\": \"EC7BJC6030/5920015318\",\n \"description\": \"NEW DESCRIPTION 1\",\n \"purchasingCategory\": \"NEW PURCHASSING CATEGORY 1\",\n \"expirationDate\": \"2021-03-15\",\n \"thirdpartyCode\": \"2133\",\n \"thirdpartyEmail\": [\"nobody@e-attestations.com\"]\n}",
+													"options": {}
+												},
+												"url": {
+													"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}",
+													"host": [
+														"{{ea_api_serv}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"account",
+														"{{account_id}}",
+														"dossiers",
+														"{{dossierId}}"
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Account all dossiers (paginated)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"pm.environment.set(\"dossierId\", jsonData.content[0].dossierId);",
+													"/*",
+													"pm.environment.set(\"dossierReference\", jsonData.content[0].dossierReference);",
+													"pm.environment.set(\"companyIdType\", jsonData.content[0].companyIdType);",
+													"pm.environment.set(\"companyIdValue\", jsonData.content[0].companyIdValue);",
+													"*/",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											]
+										},
+										"description": "GET paginated dossier list"
+									},
+									"response": []
+								},
+								{
+									"name": "Account dossiers details",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers",
+												"{{dossierId}}"
+											]
+										},
+										"description": "GET dossier details by its id"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers (paginated), spec page",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"pm.environment.set(\"dossierId\", jsonData.content[0].dossierId);",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?page=2&pageSize=10",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "2"
+												},
+												{
+													"key": "pageSize",
+													"value": "10"
+												}
+											]
+										},
+										"description": "GET paginated dossier list"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers ALL",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"dossierReference\", jsonData.content[0].dossierReference);",
+													"pm.globals.set(\"companyIdType\", jsonData.content[0].companyIdType);",
+													"pm.globals.set(\"companyIdValue\", jsonData.content[0].companyIdValue);",
+													"pm.globals.set(\"dossierId\", jsonData.content[0].dossierId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/all",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers",
+												"all"
+											]
+										},
+										"description": "GET all dossier at once (not paginated)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers with 'like' operator",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?companyCountryCode=F&op=like",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "companyCountryCode",
+													"value": "F"
+												},
+												{
+													"key": "op",
+													"value": "like"
+												}
+											]
+										},
+										"description": "GET dossier for a given dossierReference"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by SIRET",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?siret={{tp_SIRET}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "siret",
+													"value": "{{tp_SIRET}}"
+												}
+											]
+										},
+										"description": "GET dossier for a given SIRET (companyIdType & companyIdValue)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by CIT001",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?companyIdValue={{tp_SIRET}}&companyIdType=CIT001",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "companyIdValue",
+													"value": "{{tp_SIRET}}"
+												},
+												{
+													"key": "companyIdType",
+													"value": "CIT001"
+												}
+											]
+										},
+										"description": "GET dossier for a given SIRET (companyIdType & companyIdValue)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by TVA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?tva={{tp_TVA}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "tva",
+													"value": "{{tp_TVA}}"
+												}
+											]
+										},
+										"description": "GET dossier for a given SIRET (companyIdType & companyIdValue)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by SIREN",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?siren={{tp_SIREN}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "siren",
+													"value": "{{tp_SIREN}}"
+												}
+											]
+										},
+										"description": "GET dossier for a given SIREN (for French thirdparties)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by CIT002 (FAILS)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?companyIdValue={{companyIdValue}}&companyIdType=CIT002",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "companyIdValue",
+													"value": "{{companyIdValue}}"
+												},
+												{
+													"key": "companyIdType",
+													"value": "CIT002"
+												}
+											]
+										},
+										"description": "GET dossier for a given SIRET (companyIdType & companyIdValue)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by Reference",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?dossierReference={{doss_Ref}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "dossierReference",
+													"value": "{{doss_Ref}}"
+												}
+											]
+										},
+										"description": "GET dossier for a given SIREN (for French thirdparties)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account all dossiers by ThirdParty Code",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers?thirdpartyCode={{tp_Code}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers"
+											],
+											"query": [
+												{
+													"key": "thirdpartyCode",
+													"value": "{{tp_Code}}"
+												}
+											]
+										},
+										"description": "GET dossier for a given thirdPartyCode"
+									},
+									"response": []
+								},
+								{
+									"name": "Requirements of one dossier (840158)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "4eb7b8a3-7642-4326-9941-c1323cd2b4b9",
+												"exec": [
+													"pm.test(\"response is ok\", function () {",
+													"    pm.response.to.have.status(200);",
+													"    pm.response.to.not.be.error;",
+													"});",
+													"",
+													"// getting Requirements from response json",
+													"var codes = pm.response.json().content.map(req => req[\"code\"]);",
+													"console.log(codes);",
+													"pm.test(\"Verify the contents of the response contains some requirements\", function () { ",
+													"    console.log(codes)",
+													"    pm.expect(codes).to.include(\"ADO\");",
+													"    pm.expect(codes).to.include(\"JUSTIF_IMM\");",
+													"    //pm.expect(codes).to.include(\"LST_SAL_ETR\");",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/840158/requirements",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers",
+												"840158",
+												"requirements"
+											]
+										},
+										"description": "GET one dossier's requierements"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Thirdparties",
+							"item": [
+								{
+									"name": "Account thirdparties",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties"
+											]
+										},
+										"description": "GET (paginated) thirdparties"
+									},
+									"response": []
+								},
+								{
+									"name": "Account thirdparties paginated",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties?pageSize=5&page=2",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties"
+											],
+											"query": [
+												{
+													"key": "pageSize",
+													"value": "5"
+												},
+												{
+													"key": "page",
+													"value": "2"
+												}
+											]
+										},
+										"description": "GET (paginated) thirdparties"
+									},
+									"response": []
+								},
+								{
+									"name": "Account thirdparties with worforce  > 1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties/q?search=workforce>1",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties",
+												"q"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": "workforce>1"
+												}
+											]
+										},
+										"description": "GET (paginated) thirdparties"
+									},
+									"response": []
+								},
+								{
+									"name": "Account thirdparties search by SIREN",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties?siren={{tp_SIREN}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties"
+											],
+											"query": [
+												{
+													"key": "siren",
+													"value": "{{tp_SIREN}}"
+												}
+											]
+										},
+										"description": "GET thirdparties by SIREN (for french entities)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account thirdparties search by SIRET",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties?siret={{tp_SIRET}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties"
+											],
+											"query": [
+												{
+													"key": "siret",
+													"value": "{{tp_SIRET}}"
+												}
+											]
+										},
+										"description": "GET thirdparties by SIRET (for french entities)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account thirdparties search by TVA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties?tva={{tp_TVA}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties"
+											],
+											"query": [
+												{
+													"key": "tva",
+													"value": "{{tp_TVA}}"
+												}
+											]
+										},
+										"description": "GET thirdparties by TVA number (for EU entities)"
+									},
+									"response": []
+								},
+								{
+									"name": "Account thirdparties search by Name",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties?name={{tp_Name}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties"
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "{{tp_Name}}"
+												}
+											]
+										},
+										"description": "GET thirdparties by name"
+									},
+									"response": []
+								},
+								{
+									"name": "Account thirdparties details",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties/{{thirdpartyId}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties",
+												"{{thirdpartyId}}"
+											]
+										},
+										"description": "GET thirdparty details by its id"
+									},
+									"response": []
+								},
+								{
+									"name": "Account advanced search thirdparties",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties/q?search=siret:{{tp_SIRET}}",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties",
+												"q"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": "siret:{{tp_SIRET}}"
+												}
+											]
+										},
+										"description": "GET thirdparties by name"
+									},
+									"response": []
+								},
+								{
+									"name": "Account advanced search thirdparties with activityCode = 5829C",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties/q?search=activityCode:5829C",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties",
+												"q"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": "activityCode:5829C"
+												}
+											]
+										},
+										"description": "GET thirdparties by name"
+									},
+									"response": []
+								},
+								{
+									"name": "Account advanced search thirdparties partial name 'AT'",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties/q?search=name~AT",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties",
+												"q"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": "name~AT"
+												}
+											]
+										},
+										"description": "GET thirdparties by name"
+									},
+									"response": []
+								},
+								{
+									"name": "Account advanced search thirdparties isOutOfBusiness=true",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2ed6f16f-800b-4881-817e-0684a6ed794b",
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"",
+													"pm.globals.set(\"thirdpartyId\", jsonData.content[0].thirdpartyId);",
+													"",
+													"pm.test(\"Verify if response is HTTP 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties/q?search=isOutOfBusiness:true",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"thirdparties",
+												"q"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": "isOutOfBusiness:true"
+												}
+											]
+										},
+										"description": "GET thirdparties by name"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Requirements",
+							"item": [
+								{
+									"name": "Requirements of one dossier",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "4eb7b8a3-7642-4326-9941-c1323cd2b4b9",
+												"exec": [
+													"// print environment",
+													"console.log(pm.globals.get(\"env\"));",
+													"",
+													"pm.test(\"response is ok\", function () {",
+													"    pm.response.to.have.status(200);",
+													"    pm.response.to.not.be.error;",
+													"});",
+													"",
+													"// getting Requirements from response json",
+													"var codes = pm.response.json().content.map(req => req[\"code\"]);",
+													"console.log(codes);",
+													"pm.test(\"Verify the contents of the response contains some requirements\", function () { ",
+													"    pm.expect(codes).to.include(\"ATT_VIGI\");",
+													"    pm.expect(codes).to.include(\"JUSTIF_IMM\");",
+													"    pm.expect(codes).to.include(\"LST_SAL_ETR\");",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/requirements",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"dossiers",
+												"{{dossierId}}",
+												"requirements"
+											]
+										},
+										"description": "GET one dossier's requierements"
+									},
+									"response": []
+								},
+								{
+									"name": "Requirements for the account",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "4eb7b8a3-7642-4326-9941-c1323cd2b4b9",
+												"exec": [
+													"// print environment",
+													"console.log(pm.globals.get(\"env\"));",
+													"",
+													"pm.test(\"response is ok\", function () {",
+													"    pm.response.to.have.status(200);",
+													"    pm.response.to.not.be.error;",
+													"});",
+													"",
+													"// getting Requirements from response json",
+													"var codes = pm.response.json().content.map(req => req[\"code\"]);",
+													"console.log(codes);",
+													"pm.test(\"Verify the contents of the response contains some requirements\", function () { ",
+													"    pm.expect(codes).to.include(\"ATT_VIGI\");",
+													"    pm.expect(codes).to.include(\"JUSTIF_IMM\");",
+													"    pm.expect(codes).to.include(\"LST_SAL_ETR\");",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{ea_api_serv}}/api/v1/account/{{account_id}}/requirements",
+											"host": [
+												"{{ea_api_serv}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"account",
+												"{{account_id}}",
+												"requirements"
+											]
+										},
+										"description": "GET account's requierements"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"description": "## API REST 1.2a\n\nBy e-Attestations - Vincent DAGOURY, 2020-02\n\n### Features\n\n- Add non Booleans data for dossiers and thirdparties giving the ability for better search patterns :\n\n    - Document:\n        - isPresent\n    - Dossier :\n        - isCompleted\n    - Indicator :\n        - isCompleted\n    - Thirdparty :\n        - isMonitored\n        - isOutOfBusiness\n        - isRegistered\n        - isCompleted\n    - Import Result:\n        - isComplete\n        - isSuccess\n\n- Search for querying dossiers on reference with an operator \"starts\", \"ends\" or \"like\"\n- Advanced search for querying thirdparties using operators (:, !, ~, >, <) on any attributes\n- Adding addressCity, addressPostCode (ISO3 format) and addressCountryCode to the thirdparty list\n- Updating and merging documentation to Redoc using OpenAPI v3.0 file\n- Error messages : add request and reason attributes\n- Fixing bugs:\n    * Account access enforcement\n    * Send back 404 if a resource is not found in all cases",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "aaf068f6-dfd4-4d7a-9d13-026c7ab2fcc5",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ce125160-c1bb-4833-81d2-1fb7fe5990e7",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"description": "The first version of e-Attestations REST API",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "06fd9b99-7e98-469b-bb3b-f0b3f5c89532",
+				"type": "text/javascript",
+				"exec": [
+					"/**",
+					" * e-Attestations (c) - 2020",
+					" * ",
+					" * Author : Vincent DAGOURY",
+					" * ",
+					" * Pre script for fetching automatically :",
+					" * - access_token: the acces token",
+					" * - account_id: the first account (if it's not already saved)",
+					" * ",
+					" * ",
+					"*/",
+					"",
+					"// Utility tool for spliting a JWT",
+					"function jwt_decode_payload(jwt) {",
+					"    var parts = jwt.split('.'); // header, payload, signature",
+					"    return JSON.parse(atob(parts[1]));",
+					"}",
+					"",
+					"// Preparing URI",
+					"const api_url = pm.environment.get(\"ea_api_serv\");",
+					"const auth_url = pm.environment.get(\"ea_auth_serv\");",
+					"const auth_uri = `${auth_url}/auth/realms/eat_realm/protocol/openid-connect/token`",
+					"",
+					"// Fetch current environment variables",
+					"let token = pm.environment.get(\"token\")",
+					"let account_id = pm.environment.get(\"account_id\")",
+					"const token_exp = parseInt(pm.environment.get(\"token_exp\"), 10)",
+					"const now = parseInt(Date.now() / 1000, 10)",
+					"",
+					"// If the current token is valid, not expired and an account_id is present",
+					"if (token && account_id && token_exp > now) return",
+					"",
+					"console.info(\"Token has expired, or account_id is null... fetching a new one\")",
+					"",
+					"// Call for a token",
+					"pm.sendRequest({",
+					"    url: auth_uri,",
+					"    method: 'POST',",
+					"    header: {",
+					"        'Accept': 'application/json',",
+					"        'Content-Type': 'application/x-www-form-urlencoded'",
+					"    },",
+					"    body: {",
+					"        mode: 'urlencoded',",
+					"        urlencoded: [",
+					"            { key: \"grant_type\", value: \"password\", disabled: false },",
+					"            { key: \"client_id\", value: \"ea-api-edge\", disabled: false },",
+					"            { key: \"username\", value: pm.environment.get(\"username\"), disabled: false },",
+					"            { key: \"password\", value: pm.environment.get(\"password\"), disabled: false },",
+					"            { key: \"Content-Type\", value: \"application/json\", disabled: false }",
+					"        ]",
+					"    }",
+					"}, function (err, res) {",
+					"",
+					"    // Save the token",
+					"    token = res.json().access_token",
+					"    console.log(token)",
+					"    pm.environment.set(\"token\", token)",
+					"",
+					"    // Retrieve account_ids from the JWT",
+					"    decodedToken = jwt_decode_payload(token)",
+					"",
+					"    // Keep Expiration time to track",
+					"    pm.environment.set(\"token_exp\", decodedToken.exp)",
+					"",
+					"    // Retrieve the account_id",
+					"    account_id = decodedToken.account_ids.split(/,(.+)/)[0]",
+					"    pm.environment.set(\"account_id\", account_id)",
+					"",
+					"});",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "25fac71d-5154-4baf-a8a4-e7c7bec017a6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
