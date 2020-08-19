@@ -1,0 +1,65 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns1:getDossierResponse xmlns:ns1="http://srv.v3.ws.ea.com/">
+      <return xmlns:ns2="http://srv.v3.ws.ea.com/">
+        <result>
+          <complete>true</complete>
+          <success>true</success>
+        </result>
+        <supplier>
+          <companyCountryCode>FRA</companyCountryCode>
+          <companyIDType>CIT001</companyIDType>
+          <companyIDValue>48088206700014</companyIDValue>
+          <listDossiers>
+            <description>Ma nouvelle description renseignée par Web Service</description>
+            <dossierGlobalState>false</dossierGlobalState>
+            <dossierGlobalStateLastChangeDate>2016-02-11T11:57:40.094+01:00</dossierGlobalStateLastChangeDate>
+            <dossierId>57512</dossierId>
+            <dossierReference>REF001</dossierReference>
+            <listDocuments>
+              <askingDate>2016-02-11T11:57:40.270+01:00</askingDate>
+              <documentCode>JUSTIF_IMM</documentCode>
+              <listFileInformation>
+                <downloadLink>https://ws-test.e-attestations.com/webservices/download/[...]</downloadLink>
+                <expirationDate>2018-08-02T23:59:59.999+02:00</expirationDate>
+                <uploadDate>2018-02-02T01:30:17.634+01:00</uploadDate>
+              </listFileInformation>
+              <name>Justificatif d’immatriculation</name>
+              <present>true</present>
+            </listDocuments>
+            <listDocuments>
+              <askingDate>2016-02-11T11:57:40.515+01:00</askingDate>
+              <documentCode>ATT_VIGI</documentCode>
+              <name>Attestation de vigilance (6 mois)</name>
+              <present>false</present>
+            </listDocuments>
+            <listDocuments>
+              <askingDate>2016-02-11T11:57:40.120+01:00</askingDate>
+              <documentCode>LST_SAL_ETR</documentCode>
+              <name>Liste nominative des salariés étrangers soumis à autorisation de travail</name>
+              <present>false</present>
+            </listDocuments>
+            <listDocuments>
+              <askingDate>2017-10-10T10:33:21.074+02:00</askingDate>
+              <documentCode>ATT_PRO_BTP</documentCode>
+              <name>Attestation de cotisation retraite</name>
+              <present>false</present>
+            </listDocuments>
+            <listIndicators>
+              <indicatorCode>I001</indicatorCode>
+              <lastChangeDate>2016-02-11T11:57:40.094+01:00</lastChangeDate>
+              <state>false</state>
+            </listIndicators>
+            <monitoredDossier>true</monitoredDossier>
+            <purchasingCategory/>
+            <startingDate>2016-02-11T11:57:40.092+01:00</startingDate>
+          </listDossiers>
+          <monitoredSupplier>true</monitoredSupplier>
+          <supplierCode>A-GRAPH</supplierCode>
+          <supplierGlobalState>false</supplierGlobalState>
+          <supplierGlobalStateLastChangeDate>2016-02-11T11:57:40.257+01:00</supplierGlobalStateLastChangeDate>
+        </supplier>
+      </return>
+    </ns1:getDossierResponse>
+  </soap:Body>
+</soap:Envelope> 
