@@ -19,5 +19,5 @@ PRODUCTION|Opening a PROD REST API access connected to a PROD customer account a
 
 Environnement | URL
 --------------|-------
-TEST | [https://rs.dev-e-attestations.com/api/v1/](https://rs.dev-e-attestations.com/api/v1/)
+TEST | [https://rs.test-e-attestations.com/api/v1/](https://rs.test-e-attestations.com/api/v1/)
 PRODUCTION | [https://rs.e-attestations.com/api/v1/](https://rs.e-attestations.com/api/v1/)

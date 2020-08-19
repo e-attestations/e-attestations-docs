@@ -18,7 +18,7 @@ You can create a dossier by using the POST http verb with `/account/{account}/do
 
 ```shell
 curl --request POST \
-  --url https://rs.dev-e-attestations.com/api/v1/account/119631/dossiers \
+  --url https://rs.test-e-attestations.com/api/v1/account/119631/dossiers \
   --header 'Authorization: Bearer {{token}}' \
   --header 'Content-Type: application/json' \
   --data '{

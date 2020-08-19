@@ -1,0 +1,464 @@
+<h1 id='api-rest-json-e-attestations-v1-1-0'>API REST/Json e-Attestations (v1.1.0)</h1>
+<p><sup><em>PUBLIC - e-Attestations - Oct. 2019</em><sup></p>
+
+<blockquote>
+<p>Bienvenue !</p>
+</blockquote>
+<pre class="highlight plaintext"><code>##-----------------------------------------------------------------------------------------------
+# e-Attestations.com Copyright (c) Since 2007
+# All right reserved/Tous droits réservés
+#                   _   _            _        _   _                                      
+#              /\  | | | |          | |      | | (_)                                     
+#   ___       /  \ | |_| |_ ___  ___| |_ __ _| |_ _  ___  _ __  ___   ___ ___  _ __ ___  
+#  / _ \  __ / /\ \| __| __/ _ \/ __| __/ _` | __| |/ _ \| '_ \/ __| / __/ _ \| '_ ` _ \ 
+# |  __//__ / ____ \ |_| ||  __/\__ \ || (_| | |_| | (_) | | | \__ \| (_| (_) | | | | | |
+#  \___/   /_/    \_\__|\__\___||___/\__\__,_|\__|_|\___/|_| |_|___(_)___\___/|_| |_| |_|
+##-----------------------------------------------------------------------------------------------
+</code></pre>
+<p>L&#39;API REST/Json e-Attestations est utilisée pour <strong>interfacer</strong> un système d&#39;information &#39;<strong>client</strong>&#39; à la plate-forme d&#39;e-Attestations suivant le protocole HTTP.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> (Representational State Transfer) ou RESTful est un style d&#39;architecture permettant de construire des applications (Web, Intranet, Web Service) en exploitant des points terminateurs (des endpoints urls) et référençant des ressources à exploiter suivant les verbes du protocole HTTP (GET, POST, PUT, DELETE etc...).</p>
+
+<p>Notre API contient des URL prévisibles orientées ressources, accepte les corps de requête codés au format <a href="https://en.wikipedia.org/wiki/JSON">JSON</a>, renvoie les réponses codées <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> et utilise les codes de réponse HTTP standard, l&#39;authentification et les verbes.</p>
+
+<p>Les applications &#39;clientes&#39; utilisant l&#39;API REST e-Attestations enrichisent le Système d&#39;Information du client avec le catalogue des données et services d&#39;e-Attestations de façon sécurisée et très souple.</p>
+
+<p>L&#39;API peut également être utilisée par les intégrateurs, éditeurs logiciels, des solutions SAAS ou des connecteurs.</p>
+<h2 id='versions'>Versions</h2>
+<p>L&#39;API REST/Json e-Attestations est actuellement en V1.1 et est proposée à l&#39;ensemble des partenaires et clients e-Attestations.</p>
+
+<p>L&#39;API REST/Json e-Attestations évolue régulièrment et des versions ultérieures seront mise en ligne sans interruption de service. </p>
+
+<p>Notre équipe technique apporte un soin tout particulier à ne pas propovoquer de regression ou de rupture.</p>
+
+<aside class="info">
+<a href='mailto:api@eattestationscom.zohodesk.eu?subject=EA WebService V3&body=Bonjour !'>Contactez e-Attestations à api@eattestationscom.zohodesk.eu</a> pour entrer en contact et obtenir toutes les informations et l'accompagnement dont vous avez besoin.
+</aside>
+<h2 id='objectifs-de-cette-documentation'>Objectifs de cette documentation</h2>
+<ul>
+<li>Donner des éléments de réponses sur la sécurité des environnements mis à disposition</li>
+<li>Expliciter la mise en place et le support de l&#39;API</li>
+<li>Présenter les sources documentaires en ligne</li>
+<li>Décrire chaque ressource et chaque endpoint, les modèles associés et les erreurs liées</li>
+<li>Proposer des snippets de codes pour faciliter l&#39;intégration de l&#39;API</li>
+</ul>
+<h2 id='collection-postman'>Collection Postman</h2>
+<blockquote>
+<p>Exemple d&#39;utilisation de newman</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code> npx newman run <span class="s2">"EA_API_REST.postman_collection.json"</span> <span class="se">\</span>
+ --global-var <span class="nv">username</span><span class="o">=</span><span class="s2">"&lt;user&gt;"</span> <span class="se">\</span>
+ --global-var <span class="nv">password</span><span class="o">=</span><span class="s2">"&lt;password&gt;"</span> <span class="se">\</span>
+ --global-var <span class="nv">server_url</span><span class="o">=</span><span class="s2">"https://rs.test-e-attestations.com"</span>
+</code></pre>
+<p>Pour aller encore plus vite et faciliter l&#39;intégration et l&#39;exploration de notre API nous fournissons <a href="eAttestations-API REST-Json-v1.1.postman_collection.json">une collection Postman</a> que vous pouvez importer dans postman et tester rapidement.</p>
+
+<p>Vous devrez définir quelques variables (user, password et server_url) pour exploiter cette suite de test.</p>
+
+<p>Vous pouvez aussi explorer chacun des scenarios pour foncionnellement comprendre l&#39;usage possible de l&#39;API.</p>
+
+<p>Vous pouvez télécharger Postman via <a href="https://www.getpostman.com/downloads/">ce lien</a> ou utiliser newman via <a href="https://github.com/postmanlabs/newman">ce lien</a>.</p>
+<h2 id='le-support-tech-39-desk-e-attestations'>Le support Tech&#39;Desk e-Attestations</h2>
+<p>Un système de ticketing et de support <strong>TECHNIQUE</strong> dédié au API et WebServices e-Attestations où poster questions et demandes de mise en place.</p>
+
+<p>Pour créer un ticket envoyez simplement un email à l&#39;adresse <a href="mailto:api@eattestationscom.zohodesk.eu?subject=Besoin%20d'aide%20pour%20EA%20WebService%20V3&amp;body=Bonjour%20!">api@eattestationscom.zohodesk.eu</a></p>
+
+<p>Cette plateforme sécurisée vous permet aussi de partager dans votre organisation les tickets de support.</p>
+
+<p><strong>Note</strong> : les users et mots de passe de connexion ne sont fournis que dans le Tech&#39;Desk.</p>
+<h2 id='environnements'>Environnements</h2>
+<p>L&#39;accès aux environnements est autorisé auprès d&#39;e-Attestations.com et l&#39;obtention d&#39;un couple user/mot de passe transmis de façon sécurisée grace au Tech&#39;Desk. Merci d&#39;adresser vos demandes de user et mot de passe via ce biais uniquement (aucune partage de mot de passe par email).</p>
+
+<p>e-Attestations met à disposition deux environnements :</p>
+
+<ul>
+<li><p><strong>TEST</strong> :
+Cet environnement vous permettra, de façon pleinement sécurisée, d&#39;accéder à une infrastructure spécifique mais très semblable à celle de production, avec une base de données propre et ANONYMISEE <strong>garantissant qu&#39;aucun email ne sera jamais expédié vers vos tiers</strong>.</p></li>
+<li><p><strong>PRODUCTION</strong> :
+L&#39;ouverture d&#39;un accès de PRODUCTION vous permettra d&#39;accéder à un compte client et un seul. C&#39;est dans ce cas la même base de données que celle des vos autres solutions e-Attestations.</p></li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Environnement</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TEST</td>
+<td><a href="https://rs.test-e-attestations.com/api/v1/">https://rs.test-e-attestations.com/api/v1/</a></td>
+</tr>
+<tr>
+<td>PRODUCTION</td>
+<td><a href="https://rs.e-attestations.com/api/v1/">https://rs.e-attestations.com/api/v1/</a></td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+Rappel : dans l'environnement de TEST les envois d'emails sont inhibés (pas d'invitation des tiers ou d'envoi de rapport) afin d'éviter que vos tests n'interfèrent pas avec votre activité de production.
+</aside>
+<h2 id='disponibilite-des-services-eattestations'>Disponibilité des services eAttestations</h2>
+<p>Une page de status et d&#39;information sur la disponibilité des services eAttestations est disponible ici :</p>
+
+<p><a href="https://status.e-attestations.com">https://status.e-attestations.com</a></p>
+
+<p>Nous vous invitons à souscrire aux mises à jour afin d&#39;être informés.</p>
+<h1 id='format-des-reponses'>Format des réponses</h1>
+<blockquote>
+<p>Format des réponses</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">content</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"companyIdType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"companyIdValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"thirdpartyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+  </span><span class="err">messages</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">warning</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="err">code</span><span class="p">:</span><span class="w"> </span><span class="s2">"W001"</span><span class="p">,</span><span class="w">
+        </span><span class="err">message</span><span class="p">:</span><span class="w"> </span><span class="s2">"La clé d'API expire dans 3 jours"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Les réponses sont au format JSON composées des attributs optionnels suivants:</p>
+
+<ul>
+<li><strong>content</strong>, contenant le résultat de l&#39;opération, en cas de succès</li>
+<li><strong>messages</strong> contenant <strong>d&#39;éventuels messages</strong> d&#39;information, d&#39;avertissement ou d&#39;erreur</li>
+<li><strong>page</strong>, le numéro de la page. <strong>Renvoyé en cas de contenu paginé.</strong></li>
+<li><strong>size</strong>, taille de la page. <strong>Renvoyé en cas de contenu paginé.</strong></li>
+<li><strong>totalElements</strong>, le nombre total d&#39;éléments. <strong>Renvoyé en cas de contenu paginé.</strong></li>
+</ul>
+
+<p>Pour plus de détails lisez la section <a href="#schemas">Schemas</a> et plus spécifiquement sur le format des <a href="#tocSmessages">Messages</a>.</p>
+
+<blockquote>
+<p>Message d&#39;erreur protocolaire</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-05T09:06:15.245+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">404</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Found"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No message available"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/v1/account/1234567/876543"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Nous avons développé un contrat d&#39;interface (présenté ci dessus) qui se veut le plus pratique pour le développeur.
+Un format &#39;standard&#39; de <strong>message d&#39;erreur protocolaire</strong> est aussi renvoyé dans le cas :</p>
+
+<ul>
+<li>d&#39;une limite re requête qui aurait été atteinte (HTTP 429)</li>
+<li>d&#39;une erreur serveur (HTTP 50X)</li>
+<li>d&#39;une erreur dans la requête (HTTP 40x)</li>
+</ul>
+<h2 id='encoding'>Encoding</h2>
+<p>L&#39;API REST doit être utilisée et consommée en UTF8.</p>
+<h1 id='securite'>Sécurité</h1><h2 id='openid-connect-oidc'>OpenID Connect (OIDC)</h2>
+<p>L&#39;API REST e-Attestations utilise <strong><a href="https://openid.net/connect/">OpenID Connect (OIDC)</a></strong> pour identifier et authentifier les clients. Toute requête vers l&#39;API doit obligatoirement inclure un Token <a href="https://jwt.io/"> (Json Web Token)</a> valide.</p>
+
+<p>Ce dernier doit être envoyé dans le header &#39;Authorization&#39; (cf. l&#39;exemple qui suit).</p>
+
+<p>Si l&#39;header n&#39;est pas renseigner la requête sera considérée comme non authentifiée (HTTP code 401).</p>
+
+<p>Plus d&#39;informations sur OpenID Connect et JWT sur :</p>
+
+<ul>
+<li><a href="https://openid.net/connect/">https://openid.net/connect/</a></li>
+<li><a href="https://jwt.io/">https://jwt.io/</a></li>
+</ul>
+
+<p>Les échanges sont sécurisés par un chiffrement SSL/TLS. Le certificat public &#39;e-attestations.com&#39; supporte les protocoles TLS depuis le 1.0, 1.1 jusqu&#39;au 1.2 pour s&#39;adpater à la diversité de configuration de nos clients.</p>
+
+<aside class="warning">
+e-Attestations considère comme sûr le protocole TLS 1.2 uniquement.
+</aside>
+<h2 id='obtenir-un-json-web-token'>Obtenir un JSON Web Token</h2>
+<blockquote>
+<p>Obtenir un JWT</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  https://auth.test-e-attestations.com/auth/realms/eat_realm/protocol/openid-connect/token <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+  -H <span class="s1">'cache-control: no-cache'</span> <span class="se">\</span>
+  -d <span class="s1">'client_id=ea-api-edge'</span> <span class="se">\</span>
+  -d <span class="s1">'username=&lt;username&gt;'</span> <span class="se">\</span>
+  -d <span class="s1">'password=&lt;password&gt;'</span> <span class="se">\</span>
+  -d <span class="s1">'grant_type=password'</span>
+</code></pre>
+<p>L&#39;obtention d&#39;un token JWT repose sur l&#39;envoi d&#39;un requête de type POST avec transmission des user, mot de passe et quelques paramètres complémentaires au serveur d&#39;authentification.</p>
+
+<p>Vous devez transmettre une requete au format <code>application/x-www-form-urlencoded</code> et portant les paramètres suivants, tous obligatoires :</p>
+
+<ul>
+<li><strong>client_id</strong> : <code>ea-api-edge</code>, le nom de l&#39;API.</li>
+<li><strong>grant_type</strong> : <code>password</code>, le mode d&#39;authentification.</li>
+<li><strong>username</strong> : nom de votre utilisateur API</li>
+<li><strong>password</strong> : mot de passe de votre utilisateur d&#39;API</li>
+</ul>
+
+<p>Le serveur d&#39;authentification renverra un mot JSON dans lequel il faut préserver <code>access_token</code>.</p>
+
+<p>Ce token est temporaire et vous devrez en obtenir un nouveau dès qu&#39;il sera périmé.</p>
+
+<p>Vous pouvez aussi demander un token avant chaque requete, mais ce n&#39;est pas forcément utile ou performant.</p>
+
+<div class="mermaid">
+sequenceDiagram
+    participant Client
+    participant API_Server
+    participant Authorizer
+    Client->Authorizer: Get/Renew Token
+    loop get/renew token
+        Authorizer->Authorizer: Verify credentials (renew JWT)
+    end
+    Authorizer-->Client: Retrieve JWT
+    Client->API_Server: Request + Authorization Bearer
+    Note right of API_Server: Check JWT </br> and subscription
+    API_Server-->Client: Response
+</div>
+
+<blockquote>
+<p>Réponse</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"access_token"</span><span class="p">:</span><span class="s2">"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0V19kYjFzUmpISTc3SGc0SkRWclVLQXpaQlBnZjlpY2ZDcU5vQUxOZWhNIn0.eyJqdGkiOiI0ZGExNjE1NC04ZjQyLTQyNzQtOTM4Ny0wOGJiODk4MmE3MTMiLCJleHAiOjE1NTQyOTgyNTgsIm5iZiI6MCwiaWF0IjoxNTU0Mjk2NDU4LCJpc3MiOiJodHRwczovL2F1dGguZGV2LWUtYXR0ZXN0YXRpb25zLmNvbS9hdXRoL3JlYWxtcy9lYXRfcmVhbG0iLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYzg0OGFiYmItYTIyOC00MmMxLWFkNzAtYjJiMDEwYzhlODUxIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiZWEtYXBpLWVkZ2UiLCJhdXRoX3RpbWUiOjAsInNlc3Npb25fc3RhdGUiOiI5YmEzYWFmNC0zYjU0LTQ5ZTctOTJiMC0xOTkwMGQxNWE5ZWIiLCJhY3IiOqsdqsdsdqsdqsdsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiQURNSU4iLCJVU0VSIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwiYWNjb3VudF9pZHMiOiIxMTg0NjYiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IlZpbmNlbnQgREFHT1VSWSIsInByZWZlcnJlZF91c2VybmFtZSI6InYuZGFnb3VyeUBlLWF0dGVzdGF0aW9ucy5jb20iLCJnaXZlbl9uYW1lIjoiVmluY2VudCIsImZhbWlseV9uYW1lIjoiREFHT1VSWSIsImVtYWlsIjoidi5kYWdvdXJ5QGUtYXR0ZXN0YXRpb25zLmNvbSJ9.c-smWPif1YT9dKicAAJSsNwI-xCtZWV-r6QqYFSvkgHhPsgHc0gDLenMfQBgYPN_0jKW7FBJmse7fgAB4dnrqCOGM33cQ2wfYi37aXlDqz8l_aFamkEslGnKxw9QDOYSMQz52dD34yXQZGl0OxXE01PAquqKUEtnVG0Rz2SAB0qU5tAqsdqsdsd-rKpCYwKb_6-WwH2xN1B9lgLahZexprPvH25OXUcPJ0GSXCASpnSMxR3ziiv9AtX3R48rT4T_LTLlrKblT_cdZS-Z_uGgzP0pxT9yfqxSYn05haRLTL_grBDdt31ZIDnxiMFEg2UdDB1wzlJBOuOEmw"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refresh_expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refresh_token"</span><span class="p">:</span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiYTcxZWMyOC0wOTVkLTRkOWQtOWQwYi1jYjAyMTJmNjczYjcifQ.eyJqdGkiOiI2YmQ2ZThkYS1kOWNjLTRhNzgtODg1NS1iMzMwZWU0NDg1NjEiLCJleHAiOjE1NTQyOTgyNTgsIm5iZiI6MCwiaWF0IjoxNTU0Mjk2NDUqsdqsdqsdqsdOiJodHRwczovL2F1dGguZGV2LWUtYXR0ZXN0YXRpb25zLmNvbS9hdXRoL3JlYWxtcy9lYXRfcmVhbG0iLCJhdWQiOiJodHRwczovL2F1dGguZGV2LWUtYXR0ZXN0YXRpb25zLmNvbS9hdXRoL3JlYWxtcy9lYXRfcmVhbG0iLCJzdWIiOiJjODQ4YWJiYi1hMjI4LTQyYzEtYWQ3MC1iMmIwMTBjOGU4NTEiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoiZWEtYXBpLWVkZ2UiLCJhdXRoX3RpbWUiOjAsInNlc3Npb25fc3RhdGUiOiI5YmqsdqsdsqsdQ5ZTctOTJiMC0xOTkwMGQxNWE5ZWIiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsIkFETUlOIiwiVVNFUiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCJ9.fpVVA-G-Fj9MDOB5ZneAGVRhkLk26hgCeZ4dqh3rEHs"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"not-before-policy"</span><span class="p">:</span><span class="w"> </span><span class="mi">1550670103</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"session_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ba3aaf4-3b54-49e7-92b0-19900d15a9eb"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profile email"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='urls-d-39-authentification'>URLs d&#39;authentification</h3>
+<p>Pour chaque environnement, une URL spécifique vous permet de récupérer le JWT :</p>
+
+<ul>
+<li>Non PRODUCTION : <code>https://auth.test-e-attestations.com/auth/realms/eat_realm/protocol/openid-connect/token</code></li>
+<li>PRODUCTION : <code>https://auth.e-attestations.com/auth/realms/eat_realm/protocol/openid-connect/token</code></li>
+</ul>
+<h3 id='utilisation-du-json-web-token'>Utilisation du JSON Web Token</h3>
+<aside class="warning">
+La durée de validité du token est de quelques minutes. Vous devez vous assurer de la durée de validité de votre TOKEN grace à **"expires_in"** qui vous indique en nombre de secondes avant qu'il n'expire au moment de son obtention (par exemple 1800 secondes correspondant à 30').
+</aside>
+
+<p>La propriété <strong>&quot;access_token&quot;</strong> du Json Web TOKEN (JWT) est à utiliser dans tous les requetes. </p>
+
+<p>Elle doit être placée dans un header <code>&#39;Authorize: Bearer {access_token}&#39;</code>.</p>
+
+<div class="center-column"></div>
+<pre class="highlight plaintext"><code>Authorization: Bearer TOKEN
+</code></pre>
+<blockquote>
+<p>Utilisation du JWT</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  https://api.e-attestations.com/v4/account/97862/dossiers <span class="se">\</span>
+    -H <span class="s2">"Authorization: Bearer &lt;JWT_TOKEN&gt;"</span>
+</code></pre>
+<aside class="info">
+Rappel : vos identifiants sont délivrés à votre demande **UNIQUEMENT** via un ticket envoyé au <a href="#le-support-tech-39-desk-e-Attestations">Tech'Desk</a> et après activation de votre souscription par votre gestionnaire de comptes.
+</aside>
+<h1 id='ressources'>Ressources</h1><h2 id='compte-quot-account-quot'>Compte (&quot;account&quot;)</h2>
+<blockquote>
+<p>Exemple de contenu &quot;account_ids&quot; du token JWT</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"....."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"account_ids"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98545"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Exemple de contenu de &#39;/account&#39;</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">34345345</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"creation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-13T14:45:07.701"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CPTDO4F2789F06D8EDF146"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ENTREPRISE FICIVE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ENTREPRISE FICTIVE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"maxDossiers"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subscriptionDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-01T16:41:56.151235"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subscriptionStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Le compte e-Attestations donneur d&#39;ordres et souscripteur au service.</p>
+
+<p>Chaque compte dispose d&#39;un identifiant de <strong>compte unique</strong> avec un identifiant.</p>
+
+<p>Par construction, toutes les requêtes doivent obligatoirement inclure l&#39;identifiant du client dans l&#39;URL d&#39;appel à l&#39;exception du point terminateur <strong>/account</strong> pour obtenir les informations sur votre identifiant du compte.</p>
+
+<p>Les urls sont ainsi toutes prefixées par <strong>/account/{account_id}/</strong>**</p>
+
+<aside class="info">
+Vous pouvez mémoriser dans votre jeux de configuration votre identifiant de compte ou choisir de le récupérer dynamiquement. Cette dernière solution étant la plus souple.
+</aside>
+
+<p>L&#39;identifiant de compte (de type string) est renvoyé dans le <strong>payload</strong> du token JWT, comme illustré ci-dessous:</p>
+
+<p>De façon complémentaire vous pouvez récupérer votre identifiant de compte via l&#39;url <strong>/account</strong> (sans aucun paramètre). </p>
+
+<p>Les données du TOKEN seront utilisées pour restituer et vérifier votre compte et la souscription au service.</p>
+
+<p>Des informations complémentaires sur votre souscription au service sont aussi restituées.</p>
+<h2 id='tiers-quot-thirdparties-quot'>Tiers (&quot;thirdparties&quot;)</h2>
+<p>Le tiers, le fournisseur, le sous-traitant, etc... est en relation avec le compte donneur d&#39;ordres et fait l&#39;objet de l&#39;évaluation continue au titre de sa conformité, suivant la souscription et/ou les option du compte e-Attestations.</p>
+
+<p>Dans le cadre de cette relation, le compte e-Attestations utilisateur de l&#39;API REST/JSON est aussi appelé compte &quot;donneur d&#39;ordres&quot;.</p>
+<h2 id='dossiers-quot-dossiers-quot'>Dossiers (&quot;dossiers&quot;)</h2>
+<p>Le dossier est une materialisation de la relation donneur d&#39;ordres / tiers. Un dossier comporte des demandes (exigences de conformité) formulées par le donneur d&#39;ordres auxquelles correspondent des réponses le plus souvent automatiquement apportée par le plateforme e-Attestations ou par le tiers (fichiers, signatures, autres données ...).</p>
+
+<p>La référence d&#39;un dossier est une donnée renseignée par le donneur d&#39;ordres lors de la création d&#39;un dossier ou la modification d&#39;un dossier. La référence d&#39;un dossier doit être unique pour un couple tiers/donneur d&#39;ordres. Autrement dit, un tiers ne peut avoir plus d&#39;un dossier portant la même référence par donneur d&#39;ordres.</p>
+
+<p>Cette référence de dossier peut être modifiée à n&#39;importe quel moment sauf s&#39;il a été archivé.</p>
+<h2 id='exigences-quot-requirements-quot'>Exigences (&quot;requirements&quot;)</h2>
+<p>L&#39;exigence est un ensemble de demandes relevant généralement de la captation d&#39;une preuve pour domaine spécifique (légale, compliance &#39;métier&#39;, iban, qualifications professionnelles, etc...).</p>
+
+<p>La preuve est apportée automatiquement par e-Attestations dans la plus part des cas.</p>
+
+<p>Dans le cas où elle n&#39;est pas déjà présente et valide (durée de validité de la preuve), le tier sera alors mis à contribution pour qu&#39;il apporte la preuve demandée au titre de l&#39;exigence via une application gratuite.</p>
+
+<p>Cette réponse peut être :</p>
+
+<ul>
+<li>une donnée spécifique</li>
+<li>un ou plusieurs documents et leur(s) fichier(s) lié(s)</li>
+<li>une signature </li>
+<li>ou tout autre élément demandé constituant un preuve de conformité dans le cadre du suivi.</li>
+</ul>
+
+<aside class="warning">
+L'exigence doit répondre réfléchie en prenant en compte le besoin, la nature de votre tiers, du marché, etc...
+<strong></br>Votre gestionnaire de compte e-Attestations est là pour vous conseiller.</strong>
+</aside>
+<h2 id='documents-quot-documents-quot'>Documents (&quot;documents&quot;)</h2>
+<p>Les documents sont les éléments constituant <strong><em>une preuve</em></strong> répondant à la demande d&#39;exigence de conformité.
+Le document est suivant un &#39;type de document&#39; pour lequel une réponse est apportée par e-Attestations ou le tiers lui même.</p>
+
+<p>Un document peut être une signature, une donnée, un ou plusieurs fichiers, un ensemble de données issues d&#39;un formulaire à remplir par le déclarant.</p>
+
+<p>Un document a une validité et donc une péremption que la plateforme e-Attestations surveille en continu.</p>
+<h2 id='fichiers-quot-files-quot'>Fichiers (&quot;files&quot;)</h2>
+<p>Les fichiers attachés aux documents d&#39;exigence de conformité sont majoritairement des PDF.</p>
+<h1 id='comment-creer-un-dossier-de-suivi'>Comment créer un dossier de suivi ?</h1>
+<blockquote>
+<p>Création d&#39;un dossier</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl --request POST \
+  --url https://rs.test-e-attestations.com/api/v1/account/119631/dossiers \
+  --header 'Authorization: Bearer {{token}}' \
+  --header 'Content-Type: application/json' \
+  --data '{\n  "companyIdType": "CIT001",\n  "companyIdValue": "50382936800045",\n  "thirdpartyCode": "",\n  "dossierReference": "DOSSIER_REST_9",\n  "description": "Dossier #5 de test importé depuis l'\''API REST",\n  "purchasingCategory": "",\n  "expirationDate": "2020-05-31",\n  "requiredDocuments": [ "JUSTIF_IMM" ],\n  "thirdpartyEmail": ["v.dagoury@e-attestations.com"],\n  "userInCharge": [\n    "v.dagoury@e-attestations.com"\n  ]\n}'
+</code></pre>
+<p>La création de dossier de suivi de la conformité des tiers est au coeur du processus de recrutement d&#39;un tiers pour lequel vous souhaitez suivre la conformité et la principale étape permettant de démarrer le processus de suivi.</p>
+
+<aside class="warning">
+La conformité à exiger dépend de votre besoin de la nature de votre tiers, du marché, de paramètres exogènes... 
+<strong></br>Votre gestionnaire de compte e-Attestations est là pour vous conseiller.</strong>
+</aside>
+
+<p>Elle est aussi la phase de recrutement de votre tiers qui sera alors informé par email qu&#39;un dossier de suivi est encours. </p>
+
+<p>Un workflow continu démarre alors pour le tiers qui devra alors déposer les preuves exigées par votre dossier.</p>
+
+<p>Lors de la création d&#39;un dossier le workflow déclenché est asynchrone et se décrit ainsi :</p>
+
+<ul>
+<li>la récupération automatique des données du tiers (y compris s&#39;il n&#39;est pas déjà dans la base e-Attestations)</li>
+<li>son invitation grâce à l&#39;email de contact</li>
+<li><strong>éventuellement</strong> l&#39;envoi d&#39;emails de demande pour les documents ou preuves demandés et non déjà présents</li>
+<li>la production d&#39;un indicateur de complétude (&#39;I001&#39;) représentant la bonne santé du suivi au regard de l&#39;exigence du dossier de suivi</li>
+</ul>
+
+<p>Mais aussi :</p>
+
+<ul>
+<li>des rappels réguliers par email envoyés aux tiers </li>
+<li>la mise à jour des données régulièrement ou sur événement</li>
+<li>la production d&#39;indicateurs complexes</li>
+</ul>
+
+<aside class="info">
+Bien d'autre services additionnels peuvent vous être proposés en dehors de l'API.
+</aside>
+
+<p>Le endpoint <strong>POST /account/{accountId}/dossiers</strong> permet de créer un dossier pour un tiers (thirdparty).</p>
+
+<p><strong>Vous trouverez toutes les informations complémentaire sur ce endpoint dans la section <a href="#importer-un-dossier">Importer un dossier</a>.</strong></p>
+
+<p>Le traitement pouvant durer plusieurs minutes la réponse est <strong>asynchrone</strong>, comme illustré dans le schéma ci-dessous.</p>
+
+<p>Lors de la création un identifiant de suivi du traitement de l&#39;import (processId) est renvoyé. 
+Il vous faudra l&#39;utiliser pour connaître le résultat de l&#39;import de façon asynchrone.</p>
+
+<p>Le endpoint <strong>GET /account/{accountId}/dossier/process/{processId}</strong> permet de suivre le résultat de l&#39;import grâce à l&#39;identifiant du process d&#39;import renvoyé lors de l&#39;appel &quot;Création d&#39;un dossier&quot; (POST /account/{accountId}/dossiers).</p>
+
+<p class="mermaid">
+graph TB
+    A((Start))
+    A --> B(POST to 'dossier' returns processId)
+    B --processId--> C(Call Get import result endpoint for processId)
+    C --> D{Status}
+    D --complete=true AND success=true--> E
+    D --complete=true AND success=false--> R
+    D --complete=false--> C
+    E((End))
+    R(Error Handling)
+</p>
+
+<blockquote>
+<p>Il est important de bien vérifier les paramètres d&#39;appel et de bien prendre en compte les codes d&#39;erreurs et leur signification.</p>
+</blockquote>
+<h1 id='autres-definitions'>Autres définitions</h1><h2 id='codes-de-type-d-39-identifiant-de-compagnie'>Codes de type d&#39;identifiant de compagnie</h2>
+<p>Lors de l&#39;import ou de la recherche, une entreprise/un établissement et plus généralement une personne morale est indentifiée dans e-Attestations à l&#39;aide d&#39;un code qui peut être de 2 types :</p>
+
+<ul>
+<li>un identifiant national SIRET ou SIREN pour la France</li>
+<li>ou d&#39;un numéro intracommunautaire, l&#39;identifiant TVA, pour les personnes morales de l&#39;EU</li>
+</ul>
+
+<p>L&#39;API e-Attestations propose deux codes pour ces types d&#39;identifiants :</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CIT001</td>
+<td>SIRET : l&#39;identifiant utilisé en France pour qualifier les établissements, sous forme d&#39;un nombre de 14 chiffres vérifiant l&#39;algorithme de Luhn <a href="https://fr.wikipedia.org/wiki/Formule_de_Luhn">Wikipedia</a></td>
+</tr>
+<tr>
+<td>CIT002</td>
+<td>Numéro TVA : identifiant utilisé par l&#39;Union Européenne pour les entreprises soumises à l&#39;impôt sur les sociétés. Plus d&#39;informations sur <a href="https://en.wikipedia.org/wiki/VAT_identification_number">Wikipedia</a></td>
+</tr>
+</tbody></table>
+
+<p>Des types d&#39;identifiants nouveaux pourront être implémenté au fil des évolutions de l&#39;API.</p>
+
+<p>Les recherches de tiers ne sont pas limitées à ces codes de types d&#39;identifiant.</p>
+<h2 id='indicateur-de-completude'>Indicateur de complétude</h2>
+<p>L&#39;indicateur de complétude e-Attestations permet de renseigner de façon simple que le tiers a répondu entièrement aux exigences (&#39;requirements&#39;) au titre de la conformité exigée pour le dossier concerné.</p>
+
+<p>Exemple : un dossier de surveillance d&#39;un tiers est jugé complet pour l&#39;indicateur &quot;obligation de vigilance&quot;, si tous les documents relatifs à l&#39;obligation de vigilance sont présents et validés.</p>
+
+<table><thead>
+<tr>
+<th>Code indicateur</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>I001</td>
+<td>Obligation de vigilance</td>
+</tr>
+</tbody></table>

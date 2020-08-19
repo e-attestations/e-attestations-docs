@@ -21,8 +21,10 @@ module.exports = {
         src: 'img/cropped-logo-eattestations-2.png',
       },
       links: [
-        {href: '/openapi/swagger.html', label: 'Swagger', position: 'left'},
+        {href: '/openapi/swagger.html', label: 'API EDGE (REST)', position: 'left'},
         {href: '/openapi/redoc.html', label: 'Redoc', position: 'left'},
+        {href: '/EAttestationsRESTAPIv1.1/index.html', label: 'API REST 1.1 (fr)', position: 'left'},
+        {href: '/EAttestationsWSAPI/index.html', label: 'API WS (fr)', position: 'left'},
         {to: 'docs/b-1-get-started', label: 'QuickStart', position: 'right'},
         {to: 'docs/a-1-introduction', label: 'Docs', position: 'right'},
         {
