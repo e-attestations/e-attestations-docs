@@ -1,0 +1,92 @@
+<h1 id='codes'>Codes</h1>
+<p>Les erreurs sont renvoyées dans le corps de la réponse, dans l&#39;attribut messages.</p>
+
+<p>Les codes d&#39;erreurs ont une nomenclature qu&#39;il faut prendre en compte pour les interpréter.</p>
+
+<table><thead>
+<tr>
+<th>Codes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>E001</td>
+<td>Paramètre manquant</td>
+</tr>
+<tr>
+<td>E002</td>
+<td>Paramètre inconnu</td>
+</tr>
+<tr>
+<td>E003</td>
+<td>Paramètre vide</td>
+</tr>
+<tr>
+<td>E010</td>
+<td>Format incorrect</td>
+</tr>
+<tr>
+<td>E011</td>
+<td>Taille maximale dépassée</td>
+</tr>
+<tr>
+<td>E021</td>
+<td>Date d&#39;expiration dans le passé</td>
+</tr>
+<tr>
+<td>E022</td>
+<td>Date dans le futur</td>
+</tr>
+<tr>
+<td>E030</td>
+<td>Domaine de l’e-mail invalide</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>E101</td>
+<td>Erreur lors de la qualification de l&#39;établissement</td>
+</tr>
+<tr>
+<td>E102</td>
+<td>L&#39;établissement n&#39;existe pas.</td>
+</tr>
+<tr>
+<td>E103</td>
+<td>L&#39;établissement est fermé.</td>
+</tr>
+<tr>
+<td>E112</td>
+<td>Le code fournisseur (thirdpartyCode) déjà utilisé pour un autre fournisseur.</td>
+</tr>
+<tr>
+<td>E113</td>
+<td>Compte donneur d&#39;ordres non actif</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>E201</td>
+<td>Le dossier est désactivé</td>
+</tr>
+<tr>
+<td>E202</td>
+<td>La référence du dossier existe déjà pour ce couple donneur d&#39;ordres / Fournisseur</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>E301</td>
+<td>Le document (requirement) est désactivé</td>
+</tr>
+<tr>
+<td>E302</td>
+<td>Le document (requirement) n&#39;est pas autorisé</td>
+</tr>
+</tbody></table>
