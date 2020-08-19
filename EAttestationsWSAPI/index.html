@@ -1,0 +1,3171 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>EA WebServices SOAP v3</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+    
+  </head>
+
+  <body class="index" data-languages="[&quot;xml&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="xml">xml</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#api-webservices-soap-v3-x-e-attestations" class="toc-h1 toc-link" data-title="API WebServices SOAP v3.x - e-Attestations">API WebServices SOAP v3.x - e-Attestations</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#presentation" class="toc-h2 toc-link" data-title="Présentation">Présentation</a>
+                  </li>
+                  <li>
+                    <a href="#objectifs-de-cette-documentation" class="toc-h2 toc-link" data-title="Objectifs de cette documentation">Objectifs de cette documentation</a>
+                  </li>
+                  <li>
+                    <a href="#standards" class="toc-h2 toc-link" data-title="Standards">Standards</a>
+                  </li>
+                  <li>
+                    <a href="#mise-en-place" class="toc-h2 toc-link" data-title="Mise en place">Mise en place</a>
+                  </li>
+                  <li>
+                    <a href="#le-support-tech-39-desk-e-attestations" class="toc-h2 toc-link" data-title="Le support Tech'Desk e-Attestations">Le support Tech'Desk e-Attestations</a>
+                  </li>
+                  <li>
+                    <a href="#collection-postman" class="toc-h2 toc-link" data-title="Collection Postman">Collection Postman</a>
+                  </li>
+                  <li>
+                    <a href="#environnements" class="toc-h2 toc-link" data-title="Environnements">Environnements</a>
+                  </li>
+                  <li>
+                    <a href="#securite" class="toc-h2 toc-link" data-title="Sécurité">Sécurité</a>
+                  </li>
+                  <li>
+                    <a href="#securite-renforcee-par-trust-ip" class="toc-h2 toc-link" data-title="Sécurité renforcée par Trust IP">Sécurité renforcée par Trust IP</a>
+                  </li>
+                  <li>
+                    <a href="#authentification" class="toc-h2 toc-link" data-title="Authentification">Authentification</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#methodes-web-services-v3" class="toc-h1 toc-link" data-title="Méthodes Web Services v3">Méthodes Web Services v3</a>
+          </li>
+          <li>
+            <a href="#format-standard-des-reponses" class="toc-h1 toc-link" data-title="Format standard des réponses">Format standard des réponses</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#format-de-result" class="toc-h2 toc-link" data-title="Format de Result">Format de Result</a>
+                  </li>
+                  <li>
+                    <a href="#format-de-error" class="toc-h2 toc-link" data-title="Format de Error">Format de Error</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#description-des-methodes" class="toc-h1 toc-link" data-title="Description des méthodes">Description des méthodes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#importdossier" class="toc-h2 toc-link" data-title="importDossier">importDossier</a>
+                  </li>
+                  <li>
+                    <a href="#getimportdossierresult" class="toc-h2 toc-link" data-title="getImportDossierResult">getImportDossierResult</a>
+                  </li>
+                  <li>
+                    <a href="#getsupplieridentifierlist" class="toc-h2 toc-link" data-title="getSupplierIdentifierList">getSupplierIdentifierList</a>
+                  </li>
+                  <li>
+                    <a href="#getdossier" class="toc-h2 toc-link" data-title="getDossier">getDossier</a>
+                  </li>
+                  <li>
+                    <a href="#getsupplieraccountinformation" class="toc-h2 toc-link" data-title="getSupplierAccountInformation">getSupplierAccountInformation</a>
+                  </li>
+                  <li>
+                    <a href="#getglobalinformation" class="toc-h2 toc-link" data-title="getGlobalInformation">getGlobalInformation</a>
+                  </li>
+                  <li>
+                    <a href="#getavailabledocuments" class="toc-h2 toc-link" data-title="getAvailableDocuments">getAvailableDocuments</a>
+                  </li>
+                  <li>
+                    <a href="#updatedossier" class="toc-h2 toc-link" data-title="updateDossier">updateDossier</a>
+                  </li>
+                  <li>
+                    <a href="#stopdossier" class="toc-h2 toc-link" data-title="stopDossier">stopDossier</a>
+                  </li>
+                  <li>
+                    <a href="#updaterequireddocuments" class="toc-h2 toc-link" data-title="updateRequiredDocuments">updateRequiredDocuments</a>
+                  </li>
+                  <li>
+                    <a href="#reactivatedossier" class="toc-h2 toc-link" data-title="reactivateDossier">reactivateDossier</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#nomenclature" class="toc-h1 toc-link" data-title="Nomenclature">Nomenclature</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#codes-d-39-identification-d-39-une-entreprise" class="toc-h2 toc-link" data-title="Codes d'identification d'une entreprise">Codes d'identification d'une entreprise</a>
+                  </li>
+                  <li>
+                    <a href="#codes-d-39-indicateur" class="toc-h2 toc-link" data-title="Codes d'indicateur">Codes d'indicateur</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#codes-d-39-erreur-et-signification" class="toc-h1 toc-link" data-title="Codes d'erreur et signification">Codes d'erreur et signification</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#structure" class="toc-h2 toc-link" data-title="Structure">Structure</a>
+                  </li>
+                  <li>
+                    <a href="#http-error-codes" class="toc-h2 toc-link" data-title="HTTP Error Codes">HTTP Error Codes</a>
+                  </li>
+                  <li>
+                    <a href="#codes-d-39-erreurs-communs" class="toc-h2 toc-link" data-title="Codes d'erreurs communs">Codes d'erreurs communs</a>
+                  </li>
+                  <li>
+                    <a href="#codes-d-39-erreurs-par-entite-interrogee" class="toc-h2 toc-link" data-title="Codes d'erreurs par entité interrogée">Codes d'erreurs par entité interrogée</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://e-attestations.io'>eAttestations.io</a></li>
+            <li><a href='mailto:api@eattestationscom.zohodesk.eu?subject=EA WebService V3&body=Bonjour !'>Ecrivez à api@eattestationscom.zohodesk.eu</a></li>
+            <li><a href='https://www.e-attestations.com'>Visitez e-Attestations.com</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='api-webservices-soap-v3-x-e-attestations'>API WebServices SOAP v3.x - e-Attestations</h1><h2 id='presentation'>Présentation</h2>
+<p>L&#39;API WebServices SOAP v3 est utilisée pour <strong>interfacer</strong> un système d&#39;information &#39;<strong>client</strong>&#39; à la plate-forme d&#39;e-Attestations suivant le protocole SOAP.</p>
+
+<p>Cette API WebServices présente un ensemble de méthodes permettant d&#39;administrer (importer, suivre, archiver, etc...) les dossiers de suivi de conformité des tiers du compte client et de restituer des informations. La majorité des opérations sont synchrônes.</p>
+<h3 id='vous-cherchez-une-api-rest'>Vous cherchez une API REST ?</h3>
+<p>Découvrez toutes nos APIs, nos outils et autre ressource sur <a href="https://e-attestations.io">https://e-attestations.io</a>.</p>
+<h2 id='objectifs-de-cette-documentation'>Objectifs de cette documentation</h2>
+<ul>
+<li>Documenter les Web Services SOAP v3 proposés par e-Attestations.com</li>
+<li>Donner des éléments de réponses sur la sécurité des environnements mis à dispotision</li>
+<li>Expliciter le support</li>
+<li>Décrire chaque méthode, les modèles associés et les erreurs liées</li>
+<li>Proposer des snippets de codes pour faciliter le développement</li>
+</ul>
+<h2 id='standards'>Standards</h2>
+<p>Les WebServices e-Attestations reposent sur le standards SOAP 1.1.</p>
+
+<table><thead>
+<tr>
+<th>Norme</th>
+<th>Source</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Simple Objet Access Protocol (SOAP) 1.1</td>
+<td>http://www.w3.org/TR/2000/NOTE-SOAP-20000508/</td>
+</tr>
+<tr>
+<td>Web Service Description Language (WSDL) 1.1</td>
+<td>http://www.w3.org/TR/2001/NOTE-wsdl-20010315</td>
+</tr>
+<tr>
+<td>WS-I Basic Profile 1.1</td>
+<td>http://www.ws-i.org/Profiles/BasicProfile-1.1.html</td>
+</tr>
+</tbody></table>
+
+<p>Les WebServices implémentent WS-Security permettant l&#39;identification de l&#39;agent émetteur de l&#39;appel dans le système. Pour plus d&#39;informations, voir <a href="#Mode-didentification">Mode d&#39;identification</a>.</p>
+<h3 id='namespaces-soap'>Namespaces SOAP</h3>
+<table><thead>
+<tr>
+<th>Prefix</th>
+<th>Namespace</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>S11</td>
+<td>http://schemas.xmlsoap.org/soap/envelope/</td>
+</tr>
+<tr>
+<td>wsse</td>
+<td>http://docs.oasis-open.org/wss/2004/01/oasis-200401-wsswssecurity-secext-1.0.xsd</td>
+</tr>
+<tr>
+<td>wsu</td>
+<td>http://docs.oasis-open.org/wss/2004/01/oasis-200401-wsswssecurity-utility-1.0.xsd</td>
+</tr>
+</tbody></table>
+<h2 id='mise-en-place'>Mise en place</h2>
+<p>Pour souscrire à l&#39;un ou l&#39;autre des environnements vous devez tout d&#39;abord en <strong>émettre la demande auprès de votre gestionnaire</strong> de compte e-Attestations.com habituel.</p>
+
+<p>Nous vous conseillons de bien discuter de la configuration de votre compte en terme de document de compliance bien en amont et notamment pour votre gestionnaire de compte puisse parfaitement comprendre votre cas d&#39;usage et vous conseiller au mieux.</p>
+
+<p><strong>Attention</strong> : L&#39;usage des WebServices n&#39;est pas multicomptes.</p>
+
+<p>Votre gestionnaire de compte informera l&#39;équipe technique pour la création d&#39;une organisation liée à votre compte et un ou plusieurs contacts techniques (emails) seront alors invités au <strong>Tech&#39;Desk e-Attestations.com</strong>.</p>
+<h2 id='le-support-tech-39-desk-e-attestations'>Le support Tech&#39;Desk e-Attestations</h2>
+<p>Ce système de ticketing et de support <strong>TECHNIQUE</strong> dédié au API et WebServices e-Attestations où poster questions et demandes.</p>
+
+<p>Pour créer un ticket envoyez simplement un email à l&#39;adresse <a href="mailto:api@eattestationscom.zohodesk.eu?subject=Besoin%20d'aide%20pour%20EA%20WebService%20V3&amp;body=Bonjour%20!">api@eattestationscom.zohodesk.eu</a></p>
+
+<p>Cette plateforme sécurisée vous permet aussi de partager dans votre organisation les tickets de support.</p>
+
+<p><strong>Note</strong> : les users et mots de passe de connexion ne sont fournis que dans le Tech&#39;Desk.</p>
+<h2 id='collection-postman'>Collection Postman</h2>
+<blockquote>
+<p>Exemple d&#39;utilisation de newman</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code> npx newman run <span class="s2">"EA_WebServices_v3.postman_collection.json"</span> <span class="se">\</span>
+ --global-var <span class="nv">wsuser</span><span class="o">=</span><span class="s2">"&lt;user&gt;"</span> <span class="se">\</span>
+ --global-var <span class="nv">wspassword</span><span class="o">=</span><span class="s2">"&lt;password&gt;"</span> <span class="se">\</span>
+ --global-var <span class="nv">ws_siret</span><span class="o">=</span><span class="s2">"&lt;SIRET&gt;"</span> <span class="se">\</span>
+ --global-var <span class="nv">ws_ref_dossier</span><span class="o">=</span><span class="s2">"&lt;NOM DOSSIER&gt;"</span> <span class="se">\</span>
+ --global-var <span class="nv">wsurl</span><span class="o">=</span><span class="s2">"https://ws-test.dev-e-attestations.com"</span>
+</code></pre>
+<p>Pour aller encore plus vite et faciliter l&#39;intégration et l&#39;exploration de notre API WebService SOAP v3 nous fournissons <a href="./resources/EA_WebServices_v3.postman_collection.json">une collection Postman</a> que vous pouvez importer dans postman et tester rapidement.</p>
+
+<p>Vous devrez définir quelques variables (wsuser, wspassword et wsurl) aussi qu&#39;un SIRET de test et un nom de dossier pour exploiter cette suite de test.</p>
+
+<p>Vous pouvez aussi explorer chacun des scenari pour foncionnellement comprendre les usages possible de l&#39;API WebServices.</p>
+
+<p>Vous pouvez télécharger Postman via <a href="https://www.getpostman.com/downloads/">ce lien</a> ou utiliser newman via <a href="https://github.com/postmanlabs/newman">ce lien</a>.</p>
+<h2 id='environnements'>Environnements</h2>
+<p>e-Attestations met à disposition deux environnements :</p>
+
+<ul>
+<li><strong>TEST</strong> :
+L&#39;ouverture d&#39;un accès de TEST de type WebServices connecté à un compte client de TEST vous permettra, de façon pleinement sécurisée, d&#39;accéder à une infrastructure partagée et identique à celle de production.</li>
+</ul>
+
+<p><span style="color:red"><strong>ATTENTION</strong></span> : dans l&#39;environnement de TEST et afin d&#39;éviter que vos tests n&#39;interfèrent pas avec votre activité de production les envois d&#39;emails sont inhibés (pas d&#39;invitation de rapports ou d&#39;alerte).</p>
+
+<ul>
+<li><strong>PRODUCTION</strong> :
+L&#39;ouverture d&#39;un accès de PROD de type WebServies connecté à un compte client de PROD vous permet d&#39;utiliser les WebServices pour ce compte.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Environnement</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>TEST</td>
+<td><a href="https://ws-test.e-attestations.com/v3.0/EAttestationsWS?wsdl">https://ws.test-e-attestations.com/v3.0/EAttestationsWS?wsdl</a></td>
+</tr>
+<tr>
+<td>PRODUCTION</td>
+<td><a href="https://ws.e-attestations.com/v3.0/EAttestationsWS?wsdl">https://ws.e-attestations.com/v3.0/EAttestationsWS?wsdl</a></td>
+</tr>
+</tbody></table>
+<h2 id='securite'>Sécurité</h2>
+<p>A votre demande (via le <a href="#le-support-tech-39-desk-eattestations">Tech&#39;Desk</a>) un identifiant et un mot de passe vous sera transmis pour effectuer l&#39;authentification de vos requêtes vers les WebServices.</p>
+
+<p>Chaque requête est authentifiée et un mécanisme de filtrage de confiance par adresse IP (whitelist) permet de garantir la légitimité du système client à accéder au WebServices. Ainsi, il faudra toujours <strong>préciser les adresses IP de vos infrastructures clientes</strong>.</p>
+
+<p>Il est conseillé de rendre ces identifiants et le lien du service paramétrable pour pouvoir facilement basculer d&#39;une plate-forme à l&#39;autre.</p>
+
+<p>Les échanges sont sécurisés par un chiffrement SSL/TLS pour les protocoles TLS 1.1 et TLS 1.2.</p>
+
+<aside class="warning">
+e-Attestations considère comme sûr le protocole TLS 1.2 uniquement.
+</aside>
+<h2 id='securite-renforcee-par-trust-ip'>Sécurité renforcée par Trust IP</h2>
+<p>Lors de la souscription au service WebService vous devez communiquer les adresses IP des serveurs &#39;client&#39; et qui consommeront les WebServices. </p>
+
+<p>Si vous avez une ou plusieurs serveurs clients, il faut que chaque adresse IP soit communiquée pour qu&#39;elle soit ajoutée à la liste des IP de confiance (Trust IP) d&#39;e-Attestations.</p>
+
+<p>L&#39;adresse IP doit être fournie par serveur sous la forme d&#39;un CIDR.</p>
+
+<p>Par exemple : <code>34.56.78.90/32</code>
+le <code>/32</code> désigne la masque pour une adresse IP unique.</p>
+<h3 id='en-cas-d-39-erreur-http-403'>En cas d&#39;erreur HTTP 403</h3>
+<blockquote>
+<p>Exemple d&#39;erreur 403 :</p>
+</blockquote>
+<pre class="highlight html tab-html"><code><span class="cp">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;</span> 
+<span class="nt">&lt;html&gt;</span> 
+  <span class="nt">&lt;head&gt;</span> 
+    <span class="nt">&lt;title&gt;</span>403 Forbidden<span class="nt">&lt;/title&gt;</span> 
+  <span class="nt">&lt;/head&gt;</span> 
+  <span class="nt">&lt;body&gt;</span> 
+    <span class="nt">&lt;h1&gt;</span>Forbidden<span class="nt">&lt;/h1&gt;</span> 
+    <span class="nt">&lt;p&gt;</span>You don't have permission to access [...] on this server.<span class="nt">&lt;/p&gt;</span> 
+  <span class="nt">&lt;/body&gt;</span> 
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+<p>Si une requête vers une méthode renvoit un erreur avec un code d&#39;erreur HTTP 403, <em>ceci pour tout méthode</em>, cela signifie que le serveur client qui a effectué l&#39;appel a une adresse IP qui n&#39;est pas sur la liste de confiance. </p>
+
+<p>Ainsi, vérifiez que l&#39;adresse IP qui émet la requête a bien été déclarée auprès d&#39;e-Attestations.</p>
+
+<p>Nous vous invitons à poster une requête sur le Tech&#39;Desk en cas de doûte.</p>
+<h2 id='authentification'>Authentification</h2>
+<blockquote>
+<p>Exemple d&#39;authentification</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;S11:Envelope</span> <span class="na">xmlns:S11=</span><span class="s">"..."</span> <span class="na">xmlns:wsse=</span><span class="s">"..."</span><span class="nt">&gt;</span> 
+    <span class="nt">&lt;S11:Header&gt;</span> 
+        ... 
+        <span class="nt">&lt;wsse:Security&gt;</span> 
+            <span class="nt">&lt;wsse:UsernameToken&gt;</span> 
+                <span class="nt">&lt;wsse:Username&gt;</span>myUsername<span class="nt">&lt;/wsse:Username&gt;</span> 
+                <span class="nt">&lt;wsse:Password</span> <span class="na">Type=</span><span class="s">"...#PasswordDigest"</span><span class="nt">&gt;</span> 
+                   weYI3nXd8LjMNVksCKFV8t3rgHh3Rw== 
+                <span class="nt">&lt;/wsse:Password&gt;</span> 
+                <span class="nt">&lt;wsse:Nonce</span> <span class="na">EncodingType=</span><span class="s">"...#Base64Binary"</span><span class="nt">&gt;</span> 
+                   WScqanjCEAC4mQoBE07sAQ== 
+                <span class="nt">&lt;/wsse:Nonce&gt;</span> 
+                <span class="nt">&lt;wsu:Created&gt;</span>2003-07-16T01:24:32Z<span class="nt">&lt;/wsu:Created&gt;</span> 
+            <span class="nt">&lt;/wsse:UsernameToken&gt;</span> 
+        <span class="nt">&lt;/wsse:Security&gt;</span> 
+        ... 
+    <span class="nt">&lt;/S11:Header&gt;</span> 
+    ... 
+<span class="nt">&lt;/S11:Envelope&gt;</span>
+</code></pre>
+<p>Chaque appel au web service nécessite un couple username/password valide. Celui-ci vous est transmis lors de l&#39;ouverture de votre compte Web Services. </p>
+
+<p>Il doit être renseigné dans le header du message SOAP sous forme de UsernameToken. </p>
+
+<p>Dans cet exemple, le mot de passe est de type PasswordDigest. Il peut aussi être de type PasswordText. </p>
+
+<p>L&#39;utilisation du type PasswordDigest est conseillée car plus sécurisée. Il s&#39;agit d&#39;un hash créé à partir du mot de passe initial, de la date (Created) et d&#39;un nombre généré aléatoirement (Nonce). </p>
+
+<p>Nous vous invitons à consulter la documentation de référence de SAOP WS Security pour plus d&#39;information : <a href="http://docs.oasis-open.org/wss-m/wss/v1.1.1/os/wss-SOAPMessageSecurity-v1.1.1-os.html">http://docs.oasis-open.org/wss-m/wss/v1.1.1/os/wss-SOAPMessageSecurity-v1.1.1-os.html</a></p>
+
+<p>Pour plus d&#39;informations, voir Web Services Security UsernameToken Profile 1.1.</p>
+
+<blockquote>
+<p>Réponse d&#39;erreur d&#39;autentification</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span> 
+   <span class="nt">&lt;soap:Body&gt;</span> 
+      <span class="nt">&lt;soap:Fault&gt;</span> 
+         <span class="nt">&lt;faultcode&gt;</span>soap:Server<span class="nt">&lt;/faultcode&gt;</span> 
+         <span class="nt">&lt;faultstring&gt;</span>Échec d'authentification<span class="nt">&lt;/faultstring&gt;</span> 
+         <span class="nt">&lt;detail/&gt;</span> 
+      <span class="nt">&lt;/soap:Fault&gt;</span> 
+   <span class="nt">&lt;/soap:Body&gt;</span> 
+<span class="nt">&lt;/soap:Envelope&gt;</span> 
+</code></pre><h3 id='en-cas-d-39-erreur'>En cas d&#39;erreur</h3>
+<p>En cas d&#39;erreur d&#39;authentification, vérifiez si :</p>
+
+<ul>
+<li>les identifiants sont bien présents dans le header de la requête SOAP. </li>
+<li>il y a bien un password type correspondant à PasswordDigest ou PasswordText. </li>
+<li>les identifiants correspondent à ceux communiqués pour la plateforme appelée. </li>
+</ul>
+
+<aside class="info">
+N'oubliez pas d'exploiter le projet SOAP Ui fournit dans le Tech'Desk ou de poster une requête dans le Tech'Desk en cas de difficulté
+</aside>
+<h1 id='methodes-web-services-v3'>Méthodes Web Services v3</h1>
+<p>Sont explicitées ici l&#39;ensemble des méthodes servies et présentées par le WSDL (Web Services Description Language) WebServices V3</p>
+
+<p>Lien vers le WSDL (accessible par les IP trustées) :
+<a href="https://ws.e-attestations.com/v3.0/EAttestationsWS?wsdl">https://ws.e-attestations.com/v3.0/EAttestationsWS?wsdl</a></p>
+
+<p>Représentation HTML du WSDL : 
+<a href="./includes/EAttestationsWS_en.html">WSDL documentation</a></p>
+
+<table><thead>
+<tr>
+<th>Méthode</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#importdossier">importDossier</a></td>
+<td>Activer le suivi d&#39;un dossier dans e-Attestations</td>
+</tr>
+<tr>
+<td><a href="#getimportdossierresult">getImportDossierResult</a></td>
+<td>Obtenir le résultat d&#39;un import</td>
+</tr>
+<tr>
+<td><a href="#getsupplieridentifierlist">getSupplierIdentifierList</a></td>
+<td>Restituer les identifiants des fournisseurs du référentiel</td>
+</tr>
+<tr>
+<td><a href="#getdossier">getDossier</a></td>
+<td>Restituer les informations d&#39;un ou plusieurs dossiers</td>
+</tr>
+<tr>
+<td><a href="#getsupplieraccountinformation">getSupplierAccountInformation</a></td>
+<td>Restituer les informations d&#39;un fournisseur</td>
+</tr>
+<tr>
+<td><a href="#getglobalinformation">getGlobalInformation</a></td>
+<td>Restituer des statistiques globales sur le compte</td>
+</tr>
+<tr>
+<td><a href="#getavailabledocuments">getAvailableDocuments</a></td>
+<td>Restituer la liste des documents autorisés</td>
+</tr>
+<tr>
+<td><a href="#updatedossier">updateDossier</a></td>
+<td>Mettre à jour les informations d&#39;un dossier</td>
+</tr>
+<tr>
+<td><a href="#updaterequireddocuments">updateRequiredDocuments</a></td>
+<td>Mettre à jour la liste des documents demandés pour un dossier</td>
+</tr>
+<tr>
+<td><a href="#stopdossier">stopDossier</a></td>
+<td>Arrêter le suivi d&#39;un dossier</td>
+</tr>
+<tr>
+<td><a href="#reactivatedossier">reactivateDossier</a></td>
+<td>Reactiver un dossier</td>
+</tr>
+</tbody></table>
+<h1 id='format-standard-des-reponses'>Format standard des réponses</h1>
+<p>Les réponses sont standardisées, structurée en une composition de d&#39;objet <a href="#formatresult">Result</a> et <a href="#formaterror">Error</a>.</p>
+
+<p>Ces réponses doivent être analysés par les applications clients de ces API afin de mettre en oeuvre une logique métier appropriée. L&#39;intégration des WebServices et les développements clients doivent tirer pleinement partie de ces éléments de réponses pour proposer la meilleur expérience utilisateur finale.</p>
+
+<p><a name="formatresult"></a></p>
+<h2 id='format-de-result'>Format de Result</h2>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Non nul</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>complete</td>
+<td>Boolean</td>
+<td>True = Traitement terminé</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>success</td>
+<td>Boolean</td>
+<td><em>True</em> = Traitement réalisé avec succès, <em>False</em> sinon</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>listErrors</td>
+<td>List&lt;<a href="#formaterror">Error</a>&gt;</td>
+<td>Liste des erreurs</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<p><a name="formaterror"></a></p>
+<h2 id='format-de-error'>Format de Error</h2>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Non nul</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>Code de l&#39;erreur. Cf <a href="#errorcodes">Codes d&#39;erreur et signification</a>).</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>additional</td>
+<td>String</td>
+<td>Information complémentaire au code d&#39;erreur.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+<h1 id='description-des-methodes'>Description des méthodes</h1>
+<p>Sont explicitées ici l&#39;ensemble des appels aux méthodes et leur réponses.</p>
+
+<p>Les codes d&#39;erreur ou les format communs sont tous regroupés en fin de documentation.</p>
+<h2 id='importdossier'>importDossier</h2>
+<p>La méthode ìmportDossier` permet l&#39;import/la création d&#39;un dossier pour un tiers : elle permet donc d&#39;activer le suivi pour les pièces demandées pour le dossier de ce fournisseur.</p>
+
+<p>Le traitement pouvant durer plusieurs minutes la réponse est donc <strong>asynchrone</strong>.</p>
+
+<p>Ainsi la méthode renvoie un identifiant de suivi du traitement de l&#39;import qu&#39;il faudra utiliser pour connaître le résultat de l&#39;import. </p>
+
+<p>La méthode <strong>getImportDossierResult</strong> permet de suivre le résultat de l&#39;import grace à l&#39;identifiant de travail renvoyé par la méthode <strong>importDossier</strong>.</p>
+
+<p><i class="fas fa-exclamation-circle fa-2x"></i> <strong>Il est important</strong> : </p>
+
+<ul>
+<li>de bien vérifier les paramètres d&#39;appel </li>
+<li>de bien prendre en compte les codes d&#39;erreurs et leur signification</li>
+</ul>
+
+<p class="mermaid">
+graph TB
+    A((<strong>Start</strong>)) 
+    A --> B(Call <strong>importDossier</strong><br/>returns processId)
+    B --processId--> C(Call <strong>getImportDossierResult</strong> for processId)
+    C --> D{Status}
+    D --complete=true <br/> <strong>AND</strong> success=<strong>true</strong>--> E
+    D --complete=true <br/> <strong>AND</strong> success=<strong>false</strong>--> R
+    D --complete=false--> C
+    E((<strong>End</strong>))
+    R(Error Handling)
+</p>
+
+<p><strong>Points d&#39;attentions</strong></p>
+
+<ul>
+<li>S&#39;il existe déjà un dossier pour ce fournisseur alors un nouveau dossier est créé.</li>
+<li>Vous ne pouvez importer un dossier avec un code dossier déjà existant.</li>
+</ul>
+<h3 id='request'>Request</h3>
+<blockquote>
+<p>Exemple de requete</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> 
+    <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> 
+    <span class="na">xmlns:srv=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;soapenv:Header</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+    <span class="nt">&lt;srv:importDossier&gt;</span>
+      <span class="nt">&lt;dossierImport&gt;</span>
+        <span class="nt">&lt;supplierImport&gt;</span>
+          <span class="nt">&lt;companyIDType&gt;</span>CIT001<span class="nt">&lt;/companyIDType&gt;</span>
+          <span class="nt">&lt;companyIDValue&gt;</span>50382936800037<span class="nt">&lt;/companyIDValue&gt;</span>
+          <span class="nt">&lt;supplierCode&gt;</span>SC_001<span class="nt">&lt;/supplierCode&gt;</span>
+        <span class="nt">&lt;/supplierImport&gt;</span>
+        <span class="nt">&lt;dossierReference&gt;</span>REF_001<span class="nt">&lt;/dossierReference&gt;</span>
+        <span class="nt">&lt;expirationDate&gt;</span>2015-12-31<span class="nt">&lt;/expirationDate&gt;</span>
+        <span class="nt">&lt;description&gt;</span>This is my description<span class="nt">&lt;/description&gt;</span>
+        <span class="nt">&lt;purchasingCategory&gt;</span>Category n°1<span class="nt">&lt;/purchasingCategory&gt;</span>
+        <span class="nt">&lt;requiredDocuments&gt;</span>ATT_VIGI<span class="nt">&lt;/requiredDocuments&gt;</span>
+        <span class="nt">&lt;requiredDocuments&gt;</span>JUSTIF_IMM<span class="nt">&lt;/requiredDocuments&gt;</span>
+        <span class="nt">&lt;requiredDocuments&gt;</span>ASSUR_RCPRO<span class="nt">&lt;/requiredDocuments&gt;</span>
+        <span class="nt">&lt;supplierEmail&gt;</span>test@e-attestations.com<span class="nt">&lt;/supplierEmail&gt;</span>
+        <span class="nt">&lt;userInCharge&gt;</span>test@mydomain.com<span class="nt">&lt;/userInCharge&gt;</span>
+      <span class="nt">&lt;/dossierImport&gt;</span>
+    <span class="nt">&lt;/srv:importDossier&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre><h4 id='dossierimport'>DossierImport</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Obligatoire</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>supplierImport</td>
+<td><a href="#SupplierImport">SupplierImport</a></td>
+<td>Informations pour identifier le fournisseur.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>dossierReference</td>
+<td>String</td>
+<td>Référence du dossier pour ce fournisseur. La référence doit être unique pour un même fournisseur.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>expirationDate</td>
+<td>Date</td>
+<td>Date d&#39;expiration du dossier.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Description du dossier.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>purchasingCategory</td>
+<td>String</td>
+<td>Catégorie achat du dossier.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>requiredDocuments</td>
+<td>String[]</td>
+<td>Liste des codes des documents demandés pour ce dossier. Si aucun document n&#39;est renseigné, le set de documents par défaut est demandé.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>supplierEmail</td>
+<td>String</td>
+<td>Un ou plusieurs E-mails  (séparés par des ; ) de contact du fournisseur. Il est recommandé de renseigner l&#39;e-mail de la personne susceptible de déposer les pièces.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>userInCharge</td>
+<td>String</td>
+<td>Un ou plusieurs E-mails  (séparés par des ; ) de responsable dossier côté donneur d&#39;ordre. Ces personnes seront invitées à adhérer à la plate-forme donneur d&#39;ordre d&#39;e-Attestations.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<p><a name="SupplierImport"></a></p>
+<h4 id='supplierimport'>SupplierImport</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Obligatoire</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>companyIDType</td>
+<td>String</td>
+<td>Type d&#39;identifiant de l&#39;entreprise (cf 3.2 Codes d&#39;identification d&#39;une entreprise)</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>companyIDValue</td>
+<td>String</td>
+<td>Valeur de l&#39;identifiant de l&#39;entreprise.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>supplierCode</td>
+<td>String</td>
+<td>Code fournisseur pour identifier le fournisseur (identifiant interne client).</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Exemple de réponse</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> 
+    <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;soap:Body&gt;</span>
+    <span class="nt">&lt;ns1:importDossierResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+        ff8081814f6e43ab014f6e4571630004
+        <span class="nt">&lt;/return&gt;</span>
+    <span class="nt">&lt;/ns1:importDossierResponse&gt;</span>
+  <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre><h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NOT NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>processId</td>
+<td>String</td>
+<td>Identifiant de la demande d&#39;import.</td>
+<td>YES</td>
+</tr>
+</tbody></table>
+<h4 id='errors'>Errors</h4>
+<p>Le traitement est contôlé via la méthode <a href="#getimportdossierresult">getImportDossierResult</a> et ne produit pas de code d&#39;erreur.</p>
+<h2 id='getimportdossierresult'>getImportDossierResult</h2>
+<blockquote>
+<p>Exemple de requete</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> 
+    <span class="na">xmlns:srv=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span> 
+   <span class="nt">&lt;soapenv:Header/&gt;</span> 
+   <span class="nt">&lt;soapenv:Body&gt;</span> 
+      <span class="nt">&lt;srv:getImportDossierResult&gt;</span> 
+         <span class="nt">&lt;processId&gt;</span>ff8081814f6e43ab014f6e4571630004<span class="nt">&lt;/processId&gt;</span> 
+      <span class="nt">&lt;/srv:getImportDossierResult&gt;</span> 
+   <span class="nt">&lt;/soapenv:Body&gt;</span> 
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<p>Cette méthode permet de connaître le résultat d&#39;un import à partir de son identifiant. </p>
+<h3 id='request'>Request</h3>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Obligatoire</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>processId</td>
+<td>String</td>
+<td>Identifiant de la demande d&#39;import.</td>
+<td>Oui</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Exemples de réponse en stade IN PROGRESS</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;soap:Body&gt;</span>
+        <span class="nt">&lt;ns1:getImportDossierResultResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;complete&gt;</span>false<span class="nt">&lt;/complete&gt;</span>
+                <span class="nt">&lt;success&gt;</span>false<span class="nt">&lt;/success&gt;</span>
+            <span class="nt">&lt;/return&gt;</span>
+        <span class="nt">&lt;/ns1:getImportDossierResultResponse&gt;</span>
+    <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>Exemples de réponse en SUCCESS</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;soap:Body&gt;</span>
+        <span class="nt">&lt;ns1:getImportDossierResultResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+                <span class="nt">&lt;success&gt;</span>true<span class="nt">&lt;/success&gt;</span>
+            <span class="nt">&lt;/return&gt;</span>
+        <span class="nt">&lt;/ns1:getImportDossierResultResponse&gt;</span>
+    <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>Exemple de réponse en ECHEC</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;soap:Body&gt;</span>
+        <span class="nt">&lt;ns1:getImportDossierResultResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+                <span class="nt">&lt;listErrors&gt;</span>
+                    <span class="nt">&lt;additional&gt;</span>REF_001<span class="nt">&lt;/additional&gt;</span>
+                    <span class="nt">&lt;code&gt;</span>E202<span class="nt">&lt;/code&gt;</span>
+                <span class="nt">&lt;/listErrors&gt;</span>
+                <span class="nt">&lt;success&gt;</span>false<span class="nt">&lt;/success&gt;</span>
+            <span class="nt">&lt;/return&gt;</span>
+        <span class="nt">&lt;/ns1:getImportDossierResultResponse&gt;</span>
+    <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre><h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Non vide</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>processId</td>
+<td>String</td>
+<td>Identifiant de la demande d&#39;import.</td>
+<td>Oui</td>
+</tr>
+</tbody></table>
+<h2 id='getsupplieridentifierlist'>getSupplierIdentifierList</h2>
+<p>Cette méthode permet de remonter l&#39;ensemble des identifiants du référentiel fournisseur.</p>
+
+<blockquote>
+<p>Exemple de requête</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> 
+    <span class="na">xmlns:srv=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;soapenv:Header/&gt;</span>
+    <span class="nt">&lt;soapenv:Body&gt;</span>
+        <span class="nt">&lt;srv:getSupplierIdentifierList&gt;</span>
+            <span class="nt">&lt;supplierIdentifierSearch&gt;</span>
+                <span class="nt">&lt;monitoredSupplier&gt;</span>true<span class="nt">&lt;/monitoredSupplier&gt;</span>                
+            <span class="nt">&lt;/supplierIdentifierSearch&gt;</span>
+        <span class="nt">&lt;/srv:getSupplierIdentifierList&gt;</span>
+    <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre><h4 id='supplieridentifiersearch'>supplierIdentifierSearch</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Obligatoire</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>monitoredSupplier</td>
+<td>Boolean</td>
+<td>Filtre pour ne retourner que des fournisseurs suivis (true) ou non (false).</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>stateLastChangeDate</td>
+<td>Date</td>
+<td>Filtre pour ne retourner que des fournisseurs dont l&#39;état de complétude global a été modifié depuis la date renseignée.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>supplierGlobalState</td>
+<td>Boolean</td>
+<td>Filtre pour ne retourner que des fournisseurs dont l&#39;état de complétude global est complet (true) ou non (false).</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>subscriptionState</td>
+<td>Boolean</td>
+<td>Filtre pour ne retourner que des fournisseurs dont l&#39;état d&#39;inscription est inscrit (true) ou non inscrit (false).</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Exemple de réponse : SUCCESS</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;soap:Body&gt;</span>
+        <span class="nt">&lt;ns1:getSupplierIdentifierListResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;supplierIdentifier&gt;</span>
+                    <span class="nt">&lt;companyIDType&gt;</span>CIT001<span class="nt">&lt;/companyIDType&gt;</span>
+                    <span class="nt">&lt;companyIDValue&gt;</span>50382936800037<span class="nt">&lt;/companyIDValue&gt;</span>
+                    <span class="nt">&lt;supplierCode&gt;</span>SC_001<span class="nt">&lt;/supplierCode&gt;</span>
+                <span class="nt">&lt;/supplierIdentifier&gt;</span> 
+        <span class="nt">&lt;/ns1:getSupplierIdentifierListResponse&gt;</span>
+    <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span> 
+</code></pre>
+<blockquote>
+<p>Exemple de réponse : FAIL</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;soap:Body&gt;</span>
+        <span class="nt">&lt;ns1:getSupplierIdentifierListResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;result&gt;</span>
+                    <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+                    <span class="nt">&lt;listErrors&gt;</span>
+                        <span class="nt">&lt;additional&gt;</span>stateLastChangeDate<span class="nt">&lt;/additional&gt;</span>
+                        <span class="nt">&lt;code&gt;</span>E022<span class="nt">&lt;/code&gt;</span>
+                    <span class="nt">&lt;/listErrors&gt;</span>
+                    <span class="nt">&lt;success&gt;</span>false<span class="nt">&lt;/success&gt;</span>
+                <span class="nt">&lt;/result&gt;</span>
+            <span class="nt">&lt;/return&gt;</span>
+        <span class="nt">&lt;/ns1:getSupplierIdentifierListResponse&gt;</span>
+    <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre><h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td><a href="#formatresult">Result</a></td>
+<td>Statut de l&#39;appel et liste des erreurs en cas d&#39;échec.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>supplierIdentifierList</td>
+<td>List&lt;<a href="#SupplierIdentifier">SupplierIdentifier</a>&gt;</td>
+<td>Informations retournées en cas de succès.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<p><a name="SupplierIdentifier"></a></p>
+<h4 id='supplieridentifier'>SupplierIdentifier</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>companyIDType</td>
+<td>String</td>
+<td>Type d&#39;identifiant de l&#39;entreprise (cf 3.2 Codes d&#39;identification d&#39;une entreprise).</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>companyIDValue</td>
+<td>String</td>
+<td>Valeur de l&#39;identifiant de l&#39;entreprise.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>supplierCode</td>
+<td>String</td>
+<td>Code fournisseur pour identifier le fournisseur (identifiant interne client).</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+<h2 id='getdossier'>getDossier</h2>
+<p>Cette méthode permet de récupérer les informations d&#39;un ou plusieurs dossiers en fonction des paramètres de recherche. </p>
+
+<p>Il est possible combiner/cumuler différents filtres et critère de recherches afin de répondre à votre besoin. </p>
+
+<p><strong>Attention</strong> : l&#39;accumulation de critère de recherche renforce les filtres ce qui peut aboutir à des réponses vides à mesure de la multiplication des critères.</p>
+
+<p>Les informations renvoyées</p>
+
+<p><em>Exemples d&#39;utilisation</em>: </p>
+
+<ul>
+<li>Restitution de l&#39;ensemble des dossiers d&#39;un fournisseur </li>
+<li>Restitution de l&#39;ensemble des dossiers actifs d&#39;un fournisseur </li>
+<li>Restitution de l&#39;ensemble des dossiers dont l&#39;état a changé depuis le … pour un fournisseur </li>
+<li>Restitution d&#39;un dossier spécifique </li>
+</ul>
+<h3 id='parametres-d-39-appel'>Paramètres d&#39;appel</h3>
+<blockquote>
+<p>Exemple d&#39;appel</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> 
+    <span class="na">xmlns:srv=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;soapenv:Header/&gt;</span>
+    <span class="nt">&lt;soapenv:Body&gt;</span>
+        <span class="nt">&lt;srv:getDossier&gt;</span>
+            <span class="nt">&lt;dossierSearch&gt;</span>
+                <span class="nt">&lt;supplierSearch&gt;</span>
+                    <span class="nt">&lt;companyIDType&gt;</span>CIT001<span class="nt">&lt;/companyIDType&gt;</span>
+                    <span class="nt">&lt;companyIDValue&gt;</span>48088206700014<span class="nt">&lt;/companyIDValue&gt;</span>
+                <span class="nt">&lt;/supplierSearch&gt;</span>
+                <span class="nt">&lt;dossierReference&gt;</span>REF001<span class="nt">&lt;/dossierReference&gt;</span>
+            <span class="nt">&lt;/dossierSearch&gt;</span>
+        <span class="nt">&lt;/srv:getDossier&gt;</span>
+    <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span> 
+</code></pre><h4 id='dossiersearch'>DossierSearch</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Obligatoire</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>supplierSearch</td>
+<td><a href="#suppliersearch">SupplierSearch</a></td>
+<td>Informations pour identifier le fournisseur du (ou des) dossier(s) à restituer.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>dossierReference</td>
+<td>String</td>
+<td>Filtre pour ne retourner qu&#39;un dossier : référence du dossier. Ce paramètre nécessite un filtre fournisseur.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>monitoredDossier</td>
+<td>Boolean</td>
+<td>Filtre pour ne retourner que des dossiers actifs (true) ou désactivés (false).</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>stateLastChangeDate</td>
+<td>Date</td>
+<td>Filtre pour ne retourner que des dossiers dont l&#39;état de complétude global a été modifié depuis la date renseignée.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<p><a name="suppliersearch"></a></p>
+<h4 id='suppliersearch'>SupplierSearch</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Obligatoire</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>companyIDType</td>
+<td>String</td>
+<td>Type d&#39;identifiant de l&#39;entreprise (cf 3.2 Codes d&#39;identification d&#39;une entreprise).</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>companyIDValue</td>
+<td>String</td>
+<td>Valeur de l&#39;identifiant de l&#39;entreprise.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>supplierCode</td>
+<td>String</td>
+<td>Code fournisseur pour identifier le fournisseur (identifiant interne client).</td>
+<td>Non*</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+<strong>Attention</strong><br/>
+    Nous vous conseillons de composer vos critères de recherche soit sous la forme
+    <ul>
+    <li>companyIDType + companyIDValue</li>
+    <li> OU supplierCode </li>
+    </ul>
+    La méthode acceptera de renseigner tous les critères, mais la probabilité d'un filtrage plus dur et donc d'une réponse vide est beaucoup plus élevée dans l'emploi de tous les critères à la fois.
+</aside>
+<h3 id='structure-des-informations-renvoyees'>Structure des informations renvoyées</h3>
+<p>la méthode <code>getDossier</code> est la méthode permettant la récupération des informations relatives au suivi de la conformité d&#39;un tiers et à ce titre permet de récupérer un maximum d&#39;informations.</p>
+
+<p>Voici une représentation du la structure des informations renvoyées :</p>
+
+<blockquote>
+<p>Exemple de réponse </p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;soap:Body&gt;</span>
+    <span class="nt">&lt;ns1:getDossierResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;result&gt;</span>
+          <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+          <span class="nt">&lt;success&gt;</span>true<span class="nt">&lt;/success&gt;</span>
+        <span class="nt">&lt;/result&gt;</span>
+        <span class="nt">&lt;supplier&gt;</span>
+          <span class="nt">&lt;companyCountryCode&gt;</span>FRA<span class="nt">&lt;/companyCountryCode&gt;</span>
+          <span class="nt">&lt;companyIDType&gt;</span>CIT001<span class="nt">&lt;/companyIDType&gt;</span>
+          <span class="nt">&lt;companyIDValue&gt;</span>48088206700014<span class="nt">&lt;/companyIDValue&gt;</span>
+          <span class="nt">&lt;listDossiers&gt;</span>
+            <span class="nt">&lt;description&gt;</span>Ma nouvelle description renseignée par Web Service<span class="nt">&lt;/description&gt;</span>
+            <span class="nt">&lt;dossierGlobalState&gt;</span>false<span class="nt">&lt;/dossierGlobalState&gt;</span>
+            <span class="nt">&lt;dossierGlobalStateLastChangeDate&gt;</span>2016-02-11T11:57:40.094+01:00<span class="nt">&lt;/dossierGlobalStateLastChangeDate&gt;</span>
+            <span class="nt">&lt;dossierId&gt;</span>57512<span class="nt">&lt;/dossierId&gt;</span>
+            <span class="nt">&lt;dossierReference&gt;</span>REF001<span class="nt">&lt;/dossierReference&gt;</span>
+            <span class="nt">&lt;listDocuments&gt;</span>
+              <span class="nt">&lt;askingDate&gt;</span>2016-02-11T11:57:40.270+01:00<span class="nt">&lt;/askingDate&gt;</span>
+              <span class="nt">&lt;documentCode&gt;</span>JUSTIF_IMM<span class="nt">&lt;/documentCode&gt;</span>
+              <span class="nt">&lt;listFileInformation&gt;</span>
+                <span class="nt">&lt;downloadLink&gt;</span>https://ws-test.e-attestations.com/webservices/download/[...]<span class="nt">&lt;/downloadLink&gt;</span>
+                <span class="nt">&lt;expirationDate&gt;</span>2018-08-02T23:59:59.999+02:00<span class="nt">&lt;/expirationDate&gt;</span>
+                <span class="nt">&lt;uploadDate&gt;</span>2018-02-02T01:30:17.634+01:00<span class="nt">&lt;/uploadDate&gt;</span>
+              <span class="nt">&lt;/listFileInformation&gt;</span>
+              <span class="nt">&lt;name&gt;</span>Justificatif d’immatriculation<span class="nt">&lt;/name&gt;</span>
+              <span class="nt">&lt;present&gt;</span>true<span class="nt">&lt;/present&gt;</span>
+            <span class="nt">&lt;/listDocuments&gt;</span>
+            <span class="nt">&lt;listDocuments&gt;</span>
+              <span class="nt">&lt;askingDate&gt;</span>2016-02-11T11:57:40.515+01:00<span class="nt">&lt;/askingDate&gt;</span>
+              <span class="nt">&lt;documentCode&gt;</span>ATT_VIGI<span class="nt">&lt;/documentCode&gt;</span>
+              <span class="nt">&lt;name&gt;</span>Attestation de vigilance (6 mois)<span class="nt">&lt;/name&gt;</span>
+              <span class="nt">&lt;present&gt;</span>false<span class="nt">&lt;/present&gt;</span>
+            <span class="nt">&lt;/listDocuments&gt;</span>
+            <span class="nt">&lt;listDocuments&gt;</span>
+              <span class="nt">&lt;askingDate&gt;</span>2016-02-11T11:57:40.120+01:00<span class="nt">&lt;/askingDate&gt;</span>
+              <span class="nt">&lt;documentCode&gt;</span>LST_SAL_ETR<span class="nt">&lt;/documentCode&gt;</span>
+              <span class="nt">&lt;name&gt;</span>Liste nominative des salariés étrangers soumis à autorisation de travail<span class="nt">&lt;/name&gt;</span>
+              <span class="nt">&lt;present&gt;</span>false<span class="nt">&lt;/present&gt;</span>
+            <span class="nt">&lt;/listDocuments&gt;</span>
+            <span class="nt">&lt;listDocuments&gt;</span>
+              <span class="nt">&lt;askingDate&gt;</span>2017-10-10T10:33:21.074+02:00<span class="nt">&lt;/askingDate&gt;</span>
+              <span class="nt">&lt;documentCode&gt;</span>ATT_PRO_BTP<span class="nt">&lt;/documentCode&gt;</span>
+              <span class="nt">&lt;name&gt;</span>Attestation de cotisation retraite<span class="nt">&lt;/name&gt;</span>
+              <span class="nt">&lt;present&gt;</span>false<span class="nt">&lt;/present&gt;</span>
+            <span class="nt">&lt;/listDocuments&gt;</span>
+            <span class="nt">&lt;listIndicators&gt;</span>
+              <span class="nt">&lt;indicatorCode&gt;</span>I001<span class="nt">&lt;/indicatorCode&gt;</span>
+              <span class="nt">&lt;lastChangeDate&gt;</span>2016-02-11T11:57:40.094+01:00<span class="nt">&lt;/lastChangeDate&gt;</span>
+              <span class="nt">&lt;state&gt;</span>false<span class="nt">&lt;/state&gt;</span>
+            <span class="nt">&lt;/listIndicators&gt;</span>
+            <span class="nt">&lt;monitoredDossier&gt;</span>true<span class="nt">&lt;/monitoredDossier&gt;</span>
+            <span class="nt">&lt;purchasingCategory/&gt;</span>
+            <span class="nt">&lt;startingDate&gt;</span>2016-02-11T11:57:40.092+01:00<span class="nt">&lt;/startingDate&gt;</span>
+          <span class="nt">&lt;/listDossiers&gt;</span>
+          <span class="nt">&lt;monitoredSupplier&gt;</span>true<span class="nt">&lt;/monitoredSupplier&gt;</span>
+          <span class="nt">&lt;supplierCode&gt;</span>A-GRAPH<span class="nt">&lt;/supplierCode&gt;</span>
+          <span class="nt">&lt;supplierGlobalState&gt;</span>false<span class="nt">&lt;/supplierGlobalState&gt;</span>
+          <span class="nt">&lt;supplierGlobalStateLastChangeDate&gt;</span>2016-02-11T11:57:40.257+01:00<span class="nt">&lt;/supplierGlobalStateLastChangeDate&gt;</span>
+        <span class="nt">&lt;/supplier&gt;</span>
+      <span class="nt">&lt;/return&gt;</span>
+    <span class="nt">&lt;/ns1:getDossierResponse&gt;</span>
+  <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span> 
+</code></pre>
+<p><em>Format WSDL -&gt; Liste</em></p>
+
+<ul class="messageparts">
+  <li>supplier<small style="color:blue"> - optional; type <big>supplier</big></small>
+    <ul class="messageparts">
+      <li>companyCountryCode<small style="color:blue"> - optional; type <big>string</big></small></li>
+      <li>companyIDType<small style="color:blue"> - optional; type <big>string</big></small></li>
+      <li>companyIDValue<small style="color:blue"> - optional; type <big>string</big></small></li>
+      <li>listDossiers<small style="color:blue"> - optional, unbounded, nillable; type <big>dossier</big></small>
+        <ul class="messageparts">
+          <li>description<small style="color:blue"> - optional; type <big>string</big></small></li>
+          <li>dossierGlobalState<small style="color:blue"> - optional; type <big>boolean</big></small></li>
+          <li>dossierGlobalStateLastChangeDate<small style="color:blue"> - optional; type <big>dateTime</big></small></li>
+          <li>dossierId<small style="color:blue"> - optional; type <big>string</big></small></li>
+          <li>dossierReference<small style="color:blue"> - optional; type <big>string</big></small></li>
+          <li>expirationDate<small style="color:blue"> - optional; type <big>dateTime</big></small></li>
+          <li>listDocuments<small style="color:blue"> - optional, unbounded, nillable; type <big>document</big></small>
+            <ul class="messageparts">
+              <li>askingDate<small style="color:blue"> - optional; type <big>dateTime</big></small></li>
+              <li>documentCode<small style="color:blue"> - optional; type <big>string</big></small></li>
+              <li>listFileInformation<small style="color:blue"> - optional, unbounded, nillable; type <big>fileInformation</big></small>
+                <ul class="messageparts">
+                  <li>downloadLink<small style="color:blue"> - optional; type <big>string</big></small></li>
+                  <li>expirationDate<small style="color:blue"> - optional; type <big>dateTime</big></small></li>
+                  <li>uploadDate<small style="color:blue"> - optional; type <big>dateTime</big></small></li>
+                  <li>uploadUser<small style="color:blue"> - optional; type <big>userInformation</big></small>
+                    <ul class="messageparts">
+                      <li>email<small style="color:blue"> - optional; type <big>string</big></small></li>
+                      <li>firstName<small style="color:blue"> - optional; type <big>string</big></small></li>
+                      <li>internationalPhone<small style="color:blue"> - optional; type <big>string</big></small></li>
+                      <li>lastName<small style="color:blue"> - optional; type <big>string</big></small></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>name<small style="color:blue"> - optional; type <big>string</big></small></li>
+              <li>present<small style="color:blue"> type <big>boolean</big></small></li>
+            </ul>
+          </li>
+          <li>listIndicators<small style="color:blue"> - optional, unbounded, nillable; type <big>indicator</big></small>
+            <ul class="messageparts">
+              <li>indicatorCode<small style="color:blue"> - optional; type <big>string</big></small></li>
+              <li>lastChangeDate<small style="color:blue"> - optional; type <big>dateTime</big></small></li>
+              <li>name<small style="color:blue"> - optional; type <big>string</big></small></li>
+              <li>state<small style="color:blue"> type <big>boolean</big></small></li>
+            </ul>
+          </li>
+          <li>monitoredDossier<small style="color:blue"> type <big>boolean</big></small></li>
+          <li>purchasingCategory<small style="color:blue"> - optional; type <big>string</big></small></li>
+          <li>startingDate<small style="color:blue"> - optional; type <big>dateTime</big></small></li>
+          <li>stoppingDate<small style="color:blue"> - optional; type <big>dateTime</big></small></li>
+          <li>stoppingReason<small style="color:blue"> - optional; type <big>string</big></small></li>
+        </ul>
+      </li>
+      <li>monitoredSupplier<small style="color:blue"> type <big>boolean</big></small></li>
+      <li>supplierCode<small style="color:blue"> - optional; type <big>string</big></small></li>
+      <li>supplierGlobalState<small style="color:blue"> - optional; type <big>boolean</big></small></li>
+      <li>supplierGlobalStateLastChangeDate<small style="color:blue"> - optional; type <big>dateTime</big></small></li>
+    </ul>
+  </li>
+</ul>
+<h4 id='response'>Response</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Non nul</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td><a href="#formatresult">Result</a></td>
+<td>Statut de l&#39;appel et liste des erreurs en cas d&#39;échec.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>supplier</td>
+<td><a href="#supplier">Supplier</a></td>
+<td>Informations retournées en cas de succès.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<p><a name='#supplier'></a></p>
+<h4 id='supplier'>Supplier</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Non nul</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>companyIDType</td>
+<td>String</td>
+<td>Type d&#39;identifiant de l&#39;entreprise (cf 3.2 Codes d&#39;identification d&#39;une entreprise).</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>companyIDValue</td>
+<td>String</td>
+<td>Valeur de l&#39;identifiant de l&#39;entreprise.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>companyCountryCode</td>
+<td>String</td>
+<td>Pays de l&#39;entreprise identifié par le code alpha-3 du standard ISO 3166-1.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>supplierCode</td>
+<td>String</td>
+<td>Code fournisseur pour identifier le fournisseur (identifiant interne client).</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>monitoredSupplier</td>
+<td>Boolean</td>
+<td>True si fournisseur suivi, false sinon. Un fournisseur est suivi dès lors qu&#39;il a au moins un dossier actif.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>supplierGlobalState</td>
+<td>Boolean</td>
+<td>État de complétude global du fournisseur. True si tous les documents demandés au fournisseur (tout dossier confondu) sont présents, false sinon. Null si fournisseur non suivi.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>supplierGlobalStateLastChangeDate</td>
+<td>Date</td>
+<td>Date de dernier changement de complétude de l&#39;ensemble des documents demandés pour l&#39;ensemble des dossiers. Null si fournisseur non suivi.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>listDossiers</td>
+<td>List&lt;<a href="#dossier">Dossier</a>&gt;</td>
+<td>Ensemble des informations sur les dossiers du fournisseurs qui correspondent aux filtres de recherche.</td>
+<td>Oui</td>
+</tr>
+</tbody></table>
+
+<p><a name='#dossier'></a></p>
+<h4 id='dossier'>Dossier</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Non nul</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dossierReference</td>
+<td>String</td>
+<td>Référence du dossier pour ce fournisseur. La référence doit être unique pour un même fournisseur.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>dossierId</td>
+<td>String</td>
+<td>Référence unique et non modifiable (id généré par le système à la création) du dossier de ce fournisseur.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>startingDate</td>
+<td>Date</td>
+<td>Date de création, d&#39;import, de début de suivi du dossier.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>expirationDate</td>
+<td>Date</td>
+<td>Date d&#39;expiration du dossier. Null si pas de date d&#39;expiration.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>stoppingDate</td>
+<td>Date</td>
+<td>Date d&#39;arrêt du dossier. Non nul uniquement si dossier désactivé.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>stoppingReason</td>
+<td>String</td>
+<td>Détail concernant l&#39;arrêt du dossier : OUTOFBUSINESS (entreprise radiée), EXPIRATION (le dossier a atteint sa date d&#39;expiration), STOPREQUEST (une demande d&#39;arrêt a été faite de manière explicite et immédiate), UNKNOWN (information absente). Non nul uniquement si dossier désactivé.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Description du dossier.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>purchasingCategory</td>
+<td>String</td>
+<td>Catégorie achat du dossier.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>monitoredDossier</td>
+<td>Boolean</td>
+<td>True si le dossier est actif, false sinon.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>dossierGlobalState</td>
+<td>Boolean</td>
+<td>État de complétude du dossier. True si l&#39;ensemble des documents demandés pour le dossier sont présents, false sinon. Null si le dossier est désactivé.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>dossierGlobalStateLastChangeDate</td>
+<td>Date</td>
+<td>Date de dernier changement de complétude du dossier. Null si le dossier est désactivé.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>listIndicators</td>
+<td>List&lt;<a href="#indicator">Indicator</a>&gt;</td>
+<td>Liste des indicateurs du dossier.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>listDocuments</td>
+<td>List&lt;<a href="#document">Document</a>&gt;</td>
+<td>Liste des documents demandés pour le dossier.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<p><a name='#indicator'></a></p>
+<h4 id='indicator'>Indicator</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Non nul</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>indicatorCode</td>
+<td>String</td>
+<td>Code de l&#39;indicateur (cf 3.3 Codes d&#39;indicateur)</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>state</td>
+<td>Boolean</td>
+<td>État de l&#39;indicateur. True si l&#39;ensemble des documents demandés de l&#39;indicateur sont présents, false sinon.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>lastChangeDate</td>
+<td>Date</td>
+<td>Date de dernier changement de l&#39;état de l&#39;indicateur.</td>
+<td>Oui</td>
+</tr>
+</tbody></table>
+
+<p><a name='#document'></a></p>
+<h4 id='document'>Document</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Non nul</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>documentCode</td>
+<td>String</td>
+<td>Code qui identifie le document. Il est unique et non modifiable.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Nom du document. Il peut évoluer avec le temps.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>askingDate</td>
+<td>Date</td>
+<td>Date à laquelle le document a été demandé.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>present</td>
+<td>Boolean</td>
+<td>État de complétude du document. True si un document est présent et valide, false sinon. Pour les documents multiples au moins un est présent.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>listFileInformation</td>
+<td>List&lt;<a href="#fileinformation">FileInformation</a>&gt;</td>
+<td>Informations du (ou des) documents présents.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<p><a name='#fileinformation'></a></p>
+<h4 id='fileinformation'>FileInformation</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Non nul</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>downloadLink</td>
+<td>String</td>
+<td>Lien de téléchargement du fichier. <em>Important, ce lien est uniquement accessible au serveur autorisé par IP. i.e. le téléchargement direct par le navigateur client est interdit.</em></td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>uploadDate</td>
+<td>Date</td>
+<td>Date de dépôt du document.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>expirationDate</td>
+<td>Date</td>
+<td>Date d&#39;expiration du document.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+<strong>Attention</strong><br/>
+    Lien de téléchargement du fichier est uniquement accessible au serveur autorisé par IP. i.e. le téléchargement direct par le navigateur client est interdit.
+    Dans le cas d'une intégration via un logiciel tier souhaitant mettre à disposition les fichiers vers les utilisateurs finaux, il est IMPERATIF que le logiciel tiers joue le rôle de Proxy/cache et de ne JAMAIS passer l'url directement aux postes clients sous peine d'un message d'erreur de type HTTP 403.
+    N'hésitez pas à contacter le [Tech'Desk](https://jira-e-attestations.atlassian.net/servicedesk/customer/portals) pour plus d'information, nos ingénieurs sont là pour vous répondre.
+</aside>
+<h2 id='getsupplieraccountinformation'>getSupplierAccountInformation</h2>
+<p>Cette méthode permet de remonter les informations d&#39;identité d&#39;un tier déclarant.</p>
+
+<p>Elles remontent également les informations concernant les personnes inscrites pour le compte de ce déclarant et qui sont inscrits à e-Attestations.</p>
+
+<blockquote>
+<p>Exemple de requête</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:srv=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;srv:getSupplierAccountInformation&gt;</span>
+         <span class="nt">&lt;supplierSearch&gt;</span>
+            <span class="c">&lt;!--&lt;companyIDType&gt;&lt;/companyIDType&gt;--&gt;</span>
+            <span class="c">&lt;!--&lt;companyIDValue&gt;&lt;/companyIDValue&gt;--&gt;</span>
+            <span class="nt">&lt;supplierCode&gt;</span>SC_001<span class="nt">&lt;/supplierCode&gt;</span>
+         <span class="nt">&lt;/supplierSearch&gt;</span>
+      <span class="nt">&lt;/srv:getSupplierAccountInformation&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre><h4 id='suppliersearch'>supplierSearch</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>Obligatoire</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>companyIDType</td>
+<td>String</td>
+<td>Type d&#39;identifiant de l&#39;entreprise (cf 3.2 Codes d&#39;identification d&#39;une entreprise).</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>companyIDValue</td>
+<td>String</td>
+<td>Valeur de l&#39;identifiant de l&#39;entreprise.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>supplierCode</td>
+<td>String</td>
+<td>Code fournisseur pour identifier le fournisseur (identifiant interne client).</td>
+<td>Non*</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Exemple de réponse SUCCESS</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns1:getSupplierAccountInformationResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;result&gt;</span>
+               <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+               <span class="nt">&lt;success&gt;</span>true<span class="nt">&lt;/success&gt;</span>
+            <span class="nt">&lt;/result&gt;</span>
+            <span class="nt">&lt;supplierAccountInformation&gt;</span>
+               <span class="nt">&lt;addressCity&gt;</span>PARIS 14<span class="nt">&lt;/addressCity&gt;</span>
+               <span class="nt">&lt;addressCountryCode&gt;</span>FRA<span class="nt">&lt;/addressCountryCode&gt;</span>
+               <span class="nt">&lt;addressPostCode&gt;</span>75014<span class="nt">&lt;/addressPostCode&gt;</span>
+               <span class="nt">&lt;addressStreet&gt;</span>VLA DE LOURCINE<span class="nt">&lt;/addressStreet&gt;</span>
+               <span class="nt">&lt;companyCountryCode&gt;</span>PARIS 14<span class="nt">&lt;/companyCountryCode&gt;</span>
+               <span class="nt">&lt;companyIDType&gt;</span>CIT001<span class="nt">&lt;/companyIDType&gt;</span>
+               <span class="nt">&lt;companyIDValue&gt;</span>50382936800037<span class="nt">&lt;/companyIDValue&gt;</span>
+               <span class="nt">&lt;monitoredSupplier&gt;</span>false<span class="nt">&lt;/monitoredSupplier&gt;</span>
+               <span class="nt">&lt;name&gt;</span>E-ATTESTATIONS.COM<span class="nt">&lt;/name&gt;</span>
+               <span class="nt">&lt;outOfBusiness&gt;</span>false<span class="nt">&lt;/outOfBusiness&gt;</span>
+               <span class="nt">&lt;subscriptionDate&gt;</span>2010-11-24T10:38:32.224+01:00<span class="nt">&lt;/subscriptionDate&gt;</span>                <span class="nt">&lt;subscriptionState&gt;</span>true<span class="nt">&lt;/subscriptionState&gt;</span>                <span class="nt">&lt;subscriptionKey&gt;</span>SXBQNTXKK6VM<span class="nt">&lt;/subscriptionKey&gt;</span>
+               <span class="nt">&lt;supplierCode&gt;</span>SC_001<span class="nt">&lt;/supplierCode&gt;</span>
+               <span class="nt">&lt;supplierUsers&gt;</span>
+                  <span class="nt">&lt;email&gt;</span>e.poidevin@e-attestations.com<span class="nt">&lt;/email&gt;</span>
+                  <span class="nt">&lt;firstName&gt;</span>Emmanuel<span class="nt">&lt;/firstName&gt;</span>
+                  <span class="nt">&lt;internationalPhone&gt;</span>+33 1 58 06 00 23<span class="nt">&lt;/internationalPhone&gt;</span>
+                  <span class="nt">&lt;lastName&gt;</span>Poidevin<span class="nt">&lt;/lastName&gt;</span>
+               <span class="nt">&lt;/supplierUsers&gt;</span>
+               <span class="nt">&lt;supplierUsers&gt;</span>
+                  <span class="nt">&lt;email&gt;</span>rapportdo@e-attestations.com<span class="nt">&lt;/email&gt;</span>
+                  <span class="nt">&lt;firstName&gt;</span>Admin<span class="nt">&lt;/firstName&gt;</span>
+                  <span class="nt">&lt;internationalPhone&gt;</span>+33 1 58 06 00 10<span class="nt">&lt;/internationalPhone&gt;</span>
+                  <span class="nt">&lt;lastName&gt;</span>Admin<span class="nt">&lt;/lastName&gt;</span>
+               <span class="nt">&lt;/supplierUsers&gt;</span>
+            <span class="nt">&lt;/supplierAccountInformation&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns1:getSupplierAccountInformationResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>Exemple de réponse FAIL</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns1:getSupplierAccountInformationResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;result&gt;</span>
+               <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+               <span class="nt">&lt;listErrors&gt;</span>
+                  <span class="nt">&lt;code&gt;</span>E100<span class="nt">&lt;/code&gt;</span>
+               <span class="nt">&lt;/listErrors&gt;</span>
+               <span class="nt">&lt;success&gt;</span>false<span class="nt">&lt;/success&gt;</span>
+            <span class="nt">&lt;/result&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns1:getSupplierAccountInformationResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre><h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td><a href="#formatresult">Result</a></td>
+<td>Statut de l&#39;appel et liste des erreurs en cas d&#39;échec.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>supplierAccountInformation</td>
+<td><a href="#SupplierAccountInformation">SupplierAccountInformation</a></td>
+<td>Informations retournées en cas de succès.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<p><a name="SupplierAccountInformation"></a></p>
+<h4 id='supplieraccountinformation'>SupplierAccountInformation</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>companyIDType</td>
+<td>String</td>
+<td>Type d&#39;identifiant de l&#39;entreprise (cf 3.2 Codes d&#39;identification d&#39;une entreprise)</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>companyIDValue</td>
+<td>String</td>
+<td>Valeur de l&#39;identifiant de l&#39;entreprise.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>companyCountryCode</td>
+<td>String</td>
+<td>Pays de l&#39;entreprise identifié par le code alpha-3 du standard ISO 3166-1.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>supplierCode</td>
+<td>String</td>
+<td>Code fournisseur pour identifier le fournisseur (identifiant interne client).</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>monitoredSupplier</td>
+<td>Boolean</td>
+<td>True si fournisseur suivi, false sinon. Un fournisseur est suivi dès lors qu&#39;il a au moins un dossier actif.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Dénomination sociale.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>addressStreet</td>
+<td>String</td>
+<td>Adresse – Rue.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>addressCity</td>
+<td>String</td>
+<td>Adresse – Ville.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>addressPostCode</td>
+<td>String</td>
+<td>Adresse – Code postal.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>addressCountryCode</td>
+<td>String</td>
+<td>Adresse – Pays.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>supplierUsers</td>
+<td>List&lt;<a href="#UserInformation">UserInformation</a>&gt;</td>
+<td>Informations des utilisateurs du compte fournisseur.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>subscriptionState</td>
+<td>Boolean</td>
+<td>État d&#39;inscription du compte fournisseur, inscrit (true) ou non inscrit (false).</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>subscriptionDate</td>
+<td>Date</td>
+<td>Date d&#39;inscription du compte fournisseur.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>subscriptionKey</td>
+<td>String</td>
+<td>Clé d&#39;inscription. Elle est demandée au fournisseur au moment de son adhésion. Elle doit lui être communiquée lors de relance d&#39;inscription.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>outOfBusiness</td>
+<td>Boolean</td>
+<td>True si l&#39;établissement est fermé, false si actif.</td>
+<td>Oui</td>
+</tr>
+</tbody></table>
+
+<p><a name="UserInformation"></a></p>
+<h4 id='userinformation'>UserInformation</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>firstName</td>
+<td>String</td>
+<td>Prénom de l&#39;utilisateur.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>String</td>
+<td>Nom de l&#39;utilisateur.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>Email de l&#39;utilisateur.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>internationalPhone</td>
+<td>String</td>
+<td>Numéro de téléphone de l&#39;utilisateur au format international.</td>
+<td>Oui</td>
+</tr>
+</tbody></table>
+<h2 id='getglobalinformation'>getGlobalInformation</h2>
+<p>Cette méthode permet de restituer les statistiques globales du compte donneur d&#39;ordre. Les statistiques concernent uniquement les fournisseurs actuellement suivis.</p>
+
+<p>Elle n&#39;accepte pas de parametre dans la requête.</p>
+
+<blockquote>
+<p>Exemple de requête</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:srv=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;srv:getGlobalInformation/&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Exemple de réponse SUCCESS</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns1:getGlobalInformationResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;listIndicatorsStatistics&gt;</span>
+               <span class="nt">&lt;indicatorCode&gt;</span>I001<span class="nt">&lt;/indicatorCode&gt;</span>
+               <span class="nt">&lt;numberOfCompleteDossier&gt;</span>244<span class="nt">&lt;/numberOfCompleteDossier&gt;</span>
+               <span class="nt">&lt;numberOfCompleteSupplier&gt;</span>153<span class="nt">&lt;/numberOfCompleteSupplier&gt;</span>
+               <span class="nt">&lt;numberOfDossier&gt;</span>447<span class="nt">&lt;/numberOfDossier&gt;</span>
+               <span class="nt">&lt;numberOfSupplier&gt;</span>316<span class="nt">&lt;/numberOfSupplier&gt;</span>
+               <span class="nt">&lt;numberOfSubscribedSupplier&gt;</span>252<span class="nt">&lt;/numberOfSubscribedSupplier&gt;</span>
+            <span class="nt">&lt;/listIndicatorsStatistics&gt;</span>
+            <span class="nt">&lt;numberOfCompleteDossier&gt;</span>222<span class="nt">&lt;/numberOfCompleteDossier&gt;</span>
+            <span class="nt">&lt;numberOfCompleteSupplier&gt;</span>139<span class="nt">&lt;/numberOfCompleteSupplier&gt;</span>
+            <span class="nt">&lt;numberOfDossier&gt;</span>448<span class="nt">&lt;/numberOfDossier&gt;</span>
+            <span class="nt">&lt;numberOfSupplier&gt;</span>317<span class="nt">&lt;/numberOfSupplier&gt;</span>
+            <span class="nt">&lt;numberOfSubscribedSupplier&gt;</span>252<span class="nt">&lt;/numberOfSubscribedSupplier&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns1:getGlobalInformationResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre><h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>numberOfSupplier</td>
+<td>Integer</td>
+<td>Nombre de fournisseurs suivis.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>numberOfSubscribedSupplier</td>
+<td>Integer</td>
+<td>Nombre de fournisseurs inscrits (avec des utilisateurs).</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>numberOfCompleteSupplier</td>
+<td>Integer</td>
+<td>Nombre de fournisseur ayant l&#39;ensemble de leurs dossiers complets.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>numberOfDossier</td>
+<td>Integer</td>
+<td>Nombre de dossiers actifs.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>numberOfCompleteDossier</td>
+<td>Integer</td>
+<td>Nombre de dossiers complets.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>listIndicatorsStatistics</td>
+<td>List&lt;<a href="#IndicatorStatistics">IndicatorStatistics</a>&gt;</td>
+<td>Informations des utilisateurs du compte fournisseur.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<p><a name="IndicatorStatistics"></a></p>
+<h4 id='indicatorstatistics'>IndicatorStatistics</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>indicatorCode</td>
+<td>String</td>
+<td>Code de l&#39;indicateur (cf 3.3 Codes d&#39;indicateur).</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>numberOfSupplier</td>
+<td>Integer</td>
+<td>Nombre de fournisseurs suivis pour cet indicateur.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>numberOfSubscribedSupplier</td>
+<td>Integer</td>
+<td>Nombre de fournisseurs inscrits (avec des utilisateurs) pour cet indicateur.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>numberOfCompleteSupplier</td>
+<td>Integer</td>
+<td>Nombre de fournisseur ayant l&#39;ensemble de leurs dossiers complets pour cet indicateur.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>numberOfDossier</td>
+<td>Integer</td>
+<td>Nombre de dossiers actifs pour cet indicateur.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>numberOfCompleteDossier</td>
+<td>Integer</td>
+<td>Nombre de dossiers complets pour cet indicateur.</td>
+<td>Oui</td>
+</tr>
+</tbody></table>
+<h2 id='getavailabledocuments'>getAvailableDocuments</h2>
+<p>Cette méthode retourne l&#39;ensemble des types de documents configuré pour le compte donneur d&#39;ordre :</p>
+
+<ul>
+<li><p>Les documents autorisés correspondent à ceux disponibles à la demande.</p></li>
+<li><p>Les documents par défaut correspondent à ceux qui seront demandés par défaut si aucun document n&#39;est renseigné lors de l&#39;import.</p></li>
+</ul>
+
+<p>Pour modifier ces listes, il faut contacter e-Attestations afin de mettre à jour les paramètres du compte.</p>
+
+<blockquote>
+<p>Exemple de requête</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:srv=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;srv:getAvailableDocuments/&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>Exemple de réponse SUCCESS</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns1:getAvailableDocumentsResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;availableDocuments&gt;</span>
+               <span class="nt">&lt;documentCode&gt;</span>ASSUR_RCPRO<span class="nt">&lt;/documentCode&gt;</span>
+               <span class="nt">&lt;name&gt;</span>Attestation d’assurance RC Pro<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/availableDocuments&gt;</span>
+            <span class="nt">&lt;availableDocuments&gt;</span>
+               <span class="nt">&lt;documentCode&gt;</span>ASSUR_DECENNALE<span class="nt">&lt;/documentCode&gt;</span>
+               <span class="nt">&lt;name&gt;</span>Attestation d’assurance décennale<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/availableDocuments&gt;</span>
+            <span class="nt">&lt;availableDocuments&gt;</span>
+               <span class="nt">&lt;documentCode&gt;</span>JUSTIF_IMM<span class="nt">&lt;/documentCode&gt;</span>
+               <span class="nt">&lt;name&gt;</span>Justificatif d’immatriculation<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/availableDocuments&gt;</span>
+            <span class="nt">&lt;availableDocuments&gt;</span>
+               <span class="nt">&lt;documentCode&gt;</span>LST_SAL_ETR<span class="nt">&lt;/documentCode&gt;</span>
+               <span class="nt">&lt;name&gt;</span>Déclaration des salariés<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/availableDocuments&gt;</span>
+            <span class="nt">&lt;availableDocuments&gt;</span>
+               <span class="nt">&lt;documentCode&gt;</span>ATT_MARCHE_PUBLIC<span class="nt">&lt;/documentCode&gt;</span>
+               <span class="nt">&lt;name&gt;</span>Attestation de marché public<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/availableDocuments&gt;</span>
+            <span class="nt">&lt;availableDocuments&gt;</span>
+               <span class="nt">&lt;documentCode&gt;</span>ATT_VIGI<span class="nt">&lt;/documentCode&gt;</span>
+               <span class="nt">&lt;name&gt;</span>Attestation de vigilance (6 mois)<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/availableDocuments&gt;</span>
+            <span class="nt">&lt;defaultDocuments&gt;</span>
+               <span class="nt">&lt;documentCode&gt;</span>JUSTIF_IMM<span class="nt">&lt;/documentCode&gt;</span>
+               <span class="nt">&lt;name&gt;</span>Justificatif d’immatriculation<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/defaultDocuments&gt;</span>
+            <span class="nt">&lt;defaultDocuments&gt;</span>
+               <span class="nt">&lt;documentCode&gt;</span>LST_SAL_ETR<span class="nt">&lt;/documentCode&gt;</span>
+               <span class="nt">&lt;name&gt;</span>Déclaration des salariés<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/defaultDocuments&gt;</span>
+            <span class="nt">&lt;defaultDocuments&gt;</span>
+               <span class="nt">&lt;documentCode&gt;</span>ATT_VIGI<span class="nt">&lt;/documentCode&gt;</span>
+               <span class="nt">&lt;name&gt;</span>Attestation de vigilance (6 mois)<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;/defaultDocuments&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns1:getAvailableDocumentsResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre><h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>availableDocuments</td>
+<td>List&lt;<a href="#DocumentInformation">DocumentInformation</a>&gt;</td>
+<td>Liste des documents autorisés.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>defaultDocuments</td>
+<td>List&lt;<a href="#DocumentInformation">DocumentInformation</a>&gt;</td>
+<td>Liste des documents demandés par défaut.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<p><a name="DocumentInformation"></a></p>
+<h4 id='documentinformation'>DocumentInformation</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>documentCode</td>
+<td>String</td>
+<td>Code qui identifie le document. Il est unique et non modifiable.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Nom du document. Il peut évoluer avec le temps.</td>
+<td>Oui</td>
+</tr>
+</tbody></table>
+<h2 id='updatedossier'>updateDossier</h2>
+<p>Cette méthode permet de mettre à jour les informations d&#39;un dossier actif.</p>
+
+<blockquote>
+<p>Exemple de requête</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:srv=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;srv:updateDossier&gt;</span>
+         <span class="nt">&lt;dossierUpdate&gt;</span>
+            <span class="nt">&lt;dataToUpdate&gt;</span>
+               <span class="nt">&lt;newDescription&gt;</span>This is my updated description<span class="nt">&lt;/newDescription&gt;</span>
+               <span class="nt">&lt;newDossierReference&gt;</span>NEW_REF_001<span class="nt">&lt;/newDossierReference&gt;</span>
+               <span class="nt">&lt;newExpirationDate&gt;</span>2016-12-31<span class="nt">&lt;/newExpirationDate&gt;</span>
+               <span class="c">&lt;!--&lt;newPurchasingCategory&gt;&lt;/newPurchasingCategory&gt;--&gt;</span>
+               <span class="c">&lt;!--&lt;newSupplierCode&gt;&lt;/newSupplierCode&gt;--&gt;</span>
+||  <span class="c">&lt;!--&lt;newSupplierEmail&gt;&lt;/newSupplierEmail&gt;--&gt;</span>
+            <span class="nt">&lt;/dataToUpdate&gt;</span>
+            <span class="nt">&lt;dossierReference&gt;</span>REF_001<span class="nt">&lt;/dossierReference&gt;</span>
+            <span class="nt">&lt;supplierSearch&gt;</span>
+               <span class="c">&lt;!--&lt;companyIDType&gt;&lt;/companyIDType&gt;--&gt;</span>
+               <span class="c">&lt;!--&lt;companyIDValue&gt;&lt;/companyIDValue&gt;--&gt;</span>
+               <span class="nt">&lt;supplierCode&gt;</span>SC_001<span class="nt">&lt;/supplierCode&gt;</span>
+            <span class="nt">&lt;/supplierSearch&gt;</span>
+         <span class="nt">&lt;/dossierUpdate&gt;</span>
+      <span class="nt">&lt;/srv:updateDossier&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>Exemple de réponse SUCCESS</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns1:updateDossierResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+            <span class="nt">&lt;success&gt;</span>true<span class="nt">&lt;/success&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns1:updateDossierResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>Exemple de réponse FAIL</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns1:updateDossierResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+            <span class="nt">&lt;listErrors&gt;</span>
+               <span class="nt">&lt;code&gt;</span>E200<span class="nt">&lt;/code&gt;</span>
+            <span class="nt">&lt;/listErrors&gt;</span>
+            <span class="nt">&lt;listErrors&gt;</span>
+               <span class="nt">&lt;additional&gt;</span>NEW_REF_001<span class="nt">&lt;/additional&gt;</span>
+               <span class="nt">&lt;code&gt;</span>E202<span class="nt">&lt;/code&gt;</span>
+            <span class="nt">&lt;/listErrors&gt;</span>
+            <span class="nt">&lt;success&gt;</span>false<span class="nt">&lt;/success&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns1:updateDossierResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+</code></pre><h3 id='dossierupdate'>DossierUpdate</h3>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>supplierSearch</td>
+<td><a href="#SupplierSearch">SupplierSearch</a></td>
+<td>Informations pour identifier le fournisseur du dossier à mettre à jour.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>dossierReference</td>
+<td>String</td>
+<td>Référence du dossier à mettre à jour.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>dataToUpdate</td>
+<td><a href="#DataToUpdate">DataToUpdate</a></td>
+<td>Objet contenant les informations à modifier.</td>
+<td>Oui</td>
+</tr>
+</tbody></table>
+
+<p><a name="SupplierSearch"></a></p>
+<h4 id='suppliersearch'>SupplierSearch</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#codeIdSupplier">companyIDType</a></td>
+<td>String</td>
+<td>Type d&#39;identifiant de l&#39;entreprise (Codes d&#39;identification d&#39;une entreprise).</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>companyIDValue</td>
+<td>String</td>
+<td>Valeur de l&#39;identifiant de l&#39;entreprise.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>supplierCode</td>
+<td>String</td>
+<td>Code fournisseur pour identifier le fournisseur (identifiant interne client).</td>
+<td>Non*</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+<strong>Attention</strong><br/>
+    Nous vous conseillons,comme pour importDossier, de composer vos critères de recherche soit sous la forme
+    <ul>
+    <li>companyIDType + companyIDValue</li>
+    <li> OU supplierCode </li>
+    </ul>
+</aside>
+
+<p><a name="DataToUpdate"></a></p>
+<h4 id='datatoupdate'>DataToUpdate</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>newDescription</td>
+<td>String</td>
+<td>Nouvelle description du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newDossierReference</td>
+<td>String</td>
+<td>&quot;Nouvelle référence du dossier.Elle ne peut pas être vide. L&#39;espace dans le référence est supprime puis il va être convertir en majuscule.&quot;</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newExpirationDate</td>
+<td>Date</td>
+<td>Nouvelle date d&#39;expiration du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>nilExpirationDate</td>
+<td>Boolean</td>
+<td>Positionne la date d&#39;expiration à pas de date d&#39;expiration lorsque la valeur est True. Cet attribut est prioritaire sur newExpirationDate.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newPurchasingCategory</td>
+<td>String</td>
+<td>Nouvelle catégorie achat du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newSupplierCode</td>
+<td>String</td>
+<td>Nouveau code fournisseur du fournisseur du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newSupplierEmail</td>
+<td>String</td>
+<td>Invitation d&#39;un correspondant fournisseur. Cette action envoi immédiatement un e-mail d&#39;invitation.</td>
+<td>Non*</td>
+</tr>
+</tbody></table>
+
+<aside class="info">
+    (*) Obligatoire : au moins un attribut (si aucun attribut n'est renseigné, la méthode retourne l'erreur *E003 « Paramètre vide» pour dataToUpdate)*
+</aside>
+<h2 id='stopdossier'>stopDossier</h2>
+<p>Cette méthode permet d&#39;arrêter la surveillance d&#39;un ou plusieurs dossiers actifs.</p>
+
+<p>Il est possible de désactiver :</p>
+
+<ul>
+<li>tous les dossiers d&#39;un fournisseurs</li>
+<li>un dossier en particulier</li>
+</ul>
+
+<blockquote>
+<p>Exemple de requête</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:srv=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;srv:stopDossier&gt;</span>
+         <span class="nt">&lt;dossierStop&gt;</span>
+            <span class="nt">&lt;dossierReference&gt;</span>NEW_REF_001<span class="nt">&lt;/dossierReference&gt;</span>
+          <span class="nt">&lt;supplierSearch&gt;</span>
+               <span class="nt">&lt;companyIDType&gt;</span>CIT001<span class="nt">&lt;/companyIDType&gt;</span>
+               <span class="nt">&lt;companyIDValue&gt;</span>50382936800037<span class="nt">&lt;/companyIDValue&gt;</span>
+              <span class="nt">&lt;supplierCode&gt;&lt;/supplierCode&gt;</span>
+            <span class="nt">&lt;/supplierSearch&gt;</span>
+         <span class="nt">&lt;/dossierStop&gt;</span>
+      <span class="nt">&lt;/srv:stopDossier&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>Exemple de réponse SUCCESS</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns1:stopDossierResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+            <span class="nt">&lt;success&gt;</span>true<span class="nt">&lt;/success&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns1:stopDossierResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>Exemple de réponse FAIL</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns1:stopDossierResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+            <span class="nt">&lt;listErrors&gt;</span>
+               <span class="nt">&lt;additional&gt;</span>REF_001<span class="nt">&lt;/additional&gt;</span>
+               <span class="nt">&lt;code&gt;</span>E201<span class="nt">&lt;/code&gt;</span>
+            <span class="nt">&lt;/listErrors&gt;</span>
+            <span class="nt">&lt;success&gt;</span>false<span class="nt">&lt;/success&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns1:stopDossierResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span> <span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre><h3 id='dossierstop'>DossierStop</h3>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>supplierSearch</td>
+<td><a href="#SupplierSearch">SupplierSearch</a></td>
+<td>Informations pour identifier le fournisseur du dossier à désactiver.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>dossierReference</td>
+<td>String</td>
+<td>Référence du dossier à désactiver.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<p><a name="SupplierSearch"></a></p>
+<h4 id='suppliersearch'>SupplierSearch</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#codeIdSupplier">companyIDType</a></td>
+<td>String</td>
+<td>Type d&#39;identifiant de l&#39;entreprise (Codes d&#39;identification d&#39;une entreprise).</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>companyIDValue</td>
+<td>String</td>
+<td>Valeur de l&#39;identifiant de l&#39;entreprise.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>supplierCode</td>
+<td>String</td>
+<td>Code fournisseur pour identifier le fournisseur (identifiant interne client).</td>
+<td>Non*</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+<strong>Attention</strong><br/>
+    Nous vous conseillons,comme pour importDossier et updateDossier, de composer vos critères de recherche soit sous la forme
+    <ul>
+    <li>companyIDType + companyIDValue</li>
+    <li> OU supplierCode </li>
+    </ul>
+</aside>
+
+<p><a name="DataToUpdate"></a></p>
+<h4 id='datatoupdate'>DataToUpdate</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>newDescription</td>
+<td>String</td>
+<td>Nouvelle description du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newDossierReference</td>
+<td>String</td>
+<td>&quot;Nouvelle référence du dossier.Elle ne peut pas être vide. L&#39;espace dans le référence est supprime puis il va être convertir en majuscule.&quot;</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newExpirationDate</td>
+<td>Date</td>
+<td>Nouvelle date d&#39;expiration du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>nilExpirationDate</td>
+<td>Boolean</td>
+<td>Positionne la date d&#39;expiration à pas de date d&#39;expiration lorsque la valeur est True. Cet attribut est prioritaire sur newExpirationDate.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newPurchasingCategory</td>
+<td>String</td>
+<td>Nouvelle catégorie achat du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newSupplierCode</td>
+<td>String</td>
+<td>Nouveau code fournisseur du fournisseur du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newSupplierEmail</td>
+<td>String</td>
+<td>Invitation d&#39;un correspondant fournisseur. Cette action envoi immédiatement un e-mail d&#39;invitation.</td>
+<td>Non*</td>
+</tr>
+</tbody></table>
+
+<aside class="info">
+    (*) Obligatoire : au moins un attribut (si aucun attribut n'est renseigné, la méthode retourne l'erreur *E003 « Paramètre vide» pour dataToUpdate)*
+</aside>
+<h2 id='updaterequireddocuments'>updateRequiredDocuments</h2>
+<p>Cette méthode permet de mettre à jour les documents demandés pour un dossier actif.</p>
+
+<p>La liste des documents renseignée remplace les précédentes demandes.</p>
+
+<p>Les documents demandés doivent avoir été préalablement configurés sur le compte.</p>
+
+<blockquote>
+<p>Exemple de requête</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:srv=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;srv:updateRequiredDocuments&gt;</span>
+         <span class="nt">&lt;requiredDocumentsUpdate&gt;</span>
+            <span class="nt">&lt;dossierReference&gt;</span>NEW_REF_001<span class="nt">&lt;/dossierReference&gt;</span>
+            <span class="c">&lt;!-- Documents actuellement demandés--&gt;</span>
+            <span class="nt">&lt;newRequiredDocuments&gt;</span>ATT_VIGI<span class="nt">&lt;/newRequiredDocuments&gt;</span>
+            <span class="nt">&lt;newRequiredDocuments&gt;</span>JUSTIF_IMM<span class="nt">&lt;/newRequiredDocuments&gt;</span>
+            <span class="nt">&lt;newRequiredDocuments&gt;</span>ASSUR_RCPRO<span class="nt">&lt;/newRequiredDocuments&gt;</span>
+            <span class="c">&lt;!-- Nouveaux documents à demander --&gt;</span>
+            <span class="nt">&lt;newRequiredDocuments&gt;</span>ATT_MARCHE_PUBLIC<span class="nt">&lt;/newRequiredDocuments&gt;</span>
+            <span class="nt">&lt;newRequiredDocuments&gt;</span>LST_SAL_ETR<span class="nt">&lt;/newRequiredDocuments&gt;</span>
+            <span class="nt">&lt;supplierSearch&gt;</span>
+               <span class="nt">&lt;companyIDType&gt;</span>CIT001<span class="nt">&lt;/companyIDType&gt;</span>
+               <span class="nt">&lt;companyIDValue&gt;</span>50382936800037<span class="nt">&lt;/companyIDValue&gt;</span>
+               <span class="c">&lt;!--&lt;supplierCode&gt;&lt;/supplierCode&gt;--&gt;</span>
+            <span class="nt">&lt;/supplierSearch&gt;</span>
+         <span class="nt">&lt;/requiredDocumentsUpdate&gt;</span>
+      <span class="nt">&lt;/srv:updateRequiredDocuments&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Exemple de réponse SUCCESS</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns1:updateRequiredDocumentsResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+            <span class="nt">&lt;success&gt;</span>true<span class="nt">&lt;/success&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns1:updateRequiredDocumentsResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre>
+<blockquote>
+<p>Exemple de réponse FAIL</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns1:updateRequiredDocumentsResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+            <span class="nt">&lt;listErrors&gt;</span>
+               <span class="nt">&lt;additional&gt;</span>NEW_REF_001<span class="nt">&lt;/additional&gt;</span>
+               <span class="nt">&lt;code&gt;</span>E201<span class="nt">&lt;/code&gt;</span>
+            <span class="nt">&lt;/listErrors&gt;</span>
+            <span class="nt">&lt;success&gt;</span>false<span class="nt">&lt;/success&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns1:updateRequiredDocumentsResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre><h3 id='requireddocumentsupdate'>RequiredDocumentsUpdate</h3>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>supplierSearch</td>
+<td><a href="#SupplierSearch">SupplierSearch</a></td>
+<td>Informations pour identifier le fournisseur concerné.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>dossierReference</td>
+<td>String</td>
+<td>Référence du dossier concerné.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>newRequiredDocuments</td>
+<td>List<String></td>
+<td>&quot;Liste des codes de documents à demander. Remplace les demandes précédentes.</td>
+<td></td>
+</tr>
+<tr>
+<td>Les codes disponibles sont restitués par la Méthode : getAvailableDocuments.&quot;</td>
+<td>Non</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><a name="SupplierSearch"></a></p>
+<h4 id='suppliersearch'>SupplierSearch</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#codeIdSupplier">companyIDType</a></td>
+<td>String</td>
+<td>Type d&#39;identifiant de l&#39;entreprise (Codes d&#39;identification d&#39;une entreprise).</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>companyIDValue</td>
+<td>String</td>
+<td>Valeur de l&#39;identifiant de l&#39;entreprise.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>supplierCode</td>
+<td>String</td>
+<td>Code fournisseur pour identifier le fournisseur (identifiant interne client).</td>
+<td>Non*</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+<strong>Attention</strong><br/>
+    Nous vous conseillons,comme pour importDossier, de composer vos critères de recherche soit sous la forme
+    <ul>
+    <li>companyIDType + companyIDValue</li>
+    <li> OU supplierCode </li>
+    </ul>
+</aside>
+
+<p><a name="DataToUpdate"></a></p>
+<h4 id='datatoupdate'>DataToUpdate</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>newDescription</td>
+<td>String</td>
+<td>Nouvelle description du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newDossierReference</td>
+<td>String</td>
+<td>&quot;Nouvelle référence du dossier.Elle ne peut pas être vide. L&#39;espace dans le référence est supprime puis il va être convertir en majuscule.&quot;</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newExpirationDate</td>
+<td>Date</td>
+<td>Nouvelle date d&#39;expiration du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>nilExpirationDate</td>
+<td>Boolean</td>
+<td>Positionne la date d&#39;expiration à pas de date d&#39;expiration lorsque la valeur est True. Cet attribut est prioritaire sur newExpirationDate.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newPurchasingCategory</td>
+<td>String</td>
+<td>Nouvelle catégorie achat du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newSupplierCode</td>
+<td>String</td>
+<td>Nouveau code fournisseur du fournisseur du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newSupplierEmail</td>
+<td>String</td>
+<td>Invitation d&#39;un correspondant fournisseur. Cette action envoi immédiatement un e-mail d&#39;invitation.</td>
+<td>Non*</td>
+</tr>
+</tbody></table>
+
+<aside class="info">
+    (*) Obligatoire : au moins un attribut (si aucun attribut n'est renseigné, la méthode retourne l'erreur *E003 « Paramètre vide» pour dataToUpdate)*
+</aside>
+<h2 id='reactivatedossier'>reactivateDossier</h2>
+<p>Cette méthode permet de réactiver un dossier.</p>
+
+<blockquote>
+<p>Exemple de requête</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:srv=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;srv:reActivateDossier&gt;</span>
+         <span class="nt">&lt;dossierReActivate&gt;</span>   
+            <span class="nt">&lt;dossierReference&gt;</span>SUP008183<span class="nt">&lt;/dossierReference&gt;</span>
+            <span class="nt">&lt;supplierSearch&gt;</span>        
+               <span class="nt">&lt;companyIDType&gt;</span>CIT001<span class="nt">&lt;/companyIDType&gt;</span>           
+               <span class="nt">&lt;companyIDValue&gt;</span>50879531700017<span class="nt">&lt;/companyIDValue&gt;</span>             
+            <span class="nt">&lt;/supplierSearch&gt;</span>
+         <span class="nt">&lt;/dossierReActivate&gt;</span>
+      <span class="nt">&lt;/srv:reActivateDossier&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+
+</code></pre>
+<blockquote>
+<p>Exemple de réponse SUCCESS</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;ns1:reActivateDossierResponse</span> <span class="na">xmlns:ns1=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;return</span> <span class="na">xmlns:ns2=</span><span class="s">"http://srv.v3.ws.ea.com/"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;complete&gt;</span>true<span class="nt">&lt;/complete&gt;</span>
+            <span class="nt">&lt;success&gt;</span>true<span class="nt">&lt;/success&gt;</span>
+         <span class="nt">&lt;/return&gt;</span>
+      <span class="nt">&lt;/ns1:reActivateDossierResponse&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</code></pre><h3 id='dossierreactivate'>DossierReactivate</h3>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>supplierSearch</td>
+<td><a href="#SupplierSearch">SupplierSearch</a></td>
+<td>Informations pour identifier le fournisseur du dossier à désactiver.</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>dossierReference</td>
+<td>String</td>
+<td>Référence du dossier à désactiver.</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>expirationDate</td>
+<td>Date</td>
+<td>&quot;Date d&#39;expiration du dossier à ré-activer. Si aucune valeur mentionné le date d&#39;expiration reste celle d&#39;avant la désactivation. La date d&#39;expiration doit être dans le futur.&quot;</td>
+<td>Non</td>
+</tr>
+<tr>
+<td>nilExpirationDate</td>
+<td>Boolean</td>
+<td>Positionne la date d&#39;expiration à pas de date d&#39;expiration lorsque la valeur est True. Cet attribut est prioritaire sur expirationDate.</td>
+<td>Non</td>
+</tr>
+</tbody></table>
+
+<p><a name="SupplierSearch"></a></p>
+<h4 id='suppliersearch'>SupplierSearch</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#codeIdSupplier">companyIDType</a></td>
+<td>String</td>
+<td>Type d&#39;identifiant de l&#39;entreprise (Codes d&#39;identification d&#39;une entreprise).</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>companyIDValue</td>
+<td>String</td>
+<td>Valeur de l&#39;identifiant de l&#39;entreprise.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>supplierCode</td>
+<td>String</td>
+<td>Code fournisseur pour identifier le fournisseur (identifiant interne client).</td>
+<td>Non*</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+<strong>Attention</strong><br/>
+    Nous vous conseillons de composer vos critères de recherche soit sous la forme
+    <ul>
+    <li>companyIDType + companyIDValue</li>
+    <li> OU supplierCode </li>
+    </ul>
+</aside>
+
+<p><a name="DataToUpdate"></a></p>
+<h4 id='datatoupdate'>DataToUpdate</h4>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>newDescription</td>
+<td>String</td>
+<td>Nouvelle description du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newDossierReference</td>
+<td>String</td>
+<td>&quot;Nouvelle référence du dossier.Elle ne peut pas être vide. L&#39;espace dans le référence est supprime puis il va être convertir en majuscule.&quot;</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newExpirationDate</td>
+<td>Date</td>
+<td>Nouvelle date d&#39;expiration du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>nilExpirationDate</td>
+<td>Boolean</td>
+<td>Positionne la date d&#39;expiration à pas de date d&#39;expiration lorsque la valeur est True. Cet attribut est prioritaire sur newExpirationDate.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newPurchasingCategory</td>
+<td>String</td>
+<td>Nouvelle catégorie achat du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newSupplierCode</td>
+<td>String</td>
+<td>Nouveau code fournisseur du fournisseur du dossier.</td>
+<td>Non*</td>
+</tr>
+<tr>
+<td>newSupplierEmail</td>
+<td>String</td>
+<td>Invitation d&#39;un correspondant fournisseur. Cette action envoi immédiatement un e-mail d&#39;invitation.</td>
+<td>Non*</td>
+</tr>
+</tbody></table>
+
+<aside class="info">
+    (*) Obligatoire : au moins un attribut (si aucun attribut n'est renseigné, la méthode retourne l'erreur *E003 « Paramètre vide» pour dataToUpdate)*
+</aside>
+<h1 id='nomenclature'>Nomenclature</h1>
+<p><a name="codeIdSupplier"></a></p>
+<h2 id='codes-d-39-identification-d-39-une-entreprise'>Codes d&#39;identification d&#39;une entreprise</h2>
+<table><thead>
+<tr>
+<th>CompanyIDType</th>
+<th>Description</th>
+<th>CompanyIDValue</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CIT001</td>
+<td>SIRET : identifiant utilisé en France pour qualifier les établissements.</td>
+<td>Nombre de 14 chiffres qui vérifie l&#39;algorithme de Luhn.</td>
+</tr>
+<tr>
+<td>CIT002</td>
+<td>Numéro TVA : identifiant utilisé par la CEE pour les entreprises soumis à l&#39;impôt sur les sociétés.</td>
+<td><a href="https://en.wikipedia.org/wiki/VAT_identification_number">https://en.wikipedia.org/wiki/VAT_identification_number</a></td>
+</tr>
+</tbody></table>
+
+<p><a name="codeIndicator"></a></p>
+<h2 id='codes-d-39-indicateur'>Codes d&#39;indicateur</h2>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Nom</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>I001</td>
+<td>Travail dissimulé</td>
+<td>Complétude des documents demandés *</td>
+</tr>
+</tbody></table>
+
+<aside class="info">
+<i class="fas fa-info-circle"></i>&nbsp;
+(*) Suivant la configuration de votre compte. A minima dans le cadre de la lutte contre le travail dissimulé (module "Vigilance").
+</aside>
+<p><a name="errorcodes"></a></p>
+<h1 id='codes-d-39-erreur-et-signification'>Codes d&#39;erreur et signification</h1>
+<p>Les codes d&#39;erreur sont renvoyé sans message afin que l&#39;intégration de l&#39;interprétation de ces erreurs restent libres.</p>
+
+<p>La liste des codes d&#39;erreurs présentée dans cette section est relative aux erreurs dites génériques.</p>
+
+<aside class="info">
+<i class="fas fa-info-circle"></i>&nbsp;
+Les erreurs doivent toujours être interprétées au regard de la méthode employée et dans le contexte de l'appel.
+</aside>
+
+<p><a name='errorstructure'></a></p>
+<h2 id='structure'>Structure</h2>
+<table><thead>
+<tr>
+<th>Attributs</th>
+<th>Type</th>
+<th>Description</th>
+<th>NOT NULL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>String</td>
+<td>Code de l&#39;erreur</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>additional</td>
+<td>String</td>
+<td>Liste des erreurs.</td>
+<td>NO</td>
+</tr>
+</tbody></table>
+<h2 id='http-error-codes'>HTTP Error Codes</h2>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Votre requête est invalide au niveau protocolaire (protocole SOAP)</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- L&#39;accès n&#39;est pas autorisé. Soit que vos identifiants sont incorrects soit que le &#39;client&#39; a une IP qui n&#39;est pas reconnue que de confiance par eAttestratsion</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- Le serveur a rencontrer une erreure grave et n&#39;a pu répondre à la requête</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- Le service n&#39;est pas disponible</td>
+</tr>
+</tbody></table>
+<h2 id='codes-d-39-erreurs-communs'>Codes d&#39;erreurs communs</h2>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Additional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>E001</td>
+<td>Paramètre manquant</td>
+<td>Nom du paramètre</td>
+</tr>
+<tr>
+<td>E002</td>
+<td>Paramètre inconnu</td>
+<td>Nom du paramètre/Valeur</td>
+</tr>
+<tr>
+<td>E003</td>
+<td>Paramètre vide</td>
+<td>Nom du paramètre</td>
+</tr>
+<tr>
+<td>E010</td>
+<td>Format incorrect</td>
+<td>Nom du paramètre/Valeur</td>
+</tr>
+<tr>
+<td>E011</td>
+<td>Taille maximale dépassée.</td>
+<td>Nom du paramètre/Taille max</td>
+</tr>
+<tr>
+<td>E021</td>
+<td>Date dans le passé (newExpirationDate)</td>
+<td>Nom du paramètre</td>
+</tr>
+<tr>
+<td>E022</td>
+<td>Date dans le futur</td>
+<td>Nom du paramètre</td>
+</tr>
+<tr>
+<td>E030</td>
+<td>Domaine de l’e-mail invalide</td>
+<td>Valeur du paramètre</td>
+</tr>
+</tbody></table>
+<h2 id='codes-d-39-erreurs-par-entite-interrogee'>Codes d&#39;erreurs par entité interrogée</h2><h3 id='tiers-fournisseurs'>Tiers/Fournisseurs</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Additional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>E100</td>
+<td>Erreur lors de la qualification de l&#39;établissement. <br/><strong>Aucun tiers/fournisseur ne correspond aux critères de la recherche</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>E101</td>
+<td>Erreur lors de la qualification de l&#39;établissement.</td>
+<td></td>
+</tr>
+<tr>
+<td>E102</td>
+<td>L&#39;établissement n&#39;existe pas</td>
+<td>Identifiant de l&#39;établissement*</td>
+</tr>
+<tr>
+<td>E103</td>
+<td>L&#39;établissement est fermé</td>
+<td>Identifiant de l&#39;établissement*</td>
+</tr>
+<tr>
+<td>E104</td>
+<td>Plusieurs fournisseurs correspondent à la recherche</td>
+<td>Identifiant de l&#39;établissement*</td>
+</tr>
+<tr>
+<td>E111</td>
+<td>Le code fournisseur (supplierCode) est différent de celui déjà existant</td>
+<td>supplierCode existant</td>
+</tr>
+<tr>
+<td>E112</td>
+<td>Le code fournisseur (supplierCode ou newSupplierCode) est déjà utilisé pour un autre fournisseur</td>
+<td>Identifiant de l&#39;autre fournisseur*</td>
+</tr>
+<tr>
+<td>E113</td>
+<td>Le compte du fournisseur est désactivé</td>
+<td></td>
+</tr>
+<tr>
+<td>E121</td>
+<td>Impossible d&#39;importer un fournisseur français avec la TVA</td>
+<td>Identifiant de l&#39;établissement*</td>
+</tr>
+<tr>
+<td>E122</td>
+<td>Impossible d&#39;importer un fournisseur étranger. L&#39;option fournisseur étranger n&#39;est pas activée</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<aside class="info">
+<i class="fas fa-info-circle"></i>&nbsp;
+(*) L'identifiant d'un établissement est retourné sous la forme **companyIDType/companyIDValue**
+</aside>
+<h3 id='dossiers'>Dossiers</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Additional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>E200</td>
+<td>Aucun dossier ne correspond à la recherche</td>
+<td></td>
+</tr>
+<tr>
+<td>E201</td>
+<td>Le dossier est désactivé</td>
+<td>Reference du dossier</td>
+</tr>
+<tr>
+<td>E202</td>
+<td>La référence existe déjà pour ce fournisseur</td>
+<td>Reference du dossier</td>
+</tr>
+<tr>
+<td>E203</td>
+<td>Aucun dossier existe avec ce référence. (newDossierReference)</td>
+<td>Reference du dossier</td>
+</tr>
+<tr>
+<td>E204</td>
+<td>Le dossier est déjà actif</td>
+<td>Reference du dossier</td>
+</tr>
+<tr>
+<td>E205</td>
+<td>Le dossier à réactiver a une date d&#39;expiration dans le passée. Modifier cette date (dateExpiration)</td>
+<td>Date d&#39;expiration</td>
+</tr>
+</tbody></table>
+<h3 id='documents-demandes'>Documents demandés</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Additional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>E301</td>
+<td>Le document est désactivé. Il ne peut plus être demandé. Contactez e-Attestations pour plus d&#39;informations.</td>
+<td>Code du document</td>
+</tr>
+<tr>
+<td>E302</td>
+<td>Le document n&#39;est pas autorisé. Il ne fait pas partie de la liste des documents que votre compte peut demander aux fournisseurs. Contactez votre gestionnaire de compte e-Attestations pour ajouter ce document à votre bibliothèque.</td>
+<td>Code du document</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="xml">xml</a>
+          </div>
+      </div>
+    </div>
+    
+    <script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true, theme: 'forest'});</script>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+  </body>
+</html>
