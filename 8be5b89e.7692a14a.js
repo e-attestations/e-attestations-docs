@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[27],{82:function(t){t.exports=JSON.parse('{"welcome":{"allTagsPath":"/blog/tags","slug":"welcome","name":"welcome","count":1,"permalink":"/blog/tags/welcome"},"e-attestations":{"allTagsPath":"/blog/tags","slug":"e-attestations","name":"e-attestations","count":1,"permalink":"/blog/tags/e-attestations"}}')}}]);
