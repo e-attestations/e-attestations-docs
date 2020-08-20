@@ -129,7 +129,7 @@ function Home() {
   const {siteConfig = {}} = context;
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      title={`Welcome to ${siteConfig.title}`}
       description="e-Attestations.io for all technical resources you need when you develop with our APIs">
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
@@ -138,7 +138,8 @@ function Home() {
           <div className={styles.buttons}>
             <Link
               className={clsx(
-                styles.getstarted, 'getstarted button button--outline button--secondary button--lg'
+                styles.getstarted,
+                'getstarted button button--outline button--secondary button--lg',
               )}
               to={useBaseUrl('docs/a-1-introduction')}>
               Get Started
@@ -184,27 +185,34 @@ function Home() {
         )}
       </main>
 
-      <main>
+      <header className={clsx('hero hero--dark', styles.heroBanner)}>
         <div className="container">
-          <h1>Featured documentations </h1>
-          {documentations && documentations.length > 0 && (
-            <section className={styles.features}>
-              <div className="container">
-                <div className="row">
-                  {documentations.map(({key, title, imageUrl, description}) => (
-                    <Feature
-                      key={key}
-                      title={title}
-                      imageUrl={imageUrl}
-                      description={description}
-                    />
-                  ))}
-                </div>
-              </div>
-            </section>
-          )}
+          <h1 className="hero__title">Featured documentations</h1>
+          <p className="hero__subtitle">
+            Documentations of our APIs in different falvours
+          </p>
         </div>
+      </header>
+
+      <main>
+        {documentations && documentations.length > 0 && (
+          <section className={styles.features}>
+            <div className="container">
+              <div className="row">
+                {documentations.map(({key, title, imageUrl, description}) => (
+                  <Feature
+                    key={key}
+                    title={title}
+                    imageUrl={imageUrl}
+                    description={description}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
       </main>
+
     </Layout>
   );
 }

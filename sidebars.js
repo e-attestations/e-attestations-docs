@@ -33,7 +33,6 @@ module.exports = {
       'c-5-documents', 
       'c-6-files',
     ],
-    'Develop': [ 'ref/api-doc'],
     'Lists and codes': [
       'd-1-types', 
       'd-2-error-codes'
