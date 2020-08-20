@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://e-attestations.io/blog</id>
+    <title>e-Attestations APIs Blog</title>
+    <updated>2020-08-20T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://e-attestations.io/blog"/>
+    <subtitle>e-Attestations APIs Blog</subtitle>
+    <icon>https://e-attestations.io/img/favicon.png</icon>
+    <rights>Copyright © 2020 Facebook, Inc.</rights>
+    <entry>
+        <title type="html"><![CDATA[Welcome !]]></title>
+        <id>welcome</id>
+        <link href="https://e-attestations.io/blog/welcome"/>
+        <updated>2020-08-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Welcome to your new e-attestations.io experience.]]></summary>
+    </entry>
+</feed>

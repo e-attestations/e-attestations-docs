@@ -221,7 +221,7 @@ info:
 
     ```shell
     curl -X POST \
-      https://auth.dev-e-attestations.com/auth/realms/eat_realm/protocol/openid-connect/token \
+      https://auth.test-e-attestations.com/auth/realms/eat_realm/protocol/openid-connect/token \
       -H 'Content-Type: application/x-www-form-urlencoded' \
       -H 'cache-control: no-cache' \
       -d 'client_id=ea-api-edge' \
@@ -278,7 +278,7 @@ info:
 
     Pour chaque environnement, une URL spécifique vous permet de récupérer le JWT :
 
-    - Non PRODUCTION : ```https://auth.dev-e-attestations.com/auth/realms/eat_realm/protocol/openid-connect/token```
+    - Non PRODUCTION : ```https://auth.test-e-attestations.com/auth/realms/eat_realm/protocol/openid-connect/token```
     - PRODUCTION : ```https://auth.e-attestations.com/auth/realms/eat_realm/protocol/openid-connect/token```
 
 

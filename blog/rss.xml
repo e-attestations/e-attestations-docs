@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>e-Attestations APIs Blog</title>
+        <link>https://e-attestations.io/blog</link>
+        <description>e-Attestations APIs Blog</description>
+        <lastBuildDate>Thu, 20 Aug 2020 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <copyright>Copyright © 2020 Facebook, Inc.</copyright>
+        <item>
+            <title><![CDATA[Welcome !]]></title>
+            <link>https://e-attestations.io/blog/welcome</link>
+            <guid>welcome</guid>
+            <pubDate>Thu, 20 Aug 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Welcome to your new e-attestations.io experience.]]></description>
+        </item>
+    </channel>
+</rss>
