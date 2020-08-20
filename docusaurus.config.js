@@ -10,6 +10,7 @@ module.exports = {
   tagline: 'Technical resources for your projects',
   url: 'https://e-attestations.io',
   baseUrl: '/',
+  onBrokenLinks: 'throw',
   favicon: 'img/favicon.png',
   organizationName: 'e-attestations', // Usually your GitHub org/user name.
   projectName: 'e-attestations-docs', // Usually your repo name.
@@ -20,33 +21,19 @@ module.exports = {
         alt: 'e-Attestations',
         src: 'img/cropped-logo-eattestations-2.png',
       },
-      links: [
-        {href: '/openapi/swagger.html', label: 'API EDGE (REST)', position: 'left'},
-        {href: '/openapi/redoc.html', label: 'Redoc', position: 'left'},
-        {href: '/EAttestationsRESTAPIv1.1/index.html', label: 'API REST 1.1 (fr)', position: 'left'},
-        {href: '/EAttestationsWSAPI/index.html', label: 'API WS (fr)', position: 'left'},
+      items: [
+        {to: '/openapi/swagger.html', label: 'API EDGE (REST)', position: 'left'},
+        {to: '/openapi/redoc.html', label: 'Redoc', position: 'left'},
+        {to: '/EAttestationsRESTAPIv1.1/index.html', label: 'API REST 1.1 (fr)', position: 'left'},
+        {to: '/EAttestationsWSAPI/index.html', label: 'API WS (fr)', position: 'left'},
         {to: 'docs/b-1-get-started', label: 'QuickStart', position: 'right'},
-        {to: 'docs/a-1-introduction', label: 'Docs', position: 'right'},
-        {
-          label: 'Tutorials',
-          to: 'docs/t-1-create-dossier',
-          position: 'right'
-        },
+        {to: 'docs/a-1-introduction', activeBasePath: 'docs', label: 'Docs', position: 'right'},
         {
           href: 'https://github.com/e-attestations',
           label: 'GitHub',
           position: 'right',
         },
-        {
-          href: 'https://api.dev-e-attestations.com',
-          label: 'Blog',
-          position: 'right',
-        },
-        {
-          to: 'https://jira-e-attestations.atlassian.net/servicedesk/customer/portals',
-          label: 'Support',
-          position: 'right',
-        },
+        {to: 'blog', label: 'Blog', position: 'right'},
       ],
     },
     footer: {
@@ -109,7 +96,18 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          // It is recommended to set document id as docs home page (`docs/` path).
+          homePageId: 'doc1',
           sidebarPath: require.resolve('./sidebars.js'),
+          // Please change this to your repo.
+          editUrl:
+            'https://github.com/facebook/docusaurus/edit/master/website/',
+        },
+        blog: {
+          showReadingTime: true,
+          // Please change this to your repo.
+          editUrl:
+            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

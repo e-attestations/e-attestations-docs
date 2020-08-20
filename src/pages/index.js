@@ -1,22 +1,25 @@
 /**
- * Copyright (c) 2017-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
+ *
+ * @format
  */
 
-import React from "react";
-import classnames from "classnames";
-import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import styles from "./styles.module.css";
+import React from 'react';
+import clsx from 'clsx';
+import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import styles from './styles.module.css';
 
 const features = [
   {
+    key:1,
     title: <>Easy to implement</>,
-    imageUrl: "img/API-Interface.png",
+    imageUrl: 'img/API-Interface.png',
     description: (
       <>
         e-Attestation APIs are very easy to use and to implement in the
@@ -27,8 +30,9 @@ const features = [
     ),
   },
   {
+    key:2,
     title: <>Powered by OpenAPI v3</>,
-    imageUrl: "img/openapi-whats-new.png",
+    imageUrl: 'img/openapi-whats-new.png',
     description: (
       <>
         Using OpenAPI V3 standard, e-Attestations API are very easy to discover,
@@ -38,8 +42,9 @@ const features = [
     ),
   },
   {
+    key:3,
     title: <>Use the power of Postman</>,
-    imageUrl: "img/postman-logo.png",
+    imageUrl: 'img/postman-logo.png',
     description: (
       <>
         You can go even quicker with the Postman collection we provide you.
@@ -52,19 +57,19 @@ const features = [
 
 const documentations = [
   {
+    key:1,
     title: <>e-Attestation 'EDGE' API</>,
-    imageUrl: "img/logo-e-Attestations.png",
+    imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
         This is the most avanced and activaly tested version of our REST API.
         With this version you'll find more features and more data. This API
         version will open the beginning of an ever greening version strategy.
-        <br/>
+        <br />
         <a target="_blank" href="openapi/swagger.html">
           OpenAPI v3 e-Attestations REST API v1.1 (fr)
         </a>
-        <br/>
-
+        <br />
         If you prefere redoc presentation is here :
         <a target="_blank" href="openapi/redoc.html">
           Redoc e-Attestations REST API v1.1 (fr)
@@ -74,8 +79,9 @@ const documentations = [
   },
 
   {
+    key:2,
     title: <>API REST 1.1 (fr)</>,
-    imageUrl: "img/logo-e-Attestations.png",
+    imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
         This is the actual version of our REST API. It will be replaced soon by
@@ -87,8 +93,9 @@ const documentations = [
     ),
   },
   {
+    key:3,
     title: <>API SOAP v3 (fr)</>,
-    imageUrl: "img/logo-e-Attestations.png",
+    imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
         <a target="_blank" href="EAttestationsWSAPI/index.html">
@@ -99,10 +106,10 @@ const documentations = [
   },
 ];
 
-function Feature({ imageUrl, title, description }) {
+function Feature({imageUrl, title, description}) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
-    <div className={classnames("col col--5", styles.feature, styles.bloc)}>
+    <div className={clsx('col col--4', styles.feature)}>
       {imgUrl && (
         <div className="text--center">
           <img className={styles.featureImage} src={imgUrl} alt={title} />
@@ -116,24 +123,22 @@ function Feature({ imageUrl, title, description }) {
 
 function Home() {
   const context = useDocusaurusContext();
-  const { siteConfig = {} } = context;
+  const {siteConfig = {}} = context;
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
-      description="e-Attestatoins.io for all technical resources you need when you develop with our APIs"
-    >
-      <header className={classnames("hero hero--primary", styles.heroBanner)}>
+      description="e-Attestations.io for all technical resources you need when you develop with our APIs">
+      <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
           <div className={styles.buttons}>
             <Link
-              className={classnames(
-                "button button--outline button--secondary button--lg",
-                styles.getStarted
+              className={clsx(
+                'button button--outline button--secondary button--lg',
+                styles.getStarted,
               )}
-              to={useBaseUrl("docs/a-1-introduction")}
-            >
+              to={useBaseUrl("docs/a-1-introduction")}>
               Get Started
             </Link>
           </div>
@@ -146,7 +151,6 @@ function Home() {
             <img
               src="img/logo-e-Attestations-tech.png"
               alt="welcome"
-              className={styles.welcomeImage}
             />
             <p>
               You're a developer and you want to find more information, tools,
@@ -162,37 +166,44 @@ function Home() {
       </main>
 
       <main>
-        {features && features.length && (
+        {features && features.length > 0 && (
           <section className={styles.features}>
             <div className="container">
               <div className="row">
-                {features.map((props, idx) => (
-                  <Feature key={idx} {...props} className={styles.bloc} />
+                {features.map(({key, title, imageUrl, description}) => (
+                  <Feature
+                    key={key}
+                    title={title}
+                    imageUrl={imageUrl}
+                    description={description}
+                  />
                 ))}
               </div>
             </div>
           </section>
         )}
       </main>
-      
-      <main>
-        <section className={styles.features}>
-          <div className="container">
-            <h1>Featured documentations </h1>
 
-            {documentations && documentations.length && (
-                <section className={styles.features}>
-                  <div className="container">
-                    <div className="row">
-                      {documentations.map((props, idx) => (
-                        <Feature key={idx} {...props} className={styles.bloc} />
-                      ))}
-                    </div>
-                  </div>
-                </section>
-              )}
-          </div>
-        </section>
+      <main>
+        <div className="container">
+        <h1>Featured documentations </h1>
+        {documentations && documentations.length > 0 && (
+          <section className={styles.features}>
+            <div className="container">
+              <div className="row">
+                {documentations.map(({key, title, imageUrl, description}) => (
+                  <Feature
+                    key={key}
+                    title={title}
+                    imageUrl={imageUrl}
+                    description={description}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+        </div>
       </main>
     </Layout>
   );

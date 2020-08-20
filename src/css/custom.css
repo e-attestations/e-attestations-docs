@@ -1,8 +1,10 @@
 /**
- * Copyright (c) 2017-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
+ *
+ * @format
  */
 
 /**
@@ -12,59 +14,21 @@
  */
 
 /* You can override the default Infima variables here. */
-
 :root {
-	--ifm-color-white: rgb(248, 248, 250);
-	--ifm-color-primary: #5f9532;
-	--ifm-color-primary-dark: rgb(33, 175, 144);
-	--ifm-color-primary-darker: rgb(31, 165, 136);
-	--ifm-color-primary-darkest: rgb(26, 136, 112);
-	--ifm-color-primary-light: rgb(70, 203, 174);
-	--ifm-color-primary-lighter: rgb(102, 212, 189);
+  /*--ifm-color-primary: #25c2a0;*/
+  --ifm-color-primary: #5f9532;
+  --ifm-color-primary-dark: rgb(33, 175, 144);
+  --ifm-color-primary-darker: rgb(31, 165, 136);
+  --ifm-color-primary-darkest: rgb(26, 136, 112);
+  --ifm-color-primary-light: rgb(70, 203, 174);
+  --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208);
+  --ifm-code-font-size: 95%;
 }
-
 
 .docusaurus-highlight-code-line {
-	background-color: rgb(72, 77, 91);
-	display: block;
-	margin: 0 calc(-1 * var(--ifm-pre-padding));
-	padding: 0 var(--ifm-pre-padding);
-}
-
-.card-1 {
-  max-width: 600px;
-  margin: 2em;
-  border: medium var(--ifm-color-white) solid;
-	border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);	
-  transition: all 0.5s cubic-bezier(.25, .8, .25, 1);
-}
-
-.card-1:hover {
-	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-aside {
-  padding: 1em;
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-  background: var(--ifm-color-white);
-  color: var(--ifm-color-primary);
-  border: medium rgb(248, 248, 255) solid;
-	border-radius: 4px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  line-height: 1.6;
-  transition: all 0.5s cubic-bezier(.25, .8, .25, 1);
-}
-
-aside:hover {
-  cursor: pointer;
-	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-aside:before {
-  vertical-align: middle;
-  padding-right: 0.5em;
-  font-size: 14px;
+  background-color: rgb(72, 77, 91);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
 }
