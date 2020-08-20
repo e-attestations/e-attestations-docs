@@ -53,18 +53,22 @@ const documentations = [
     imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
-        This is the most avanced and activaly tested version of our REST API.
-        With this version you@apos;ll find more features and more data. 
-        API 'EDGE' adopt an ever greening version strategy so you'll benefits enhancements automagicaly.
-        <br />
-        <a target="_blank" href="openapi/swagger.html">
-          OpenAPI v3 e-Attestations REST API v1.1 (fr)
-        </a>
-        <br />
-        If you prefere redoc presentation is here :
-        <a target="_blank" href="openapi/redoc.html">
-          Redoc e-Attestations REST API v1.1 (fr)
-        </a>
+        This is the most avanced and activaly tested version of our RESTful API.
+        With this version you@apos;ll find more features and more data. API
+        'EDGE' adopt an ever greening version strategy so you'll benefits
+        enhancements automagicaly. You have to flavours :
+        <ul>
+          <li>
+            <a target="_blank" href="openapi/swagger.html">
+              OpenAPI v3
+            </a>
+          </li>
+          <li>
+            <a target="_blank" href="openapi/redoc.html">
+              Redoc format
+            </a>
+          </li>
+        </ul>
       </>
     ),
   },
@@ -75,11 +79,15 @@ const documentations = [
     imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
-        This is the actual version of our REST API. It will be replaced soon by
+        This is our actual version of our REST API. It will be replaced soon by
         the 'EDGE' version. Stay tuned and jump the 'EDGE' version now !
-        <a target="_blank" href="EAttestationsRESTAPIv1.1/index.html">
-          Documentation of e-Attestations REST API v1.1 (fr)
-        </a>
+        <ul>
+          <li>
+            <a target="_blank" href="EAttestationsRESTAPIv1.1/index.html">
+              Documentation of e-Attestations REST API v1.1 (fr)
+            </a>
+          </li>
+        </ul>
       </>
     ),
   },
@@ -89,8 +97,12 @@ const documentations = [
     imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
+        This API is still maintained for our customers forced to use SOAP, but
+        we recommend choosing our REST API.
         <a target="_blank" href="EAttestationsWSAPI/index.html">
-          Documentation of e-Attestations SOAP API v3 (fr)
+          <ul>
+            <li>Documentation of e-Attestations SOAP API v3 (fr)</li>
+          </ul>
         </a>
       </>
     ),
@@ -126,8 +138,7 @@ function Home() {
           <div className={styles.buttons}>
             <Link
               className={clsx(
-                'button button--outline button--secondary button--lg',
-                styles.getStarted,
+                styles.getstarted, 'getstarted button button--outline button--secondary button--lg'
               )}
               to={useBaseUrl('docs/a-1-introduction')}>
               Get Started

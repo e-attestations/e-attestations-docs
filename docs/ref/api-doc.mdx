@@ -1,16 +1,16 @@
 ---
-title: API Code snippets
+title: e-Attestations RESTful APIs v1.2.0a
 language_tabs:
-  - javascript: Javascript
+  - http: HTTP
 toc_footers: []
 includes: []
 search: false
 highlight_theme: darkula
-headingLevel: 1
+headingLevel: 2
 
 ---
 
-<h1 id="e-attestations-restful-apis-account">Account</h1>
+<h2 id="e-attestations-restful-apis-account">Account</h2>
 
 Information of your account (s) having a subscription to the services
 
@@ -18,24 +18,10 @@ Information of your account (s) having a subscription to the services
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -169,24 +155,10 @@ Bearer
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId} HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -323,7 +295,7 @@ To perform this operation, you must be authenticated by means of one of the foll
 Bearer
 </aside>
 
-<h1 id="e-attestations-restful-apis-thirdparties">Thirdparties</h1>
+<h2 id="e-attestations-restful-apis-thirdparties">Thirdparties</h2>
 
 Information and research of your third parties for an account
 
@@ -331,24 +303,10 @@ Information and research of your third parties for an account
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/thirdparties',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId}/thirdparties HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -500,24 +458,10 @@ Bearer
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/thirdparties/{thirdpartyId}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId}/thirdparties/{thirdpartyId} HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -708,7 +652,7 @@ To perform this operation, you must be authenticated by means of one of the foll
 Bearer
 </aside>
 
-<h1 id="e-attestations-restful-apis-dossiers">Dossiers</h1>
+<h2 id="e-attestations-restful-apis-dossiers">Dossiers</h2>
 
 Information and research of your Thirdparty compliance monitoring files
 
@@ -716,24 +660,10 @@ Information and research of your Thirdparty compliance monitoring files
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -972,45 +902,11 @@ Bearer
 
 > Code samples
 
-```javascript
-const inputBody = '{
-  "companyIdType": "some text",
-  "companyIdValue": "some text",
-  "thirdpartyCode": "some text",
-  "dossierReference": "some text",
-  "description": "some text",
-  "purchasingCategory": "some text",
-  "expirationDate": "2018-01-17",
-  "requiredDocuments": [
-    "some text",
-    "some text"
-  ],
-  "thirdpartyEmail": [
-    "",
-    ""
-  ],
-  "userInCharge": [
-    "",
-    ""
-  ]
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+POST https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers HTTP/1.1
+Host: rs.e-attestations.com
+Content-Type: application/json
+Accept: application/json
 
 ```
 
@@ -1147,24 +1043,10 @@ Bearer
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId} HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -1389,35 +1271,11 @@ Bearer
 
 > Code samples
 
-```javascript
-const inputBody = '{
-  "dossierReference": "some text",
-  "description": "some text",
-  "purchasingCategory": "some text",
-  "expirationDate": "2018-01-17",
-  "thirdpartyCode": "some text",
-  "thirdpartyEmail": [
-    "",
-    ""
-  ]
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+POST https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId} HTTP/1.1
+Host: rs.e-attestations.com
+Content-Type: application/json
+Accept: application/json
 
 ```
 
@@ -1535,24 +1393,10 @@ Bearer
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/documents',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/documents HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -1696,24 +1540,10 @@ Bearer
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/documents/{documentId}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/documents/{documentId} HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -1855,24 +1685,10 @@ Bearer
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/stop',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+POST https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/stop HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -1962,27 +1778,11 @@ Bearer
 
 > Code samples
 
-```javascript
-const inputBody = '{
-  "expirationDate": "2018-01-17"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/reactivate',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+POST https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/reactivate HTTP/1.1
+Host: rs.e-attestations.com
+Content-Type: application/json
+Accept: application/json
 
 ```
 
@@ -2081,24 +1881,10 @@ Bearer
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/requirements',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/requirements HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -2210,27 +1996,11 @@ Bearer
 
 > Code samples
 
-```javascript
-const inputBody = '[
-  "string"
-]';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/requirements',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+POST https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/requirements HTTP/1.1
+Host: rs.e-attestations.com
+Content-Type: application/json
+Accept: application/json
 
 ```
 
@@ -2329,24 +2099,10 @@ Bearer
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/process/{processId}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/process/{processId} HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -2458,24 +2214,10 @@ Bearer
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/processes',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/processes HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -2594,24 +2336,10 @@ Bearer
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/search?q=string&val=string',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/search?q=string&val=string HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 
@@ -2850,7 +2578,7 @@ To perform this operation, you must be authenticated by means of one of the foll
 Bearer
 </aside>
 
-<h1 id="e-attestations-restful-apis-files">Files</h1>
+<h2 id="e-attestations-restful-apis-files">Files</h2>
 
 Attachments automaticaly provided by e-Attestations or uploaded by the thirdparty at your request
 
@@ -2858,24 +2586,10 @@ Attachments automaticaly provided by e-Attestations or uploaded by the thirdpart
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/octet-stream',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/documents/{documentId}/files/{fileId}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId}/dossiers/{dossierId}/documents/{documentId}/files/{fileId} HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/octet-stream
 
 ```
 
@@ -2913,7 +2627,7 @@ To perform this operation, you must be authenticated by means of one of the foll
 Bearer
 </aside>
 
-<h1 id="e-attestations-restful-apis-requirements">Requirements</h1>
+<h2 id="e-attestations-restful-apis-requirements">Requirements</h2>
 
 E-Attestations compliance requirements
 
@@ -2921,24 +2635,10 @@ E-Attestations compliance requirements
 
 > Code samples
 
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://rs.e-attestations.com/api/v1/account/{accountId}/requirements',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
+```http
+GET https://rs.e-attestations.com/api/v1/account/{accountId}/requirements HTTP/1.1
+Host: rs.e-attestations.com
+Accept: application/json
 
 ```
 

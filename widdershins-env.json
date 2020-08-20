@@ -1,9 +1,20 @@
 {
     "verbose": true,
+    "codeSamples": true,
     "language_tabs": [
-        {"javascript" :"Javascript" },
+        {"http": "HTTP"},
     ],
     "search": false,
     "tocSummary": false,
-    "user_templates": "templates/"
+    "user_templates": "templates/",
+    "tagGroups": [
+        {
+        "title": "Companies",
+        "tags": ["companies"]
+        },
+        {
+        "title": "Billing",
+        "tags": ["invoice-create", "invoice-close", "invoice-delete"]
+        }
+    ]
  }
