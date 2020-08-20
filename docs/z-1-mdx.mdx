@@ -1,0 +1,36 @@
+---
+id: z-1-mdx
+title: Powered by l'Atelier
+---
+
+L'Atelier is the technical team behind all e-Attestations services.
+
+As software craftmen and craftwomen, we are very proud to propose this innovative documentation website.
+
+We aim to propose the most inoovative way of provinding resources for your developments. 
+
+Feel free to bookmark and leave a comment on our Github site [https://github.com/e-attestations](https://github.com/e-attestations)
+
+
+```jsx live
+function Clock(props) {
+  const [date, setDate] = useState(new Date());
+  useEffect(() => {
+    var timerID = setInterval(() => tick(), 1000);
+
+    return function cleanup() {
+      clearInterval(timerID);
+    };
+  });
+
+  function tick() {
+    setDate(new Date());
+  }
+
+  return (
+    <div>
+      <h2>It is {date.toLocaleTimeString()}.</h2>
+    </div>
+  );
+}
+```

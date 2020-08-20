@@ -6,9 +6,14 @@ sidebar_label: Authorization & JWT
 
 The security model use a standard Header `Authorization: Bearer <JWT>`model.
 
-<aside>
+But you need credenials in order to obtain a JWT.
+
+:::caution
+
 Your credentials have to be issued at <strong>your request via a techDesk ticket</strong> sent and after activation of your subscription by your account manager.
-</aside>
+
+Please send an email to [api@eattestationscom.zohodesk.eu](mailto:api@eattestationscom.zohodesk.eu)
+:::
 
 ## Obtain a JSON Web Token
 
@@ -16,7 +21,7 @@ Your credentials have to be issued at <strong>your request via a techDesk ticket
 
 ```shell
 curl -X POST \
-  https://auth.dev-e-attestations.com/auth/realms/eat_realm/protocol/openid-connect/token \
+  https://auth.test-e-attestations.com/auth/realms/eat_realm/protocol/openid-connect/token \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -H 'cache-control: no-cache' \
   -d 'client_id=ea-api-edge' \
@@ -65,7 +70,7 @@ The content of `access_token` provides data such as :
   "exp": 1577913044,
   "nbf": 0,
   "iat": 1577911244,
-  "iss": "https://auth.dev-e-attestations.com/auth/realms/eat_realm",
+  "iss": "https://auth.test-e-attestations.com/auth/realms/eat_realm",
   "aud": [
     "ea-api-profile",
     "ea-api-admin",

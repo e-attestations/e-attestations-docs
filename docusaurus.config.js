@@ -1,3 +1,4 @@
+/* eslint-disable header/header */
 /**
  * Copyright (c) 2017-present, Facebook, Inc.
  *
@@ -6,8 +7,8 @@
  */
 
 module.exports = {
-  title: 'e-Attestations REST APIs',
-  tagline: 'Technical resources for your projects',
+  title: 'e-Attestations APIs',
+  tagline: 'All technical resources you need for your e-Attestations data integration projects, and more !',
   url: 'https://e-attestations.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -22,12 +23,33 @@ module.exports = {
         src: 'img/cropped-logo-eattestations-2.png',
       },
       items: [
-        {to: '/openapi/swagger.html', label: 'API EDGE (REST)', position: 'left'},
-        {to: '/openapi/redoc.html', label: 'Redoc', position: 'left'},
-        {to: '/EAttestationsRESTAPIv1.1/index.html', label: 'API REST 1.1 (fr)', position: 'left'},
-        {to: '/EAttestationsWSAPI/index.html', label: 'API WS (fr)', position: 'left'},
+        {
+          href: 'https://e-attestations.io/openapi/swagger.html',
+          label: 'API EDGE (REST)',
+          position: 'left',
+        },
+        {
+          href: 'https://e-attestations.io/openapi/redoc.html',
+          label: 'Redoc',
+          position: 'left',
+        },
+        {
+          href: 'https://e-attestations.io/EAttestationsRESTAPIv1.1/index.html',
+          label: 'API REST 1.1 (fr)',
+          position: 'left',
+        },
+        {
+          href: 'https://e-attestations.io/EAttestationsWSAPI/index.html',
+          label: 'API WS (fr)',
+          position: 'left',
+        },
         {to: 'docs/b-1-get-started', label: 'QuickStart', position: 'right'},
-        {to: 'docs/a-1-introduction', activeBasePath: 'docs', label: 'Docs', position: 'right'},
+        {
+          to: 'docs/a-1-introduction',
+          activeBasePath: 'docs',
+          label: 'Docs',
+          position: 'right',
+        },
         {
           href: 'https://github.com/e-attestations',
           label: 'GitHub',
@@ -78,7 +100,7 @@ module.exports = {
           items: [
             {
               label: 'Blog',
-              href: 'https://api.dev-e-attestations.com'
+              href: 'https://api.test-e-attestations.com',
             },
           ],
         },
@@ -91,23 +113,28 @@ module.exports = {
       copyright: `Developed with ❤️ by l'Atelier with Docusaurus - e-Attestations ${new Date().getFullYear()}`,
     },
   },
+  themes: ['@docusaurus/theme-live-codeblock'],
   presets: [
     [
       '@docusaurus/preset-classic',
       {
         docs: {
           // It is recommended to set document id as docs home page (`docs/` path).
-          homePageId: 'doc1',
+          homePageId: 'docs/Introduction/a-1-introduction',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            'https://github.com/e-attestations/e-attestations-docs/tree/master',
         },
         blog: {
           showReadingTime: true,
+          feedOptions: {
+            type: 'all',
+            copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
+          },
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+            'https://github.com/e-attestations/e-attestations-docs/tree/master/blog',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

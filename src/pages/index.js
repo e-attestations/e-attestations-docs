@@ -1,12 +1,3 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @format
- */
-
 import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
@@ -17,9 +8,9 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    key:1,
+    key: 1,
     title: <>Easy to implement</>,
-    imageUrl: 'img/API-Interface.png',
+    imageUrl: 'img/200px-Cloud-API-Logo.svg.png',
     description: (
       <>
         e-Attestation APIs are very easy to use and to implement in the
@@ -30,7 +21,7 @@ const features = [
     ),
   },
   {
-    key:2,
+    key: 2,
     title: <>Powered by OpenAPI v3</>,
     imageUrl: 'img/openapi-whats-new.png',
     description: (
@@ -42,7 +33,7 @@ const features = [
     ),
   },
   {
-    key:3,
+    key: 3,
     title: <>Use the power of Postman</>,
     imageUrl: 'img/postman-logo.png',
     description: (
@@ -57,14 +48,14 @@ const features = [
 
 const documentations = [
   {
-    key:1,
-    title: <>e-Attestation 'EDGE' API</>,
+    key: 1,
+    title: <>e-Attestation API 'EDGE'</>,
     imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
         This is the most avanced and activaly tested version of our REST API.
-        With this version you'll find more features and more data. This API
-        version will open the beginning of an ever greening version strategy.
+        With this version you@apos;ll find more features and more data. 
+        API 'EDGE' adopt an ever greening version strategy so you'll benefits enhancements automagicaly.
         <br />
         <a target="_blank" href="openapi/swagger.html">
           OpenAPI v3 e-Attestations REST API v1.1 (fr)
@@ -79,13 +70,13 @@ const documentations = [
   },
 
   {
-    key:2,
+    key: 2,
     title: <>API REST 1.1 (fr)</>,
     imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
         This is the actual version of our REST API. It will be replaced soon by
-        the 'EDGE' version. Stay tuned and jump the the 'EDGE' version now !
+        the 'EDGE' version. Stay tuned and jump the 'EDGE' version now !
         <a target="_blank" href="EAttestationsRESTAPIv1.1/index.html">
           Documentation of e-Attestations REST API v1.1 (fr)
         </a>
@@ -93,7 +84,7 @@ const documentations = [
     ),
   },
   {
-    key:3,
+    key: 3,
     title: <>API SOAP v3 (fr)</>,
     imageUrl: 'img/logo-e-Attestations.png',
     description: (
@@ -138,7 +129,7 @@ function Home() {
                 'button button--outline button--secondary button--lg',
                 styles.getStarted,
               )}
-              to={useBaseUrl("docs/a-1-introduction")}>
+              to={useBaseUrl('docs/a-1-introduction')}>
               Get Started
             </Link>
           </div>
@@ -148,14 +139,12 @@ function Home() {
       <main>
         <section className={styles.features}>
           <div className="container">
-            <img
-              src="img/logo-e-Attestations-tech.png"
-              alt="welcome"
-            />
+            <img src="img/logo-e-Attestations-tech.png" alt="welcome" />
             <p>
               You're a developer and you want to find more information, tools,
               SDK, samples codes for you project ?
-              <br/>&nbsp;<b>You're in the good place !</b>
+              <br />
+              &nbsp;<b>You're in the good place !</b>
             </p>
             <p>
               e-Attestations offers the best documentations, tools, tips and
@@ -186,23 +175,23 @@ function Home() {
 
       <main>
         <div className="container">
-        <h1>Featured documentations </h1>
-        {documentations && documentations.length > 0 && (
-          <section className={styles.features}>
-            <div className="container">
-              <div className="row">
-                {documentations.map(({key, title, imageUrl, description}) => (
-                  <Feature
-                    key={key}
-                    title={title}
-                    imageUrl={imageUrl}
-                    description={description}
-                  />
-                ))}
+          <h1>Featured documentations </h1>
+          {documentations && documentations.length > 0 && (
+            <section className={styles.features}>
+              <div className="container">
+                <div className="row">
+                  {documentations.map(({key, title, imageUrl, description}) => (
+                    <Feature
+                      key={key}
+                      title={title}
+                      imageUrl={imageUrl}
+                      description={description}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-          </section>
-        )}
+            </section>
+          )}
         </div>
       </main>
     </Layout>

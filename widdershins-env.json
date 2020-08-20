@@ -1,0 +1,9 @@
+{
+    "verbose": true,
+    "language_tabs": [
+        {"javascript" :"Javascript" },
+    ],
+    "search": false,
+    "tocSummary": false,
+    "user_templates": "templates/"
+ }
