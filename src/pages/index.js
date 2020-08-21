@@ -53,10 +53,15 @@ const documentations = [
     imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
-        This is the most avanced and activaly tested version of our RESTful API.
-        With this version you@apos;ll find more features and more data. API
-        'EDGE' adopt an ever greening version strategy so you'll benefits
-        enhancements automagicaly. You have to flavours :
+        <p>
+          This is the most avanced and activaly tested version of our RESTful
+          API. With this version you'll find more features and more data.{' '}
+        </p>
+        <p>
+          'EDGE' adopts an "evergreening" strategy so you'll benefit
+          enhancements automagicaly.
+        </p>
+        You have two flavours for the documentation:
         <ul>
           <li>
             <a target="_blank" href="openapi/swagger.html">
@@ -79,8 +84,9 @@ const documentations = [
     imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
-        This is our actual version of our REST API. It will be replaced soon by
-        the 'EDGE' version. Stay tuned and jump the 'EDGE' version now !
+        This is our first REST API.
+        <br />
+        It will be replaced soon by the 'EDGE' version.
         <ul>
           <li>
             <a target="_blank" href="EAttestationsRESTAPIv1.1/index.html">
@@ -97,8 +103,8 @@ const documentations = [
     imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
-        This API is still maintained for our customers forced to use SOAP, but
-        we recommend choosing our REST API.
+        This API is still maintained for our customers forced to use SOAP.
+        <p>We recommend choosing our REST API.</p>
         <a target="_blank" href="EAttestationsWSAPI/index.html">
           <ul>
             <li>Documentation of e-Attestations SOAP API v3 (fr)</li>
@@ -109,16 +115,61 @@ const documentations = [
   },
 ];
 
-function Feature({imageUrl, title, description}) {
+const channels = [
+  {
+    key: 1,
+    title: null,
+    imageUrl: 'img/iconfinder_Github_1298743.png',
+    description: (
+      <div className="container text--center">
+        <p className="hero__subtitle">Find more resources, SDK, CLI and mode <br/>in our GitHub organization</p>
+        <Link
+          className={clsx(
+            'button button--outline button--secondary button--lg',
+          )}
+          to="https://github.com/e-attestations">
+          Visit GitHub
+        </Link>
+      </div>
+    ),
+  },
+  {
+    key: 2,
+    title: null,
+    imageUrl: 'img/discord_logo.png',
+    description: (
+      <div className="container text--center">
+        <p className="hero__subtitle">
+          Join our channels on{' '}
+          <a
+            target="_blank"
+            href="https://discordapp.com/channels/656160917591162903">
+            Discord
+          </a>{' '}
+          and <br/>share with the communauty
+        </p>
+        <Link
+          className={clsx(
+            'button button--outline button--secondary button--lg',
+          )}
+          to="https://discordapp.com/channels/656160917591162903">
+          Join Discord
+        </Link>
+      </div>
+    ),
+  },
+];
+
+function Feature({imageUrl, title, description, gridSize}) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
-    <div className={clsx('col col--4', styles.feature)}>
+    <div className={clsx(`col ${gridSize || 'col--4'}`, styles.feature)}>
       {imgUrl && (
         <div className="text--center">
           <img className={styles.featureImage} src={imgUrl} alt={title} />
         </div>
       )}
-      <h3>{title}</h3>
+      <p className="hero__subtitle text--center">{title}</p>
       <p>{description}</p>
     </div>
   );
@@ -131,7 +182,7 @@ function Home() {
     <Layout
       title={`Welcome to ${siteConfig.title}`}
       description="e-Attestations.io for all technical resources you need when you develop with our APIs">
-      <header className={clsx('hero hero--primary', styles.heroBanner)}>
+      <header className={clsx('hero hero--primary shadow--lw', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
@@ -142,31 +193,34 @@ function Home() {
                 'getstarted button button--outline button--secondary button--lg',
               )}
               to={useBaseUrl('docs/a-1-introduction')}>
-              Get Started
+              Get Started            
             </Link>
+
           </div>
         </div>
       </header>
 
       <main>
-        <section className={styles.features}>
+        <div className={clsx('hero shadow--lw')}>
           <div className="container">
             <img src="img/logo-e-Attestations-tech.png" alt="welcome" />
-            <p>
-              You're a developer and you want to find more information, tools,
-              SDK, samples codes for you project ?
-              <br />
-              &nbsp;<b>You're in the good place !</b>
-            </p>
-            <p>
-              e-Attestations offers the best documentations, tools, tips and
-              tricks for you e-Attestations API integration project.
-            </p>
+
+              <h1 className="text--center"><span role="img">🚀</span></h1>
+              <div className="hero__subtitle">
+              <p>
+                You are a developer and you want to find information,
+                documentations, tools, CLI (soon), samples codes and so on...
+                for your e-attestations data integration project ?                
+              </p>
+              <p className="text--center">
+                You're at the good place !
+              </p>
+              </div>
           </div>
-        </section>
+        </div>
       </main>
 
-      <main>
+      <main style={{margin: "4rem" }}>
         {features && features.length > 0 && (
           <section className={styles.features}>
             <div className="container">
@@ -189,12 +243,12 @@ function Home() {
         <div className="container">
           <h1 className="hero__title">Featured documentations</h1>
           <p className="hero__subtitle">
-            Documentations of our APIs in different falvours
+            Documentations of our APIs in different flavours
           </p>
         </div>
       </header>
 
-      <main>
+      <main style={{margin: "4rem" }}>
         {documentations && documentations.length > 0 && (
           <section className={styles.features}>
             <div className="container">
@@ -213,6 +267,36 @@ function Home() {
         )}
       </main>
 
+      <header className={clsx('hero shadow--md', styles.heroBanner)}>
+        <div className="container">
+          <h1 className="hero__title">Build with the community !</h1>
+          <p className="hero__subtitle">
+            Our "Atelier" offers docs, tools, code samples, tips and tricks on
+            its GitHub organizaion.
+          </p>
+          <p className="hero__subtitle">Share with the community on Discord.</p>
+        </div>
+      </header>
+
+      <main style={{margin: "4rem" }}>
+        {channels && channels.length > 0 && (
+          <section className={styles.features}>
+            <div className="container">
+              <div className="row">
+                {channels.map(({key, title, imageUrl, description}) => (
+                  <Feature
+                    gridSize="col--6"
+                    key={key}
+                    title={title}
+                    imageUrl={imageUrl}
+                    description={description}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+      </main>
     </Layout>
   );
 }

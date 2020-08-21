@@ -24,38 +24,37 @@ module.exports = {
       },
       items: [
         {
-          href: 'https://e-attestations.io/openapi/swagger.html',
-          label: 'API EDGE (REST)',
+          to: 'docs/a-1-introduction',
+          activeBasePath: 'docs',
+          label: 'Docs',
           position: 'left',
         },
         {
-          href: 'https://e-attestations.io/openapi/redoc.html',
-          label: 'Redoc',
+          href: 'https://e-attestations.io/openapi/swagger.html',
+          label: 'EDGE',
           position: 'left',
         },
         {
           href: 'https://e-attestations.io/EAttestationsRESTAPIv1.1/index.html',
-          label: 'API REST 1.1 (fr)',
+          label: 'REST 1.1 (fr)',
           position: 'left',
         },
+        {to: 'blog', label: 'Blog', position: 'right'},
         {
           href: 'https://e-attestations.io/EAttestationsWSAPI/index.html',
-          label: 'API WS (fr)',
+          label: 'SOAP (fr)',
           position: 'left',
-        },
-        {to: 'docs/b-1-get-started', label: 'QuickStart', position: 'right'},
-        {
-          to: 'docs/a-1-introduction',
-          activeBasePath: 'docs',
-          label: 'Docs',
-          position: 'right',
         },
         {
           href: 'https://github.com/e-attestations',
           label: 'GitHub',
           position: 'right',
         },
-        {to: 'blog', label: 'Blog', position: 'right'},
+        {
+          href: 'https://discordapp.com/channels/656160917591162903',
+          label: 'Discord',
+          position: 'right',
+        }
       ],
     },
     footer: {
@@ -73,11 +72,7 @@ module.exports = {
               to: 'docs/b-1-get-started',
             },
             {
-              label: 'Tutorials',
-              to: 'docs/t-1-create-dossier',
-            },
-            {
-              label: 'API Reference',
+              label: 'API EDGE Reference',
               to: 'docs/c-1-account',
             },
             {
@@ -90,17 +85,21 @@ module.exports = {
           title: 'Community',
           items: [
             {
+              label: 'GitHub',
+              href: 'https://github.com/e-attestations',
+            },
+            {
               label: 'Discord',
               href: 'https://discordapp.com/channels/656160917591162903',
             },
           ],
         },
         {
-          title: 'Social',
+          title: 'Blog',
           items: [
             {
               label: 'Blog',
-              href: 'https://api.test-e-attestations.com',
+              to: 'blog',
             },
           ],
         },
