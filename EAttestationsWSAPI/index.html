@@ -220,7 +220,7 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#api-webservices-soap-v3-x-e-attestations" class="toc-h1 toc-link" data-title="API WebServices SOAP v3.x - e-Attestations">API WebServices SOAP v3.x - e-Attestations</a>
+            <a href="#api-webservices-soap-v3-e-attestations" class="toc-h1 toc-link" data-title="API WebServices SOAP v3 - e-Attestations">API WebServices SOAP v3 - e-Attestations</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#presentation" class="toc-h2 toc-link" data-title="Présentation">Présentation</a>
@@ -344,7 +344,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='api-webservices-soap-v3-x-e-attestations'>API WebServices SOAP v3.x - e-Attestations</h1><h2 id='presentation'>Présentation</h2>
+        <h1 id='api-webservices-soap-v3-e-attestations'>API WebServices SOAP v3 - e-Attestations</h1><h2 id='presentation'>Présentation</h2>
 <p>L&#39;API WebServices SOAP v3 est utilisée pour <strong>interfacer</strong> un système d&#39;information &#39;<strong>client</strong>&#39; à la plate-forme d&#39;e-Attestations suivant le protocole SOAP.</p>
 
 <p>Cette API WebServices présente un ensemble de méthodes permettant d&#39;administrer (importer, suivre, archiver, etc...) les dossiers de suivi de conformité des tiers du compte client et de restituer des informations. La majorité des opérations sont synchrônes.</p>
@@ -427,7 +427,7 @@
  --global-var <span class="nv">wspassword</span><span class="o">=</span><span class="s2">"&lt;password&gt;"</span> <span class="se">\</span>
  --global-var <span class="nv">ws_siret</span><span class="o">=</span><span class="s2">"&lt;SIRET&gt;"</span> <span class="se">\</span>
  --global-var <span class="nv">ws_ref_dossier</span><span class="o">=</span><span class="s2">"&lt;NOM DOSSIER&gt;"</span> <span class="se">\</span>
- --global-var <span class="nv">wsurl</span><span class="o">=</span><span class="s2">"https://ws-test.test-e-attestations.com"</span>
+ --global-var <span class="nv">wsurl</span><span class="o">=</span><span class="s2">"https://ws-test.dev-e-attestations.com"</span>
 </code></pre>
 <p>Pour aller encore plus vite et faciliter l&#39;intégration et l&#39;exploration de notre API WebService SOAP v3 nous fournissons <a href="./resources/EA_WebServices_v3.postman_collection.json">une collection Postman</a> que vous pouvez importer dans postman et tester rapidement.</p>
 
@@ -825,7 +825,7 @@ graph TB
 <tr>
 <td>companyIDType</td>
 <td>String</td>
-<td>Type d&#39;identifiant de l&#39;entreprise (cf 3.2 Codes d&#39;identification d&#39;une entreprise)</td>
+<td>Type d&#39;identifiant de l&#39;entreprise (cf 3.2 Codes d&#39;identification d&#39;une entreprise) : CIT001, CIT002 ou CIT003</td>
 <td>Oui</td>
 </tr>
 <tr>
@@ -1189,7 +1189,7 @@ graph TB
 <tr>
 <td>companyIDType</td>
 <td>String</td>
-<td>Type d&#39;identifiant de l&#39;entreprise (cf 3.2 Codes d&#39;identification d&#39;une entreprise).</td>
+<td>Type d&#39;identifiant de l&#39;entreprise (cf 3.2 Codes d&#39;identification d&#39;une entreprise): CIT001, CIT002 ou CIT003</td>
 <td>Non*</td>
 </tr>
 <tr>
@@ -1214,6 +1214,13 @@ graph TB
     <li> OU supplierCode </li>
     </ul>
     La méthode acceptera de renseigner tous les critères, mais la probabilité d'un filtrage plus dur et donc d'une réponse vide est beaucoup plus élevée dans l'emploi de tous les critères à la fois.
+</aside>
+
+<aside class="info">
+<strong>Concernant le DUNS</strong><br/>
+Les numeros DUNS sont la propriété des clients. Ils sont utilisé par les clients e-Attestations.com ayant des tiers internationaux qui n'ont pas de numéro de TVA intra communautaire par exemple. 
+<br/>
+Attention toute fois de noter qu'e-Attestations ne distribue pas d'identifiant DUNS et donc il n'est pas restitué comme données du tiers même s'il a été importé avec un DUNS.
 </aside>
 <h3 id='structure-des-informations-renvoyees'>Structure des informations renvoyées</h3>
 <p>la méthode <code>getDossier</code> est la méthode permettant la récupération des informations relatives au suivi de la conformité d&#39;un tiers et à ce titre permet de récupérer un maximum d&#39;informations.</p>
@@ -1702,7 +1709,7 @@ graph TB
                <span class="nt">&lt;monitoredSupplier&gt;</span>false<span class="nt">&lt;/monitoredSupplier&gt;</span>
                <span class="nt">&lt;name&gt;</span>E-ATTESTATIONS.COM<span class="nt">&lt;/name&gt;</span>
                <span class="nt">&lt;outOfBusiness&gt;</span>false<span class="nt">&lt;/outOfBusiness&gt;</span>
-               <span class="nt">&lt;subscriptionDate&gt;</span>2010-11-24T10:38:32.224+01:00<span class="nt">&lt;/subscriptionDate&gt;</span>                <span class="nt">&lt;subscriptionState&gt;</span>true<span class="nt">&lt;/subscriptionState&gt;</span>                <span class="nt">&lt;subscriptionKey&gt;</span>SXBQNTXKK6VM<span class="nt">&lt;/subscriptionKey&gt;</span>
+               <span class="nt">&lt;subscriptionDate&gt;</span>2010-11-24T10:38:32.224+01:00<span class="nt">&lt;/subscriptionDate&gt;</span>               <span class="nt">&lt;subscriptionState&gt;</span>true<span class="nt">&lt;/subscriptionState&gt;</span>               <span class="nt">&lt;subscriptionKey&gt;</span>SXBQNTXKK6VM<span class="nt">&lt;/subscriptionKey&gt;</span>
                <span class="nt">&lt;supplierCode&gt;</span>SC_001<span class="nt">&lt;/supplierCode&gt;</span>
                <span class="nt">&lt;supplierUsers&gt;</span>
                   <span class="nt">&lt;email&gt;</span>e.poidevin@e-attestations.com<span class="nt">&lt;/email&gt;</span>
@@ -2393,7 +2400,7 @@ graph TB
             <span class="nt">&lt;success&gt;</span>false<span class="nt">&lt;/success&gt;</span>
          <span class="nt">&lt;/return&gt;</span>
       <span class="nt">&lt;/ns1:stopDossierResponse&gt;</span>
-   <span class="nt">&lt;/soap:Body&gt;</span> <span class="nt">&lt;/soap:Envelope&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span><span class="nt">&lt;/soap:Envelope&gt;</span>
 </code></pre><h3 id='dossierstop'>DossierStop</h3>
 <table><thead>
 <tr>
@@ -2894,6 +2901,11 @@ graph TB
 <td>CIT002</td>
 <td>Numéro TVA : identifiant utilisé par la CEE pour les entreprises soumis à l&#39;impôt sur les sociétés.</td>
 <td><a href="https://en.wikipedia.org/wiki/VAT_identification_number">https://en.wikipedia.org/wiki/VAT_identification_number</a></td>
+</tr>
+<tr>
+<td>CIT003</td>
+<td>Indentifiant Dun &amp; Bradstreet (DUNS) : identifiant unique de la plus grande base de données de référencement de tiers internationaux au monde.</td>
+<td><a href="https://www.dnb.com/ca-fr/duns-number.html">https://www.dnb.com/ca-fr/duns-number.html</a></td>
 </tr>
 </tbody></table>
 

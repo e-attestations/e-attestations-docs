@@ -4,10 +4,17 @@
         <title>e-Attestations APIs Blog</title>
         <link>https://e-attestations.io/blog</link>
         <description>e-Attestations APIs Blog</description>
-        <lastBuildDate>Thu, 20 Aug 2020 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 14 Sep 2020 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <copyright>Copyright © 2020 Facebook, Inc.</copyright>
+        <item>
+            <title><![CDATA[What's new ? Using DUNS with WebServices SOAP v3]]></title>
+            <link>https://e-attestations.io/blog/news_Webservices_SOAP_v3_20200914</link>
+            <guid>news_Webservices_SOAP_v3_20200914</guid>
+            <pubDate>Mon, 14 Sep 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[e-Attestations WebServices SOAP v3 now implements the DUNS for to major functionalities :]]></description>
+        </item>
         <item>
             <title><![CDATA[Welcome !]]></title>
             <link>https://e-attestations.io/blog/welcome</link>

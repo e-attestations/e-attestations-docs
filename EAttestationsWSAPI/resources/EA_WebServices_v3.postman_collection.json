@@ -143,6 +143,136 @@
 			"response": []
 		},
 		{
+			"name": "getDossier with TVA",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b263c3a9-a028-4754-840a-67f7c5649880",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "98fddfb5-01cc-41e0-bafa-5376ae086229",
+						"exec": [
+							"// Convert XML output to JSON format",
+							"var jsonObject = xml2Json(responseBody);",
+							"",
+							"pm.test(\"response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.not.be.error;",
+							"});",
+							"",
+							"pm.test(\"Result is complete and successful\", function() {",
+							"    var node = jsonObject['soap:Envelope']['soap:Body']['ns1:getDossierResponse'];",
+							"    pm.expect(node.return.result.complete).to.eql('true');",
+							"    pm.expect(node.return.result.success).to.eql('true');",
+							"});",
+							"",
+							"// non functionnal tests",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:srv=\"http://srv.v3.ws.ea.com/\">\n<soapenv:Header>\n<wsse:Security soapenv:mustUnderstand=\"1\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\n<wsse:UsernameToken wsu:Id=\"UsernameToken-2Jv4ve0YWZNnXCanGf2VocJa7sVZGSqPd0\">\n\t<wsse:Username>{{wsuser}}</wsse:Username>\n\t<wsse:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText\">{{wspassword}}</wsse:Password>\n\t</wsse:UsernameToken>\n</wsse:Security>\n</soapenv:Header>\n\n<soapenv:Body>\n  <srv:getDossier>\n     <dossierSearch>\n        <supplierSearch>\n           <companyIDType>CIT002</companyIDType>\n           <companyIDValue>PT510579434</companyIDValue>\n        </supplierSearch>\n     </dossierSearch>\n  </srv:getDossier>\n</soapenv:Body>\n\n</soapenv:Envelope>\n"
+				},
+				"url": {
+					"raw": "{{wsurl}}",
+					"host": [
+						"{{wsurl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getDossier with DUNS",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "742d94a2-3f1c-48d0-8890-a1eb1a490bda",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "bc316525-fd66-4909-aa5c-e8825fcdb14d",
+						"exec": [
+							"// Convert XML output to JSON format",
+							"var jsonObject = xml2Json(responseBody);",
+							"",
+							"pm.test(\"response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.not.be.error;",
+							"});",
+							"",
+							"pm.test(\"Result is complete and successful\", function() {",
+							"    var node = jsonObject['soap:Envelope']['soap:Body']['ns1:getDossierResponse'];",
+							"    pm.expect(node.return.result.complete).to.eql('true');",
+							"    pm.expect(node.return.result.success).to.eql('true');",
+							"});",
+							"",
+							"// non functionnal tests",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:srv=\"http://srv.v3.ws.ea.com/\">\n<soapenv:Header>\n<wsse:Security soapenv:mustUnderstand=\"1\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\n<wsse:UsernameToken wsu:Id=\"UsernameToken-2Jv4ve0YWZNnXCanGf2VocJa7sVZGSqPd0\">\n\t<wsse:Username>{{wsuser}}</wsse:Username>\n\t<wsse:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText\">{{wspassword}}</wsse:Password>\n\t</wsse:UsernameToken>\n</wsse:Security>\n</soapenv:Header>\n\n<soapenv:Body>\n  <srv:getDossier>\n     <dossierSearch>\n        <supplierSearch>\n           <companyIDType>CIT001</companyIDType>\n           <companyIDValue>{{ws_siret}}</companyIDValue>\n        </supplierSearch>\n     </dossierSearch>\n  </srv:getDossier>\n</soapenv:Body>\n\n</soapenv:Envelope>\n"
+				},
+				"url": {
+					"raw": "{{wsurl}}",
+					"host": [
+						"{{wsurl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "getDossier with supplierCode",
 			"event": [
 				{
@@ -534,6 +664,75 @@
 				"body": {
 					"mode": "raw",
 					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:srv=\"http://srv.v3.ws.ea.com/\">\n<soapenv:Header>\n<wsse:Security soapenv:mustUnderstand=\"1\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\n<wsse:UsernameToken wsu:Id=\"UsernameToken-2Jv4ve0YWZNnXCanGf2VocJa7sVZGSqPd0\">\n\t<wsse:Username>{{wsuser}}</wsse:Username>\n\t<wsse:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText\">{{wspassword}}</wsse:Password>\n\t</wsse:UsernameToken>\n</wsse:Security>\n</soapenv:Header>\n\n<soapenv:Body>\n      <srv:importDossier>\n         <dossierImport>\n            <!--Optional:-->\n            <!--type: string-->\n            <description>DOSSIER TEST WS TVA</description>\n            <!--type: string-->\n            <dossierReference>{{ws_ref_dossier}}</dossierReference>\n            <!--Optional:-->\n            <!--Zero or more repetitions:-->\n            <!--type: string-->\n            <requiredDocuments>JUSTIF_IMM</requiredDocuments>\n            <requiredDocuments>ATT_VIGI</requiredDocuments>\n            <!--Optional:-->\n            <!--type: string-->\n            <supplierEmail>{{wsemail}}</supplierEmail>\n            <supplierImport>\n               <!--type: string-->\n               <companyIDType>CIT002</companyIDType>\n               <!--type: string-->\n               <companyIDValue>PT510579434</companyIDValue>\n            </supplierImport>\n            <!--Optional:-->\n            <!--type: string-->\n            <userInCharge>{{wsemail}}</userInCharge>\n         </dossierImport>\n      </srv:importDossier>\n</soapenv:Body>\n\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "{{wsurl}}",
+					"host": [
+						"{{wsurl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "importDossier DUNS",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d34c33d4-0358-42d0-8d98-4f996e6d9937",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3c2807e3-46b3-437c-8c17-884cfc42b257",
+						"exec": [
+							"// Convert XML output to JSON format",
+							"var jsonObject = xml2Json(responseBody);",
+							"",
+							"pm.test(\"response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.not.be.error;",
+							"});",
+							"",
+							"pm.test(\"Result is complete and successful\", function() {",
+							"    var node = jsonObject['soap:Envelope']['soap:Body']['ns1:importDossierResponse'].return;",
+							"    pm.expect(node._).not.to.eql('');",
+							"    // Saving the id for next test",
+							"    pm.environment.set(\"importId\", node._);",
+							"    ",
+							"});",
+							"",
+							"// non functionnal tests",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:srv=\"http://srv.v3.ws.ea.com/\">\n<soapenv:Header>\n<wsse:Security soapenv:mustUnderstand=\"1\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\n<wsse:UsernameToken wsu:Id=\"UsernameToken-2Jv4ve0YWZNnXCanGf2VocJa7sVZGSqPd0\">\n\t<wsse:Username>{{wsuser}}</wsse:Username>\n\t<wsse:Password Type=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText\">{{wspassword}}</wsse:Password>\n\t</wsse:UsernameToken>\n</wsse:Security>\n</soapenv:Header>\n\n<soapenv:Body>\n      <srv:importDossier>\n         <dossierImport>\n            <!--Optional:-->\n            <!--type: string-->\n            <description>DOSSIER TEST WS DUNS</description>\n            <!--type: string-->\n            <dossierReference>260004250</dossierReference>\n            <!--Optional:-->\n            <!--Zero or more repetitions:-->\n            <!--type: string-->\n            <requiredDocuments>JUSTIF_IMM</requiredDocuments>\n            <!--Optional:-->\n            <!--type: string-->\n            <supplierEmail>v.dagoury@e-attestations.com</supplierEmail>\n            <supplierImport>\n               <!--type: string-->\n               <companyIDType>CIT003</companyIDType>\n               <!--type: string-->\n               <companyIDValue>260004250</companyIDValue>\n            </supplierImport>\n            <!--Optional:-->\n            <!--type: string-->\n            <userInCharge>v.dagoury@e-attestations.com</userInCharge>\n         </dossierImport>\n      </srv:importDossier>\n</soapenv:Body>\n\n</soapenv:Envelope>"
 				},
 				"url": {
 					"raw": "{{wsurl}}",
