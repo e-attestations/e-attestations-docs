@@ -26,15 +26,23 @@ E030 | Invalid email domain
 
 Codes | Errors when creating a folder
 -----|----------------------------------
+E100 | There is no third party for this criteria
 E101 | Error when qualifying the establishment
-E102 | The establishment does not exist.
-E103 | The establishment is closed.
-E112 | The supplier code (thirdpartyCode) already used for another supplier.
+E102 | The establishment does not exist
+E103 | The establishment is closed
+E104 | Too many third parties for this criteria
+E112 | The supplier code (thirdpartyCode) already used for another supplier
 E113 | Non active ordering account
+E121 | Impossible to create a dossier based on TVA for a french thirdparty. Plesae use SIRET number
+E122 | Impossible to import a non French thirdparty, subscription is inactive for international third parties
 
 Codes | Errors when updating a folder
 -----|---------------------------------
-E201 | The 'dossier' is disabled
-E202 | The 'dossier' reference already exists for this client / supplier couple
-E301 | The document (requirement) is deactivated
-E302 | The document (requirement) is not authorized
+E200 | There is no dossier for this criteria
+E201 | This dossier is disabled
+E202 | This dossier reference already exists for this client / supplier couple
+E203 | There is no dossier for this reference
+E204 | This dossier is already active
+E205 | This dossier to reactivate has an outdated date for its re-activation. Please provide a date in the future.
+E301 | This document/requirement is deactivated
+E302 | This document/requirement is not authorized
