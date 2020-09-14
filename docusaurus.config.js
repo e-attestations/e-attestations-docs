@@ -11,7 +11,7 @@ module.exports = {
   tagline: 'All technical resources you need for your e-Attestations data integration projects, and more !',
   url: 'https://e-attestations.io',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   favicon: 'img/favicon.png',
   organizationName: 'e-attestations', // Usually your GitHub org/user name.
   projectName: 'e-attestations-docs', // Usually your repo name.
