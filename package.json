@@ -15,10 +15,9 @@
     "prettier:diff": "prettier --config .prettierrc --list-different \"**/*.{js,md}\""
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.61",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.61",
-    "@docusaurus/theme-bootstrap": "^2.0.0-alpha.51",
-    "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.39",
+    "@docusaurus/core": "^2.0.0-alpha.64",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.64",
+    "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.64",
     "@mdx-js/react": "^1.5.8",
     "clsx": "^1.1.1",
     "react": "^16.8.4",
