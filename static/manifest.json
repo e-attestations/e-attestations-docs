@@ -1,0 +1,31 @@
+{
+    "short_name": "e-Attestations.io",
+    "name": "All technical resources you need for your e-Attestations data integration projects, and more !",
+    "description": "e-Attestations API and resources website",
+    "icons": [
+      {
+        "src": "/img/cropped-logo-eattestations-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      },
+      {
+        "src": "/img/favicon-192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#3367D6",
+    "shortcuts": [
+      {
+        "name": "Where can I find Postman collections ?",
+        "short_name": "https://e-Attestations.io",
+        "description": "e-Attestations.io Postman collection",
+        "url": "/docs/r-1-postman",
+        "icons": [{ "src": "/img/postman-logo.png", "sizes": "320 × 132" }]
+      }
+    ]
+  }
