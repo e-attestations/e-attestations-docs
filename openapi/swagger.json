@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "e-Attestations API EDGE, the evergreening RESTful API",
+    "title": "e-Attestations EDGE API, the evergreening RESTful API",
     "version": "1.3 beta",
     "description": "e-Attestations EDGE API is used to ** interface ** a **client** information system with the e-Attestations platform following the HTTP protocol.\n\n[REST] (https://en.wikipedia.org/wiki/Representational_state_transfer) (Representational State Transfer) or RESTful is a style of architecture used to build applications (Web, Intranet, Web Service) by using endpoints ( endpoints urls) and referencing resources to be exploited according to the verbs of the HTTP protocol (GET, POST, PUT, DELETE etc ...).\n\nOur APIs contain predictable resource-oriented URLs, accept request bodies encoded in [JSON] format (https://en.wikipedia.org/wiki/JSON), return encoded responses [JSON] (https: // en. wikipedia.org/wiki/JSON) and uses standard HTTP response codes, authentication and verbs.\n\n'Client' applications using the e-Attestations REST API enrich the Client Information System with the catalog of e-Attestations data and services in a secure and very flexible manner.\n\nThe API can also be used by integrators, software publishers, SAAS solutions or connectors.",
     "termsOfService": "https://www.e-attestations.com/api",
