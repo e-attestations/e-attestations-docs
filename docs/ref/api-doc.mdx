@@ -1,0 +1,3480 @@
+---
+title: e-Attestations RESTful APIs v1.2.0a
+language_tabs:
+  - http: HTTP
+toc_footers: []
+includes: []
+search: false
+highlight_theme: darkula
+headingLevel: 2
+
+---
+
+<h2 id="e-attestations-restful-apis-dossiers">Dossiers</h2>
+
+Information and research of your Thirdparty compliance monitoring files
+
+## get__account_{accountId}_dossiers
+
+`GET /account/{accountId}/dossiers`
+
+*Dossiers (multi-criteria)*
+
+Used to restore information from one or more dossiers. It is possible to combine the available filters to refine the result.
+
+<h3 id="get__account_{accountid}_dossiers-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer|true|Account ID|
+|thirdpartyId|query|integer|false|Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.|
+|companyIdType|query|string|false|Third-party company identifier type (CIT001, CIT002 etc.).|
+|companyIdValue|query|string|false|Filtering by company value (depends on company type)|
+|thirdpartyCode|query|string|false|Thirdparty external ID (from user input or external system)|
+|dossierReference|query|string|false|Allows you to filter by dossier reference. As the dossier reference is unique for a third party / dossier, if this parameter is entered, a maximum of one dossier will be returned.|
+|monitored|query|boolean|false|Filter allowing to return monitored dossiers (monitored = true) or not followed (monitored = false)|
+|stateLastChangeDate|query|string(date)|false|Filter allowing you to return only dossiers with completeness that has changed since a given date.|
+|siren|query|string|false|Thirdpary SIREN code|
+|siret|query|string|false|Thirdpary SIRET code|
+|tva|query|string|false|Thirdpary TVA code|
+|page|query|integer|false|Paging parameter indicating the page number.|
+|pageSize|query|integer|false|Pagination parameter indicating the desired page size.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": [
+    {
+      "dossierId": 5,
+      "accountId": 51,
+      "thirdpartyId": 18,
+      "companyIdType": "some text",
+      "companyIdValue": "some text",
+      "thirdpartyCode": "some text",
+      "companyCountryCode": "some text",
+      "monitored": true,
+      "dossierReference": "some text",
+      "description": "some text",
+      "purchasingCategory": "some text",
+      "startingDate": "2018-01-17",
+      "expirationDate": "2018-01-17",
+      "stoppingDate": "2018-01-17",
+      "stoppingReason": "some text",
+      "state": true,
+      "stateLastChangeDate": "2018-01-17",
+      "indicators": [
+        {
+          "indicatorCode": "some text",
+          "state": true,
+          "lastChangeDate": "2018-01-17"
+        },
+        {
+          "indicatorCode": "some text",
+          "state": true,
+          "lastChangeDate": "2018-01-17"
+        }
+      ],
+      "documents": [
+        {
+          "documentId": 14,
+          "documentCode": "some text",
+          "name": "some text",
+          "requestDate": "2018-01-17",
+          "present": true,
+          "listFileInformation": [
+            {
+              "fileId": 70,
+              "uploadDate": "2018-01-17",
+              "fileUUID": "",
+              "fileCreation": "2018-01-17",
+              "fileSize": 86,
+              "expirationDate": "2018-01-17"
+            },
+            {
+              "fileId": 67,
+              "uploadDate": "2018-01-17",
+              "fileUUID": "",
+              "fileCreation": "2018-01-17",
+              "fileSize": 29,
+              "expirationDate": "2018-01-17"
+            }
+          ]
+        },
+        {
+          "documentId": 0,
+          "documentCode": "some text",
+          "name": "some text",
+          "requestDate": "2018-01-17",
+          "present": true,
+          "listFileInformation": [
+            {
+              "fileId": 4,
+              "uploadDate": "2018-01-17",
+              "fileUUID": "",
+              "fileCreation": "2018-01-17",
+              "fileSize": 44,
+              "expirationDate": "2018-01-17"
+            },
+            {
+              "fileId": 83,
+              "uploadDate": "2018-01-17",
+              "fileUUID": "",
+              "fileCreation": "2018-01-17",
+              "fileSize": 50,
+              "expirationDate": "2018-01-17"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account_{accountid}_dossiers-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns an array of JSON objects. Each item contains information from a folder.|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId).|Inline|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account_{accountid}_dossiers-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[[Dossier](#schemadossier)]|false|none|[Dossier content information, details, documents etc.]|
+|»» Dossier|[Dossier](#schemadossier)|false|none|Dossier content information, details, documents etc.|
+|»»» dossierId|integer(int64)|false|none|Dossier ID|
+|»»» accountId|integer(int64)|false|none|Account ID|
+|»»» thirdpartyId|integer(int64)|false|none|Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.|
+|»»» companyIdType|string|false|none|Third-party company identifier type (CIT001, CIT002 etc.).|
+|»»» companyIdValue|string|false|none|Principal Thirdpary's company ID code (which is SIRET or TVA codes most of the time).|
+|»»» thirdpartyCode|string|false|none|Thirdparty Code. This code is an external key (a.k.a from within client system)|
+|»»» companyCountryCode|string|false|none|Third country code. This is an alpha-3 code from the ISO 3166-1 standard.|
+|»»» monitored|boolean|false|none|Indicates if the dossier is followed/active (True) or not followed (False)|
+|»»» dossierReference|string|false|none|Dossier reference code|
+|»»» description|string|false|none|Dossier description|
+|»»» purchasingCategory|string|false|none|Category purchase/market of the file|
+|»»» startingDate|string(date)|false|none|Start date for monitoring the 'dossier'|
+|»»» expirationDate|string(date)|false|none|Expiration date for follow-up From this date, the file automatically changes to the "not followed" state|
+|»»» stoppingDate|string(date)|false|none|Stop date for monitoring the 'dossier'|
+|»»» stoppingReason|string|false|none|Details concerning the termination of the file: OUTOFBUSINESS (company canceled), EXPIRATION (the file has reached its expiration date), STOPREQUEST (a request to stop was made in an explicit and immediate manner), UNKNOWN (information absent). Not null only if folder deactivated.|
+|»»» state|boolean|false|none|File completeness indicator. True if all the requested documents are present, false otherwise.|
+|»»» stateLastChangeDate|string(date)|false|none|Date of the last change in the completeness of the file.|
+|»»» indicators|[[DossierIndicator](#schemadossierindicator)]|false|none|List of indicators in the dossier.|
+|»»»» Dossier indicator|[DossierIndicator](#schemadossierindicator)|false|none|Status of a dossier for completness or other kind of information|
+|»»»»» indicatorCode|string|false|none|Indicator Code|
+|»»»»» state|boolean|false|none|State of the indicator. True if all the requested documents of the indicator are present, false otherwise.|
+|»»»»» lastChangeDate|string(date)|false|none|Date of the last change in the status of the indicator.|
+|»»»»» isComplete|string|false|none|State of the indicator. True if all the requested documents of the indicator are present, false otherwise.|
+|»»» documents|[[Document](#schemadocument)]|false|none|List of documents requested for the file.|
+|»»»» Document or evidence requested for the file|[Document](#schemadocument)|false|none|A requirement such as a requested document, a signature, something to bring to the file|
+|»»»»» documentId|integer(int64)|false|none|Document ID|
+|»»»»» documentCode|string|false|none|Document Code|
+|»»»»» name|string|false|none|Document name|
+|»»»»» requestDate|string(date)|false|none|Date the document was requested.|
+|»»»»» present|boolean|false|none|Document presence|
+|»»»»» listFileInformation|[[FileInformation](#schemafileinformation)]|false|none|Information of the file (s) present for this document.|
+|»»»»»» File information|[FileInformation](#schemafileinformation)|false|none|File informations uploaded by the thirdparty or automaticaly by e-Attestations|
+|»»»»»»» fileId|integer(int64)|false|none|File ID|
+|»»»»»»» uploadDate|string(date)|false|none|Document upload date|
+|»»»»»»» fileUUID|string(string)|false|none|File unique identifier (UUID v4)|
+|»»»»»»» fileCreation|string(date)|false|none|File creation date|
+|»»»»»»» fileSize|integer(int64)|false|none|File size (bytes)|
+|»»»»»»» expirationDate|string(date)|false|none|Document expiration date|
+|»»»»» isPresent|string|false|none|Document presence|
+|»»» isMonitored|string|false|none|Indicates if the dossier is followed/active (True) or not followed (False)|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## post__account_{accountId}_dossiers
+
+`POST /account/{accountId}/dossiers`
+
+*Create/add a 'dossier'*
+
+Create a 'dossier' for a thirdparty.
+
+Launch e-Attestations internal processes for continuus monitoring for thirdparty compliancy.
+
+Create a dossier for a new thirdparty (not already monitored) starts the invitation workflow (by email). Thus, all information are important during this phase.
+
+This 'dossier' allows the client to monitor one of his thirdparty for one or a number of required documents.
+
+Available documents depends on client subscription, configuration. Always ask you account manager for any questions. Documents are represented through 'document code' that you have to recognize in order to ask for the good requirements and reach evidences for this 'dossier'.
+
+It's a veru powerful mecanism, giving a lot of flexibility and adaptability for the customer/system using APIs.
+
+If the Thirdparty does not exist, it is created in the eAttestations platform.
+
+'Dossier' creation is an **asynchronous process**. This asynchronism is induced by the process (itself of an asynchronous nature) of qualification of Thirdparty information by our internal data sources.
+
+This endpoint launches the import process and returns a process identifier (processId).
+
+The processing can last few minutes. In order to follow the progress of the import process and to know its result, a client can check the specific processid and know if the asynchronous creation process is complete and successful.
+
+> Body parameter
+
+```json
+{
+  "companyIdType": "some text",
+  "companyIdValue": "some text",
+  "thirdpartyCode": "some text",
+  "dossierReference": "some text",
+  "description": "some text",
+  "purchasingCategory": "some text",
+  "expirationDate": "2018-01-17",
+  "requiredDocuments": [
+    "some text",
+    "some text"
+  ],
+  "thirdpartyEmail": [
+    "",
+    ""
+  ],
+  "userInCharge": [
+    "",
+    ""
+  ]
+}
+```
+
+<h3 id="post__account_{accountid}_dossiers-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer|true|Account ID|
+|body|body|[NewDossier](#schemanewdossier)|true|Dossier's Data to create. Contains thirdpary code information, dossier details etc. Check the body description for details|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": {
+    "processId": "some text"
+  },
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="post__account_{accountid}_dossiers-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Success ful creation. ProcessId is provided.|[ResponseDossierCreation](#schemaresponsedossiercreation)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId).|Inline|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="post__account_{accountid}_dossiers-responseschema">Response Schema</h3>
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## get__account_{accountId}_dossiers_{dossierId}
+
+`GET /account/{accountId}/dossiers/{dossierId}`
+
+*Dossier's details*
+
+Détails d'un dossier
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer(int64)|true|Account ID|
+|dossierId|path|integer(int64)|true|Identifiant d'un dossier.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": {
+    "dossierId": 5,
+    "accountId": 51,
+    "thirdpartyId": 18,
+    "companyIdType": "some text",
+    "companyIdValue": "some text",
+    "thirdpartyCode": "some text",
+    "companyCountryCode": "some text",
+    "monitored": true,
+    "dossierReference": "some text",
+    "description": "some text",
+    "purchasingCategory": "some text",
+    "startingDate": "2018-01-17",
+    "expirationDate": "2018-01-17",
+    "stoppingDate": "2018-01-17",
+    "stoppingReason": "some text",
+    "state": true,
+    "stateLastChangeDate": "2018-01-17",
+    "indicators": [
+      {
+        "indicatorCode": "some text",
+        "state": true,
+        "lastChangeDate": "2018-01-17"
+      },
+      {
+        "indicatorCode": "some text",
+        "state": true,
+        "lastChangeDate": "2018-01-17"
+      }
+    ],
+    "documents": [
+      {
+        "documentId": 14,
+        "documentCode": "some text",
+        "name": "some text",
+        "requestDate": "2018-01-17",
+        "present": true,
+        "listFileInformation": [
+          {
+            "fileId": 70,
+            "uploadDate": "2018-01-17",
+            "fileUUID": "",
+            "fileCreation": "2018-01-17",
+            "fileSize": 86,
+            "expirationDate": "2018-01-17"
+          },
+          {
+            "fileId": 67,
+            "uploadDate": "2018-01-17",
+            "fileUUID": "",
+            "fileCreation": "2018-01-17",
+            "fileSize": 29,
+            "expirationDate": "2018-01-17"
+          }
+        ]
+      },
+      {
+        "documentId": 0,
+        "documentCode": "some text",
+        "name": "some text",
+        "requestDate": "2018-01-17",
+        "present": true,
+        "listFileInformation": [
+          {
+            "fileId": 4,
+            "uploadDate": "2018-01-17",
+            "fileUUID": "",
+            "fileCreation": "2018-01-17",
+            "fileSize": 44,
+            "expirationDate": "2018-01-17"
+          },
+          {
+            "fileId": 83,
+            "uploadDate": "2018-01-17",
+            "fileUUID": "",
+            "fileCreation": "2018-01-17",
+            "fileSize": 50,
+            "expirationDate": "2018-01-17"
+          }
+        ]
+      }
+    ]
+  },
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retourne les informations d'un dossier.|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId).|Inline|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[Dossier](#schemadossier)|false|none|Dossier content information, details, documents etc.|
+|»» dossierId|integer(int64)|false|none|Dossier ID|
+|»» accountId|integer(int64)|false|none|Account ID|
+|»» thirdpartyId|integer(int64)|false|none|Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.|
+|»» companyIdType|string|false|none|Third-party company identifier type (CIT001, CIT002 etc.).|
+|»» companyIdValue|string|false|none|Principal Thirdpary's company ID code (which is SIRET or TVA codes most of the time).|
+|»» thirdpartyCode|string|false|none|Thirdparty Code. This code is an external key (a.k.a from within client system)|
+|»» companyCountryCode|string|false|none|Third country code. This is an alpha-3 code from the ISO 3166-1 standard.|
+|»» monitored|boolean|false|none|Indicates if the dossier is followed/active (True) or not followed (False)|
+|»» dossierReference|string|false|none|Dossier reference code|
+|»» description|string|false|none|Dossier description|
+|»» purchasingCategory|string|false|none|Category purchase/market of the file|
+|»» startingDate|string(date)|false|none|Start date for monitoring the 'dossier'|
+|»» expirationDate|string(date)|false|none|Expiration date for follow-up From this date, the file automatically changes to the "not followed" state|
+|»» stoppingDate|string(date)|false|none|Stop date for monitoring the 'dossier'|
+|»» stoppingReason|string|false|none|Details concerning the termination of the file: OUTOFBUSINESS (company canceled), EXPIRATION (the file has reached its expiration date), STOPREQUEST (a request to stop was made in an explicit and immediate manner), UNKNOWN (information absent). Not null only if folder deactivated.|
+|»» state|boolean|false|none|File completeness indicator. True if all the requested documents are present, false otherwise.|
+|»» stateLastChangeDate|string(date)|false|none|Date of the last change in the completeness of the file.|
+|»» indicators|[[DossierIndicator](#schemadossierindicator)]|false|none|List of indicators in the dossier.|
+|»»» Dossier indicator|[DossierIndicator](#schemadossierindicator)|false|none|Status of a dossier for completness or other kind of information|
+|»»»» indicatorCode|string|false|none|Indicator Code|
+|»»»» state|boolean|false|none|State of the indicator. True if all the requested documents of the indicator are present, false otherwise.|
+|»»»» lastChangeDate|string(date)|false|none|Date of the last change in the status of the indicator.|
+|»»»» isComplete|string|false|none|State of the indicator. True if all the requested documents of the indicator are present, false otherwise.|
+|»» documents|[[Document](#schemadocument)]|false|none|List of documents requested for the file.|
+|»»» Document or evidence requested for the file|[Document](#schemadocument)|false|none|A requirement such as a requested document, a signature, something to bring to the file|
+|»»»» documentId|integer(int64)|false|none|Document ID|
+|»»»» documentCode|string|false|none|Document Code|
+|»»»» name|string|false|none|Document name|
+|»»»» requestDate|string(date)|false|none|Date the document was requested.|
+|»»»» present|boolean|false|none|Document presence|
+|»»»» listFileInformation|[[FileInformation](#schemafileinformation)]|false|none|Information of the file (s) present for this document.|
+|»»»»» File information|[FileInformation](#schemafileinformation)|false|none|File informations uploaded by the thirdparty or automaticaly by e-Attestations|
+|»»»»»» fileId|integer(int64)|false|none|File ID|
+|»»»»»» uploadDate|string(date)|false|none|Document upload date|
+|»»»»»» fileUUID|string(string)|false|none|File unique identifier (UUID v4)|
+|»»»»»» fileCreation|string(date)|false|none|File creation date|
+|»»»»»» fileSize|integer(int64)|false|none|File size (bytes)|
+|»»»»»» expirationDate|string(date)|false|none|Document expiration date|
+|»»»» isPresent|string|false|none|Document presence|
+|»» isMonitored|string|false|none|Indicates if the dossier is followed/active (True) or not followed (False)|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## post__account_{accountId}_dossiers_{dossierId}
+
+`POST /account/{accountId}/dossiers/{dossierId}`
+
+*Update on dossier*
+
+Update one data's dossier (synchronously)
+
+> Body parameter
+
+```json
+{
+  "dossierReference": "some text",
+  "description": "some text",
+  "purchasingCategory": "some text",
+  "expirationDate": "2018-01-17",
+  "thirdpartyCode": "some text",
+  "thirdpartyEmail": [
+    "",
+    ""
+  ]
+}
+```
+
+<h3 id="post__account_{accountid}_dossiers_{dossierid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer(int64)|true|Account ID|
+|dossierId|path|integer(int64)|true|Dossier ID|
+|body|body|[DossierUpdate](#schemadossierupdate)|true|Data to update for a dossier|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="post__account_{accountid}_dossiers_{dossierid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful update|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Error in the body of the request. Check error message for details|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId).|Inline|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="post__account_{accountid}_dossiers_{dossierid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## get__account_{accountId}_dossiers_{dossierId}_documents
+
+`GET /account/{accountId}/dossiers/{dossierId}/documents`
+
+*Documents*
+
+Fetch dossier's documents
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}_documents-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer(int64)|true|Account ID|
+|dossierId|path|integer(int64)|true|Identifiant d'un dossier.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": [
+    {
+      "documentId": 48,
+      "documentCode": "some text",
+      "name": "some text",
+      "requestDate": "2018-01-17",
+      "present": true,
+      "listFileInformation": [
+        {
+          "fileId": 85,
+          "uploadDate": "2018-01-17",
+          "fileUUID": "",
+          "fileCreation": "2018-01-17",
+          "fileSize": 7,
+          "expirationDate": "2018-01-17"
+        },
+        {
+          "fileId": 12,
+          "uploadDate": "2018-01-17",
+          "fileUUID": "",
+          "fileCreation": "2018-01-17",
+          "fileSize": 40,
+          "expirationDate": "2018-01-17"
+        }
+      ]
+    }
+  ],
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}_documents-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retourne les documents d'un dossier.|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId).|Inline|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}_documents-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[[Document](#schemadocument)]|false|none|[A requirement such as a requested document, a signature, something to bring to the file]|
+|»» Document or evidence requested for the file|[Document](#schemadocument)|false|none|A requirement such as a requested document, a signature, something to bring to the file|
+|»»» documentId|integer(int64)|false|none|Document ID|
+|»»» documentCode|string|false|none|Document Code|
+|»»» name|string|false|none|Document name|
+|»»» requestDate|string(date)|false|none|Date the document was requested.|
+|»»» present|boolean|false|none|Document presence|
+|»»» listFileInformation|[[FileInformation](#schemafileinformation)]|false|none|Information of the file (s) present for this document.|
+|»»»» File information|[FileInformation](#schemafileinformation)|false|none|File informations uploaded by the thirdparty or automaticaly by e-Attestations|
+|»»»»» fileId|integer(int64)|false|none|File ID|
+|»»»»» uploadDate|string(date)|false|none|Document upload date|
+|»»»»» fileUUID|string(string)|false|none|File unique identifier (UUID v4)|
+|»»»»» fileCreation|string(date)|false|none|File creation date|
+|»»»»» fileSize|integer(int64)|false|none|File size (bytes)|
+|»»»»» expirationDate|string(date)|false|none|Document expiration date|
+|»»» isPresent|string|false|none|Document presence|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## get__account_{accountId}_dossiers_{dossierId}_documents_{documentId}
+
+`GET /account/{accountId}/dossiers/{dossierId}/documents/{documentId}`
+
+*Détails d'un document d'un dossier*
+
+Restituer les détails d'un document d'un dossier.
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}_documents_{documentid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer(int64)|true|Account ID|
+|dossierId|path|integer(int64)|true|Identifiant d'un dossier.|
+|documentId|path|integer(int64)|true|Identifiant d'un document.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": {
+    "documentId": 48,
+    "documentCode": "some text",
+    "name": "some text",
+    "requestDate": "2018-01-17",
+    "present": true,
+    "listFileInformation": [
+      {
+        "fileId": 85,
+        "uploadDate": "2018-01-17",
+        "fileUUID": "",
+        "fileCreation": "2018-01-17",
+        "fileSize": 7,
+        "expirationDate": "2018-01-17"
+      },
+      {
+        "fileId": 12,
+        "uploadDate": "2018-01-17",
+        "fileUUID": "",
+        "fileCreation": "2018-01-17",
+        "fileSize": 40,
+        "expirationDate": "2018-01-17"
+      }
+    ]
+  },
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}_documents_{documentid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retourne les détails d'un documents d'un dossier.|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId) ou aucun document avec et identiant|Inline|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}_documents_{documentid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[Document](#schemadocument)|false|none|A requirement such as a requested document, a signature, something to bring to the file|
+|»» documentId|integer(int64)|false|none|Document ID|
+|»» documentCode|string|false|none|Document Code|
+|»» name|string|false|none|Document name|
+|»» requestDate|string(date)|false|none|Date the document was requested.|
+|»» present|boolean|false|none|Document presence|
+|»» listFileInformation|[[FileInformation](#schemafileinformation)]|false|none|Information of the file (s) present for this document.|
+|»»» File information|[FileInformation](#schemafileinformation)|false|none|File informations uploaded by the thirdparty or automaticaly by e-Attestations|
+|»»»» fileId|integer(int64)|false|none|File ID|
+|»»»» uploadDate|string(date)|false|none|Document upload date|
+|»»»» fileUUID|string(string)|false|none|File unique identifier (UUID v4)|
+|»»»» fileCreation|string(date)|false|none|File creation date|
+|»»»» fileSize|integer(int64)|false|none|File size (bytes)|
+|»»»» expirationDate|string(date)|false|none|Document expiration date|
+|»» isPresent|string|false|none|Document presence|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## post__account_{accountId}_dossiers_{dossierId}_stop
+
+`POST /account/{accountId}/dossiers/{dossierId}/stop`
+
+*Stop monitoring*
+
+Stop monitoring and workflow. The thirdpary won't bas ask anymore for dossier's requirements
+
+<h3 id="post__account_{accountid}_dossiers_{dossierid}_stop-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer(int64)|true|Account ID|
+|dossierId|path|integer(int64)|true|Dossier ID|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="post__account_{accountid}_dossiers_{dossierid}_stop-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Stop monitoring|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request ou Dossier déjà non suivi.|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId).|None|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="post__account_{accountid}_dossiers_{dossierid}_stop-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## post__account_{accountId}_dossiers_{dossierId}_reactivate
+
+`POST /account/{accountId}/dossiers/{dossierId}/reactivate`
+
+*Reactivate one dossier*
+
+Reactivate this dossier and restart continuus monitoring
+
+> Body parameter
+
+```json
+{
+  "expirationDate": "2018-01-17"
+}
+```
+
+<h3 id="post__account_{accountid}_dossiers_{dossierid}_reactivate-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer(int64)|true|Account ID|
+|dossierId|path|integer(int64)|true|Dossier ID|
+|body|body|[ReactivateDossierData](#schemareactivatedossierdata)|true|Data to update for one dossier|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="post__account_{accountid}_dossiers_{dossierid}_reactivate-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful dossier reactivation|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request ou Dossier déjà suivi ou date d'expiration dans le passé.|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId).|None|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="post__account_{accountid}_dossiers_{dossierid}_reactivate-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## get__account_{accountId}_dossiers_{dossierId}_requirements
+
+`GET /account/{accountId}/dossiers/{dossierId}/requirements`
+
+*Requirements for this dossier*
+
+List one dossier's requirements
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}_requirements-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer(int64)|true|Account ID|
+|dossierId|path|integer(int64)|true|Dossier's Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": [
+    {
+      "documentId": 88,
+      "accountId": 97,
+      "code": "some text",
+      "name": "some text",
+      "descriptionCategoryFr": "some text",
+      "descriptionCategoryEn": "some text",
+      "descriptionFr": "some text",
+      "descriptionEn": "some text"
+    }
+  ],
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}_requirements-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|JSON Array of dossier's requirements|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId), ou aucun dossier avec cet identifiant (dossierId).|None|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}_requirements-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[[Requirement](#schemarequirement)]|false|none|[A requirement, document or evidence proof required]|
+|»» Requirement|[Requirement](#schemarequirement)|false|none|A requirement, document or evidence proof required|
+|»»» documentId|integer|false|none|Requirment ID|
+|»»» accountId|integer|false|none|Account ID|
+|»»» code|string|false|none|Internal Code identifying the requirement|
+|»»» name|string|false|none|Name of requirement or evidence|
+|»»» descriptionCategoryFr|string|false|none|Description of the category of the requirement in French|
+|»»» descriptionCategoryEn|string|false|none|Description of the category of the requirement in English|
+|»»» descriptionFr|string|false|none|Description of the requirement in French|
+|»»» descriptionEn|string|false|none|Description of the requirement in English|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## post__account_{accountId}_dossiers_{dossierId}_requirements
+
+`POST /account/{accountId}/dossiers/{dossierId}/requirements`
+
+*Update requirement for an active dossier*
+
+Update requirement for an active dossier
+
+> Body parameter
+
+```json
+[
+  "string"
+]
+```
+
+<h3 id="post__account_{accountid}_dossiers_{dossierid}_requirements-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer(int64)|true|Account ID|
+|dossierId|path|integer(int64)|true|Dossier's Id|
+|body|body|array[string]|false|List of requirements|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="post__account_{accountid}_dossiers_{dossierid}_requirements-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful dossier update|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request ou Erreurs dans les valeurs transmises au serveur. Voir la liste des erreurs.|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No dossier with this dossierId|None|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="post__account_{accountid}_dossiers_{dossierid}_requirements-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## get__account_{accountId}_dossiers_process_{processId}
+
+`GET /account/{accountId}/dossiers/process/{processId}`
+
+*Status of dossier creation async process*
+
+Status/completeness of a dossier creation by its processId
+
+<h3 id="get__account_{accountid}_dossiers_process_{processid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer(int64)|true|Account ID|
+|processId|path|integer(int64)|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": {
+    "processId": "string",
+    "complete": true,
+    "success": true,
+    "errors": [
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "isComplete": "string",
+    "isSuccessful": "string",
+    "creation": "string"
+  },
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account_{accountid}_dossiers_process_{processid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Dossier async creation process status|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No process for this processId|None|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account_{accountid}_dossiers_process_{processid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[DossierProcessResult](#schemadossierprocessresult)|false|none|Processing details of the dossier|
+|»» processId|string|false|none|Process ID for dossier creation|
+|»» complete|boolean|false|none|true if the dossier creation is complete, false otherwise|
+|»» success|boolean|false|none|true if the dossier creation is sucessful, false otherwise|
+|»» errors|[[Message](#schemamessage)]|false|none|Array of errors|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» isComplete|string|false|none|'true' if the dossier creation is complete, 'false' otherwise|
+|»» isSuccessful|string|false|none|'true' if the dossier creation is successful, 'false' otherwise|
+|»» creation|string|false|none|The timestamp of the creation|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## get__account_{accountId}_dossiers_processes
+
+`GET /account/{accountId}/dossiers/processes`
+
+*Dossier creation status*
+
+Used to find out the results of on or several dossier creation.
+
+If the fromDate parameter is specified, the import results that will be returned are those which were launched from that date.
+
+By default, the dossier creation results launched in the last 24 hours are returned.
+
+<h3 id="get__account_{accountid}_dossiers_processes-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer(int64)|true|Account ID|
+|fromDate|query|string(date)|false|Monitoring start date|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": [
+    {
+      "processId": "string",
+      "complete": true,
+      "success": true,
+      "errors": [
+        {
+          "code": "some text",
+          "message": "some text"
+        }
+      ],
+      "isComplete": "string",
+      "isSuccessful": "string",
+      "creation": "string"
+    }
+  ],
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account_{accountid}_dossiers_processes-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns an array of JSON objects, indicating the status and the result of imports.|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Aucun process avec cet identifiant|None|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account_{accountid}_dossiers_processes-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[[DossierProcessResult](#schemadossierprocessresult)]|false|none|JSON Array indicating the import status of one or more dossier creation from current day -1|
+|»» DossierProcessResult|[DossierProcessResult](#schemadossierprocessresult)|false|none|Processing details of the dossier|
+|»»» processId|string|false|none|Process ID for dossier creation|
+|»»» complete|boolean|false|none|true if the dossier creation is complete, false otherwise|
+|»»» success|boolean|false|none|true if the dossier creation is sucessful, false otherwise|
+|»»» errors|[[Message](#schemamessage)]|false|none|Array of errors|
+|»»»» code|string|false|none|Code du message.|
+|»»»» message|string|false|none|texte du message.|
+|»»» isComplete|string|false|none|'true' if the dossier creation is complete, 'false' otherwise|
+|»»» isSuccessful|string|false|none|'true' if the dossier creation is successful, 'false' otherwise|
+|»»» creation|string|false|none|The timestamp of the creation|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## get__account_{accountId}_dossiers_search
+
+`GET /account/{accountId}/dossiers/search`
+
+*Recherche par critères*
+
+La recheche des dossiers est possible en spécifiant la donnée sur laquelle on veut effectuer une recherche 'q' et une valeur 'val' qui peut être partielle (grace au caractère '*')
+
+<h3 id="get__account_{accountid}_dossiers_search-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer|true|none|
+|q|query|string|true|Type de recherche :|
+|val|query|string|true|Valeur du critère cherché et dépendant du type de recherche.|
+
+#### Detailed descriptions
+
+**q**: Type de recherche :
+- reference : reference dossier
+- credate : date de création du dossier
+- enddate : fin de dossier
+- status : true = status actif du dossier
+
+**val**: Valeur du critère cherché et dépendant du type de recherche.
+La valeur cherchée peut être 'partielle' grace au caractère '*'.
+La valeur '*' remplace une partie de la valeur de type chaine recherchée
+La recherche sur '*' seule est interdite.
+Par exemple : MARCH_PUB* est équivalant à "commence part MARCH_PUB*".
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": [
+    {
+      "dossierId": 5,
+      "accountId": 51,
+      "thirdpartyId": 18,
+      "companyIdType": "some text",
+      "companyIdValue": "some text",
+      "thirdpartyCode": "some text",
+      "companyCountryCode": "some text",
+      "monitored": true,
+      "dossierReference": "some text",
+      "description": "some text",
+      "purchasingCategory": "some text",
+      "startingDate": "2018-01-17",
+      "expirationDate": "2018-01-17",
+      "stoppingDate": "2018-01-17",
+      "stoppingReason": "some text",
+      "state": true,
+      "stateLastChangeDate": "2018-01-17",
+      "indicators": [
+        {
+          "indicatorCode": "some text",
+          "state": true,
+          "lastChangeDate": "2018-01-17"
+        },
+        {
+          "indicatorCode": "some text",
+          "state": true,
+          "lastChangeDate": "2018-01-17"
+        }
+      ],
+      "documents": [
+        {
+          "documentId": 14,
+          "documentCode": "some text",
+          "name": "some text",
+          "requestDate": "2018-01-17",
+          "present": true,
+          "listFileInformation": [
+            {
+              "fileId": 70,
+              "uploadDate": "2018-01-17",
+              "fileUUID": "",
+              "fileCreation": "2018-01-17",
+              "fileSize": 86,
+              "expirationDate": "2018-01-17"
+            },
+            {
+              "fileId": 67,
+              "uploadDate": "2018-01-17",
+              "fileUUID": "",
+              "fileCreation": "2018-01-17",
+              "fileSize": 29,
+              "expirationDate": "2018-01-17"
+            }
+          ]
+        },
+        {
+          "documentId": 0,
+          "documentCode": "some text",
+          "name": "some text",
+          "requestDate": "2018-01-17",
+          "present": true,
+          "listFileInformation": [
+            {
+              "fileId": 4,
+              "uploadDate": "2018-01-17",
+              "fileUUID": "",
+              "fileCreation": "2018-01-17",
+              "fileSize": 44,
+              "expirationDate": "2018-01-17"
+            },
+            {
+              "fileId": 83,
+              "uploadDate": "2018-01-17",
+              "fileUUID": "",
+              "fileCreation": "2018-01-17",
+              "fileSize": 50,
+              "expirationDate": "2018-01-17"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account_{accountid}_dossiers_search-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns an array of JSON objects. Each item contains information from a folder. Renvoie la ou les valeurs trouvées suivant les critères 'q' et 'val'|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request ou incorrecte|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId).|Inline|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account_{accountid}_dossiers_search-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[[Dossier](#schemadossier)]|false|none|[Dossier content information, details, documents etc.]|
+|»» Dossier|[Dossier](#schemadossier)|false|none|Dossier content information, details, documents etc.|
+|»»» dossierId|integer(int64)|false|none|Dossier ID|
+|»»» accountId|integer(int64)|false|none|Account ID|
+|»»» thirdpartyId|integer(int64)|false|none|Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.|
+|»»» companyIdType|string|false|none|Third-party company identifier type (CIT001, CIT002 etc.).|
+|»»» companyIdValue|string|false|none|Principal Thirdpary's company ID code (which is SIRET or TVA codes most of the time).|
+|»»» thirdpartyCode|string|false|none|Thirdparty Code. This code is an external key (a.k.a from within client system)|
+|»»» companyCountryCode|string|false|none|Third country code. This is an alpha-3 code from the ISO 3166-1 standard.|
+|»»» monitored|boolean|false|none|Indicates if the dossier is followed/active (True) or not followed (False)|
+|»»» dossierReference|string|false|none|Dossier reference code|
+|»»» description|string|false|none|Dossier description|
+|»»» purchasingCategory|string|false|none|Category purchase/market of the file|
+|»»» startingDate|string(date)|false|none|Start date for monitoring the 'dossier'|
+|»»» expirationDate|string(date)|false|none|Expiration date for follow-up From this date, the file automatically changes to the "not followed" state|
+|»»» stoppingDate|string(date)|false|none|Stop date for monitoring the 'dossier'|
+|»»» stoppingReason|string|false|none|Details concerning the termination of the file: OUTOFBUSINESS (company canceled), EXPIRATION (the file has reached its expiration date), STOPREQUEST (a request to stop was made in an explicit and immediate manner), UNKNOWN (information absent). Not null only if folder deactivated.|
+|»»» state|boolean|false|none|File completeness indicator. True if all the requested documents are present, false otherwise.|
+|»»» stateLastChangeDate|string(date)|false|none|Date of the last change in the completeness of the file.|
+|»»» indicators|[[DossierIndicator](#schemadossierindicator)]|false|none|List of indicators in the dossier.|
+|»»»» Dossier indicator|[DossierIndicator](#schemadossierindicator)|false|none|Status of a dossier for completness or other kind of information|
+|»»»»» indicatorCode|string|false|none|Indicator Code|
+|»»»»» state|boolean|false|none|State of the indicator. True if all the requested documents of the indicator are present, false otherwise.|
+|»»»»» lastChangeDate|string(date)|false|none|Date of the last change in the status of the indicator.|
+|»»»»» isComplete|string|false|none|State of the indicator. True if all the requested documents of the indicator are present, false otherwise.|
+|»»» documents|[[Document](#schemadocument)]|false|none|List of documents requested for the file.|
+|»»»» Document or evidence requested for the file|[Document](#schemadocument)|false|none|A requirement such as a requested document, a signature, something to bring to the file|
+|»»»»» documentId|integer(int64)|false|none|Document ID|
+|»»»»» documentCode|string|false|none|Document Code|
+|»»»»» name|string|false|none|Document name|
+|»»»»» requestDate|string(date)|false|none|Date the document was requested.|
+|»»»»» present|boolean|false|none|Document presence|
+|»»»»» listFileInformation|[[FileInformation](#schemafileinformation)]|false|none|Information of the file (s) present for this document.|
+|»»»»»» File information|[FileInformation](#schemafileinformation)|false|none|File informations uploaded by the thirdparty or automaticaly by e-Attestations|
+|»»»»»»» fileId|integer(int64)|false|none|File ID|
+|»»»»»»» uploadDate|string(date)|false|none|Document upload date|
+|»»»»»»» fileUUID|string(string)|false|none|File unique identifier (UUID v4)|
+|»»»»»»» fileCreation|string(date)|false|none|File creation date|
+|»»»»»»» fileSize|integer(int64)|false|none|File size (bytes)|
+|»»»»»»» expirationDate|string(date)|false|none|Document expiration date|
+|»»»»» isPresent|string|false|none|Document presence|
+|»»» isMonitored|string|false|none|Indicates if the dossier is followed/active (True) or not followed (False)|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+<h2 id="e-attestations-restful-apis-files">Files</h2>
+
+Attachments automaticaly provided by e-Attestations or uploaded by the thirdparty at your request
+
+## get__account_{accountId}_dossiers_{dossierId}_documents_{documentId}_files_{fileId}
+
+`GET /account/{accountId}/dossiers/{dossierId}/documents/{documentId}/files/{fileId}`
+
+*Download file content*
+
+Download a copy of the content of the last active evidence content of the file. Client system have to name it and save it.
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}_documents_{documentid}_files_{fileid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer(int64)|true|Account ID|
+|dossierId|path|integer(int64)|true|Dossier's Id|
+|documentId|path|integer(int64)|true|Document's Id|
+|fileId|path|integer(int64)|true|File's id|
+
+> Example responses
+
+> 200 Response
+
+<h3 id="get__account_{accountid}_dossiers_{dossierid}_documents_{documentid}_files_{fileid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|File content (binary)|string|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No file content available|None|
+|5XX|Unknown|Unexpected error|None|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+<h2 id="e-attestations-restful-apis-requirements">Requirements</h2>
+
+E-Attestations compliance requirements
+
+## get__account_{accountId}_requirements
+
+`GET /account/{accountId}/requirements`
+
+*Documents requis*
+
+List of available requirement configurer for this account
+
+<h3 id="get__account_{accountid}_requirements-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer(int64)|true|Account ID|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": [
+    {
+      "documentId": 88,
+      "accountId": 97,
+      "code": "some text",
+      "name": "some text",
+      "descriptionCategoryFr": "some text",
+      "descriptionCategoryEn": "some text",
+      "descriptionFr": "some text",
+      "descriptionEn": "some text"
+    }
+  ],
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account_{accountid}_requirements-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Array of requirement as document type code|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId).|None|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account_{accountid}_requirements-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[[Requirement](#schemarequirement)]|false|none|[A requirement, document or evidence proof required]|
+|»» Requirement|[Requirement](#schemarequirement)|false|none|A requirement, document or evidence proof required|
+|»»» documentId|integer|false|none|Requirment ID|
+|»»» accountId|integer|false|none|Account ID|
+|»»» code|string|false|none|Internal Code identifying the requirement|
+|»»» name|string|false|none|Name of requirement or evidence|
+|»»» descriptionCategoryFr|string|false|none|Description of the category of the requirement in French|
+|»»» descriptionCategoryEn|string|false|none|Description of the category of the requirement in English|
+|»»» descriptionFr|string|false|none|Description of the requirement in French|
+|»»» descriptionEn|string|false|none|Description of the requirement in English|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+<h2 id="e-attestations-restful-apis-account-information">Account information</h2>
+
+## get__account
+
+`GET /account`
+
+*Account information*
+
+Restore the information of the account associated with the TOKEN validated in the request.
+The information details the subscription to the service.
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": {
+    "content": [
+      {
+        "id": 119631,
+        "creation": "2015-04-02T10:56:07.736",
+        "account": "CPTDO2E2FFC774EDD6637F",
+        "name": "Compte Test",
+        "company": "Compte Test",
+        "maxDossiers": 10,
+        "subscriptionDate": "2019-04-29T13:20:02.102973",
+        "subscriptionStatus": "ACTIVE",
+        "subscriptions": [
+          {
+            "accountId": 119631,
+            "key": "APIEDGE",
+            "startSubscriptionDate": "2019-04-29T13:20:02.102973",
+            "status": "ACTIVE"
+          }
+        ]
+      }
+    ]
+  },
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The account information associated with the TOKEN allows to know the account id and subscription to the service.|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId).|Inline|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*The response has a 'content' property containing statistics and an optional messages attribute (info, warn or error)*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[Account](#schemaaccount)|false|none|Contains the information of the account (s) and its / their subscription (s).|
+|»» id|integer(int64)|false|none|Account ID To be used in all API calls|
+|»» account|string|false|none|Name of the eAttestations account|
+|»» company|string|false|none|Name of the legal entity of the account|
+|»» creation|string(date-time)|false|none|Date the account|
+|»» maxDossiers|integer(int32)|false|none|Limit on number of files|
+|»» name|string|false|none|Account name|
+|»» subscriptionDate|string(date-time)|false|none|Date of subscription to the service|
+|»» subscriptions|[[Subscription](#schemasubscription)]|false|none|List of subscriptions for this account|
+|»»» Subscription|[Subscription](#schemasubscription)|false|none|none|
+|»»»» accountId|integer(int64)|false|none|Subscription linked account|
+|»»»» endSubscriptionDate|string(date-time)|false|none|subscription ending date|
+|»»»» key|string|false|none|Subscription product code|
+|»»»» startSubscriptionDate|string(date-time)|false|none|Subscription starting date|
+|»»»» status|string|false|none|Subscription status|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## get__account_{accountId}
+
+`GET /account/{accountId}`
+
+*Statistiques globales*
+
+Restore the overall statistics of the account. The statistics relate only to the third parties monitored. A monitored Thirdparty is a Thirdparty for which there is at least one active dossier. The statistics relate to third parties and dossiers completeness.
+
+<h3 id="get__account_{accountid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer|true|Account ID|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": {
+    "numberOfThirdparties": 97,
+    "numberOfSubscribedThirdparties": 62,
+    "numberOfCompleteThirdparties": 52,
+    "numberOfDossiers": 11,
+    "numberOfCompleteDossiers": 79,
+    "listIndicatorsStatistics": [
+      {
+        "indicatorCode": "some text",
+        "numberOfThirdparties": 53,
+        "numberOfSubscribedThirdparties": 3,
+        "numberOfCompleteThirdparties": 6,
+        "numberOfDossiers": 70,
+        "numberOfCompleteDossiers": 75
+      },
+      {
+        "indicatorCode": "some text",
+        "numberOfThirdparties": 55,
+        "numberOfSubscribedThirdparties": 90,
+        "numberOfCompleteThirdparties": 0,
+        "numberOfDossiers": 35,
+        "numberOfCompleteDossiers": 41
+      }
+    ]
+  },
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account_{accountid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Gloable statistics and statistics by indicators. An indicator refers to a subset of required documents. Eg For the indicator "obligation of vigilance", the statistics will relate only to the documents of the obligation of vigilance, namely the certificate of vigilance, the proof of registration and the list of foreign employees subject to work authorization .|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId).|Inline|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account_{accountid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*The response has a 'content' property containing statistics and an optional messages attribute (info, warn or error)*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[GlobalInformation](#schemaglobalinformation)|false|none|This JSON word contains global statistics and statistics by indicator.|
+|»» numberOfThirdparties|integer(int64)|false|none|The total number of thirds of the account.|
+|»» numberOfSubscribedThirdparties|integer(int64)|false|none|The total number of third parties registered for a client.|
+|»» numberOfCompleteThirdparties|integer(int64)|false|none|The total number of third parties for which all active dossiers are complete. In other words, the third parties who have submitted all the documents required by this client.|
+|»» numberOfDossiers|integer(int64)|false|none|The total number of active dossiers.|
+|»» numberOfCompleteDossiers|integer(int64)|false|none|The total number of complete dossiers. In other words, the dossiers for which all the required documents have been uploaded but the third party.|
+|»» listIndicatorsStatistics|[[StatisticsIndicator](#schemastatisticsindicator)]|false|none|Table containing statistics by indicator (E.g. Obligation of vigilance).|
+|»»» Statistics indicator|[StatisticsIndicator](#schemastatisticsindicator)|false|none|Word Json containing statistics on an indicator (E.g. Obligation of vigilance).|
+|»»»» indicatorCode|string|false|none|Indicator code.|
+|»»»» numberOfThirdparties|integer(int64)|false|none|The number of thirds of the ordering customer account restricted on this indicator.|
+|»»»» numberOfSubscribedThirdparties|integer(int64)|false|none|The number of third parties registered restricted on this indicator.|
+|»»»» numberOfCompleteThirdparties|integer(int64)|false|none|The number of third parties for which all the dossiers are complete, restricted on this indicator.|
+|»»»» numberOfDossiers|integer(int64)|false|none|The number of accounts in the account, restricted on this indicator.|
+|»»»» numberOfCompleteDossiers|integer(int64)|false|none|The number of complete accounts in the account, restricted on this indicator.|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+<h2 id="e-attestations-restful-apis-account-s-thirdparties">Account's thirdparties</h2>
+
+## get__account_{accountId}_thirdparties
+
+`GET /account/{accountId}/thirdparties`
+
+*Thirdparty list*
+
+## Fetch thirdparties
+
+On its simplest form, fetch thirparties with Pagination
+
+Get thirdparties :
+`/api/v1/account/{{account_id}}/thirdparties`
+
+Using pagination :
+`/api/v1/account/{{account_id}}/thirdparties?page=0&pageSize=1`
+
+Various request parameters can be used for searching any particular thirdparty by : 
+
+### For non French :
+
+  - SIREN id : `/api/v1/account/{{account_id}}/thirdparties?siren=503829368`
+
+  - SIRET id : `/api/v1/account/{{account_id}}/thirdparties?siret=43258335900109`
+
+### For non French :
+
+  - TVA id : `/api/v1/account/{{account_id}}/thirdparties?tva=B26492108`
+
+<h3 id="get__account_{accountid}_thirdparties-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer|true|Account ID|
+|monitored|query|boolean|false|Allows filtering on monitored third parties (monitored = true) or non-monitored third parties (monitored = false)|
+|companyIdType|query|string|false|Third-party company identifier type (CIT001, CIT002 etc.).|
+|name|query|string|false|Thirdpary name|
+|siren|query|string|false|Thirdparty SIREN|
+|siret|query|string|false|Thirdparty SIRET|
+|tva|query|string|false|Thirdparty TVA number|
+|companyIdValue|query|string|false|Allows you to filter by Thirdparty company identifier. The identifier can be a SIRET or a VAT Number.|
+|stateLastChangeDate|query|string(date)|false|Filter to return third parties whose overall status has changed since that date.|
+|thirdpartyGlobalState|query|boolean|false|Filter to return third parties whose overall completeness is "complete" (true) or "incomplete" (false)|
+|subscriptionState|query|boolean|false|Allows you to filter on the registration status of a Thirdparty. This parameter allows to return the registered (subscriptionState = true) or non-registered (subscriptionState = false) third parties|
+|page|query|integer|false|Paging parameter indicating the page number.|
+|pageSize|query|integer|false|Pagination parameter indicating the desired page size.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": [
+    {
+      "thirdpartyId": 79,
+      "companyIdType": "some text",
+      "companyIdValue": "some text",
+      "thirdpartyCode": "some text"
+    }
+  ],
+  "page": 0,
+  "pageSize": 0,
+  "totalElements": 0,
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account_{accountid}_thirdparties-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns an array of JSON objects. Each item contains the identification information of a Thirdparty (The eAttestations identifier of the Thirdparty, the type of company identifier, the company identifier of the Thirdparty and the Thirdparty code).|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId).|Inline|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account_{accountid}_thirdparties-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[[ThirdpartyIdentifier](#schemathirdpartyidentifier)]|false|none|[JSON word representing the identifying information of a Thirdparty.]|
+|»» Thirdparty identifier|[ThirdpartyIdentifier](#schemathirdpartyidentifier)|false|none|JSON word representing the identifying information of a Thirdparty.|
+|»»» thirdpartyId|integer|false|none|Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.|
+|»»» companyIdType|string|false|none|Third-party company identifier type (CIT001, CIT002 etc.).|
+|»»» companyIdValue|string|false|none|Third-party company identifier (SIRET or intra-community VAT).|
+|»»» thirdpartyCode|string|false|none|Thirdparty code. It is an internal client identifier.|
+|» page|integer|false|none|Page number|
+|» pageSize|integer|false|none|page size|
+|» totalElements|integer|false|none|total number of items|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+## get__account_{accountId}_thirdparties_{thirdpartyId}
+
+`GET /account/{accountId}/thirdparties/{thirdpartyId}`
+
+*Details of a Thirdparty*
+
+Used to restore detailed information from a Thirdparty. Are reassembled:
+* Thirdparty "identity" information * Thirdparty address * The list of Thirdparty users * Different states (Active?, Registered? ...)
+
+<h3 id="get__account_{accountid}_thirdparties_{thirdpartyid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|accountId|path|integer|true|Account ID|
+|thirdpartyId|path|integer|true|Thirdparty ID|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "content": {
+    "thirdpartyId": 39,
+    "accountId": 70,
+    "companyIdType": "some text",
+    "companyIdValue": "some text",
+    "thirdpartyCode": "some text",
+    "monitored": true,
+    "name": "some text",
+    "addressStreet": "some text",
+    "addressCity": "some text",
+    "addressPostCode": "some text",
+    "addressCountryCode": "some text",
+    "subscriptionState": true,
+    "subscriptionDate": "2018-01-17",
+    "subscriptionKey": "some text",
+    "outOfBusiness": true,
+    "stateLastChangeDate": "2018-01-17",
+    "thirdpartyGlobalState\"": true,
+    "acronym": "some text",
+    "activityCode": "some text",
+    "activityLabel": "some text",
+    "capital": 90,
+    "capitalCurrency": "some text",
+    "ceo": "some text",
+    "datecreation": "2018-01-17",
+    "lastBalanceSheetDate": "2018-01-17",
+    "legalCategoryCode": "some text",
+    "legalCategoryLabel": "some text",
+    "siren": "some text",
+    "siret": "some text",
+    "turnover": 32.85,
+    "turnoverCurrency": "some text",
+    "tva": "some text",
+    "workforce": 82,
+    "thirdpartyUsers": [
+      {
+        "firstname": "some text",
+        "lastname": "some text",
+        "email": "",
+        "phone": "some text"
+      },
+      {
+        "firstname": "some text",
+        "lastname": "some text",
+        "email": "",
+        "phone": "some text"
+      }
+    ]
+  },
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__account_{accountid}_thirdparties_{thirdpartyid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns a JSON word containing detailed information from the Thirdparty|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Malformed request|None|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authorization not understood or invalid|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|No account with this identifier (accountId) ou aucun tiers avec cet identifiant(thirdpartyId).|Inline|
+|5XX|Unknown|Unexpected error|None|
+
+<h3 id="get__account_{accountid}_thirdparties_{thirdpartyid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» content|[ThirdpartyDetails](#schemathirdpartydetails)|false|none|JSON word representing Details of a Thirdparty. The information constituting the address as well as the corporate name of the Thirdparty is provided by our Data Provider from the identifier of the Thirdparty.|
+|»» thirdpartyId|integer(int64)|false|none|Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.|
+|»» accountId|integer(int64)|false|none|Account ID|
+|»» companyIdType|string|false|none|Third-party company identifier type (CIT001, CIT002 etc.).|
+|»» companyIdValue|string|false|none|Third-party company identifier (SIRET or intra-community VAT).|
+|»» thirdpartyCode|string|false|none|Thirdparty code. It is an internal client identifier.|
+|»» monitored|boolean|false|none|Indicates whether the Thirdparty is being followed. This attribute is true if the Thirdparty is followed, false otherwise. A Thirdparty is followed up as soon as they have a followed up file.|
+|»» name|string|false|none|Thirdparty company name. This is automatically provided by our data provider using the Thirdparty identifier (Siret number or VAT number)|
+|»» addressStreet|string|false|none|Street part of Thirdparty's address|
+|»» addressCity|string|false|none|City part of Thirdparty's address|
+|»» addressPostCode|string|false|none|Zipcode part of Thirdparty's address|
+|»» addressCountryCode|string|false|none|Country part of Thirdparty's address|
+|»» subscriptionState|boolean|false|none|Thirdparty registration status. True if the Thirdparty is registered, False otherwise.|
+|»» subscriptionDate|string(date)|false|none|Thirdparty registration date.|
+|»» subscriptionKey|string|false|none|Key registration code.|
+|»» outOfBusiness|boolean|false|none|Indicates whether the establishment is closed. True if it is, False otherwise.|
+|»» stateLastChangeDate|string(date)|false|none|Last date on which the overall state of the Thirdparty changed.|
+|»» thirdpartyGlobalState|boolean|false|none|Overall completeness of the Thirdparty. A value of true means that all dossiers are in the complete state.<br/>A value of false (Incomplete) means that at least one or more dossiers are in the incomplete state.<br/>A value of null (n/a) means that the thirdparty is not currently under account's monitoring.|
+|»» acronym|string|false|none|Thirdpary acronym|
+|»» activityCode|string|false|none|Thirdpary APE activity wording|
+|»» activityLabel|string|false|none|Thirdpary APE activity wording|
+|»» capital|integer(int64)|false|none|Known capital for the Thirdparty|
+|»» capitalCurrency|string|false|none|Currency of known capital for the Thirdparty|
+|»» ceo|string|false|none|Company Executive Officier|
+|»» datecreation|string(date)|false|none|Date of creation of the Thirdparty in the eAttestations database|
+|»» lastBalanceSheetDate|string(date)|false|none|Last date of known operating income|
+|»» legalCategoryCode|string|false|none|Legal code of activity|
+|»» legalCategoryLabel|string|false|none|Legal wording of activity|
+|»» siren|string|false|none|SIREN identifier (for French)|
+|»» siret|string|false|none|SIRET identifier of the establishment (for French thirdparties)|
+|»» turnover|number(double)|false|none|Last known third-party turnover|
+|»» turnoverCurrency|string|false|none|Currency of last known third-party turnover|
+|»» tva|string|false|none|Thirdparty's TVA code|
+|»» workforce|integer(int32)|false|none|Thirdpary's workforce|
+|»» thirdpartyUsers|[[UserInformation](#schemauserinformation)]|false|none|Information about the users of the third-party account.|
+|»»» User information|[UserInformation](#schemauserinformation)|false|none|User information and details.|
+|»»»» firstname|string|false|none|user's firstname|
+|»»»» lastname|string|false|none|user's lastname|
+|»»»» email|string(email)|false|none|user's email|
+|»»»» phone|string|false|none|Numéro de téléphone de l'utilisateur au format international.|
+|»» isMonitored|string|false|none|Indicates whether the Thirdparty is being followed. This attribute is true if the Thirdparty is followed, false otherwise. A Thirdparty is followed up as soon as they have a followed up file.|
+|»» isOutOfBusiness|string|false|none|Indicates whether the establishment is closed. True if it is, False otherwise.|
+|»» isRegistered|string|false|none|Thirdparty registration status. 'true' if the Thirdparty is registered, 'false' otherwise.|
+|»» isComplete|string|false|none|Overall completeness of the Thirdparty.<br/>- A value of 'true' (complete) means that all files are in the 'complete' state.<br/>- A value of 'false' (uncomplete) means that at least one or more files are in the 'incomplete' state.<br/>- A value of 'n/a' means that the thirdparty is not currently under account's monitoring.|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+|»» info|[[Message](#schemamessage)]|false|none|Information messages|
+|»»» code|string|false|none|Code du message.|
+|»»» message|string|false|none|texte du message.|
+|»» warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|»» error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+Bearer
+</aside>
+
+# Schemas
+
+<h2 id="tocSaccount">Account</h2>
+
+<a id="schemaaccount"></a>
+
+```json
+{
+  "content": [
+    {
+      "id": 119631,
+      "creation": "2015-04-02T10:56:07.736",
+      "account": "CPTDO2E2FFC774EDD6637F",
+      "name": "Compte Test",
+      "company": "Compte Test",
+      "maxDossiers": 10,
+      "subscriptionDate": "2019-04-29T13:20:02.102973",
+      "subscriptionStatus": "ACTIVE",
+      "subscriptions": [
+        {
+          "accountId": 119631,
+          "key": "APIEDGE",
+          "startSubscriptionDate": "2019-04-29T13:20:02.102973",
+          "status": "ACTIVE"
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+*Account*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|integer(int64)|false|none|Account ID To be used in all API calls|
+|account|string|false|none|Name of the eAttestations account|
+|company|string|false|none|Name of the legal entity of the account|
+|creation|string(date-time)|false|none|Date the account|
+|maxDossiers|integer(int32)|false|none|Limit on number of files|
+|name|string|false|none|Account name|
+|subscriptionDate|string(date-time)|false|none|Date of subscription to the service|
+|subscriptions|[[Subscription](#schemasubscription)]|false|none|List of subscriptions for this account|
+
+<h2 id="tocSglobalinformation">GlobalInformation</h2>
+
+<a id="schemaglobalinformation"></a>
+
+```json
+{
+  "numberOfThirdparties": 97,
+  "numberOfSubscribedThirdparties": 62,
+  "numberOfCompleteThirdparties": 52,
+  "numberOfDossiers": 11,
+  "numberOfCompleteDossiers": 79,
+  "listIndicatorsStatistics": [
+    {
+      "indicatorCode": "some text",
+      "numberOfThirdparties": 53,
+      "numberOfSubscribedThirdparties": 3,
+      "numberOfCompleteThirdparties": 6,
+      "numberOfDossiers": 70,
+      "numberOfCompleteDossiers": 75
+    },
+    {
+      "indicatorCode": "some text",
+      "numberOfThirdparties": 55,
+      "numberOfSubscribedThirdparties": 90,
+      "numberOfCompleteThirdparties": 0,
+      "numberOfDossiers": 35,
+      "numberOfCompleteDossiers": 41
+    }
+  ]
+}
+
+```
+
+*Global Informations*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|numberOfThirdparties|integer(int64)|false|none|The total number of thirds of the account.|
+|numberOfSubscribedThirdparties|integer(int64)|false|none|The total number of third parties registered for a client.|
+|numberOfCompleteThirdparties|integer(int64)|false|none|The total number of third parties for which all active dossiers are complete. In other words, the third parties who have submitted all the documents required by this client.|
+|numberOfDossiers|integer(int64)|false|none|The total number of active dossiers.|
+|numberOfCompleteDossiers|integer(int64)|false|none|The total number of complete dossiers. In other words, the dossiers for which all the required documents have been uploaded but the third party.|
+|listIndicatorsStatistics|[[StatisticsIndicator](#schemastatisticsindicator)]|false|none|Table containing statistics by indicator (E.g. Obligation of vigilance).|
+
+<h2 id="tocSstatisticsindicator">StatisticsIndicator</h2>
+
+<a id="schemastatisticsindicator"></a>
+
+```json
+{
+  "indicatorCode": "some text",
+  "numberOfThirdparties": 6,
+  "numberOfSubscribedThirdparties": 66,
+  "numberOfCompleteThirdparties": 63,
+  "numberOfDossiers": 69,
+  "numberOfCompleteDossiers": 71
+}
+
+```
+
+*Statistics indicator*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|indicatorCode|string|false|none|Indicator code.|
+|numberOfThirdparties|integer(int64)|false|none|The number of thirds of the ordering customer account restricted on this indicator.|
+|numberOfSubscribedThirdparties|integer(int64)|false|none|The number of third parties registered restricted on this indicator.|
+|numberOfCompleteThirdparties|integer(int64)|false|none|The number of third parties for which all the dossiers are complete, restricted on this indicator.|
+|numberOfDossiers|integer(int64)|false|none|The number of accounts in the account, restricted on this indicator.|
+|numberOfCompleteDossiers|integer(int64)|false|none|The number of complete accounts in the account, restricted on this indicator.|
+
+<h2 id="tocSnewdossier">NewDossier</h2>
+
+<a id="schemanewdossier"></a>
+
+```json
+{
+  "companyIdType": "some text",
+  "companyIdValue": "some text",
+  "thirdpartyCode": "some text",
+  "dossierReference": "some text",
+  "description": "some text",
+  "purchasingCategory": "some text",
+  "expirationDate": "2018-01-17",
+  "requiredDocuments": [
+    "some text",
+    "some text"
+  ],
+  "thirdpartyEmail": [
+    "",
+    ""
+  ],
+  "userInCharge": [
+    "",
+    ""
+  ]
+}
+
+```
+
+*Dossier to be created*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|companyIdType|string|true|none|Thirdparty's company type of identifier ('CIT001' for SIRET, 'CIT002' for VAT)|
+|companyIdValue|string|true|none|Thirdparty company identifier (SIRET or intra community VAT)|
+|thirdpartyCode|string|false|none|Thirdparty code. It is an internal identifier for the client|
+|dossierReference|string|true|none|Dossier reference code|
+|description|string|false|none|Dossier description|
+|purchasingCategory|string|false|none|Dossier purchase category|
+|expirationDate|string(date)|false|none|Dossier's expiration date. After this date, the third party is no longer monitored|
+|requiredDocuments|[string]|false|none|List of documents (requirements) requested.|
+|thirdpartyEmail|[string]|false|none|List of emails from third-party contacts. If a Thirdparty is not registered, these emails will be used to send the invitations.|
+|userInCharge|[string]|false|none|List of emails from those responsible for the file on the ordering side. If an email does not correspond to any registered user, an invitation to register on the ordering e-Attestations platform is sent to this Email.|
+
+<h2 id="tocSdossierprocess">DossierProcess</h2>
+
+<a id="schemadossierprocess"></a>
+
+```json
+{
+  "processId": "some text"
+}
+
+```
+
+*Dossier processing*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|processId|string|false|none|Process ID|
+
+<h2 id="tocSdossierprocessresult">DossierProcessResult</h2>
+
+<a id="schemadossierprocessresult"></a>
+
+```json
+{
+  "processId": "string",
+  "complete": true,
+  "success": true,
+  "errors": [
+    {
+      "code": "some text",
+      "message": "some text"
+    }
+  ],
+  "isComplete": "string",
+  "isSuccessful": "string",
+  "creation": "string"
+}
+
+```
+
+*DossierProcessResult*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|processId|string|false|none|Process ID for dossier creation|
+|complete|boolean|false|none|true if the dossier creation is complete, false otherwise|
+|success|boolean|false|none|true if the dossier creation is sucessful, false otherwise|
+|errors|[[Message](#schemamessage)]|false|none|Array of errors|
+|isComplete|string|false|none|'true' if the dossier creation is complete, 'false' otherwise|
+|isSuccessful|string|false|none|'true' if the dossier creation is successful, 'false' otherwise|
+|creation|string|false|none|The timestamp of the creation|
+
+<h2 id="tocSthirdpartyidentifier">ThirdpartyIdentifier</h2>
+
+<a id="schemathirdpartyidentifier"></a>
+
+```json
+{
+  "thirdpartyId": 79,
+  "companyIdType": "some text",
+  "companyIdValue": "some text",
+  "thirdpartyCode": "some text"
+}
+
+```
+
+*Thirdparty identifier*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|thirdpartyId|integer|false|none|Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.|
+|companyIdType|string|false|none|Third-party company identifier type (CIT001, CIT002 etc.).|
+|companyIdValue|string|false|none|Third-party company identifier (SIRET or intra-community VAT).|
+|thirdpartyCode|string|false|none|Thirdparty code. It is an internal client identifier.|
+
+<h2 id="tocSthirdpartydetails">ThirdpartyDetails</h2>
+
+<a id="schemathirdpartydetails"></a>
+
+```json
+{
+  "thirdpartyId": 39,
+  "accountId": 70,
+  "companyIdType": "some text",
+  "companyIdValue": "some text",
+  "thirdpartyCode": "some text",
+  "monitored": true,
+  "name": "some text",
+  "addressStreet": "some text",
+  "addressCity": "some text",
+  "addressPostCode": "some text",
+  "addressCountryCode": "some text",
+  "subscriptionState": true,
+  "subscriptionDate": "2018-01-17",
+  "subscriptionKey": "some text",
+  "outOfBusiness": true,
+  "stateLastChangeDate": "2018-01-17",
+  "thirdpartyGlobalState\"": true,
+  "acronym": "some text",
+  "activityCode": "some text",
+  "activityLabel": "some text",
+  "capital": 90,
+  "capitalCurrency": "some text",
+  "ceo": "some text",
+  "datecreation": "2018-01-17",
+  "lastBalanceSheetDate": "2018-01-17",
+  "legalCategoryCode": "some text",
+  "legalCategoryLabel": "some text",
+  "siren": "some text",
+  "siret": "some text",
+  "turnover": 32.85,
+  "turnoverCurrency": "some text",
+  "tva": "some text",
+  "workforce": 82,
+  "thirdpartyUsers": [
+    {
+      "firstname": "some text",
+      "lastname": "some text",
+      "email": "",
+      "phone": "some text"
+    },
+    {
+      "firstname": "some text",
+      "lastname": "some text",
+      "email": "",
+      "phone": "some text"
+    }
+  ]
+}
+
+```
+
+*Details of a Thirdparty*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|thirdpartyId|integer(int64)|false|none|Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.|
+|accountId|integer(int64)|false|none|Account ID|
+|companyIdType|string|false|none|Third-party company identifier type (CIT001, CIT002 etc.).|
+|companyIdValue|string|false|none|Third-party company identifier (SIRET or intra-community VAT).|
+|thirdpartyCode|string|false|none|Thirdparty code. It is an internal client identifier.|
+|monitored|boolean|false|none|Indicates whether the Thirdparty is being followed. This attribute is true if the Thirdparty is followed, false otherwise. A Thirdparty is followed up as soon as they have a followed up file.|
+|name|string|false|none|Thirdparty company name. This is automatically provided by our data provider using the Thirdparty identifier (Siret number or VAT number)|
+|addressStreet|string|false|none|Street part of Thirdparty's address|
+|addressCity|string|false|none|City part of Thirdparty's address|
+|addressPostCode|string|false|none|Zipcode part of Thirdparty's address|
+|addressCountryCode|string|false|none|Country part of Thirdparty's address|
+|subscriptionState|boolean|false|none|Thirdparty registration status. True if the Thirdparty is registered, False otherwise.|
+|subscriptionDate|string(date)|false|none|Thirdparty registration date.|
+|subscriptionKey|string|false|none|Key registration code.|
+|outOfBusiness|boolean|false|none|Indicates whether the establishment is closed. True if it is, False otherwise.|
+|stateLastChangeDate|string(date)|false|none|Last date on which the overall state of the Thirdparty changed.|
+|thirdpartyGlobalState|boolean|false|none|Overall completeness of the Thirdparty. A value of true means that all dossiers are in the complete state.<br/>A value of false (Incomplete) means that at least one or more dossiers are in the incomplete state.<br/>A value of null (n/a) means that the thirdparty is not currently under account's monitoring.|
+|acronym|string|false|none|Thirdpary acronym|
+|activityCode|string|false|none|Thirdpary APE activity wording|
+|activityLabel|string|false|none|Thirdpary APE activity wording|
+|capital|integer(int64)|false|none|Known capital for the Thirdparty|
+|capitalCurrency|string|false|none|Currency of known capital for the Thirdparty|
+|ceo|string|false|none|Company Executive Officier|
+|datecreation|string(date)|false|none|Date of creation of the Thirdparty in the eAttestations database|
+|lastBalanceSheetDate|string(date)|false|none|Last date of known operating income|
+|legalCategoryCode|string|false|none|Legal code of activity|
+|legalCategoryLabel|string|false|none|Legal wording of activity|
+|siren|string|false|none|SIREN identifier (for French)|
+|siret|string|false|none|SIRET identifier of the establishment (for French thirdparties)|
+|turnover|number(double)|false|none|Last known third-party turnover|
+|turnoverCurrency|string|false|none|Currency of last known third-party turnover|
+|tva|string|false|none|Thirdparty's TVA code|
+|workforce|integer(int32)|false|none|Thirdpary's workforce|
+|thirdpartyUsers|[[UserInformation](#schemauserinformation)]|false|none|Information about the users of the third-party account.|
+|isMonitored|string|false|none|Indicates whether the Thirdparty is being followed. This attribute is true if the Thirdparty is followed, false otherwise. A Thirdparty is followed up as soon as they have a followed up file.|
+|isOutOfBusiness|string|false|none|Indicates whether the establishment is closed. True if it is, False otherwise.|
+|isRegistered|string|false|none|Thirdparty registration status. 'true' if the Thirdparty is registered, 'false' otherwise.|
+|isComplete|string|false|none|Overall completeness of the Thirdparty.<br/>- A value of 'true' (complete) means that all files are in the 'complete' state.<br/>- A value of 'false' (uncomplete) means that at least one or more files are in the 'incomplete' state.<br/>- A value of 'n/a' means that the thirdparty is not currently under account's monitoring.|
+
+<h2 id="tocSuserinformation">UserInformation</h2>
+
+<a id="schemauserinformation"></a>
+
+```json
+{
+  "firstname": "some text",
+  "lastname": "some text",
+  "email": "",
+  "phone": "some text"
+}
+
+```
+
+*User information*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|firstname|string|false|none|user's firstname|
+|lastname|string|false|none|user's lastname|
+|email|string(email)|false|none|user's email|
+|phone|string|false|none|Numéro de téléphone de l'utilisateur au format international.|
+
+<h2 id="tocSdossierupdate">DossierUpdate</h2>
+
+<a id="schemadossierupdate"></a>
+
+```json
+{
+  "dossierReference": "some text",
+  "description": "some text",
+  "purchasingCategory": "some text",
+  "expirationDate": "2018-01-17",
+  "thirdpartyCode": "some text",
+  "thirdpartyEmail": [
+    "",
+    ""
+  ]
+}
+
+```
+
+*Dossier content for update*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|dossierReference|string|false|none|Dossier refence code|
+|description|string|false|none|Dossier description|
+|purchasingCategory|string|false|none|Category purchase of the dossier|
+|expirationDate|string(date)|false|none|File expiration date. After this date, the file is no longer followed (Attribute "monitored" of the file changes to false)|
+|thirdpartyCode|string|false|none|Thirdparty code. It is an internal client identifier.|
+|thirdpartyEmail|[string]|false|none|List of emails from third-party contacts. If a Thirdparty is not registered, these emails will be used to send the invitations.|
+
+<h2 id="tocSdossier">Dossier</h2>
+
+<a id="schemadossier"></a>
+
+```json
+{
+  "dossierId": 5,
+  "accountId": 51,
+  "thirdpartyId": 18,
+  "companyIdType": "some text",
+  "companyIdValue": "some text",
+  "thirdpartyCode": "some text",
+  "companyCountryCode": "some text",
+  "monitored": true,
+  "dossierReference": "some text",
+  "description": "some text",
+  "purchasingCategory": "some text",
+  "startingDate": "2018-01-17",
+  "expirationDate": "2018-01-17",
+  "stoppingDate": "2018-01-17",
+  "stoppingReason": "some text",
+  "state": true,
+  "stateLastChangeDate": "2018-01-17",
+  "indicators": [
+    {
+      "indicatorCode": "some text",
+      "state": true,
+      "lastChangeDate": "2018-01-17"
+    },
+    {
+      "indicatorCode": "some text",
+      "state": true,
+      "lastChangeDate": "2018-01-17"
+    }
+  ],
+  "documents": [
+    {
+      "documentId": 14,
+      "documentCode": "some text",
+      "name": "some text",
+      "requestDate": "2018-01-17",
+      "present": true,
+      "listFileInformation": [
+        {
+          "fileId": 70,
+          "uploadDate": "2018-01-17",
+          "fileUUID": "",
+          "fileCreation": "2018-01-17",
+          "fileSize": 86,
+          "expirationDate": "2018-01-17"
+        },
+        {
+          "fileId": 67,
+          "uploadDate": "2018-01-17",
+          "fileUUID": "",
+          "fileCreation": "2018-01-17",
+          "fileSize": 29,
+          "expirationDate": "2018-01-17"
+        }
+      ]
+    },
+    {
+      "documentId": 0,
+      "documentCode": "some text",
+      "name": "some text",
+      "requestDate": "2018-01-17",
+      "present": true,
+      "listFileInformation": [
+        {
+          "fileId": 4,
+          "uploadDate": "2018-01-17",
+          "fileUUID": "",
+          "fileCreation": "2018-01-17",
+          "fileSize": 44,
+          "expirationDate": "2018-01-17"
+        },
+        {
+          "fileId": 83,
+          "uploadDate": "2018-01-17",
+          "fileUUID": "",
+          "fileCreation": "2018-01-17",
+          "fileSize": 50,
+          "expirationDate": "2018-01-17"
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+*Dossier*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|dossierId|integer(int64)|false|none|Dossier ID|
+|accountId|integer(int64)|false|none|Account ID|
+|thirdpartyId|integer(int64)|false|none|Identify e-Attestations of the Thirdparty. This is different from the companyIdValue. The thirdpartyId is a technical identifier that uniquely identifies the Thirdparty in the eAttestations platform.|
+|companyIdType|string|false|none|Third-party company identifier type (CIT001, CIT002 etc.).|
+|companyIdValue|string|false|none|Principal Thirdpary's company ID code (which is SIRET or TVA codes most of the time).|
+|thirdpartyCode|string|false|none|Thirdparty Code. This code is an external key (a.k.a from within client system)|
+|companyCountryCode|string|false|none|Third country code. This is an alpha-3 code from the ISO 3166-1 standard.|
+|monitored|boolean|false|none|Indicates if the dossier is followed/active (True) or not followed (False)|
+|dossierReference|string|false|none|Dossier reference code|
+|description|string|false|none|Dossier description|
+|purchasingCategory|string|false|none|Category purchase/market of the file|
+|startingDate|string(date)|false|none|Start date for monitoring the 'dossier'|
+|expirationDate|string(date)|false|none|Expiration date for follow-up From this date, the file automatically changes to the "not followed" state|
+|stoppingDate|string(date)|false|none|Stop date for monitoring the 'dossier'|
+|stoppingReason|string|false|none|Details concerning the termination of the file: OUTOFBUSINESS (company canceled), EXPIRATION (the file has reached its expiration date), STOPREQUEST (a request to stop was made in an explicit and immediate manner), UNKNOWN (information absent). Not null only if folder deactivated.|
+|state|boolean|false|none|File completeness indicator. True if all the requested documents are present, false otherwise.|
+|stateLastChangeDate|string(date)|false|none|Date of the last change in the completeness of the file.|
+|indicators|[[DossierIndicator](#schemadossierindicator)]|false|none|List of indicators in the dossier.|
+|documents|[[Document](#schemadocument)]|false|none|List of documents requested for the file.|
+|isMonitored|string|false|none|Indicates if the dossier is followed/active (True) or not followed (False)|
+
+<h2 id="tocSrequirement">Requirement</h2>
+
+<a id="schemarequirement"></a>
+
+```json
+{
+  "documentId": 88,
+  "accountId": 97,
+  "code": "some text",
+  "name": "some text",
+  "descriptionCategoryFr": "some text",
+  "descriptionCategoryEn": "some text",
+  "descriptionFr": "some text",
+  "descriptionEn": "some text"
+}
+
+```
+
+*Requirement*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|documentId|integer|false|none|Requirment ID|
+|accountId|integer|false|none|Account ID|
+|code|string|false|none|Internal Code identifying the requirement|
+|name|string|false|none|Name of requirement or evidence|
+|descriptionCategoryFr|string|false|none|Description of the category of the requirement in French|
+|descriptionCategoryEn|string|false|none|Description of the category of the requirement in English|
+|descriptionFr|string|false|none|Description of the requirement in French|
+|descriptionEn|string|false|none|Description of the requirement in English|
+
+<h2 id="tocSdossierindicator">DossierIndicator</h2>
+
+<a id="schemadossierindicator"></a>
+
+```json
+"{\n    \"indicatorCode\": \"I001\",\n    \"isComplete\": 'true',\n    \"state\": true,\n    \"lastChangeDate\": \"2018-01-17\"\n}"
+
+```
+
+*Dossier indicator*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|indicatorCode|string|false|none|Indicator Code|
+|state|boolean|false|none|State of the indicator. True if all the requested documents of the indicator are present, false otherwise.|
+|lastChangeDate|string(date)|false|none|Date of the last change in the status of the indicator.|
+|isComplete|string|false|none|State of the indicator. True if all the requested documents of the indicator are present, false otherwise.|
+
+<h2 id="tocSdocument">Document</h2>
+
+<a id="schemadocument"></a>
+
+```json
+{
+  "documentId": 48,
+  "documentCode": "some text",
+  "name": "some text",
+  "requestDate": "2018-01-17",
+  "present": true,
+  "listFileInformation": [
+    {
+      "fileId": 85,
+      "uploadDate": "2018-01-17",
+      "fileUUID": "",
+      "fileCreation": "2018-01-17",
+      "fileSize": 7,
+      "expirationDate": "2018-01-17"
+    },
+    {
+      "fileId": 12,
+      "uploadDate": "2018-01-17",
+      "fileUUID": "",
+      "fileCreation": "2018-01-17",
+      "fileSize": 40,
+      "expirationDate": "2018-01-17"
+    }
+  ]
+}
+
+```
+
+*Document or evidence requested for the file*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|documentId|integer(int64)|false|none|Document ID|
+|documentCode|string|false|none|Document Code|
+|name|string|false|none|Document name|
+|requestDate|string(date)|false|none|Date the document was requested.|
+|present|boolean|false|none|Document presence|
+|listFileInformation|[[FileInformation](#schemafileinformation)]|false|none|Information of the file (s) present for this document.|
+|isPresent|string|false|none|Document presence|
+
+<h2 id="tocSfileinformation">FileInformation</h2>
+
+<a id="schemafileinformation"></a>
+
+```json
+{
+  "fileId": 96,
+  "uploadDate": "2018-01-17",
+  "fileUUID": "",
+  "fileCreation": "2018-01-17",
+  "fileSize": 77,
+  "expirationDate": "2018-01-17"
+}
+
+```
+
+*File information*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|fileId|integer(int64)|false|none|File ID|
+|uploadDate|string(date)|false|none|Document upload date|
+|fileUUID|string(string)|false|none|File unique identifier (UUID v4)|
+|fileCreation|string(date)|false|none|File creation date|
+|fileSize|integer(int64)|false|none|File size (bytes)|
+|expirationDate|string(date)|false|none|Document expiration date|
+
+<h2 id="tocSreactivatedossierdata">ReactivateDossierData</h2>
+
+<a id="schemareactivatedossierdata"></a>
+
+```json
+{
+  "expirationDate": "2018-01-17"
+}
+
+```
+
+*Information of the file to be updated when reactivating the follow-up.*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|expirationDate|string(date)|false|none|Expiration date of the follow-up of the file. After this date, the file is no longer followed (Attribute "monitored" of the file changes to false).|
+
+<h2 id="tocSmessage">Message</h2>
+
+<a id="schemamessage"></a>
+
+```json
+{
+  "code": "some text",
+  "message": "some text"
+}
+
+```
+
+*Un message.*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|code|string|false|none|Code du message.|
+|message|string|false|none|texte du message.|
+
+<h2 id="tocSmessages">Messages</h2>
+
+<a id="schemamessages"></a>
+
+```json
+{
+  "info": [
+    {
+      "code": "some text",
+      "message": "some text"
+    },
+    {
+      "code": "some text",
+      "message": "some text"
+    }
+  ],
+  "warning": [
+    {
+      "code": "some text",
+      "message": "some text"
+    },
+    {
+      "code": "some text",
+      "message": "some text"
+    }
+  ],
+  "error": [
+    {
+      "code": "some text",
+      "message": "some text"
+    },
+    {
+      "code": "some text",
+      "message": "some text"
+    }
+  ]
+}
+
+```
+
+*Messages from a response to a REST / JSON API call. It contains information, warning and error messages.*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|info|[[Message](#schemamessage)]|false|none|Information messages|
+|warning|[[Message](#schemamessage)]|false|none|Warning messages|
+|error|[[Message](#schemamessage)]|false|none|Error messages|
+
+<h2 id="tocSsubscription">Subscription</h2>
+
+<a id="schemasubscription"></a>
+
+```json
+{
+  "accountId": 85,
+  "endSubscriptionDate": "2018-02-10T09:30Z",
+  "key": "some text",
+  "startSubscriptionDate": "2018-02-10T09:30Z",
+  "status": "some text"
+}
+
+```
+
+*Subscription*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|accountId|integer(int64)|false|none|Subscription linked account|
+|endSubscriptionDate|string(date-time)|false|none|subscription ending date|
+|key|string|false|none|Subscription product code|
+|startSubscriptionDate|string(date-time)|false|none|Subscription starting date|
+|status|string|false|none|Subscription status|
+
+<h2 id="tocSresponsedossiercreation">ResponseDossierCreation</h2>
+
+<a id="schemaresponsedossiercreation"></a>
+
+```json
+{
+  "content": {
+    "processId": "some text"
+  },
+  "messages": {
+    "info": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "warning": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ],
+    "error": [
+      {
+        "code": "some text",
+        "message": "some text"
+      },
+      {
+        "code": "some text",
+        "message": "some text"
+      }
+    ]
+  }
+}
+
+```
+
+*Reponse for a dossier creation*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|content|[DossierProcess](#schemadossierprocess)|false|none|Dossier processing details|
+|messages|[Messages](#schemamessages)|false|none|Messages from a response to a REST / JSON API call. It contains information, warning and error messages.|
+
+<h2 id="tocSresponse">Response</h2>
+
+<a id="schemaresponse"></a>
+
+```json
+{
+  "content": [
+    {
+      "dossierId": 672112,
+      "accountId": 119631,
+      "siren": "380716696",
+      "siret": "38071669600063",
+      "tva": "FR29380716696",
+      "thirdpartyId": 143023,
+      "companyIdType": "CIT001",
+      "companyIdValue": "38071669600063",
+      "companyCountryCode": "FR",
+      "monitored": false,
+      "isMonitored": "false",
+      "dossierReference": "-",
+      "description": "",
+      "purchasingCategory": "",
+      "stoppingDate": "2018-04-03",
+      "stoppingReason": "ACTION_VOLONTAIRE",
+      "isComplete": "false",
+      "indicators": [
+        {
+          "indicatorCode": "I001",
+          "state": true,
+          "isComplete": "true",
+          "lastChangeDate": "2018-04-03"
+        }
+      ],
+      "documents": []
+    }
+  ],
+  "page": 2,
+  "size": 1,
+  "totalElements": 31
+}
+
+```
+
+*Root Type for content*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|content|[object]|false|none|The content of the reponse for the request (when HTTP 200)|
+|» dossierId|integer(int32)|false|none|none|
+|» accountId|integer(int32)|false|none|none|
+|» siren|string|false|none|none|
+|» siret|string|false|none|none|
+|» tva|string|false|none|none|
+|» thirdpartyId|integer(int32)|false|none|none|
+|» companyIdType|string|false|none|none|
+|» companyIdValue|string|false|none|none|
+|» thirdpartyCode|string|false|none|none|
+|» companyCountryCode|string|false|none|none|
+|» monitored|boolean|false|none|none|
+|» isMonitored|string|false|none|none|
+|» dossierReference|string|false|none|none|
+|» description|string|false|none|none|
+|» purchasingCategory|string|false|none|none|
+|» startingDate|string|false|none|none|
+|» expirationDate|string|false|none|none|
+|» stoppingDate|string(date)|false|none|none|
+|» stoppingReason|string|false|none|none|
+|» state|string|false|none|none|
+|» isComplete|string|false|none|none|
+|» stateLastChangeDate|string|false|none|none|
+|» indicators|[object]|false|none|none|
+|»» indicatorCode|string|false|none|none|
+|»» state|boolean|false|none|none|
+|»» isComplete|string|false|none|none|
+|»» lastChangeDate|string(date)|false|none|none|
+|» documents|[any]|false|none|none|
+|page|integer(int32)|false|none|The page number when the response is paginated|
+|size|integer(int32)|false|none|The page size provided for this request|
+|totalElements|integer(int32)|false|none|The total number of elements for the requested resources.|
+|messages|[Messages](#schemamessages)|false|none|The messages provided for this reponse|
+
+undefined
+
+undefined
+

@@ -136,24 +136,23 @@ const channels = [
   {
     key: 2,
     title: null,
-    imageUrl: 'img/discord_logo.png',
+    imageUrl: 'img/postman-logo.png',
     description: (
       <div className="container text--center">
         <p className="hero__subtitle">
-          Join our channels on{' '}
+          Find more with our{' '}
           <a
             target="_blank"
-            href="https://discordapp.com/channels/656160917591162903">
-            Discord
-          </a>{' '}
-          and <br/>share with the communauty
+            href="https://documenter.getpostman.com/view/3000526/TVKD3xcz">
+            Postman documentation
+          </a>{' '} and discover all the diveristy of 'EDGE' API.
         </p>
         <Link
           className={clsx(
             'button button--outline button--secondary button--lg',
           )}
-          to="https://discordapp.com/channels/656160917591162903">
-          Join Discord
+          to="https://documenter.getpostman.com/view/3000526/TVKD3xcz">
+          Visit Postman collection docs
         </Link>
       </div>
     ),
@@ -271,10 +270,9 @@ function Home() {
         <div className="container">
           <h1 className="hero__title">Build with the community !</h1>
           <p className="hero__subtitle">
-            Our "Atelier" offers docs, tools, code samples, tips and tricks on
-            its GitHub organizaion.
+            The "Atelier" as e-Attestations provides you with docs, tools, code samples, tips and tricks on
+            its GitHub organizaion. Don't forget to 'watch' our open-source repositories and joins us !
           </p>
-          <p className="hero__subtitle">Share with the community on Discord.</p>
         </div>
       </header>
 
