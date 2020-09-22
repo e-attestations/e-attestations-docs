@@ -9,25 +9,25 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <copyright>Copyright © 2020 e-Attestations.com.</copyright>
         <item>
-            <title><![CDATA[What's new ? Check out our new Postman documentation !]]></title>
+            <title><![CDATA[Check out our new Postman documentation !]]></title>
             <link>https://e-attestations.io/blog/news_Postman_collection_documentaiton_20200922</link>
             <guid>news_Postman_collection_documentaiton_20200922</guid>
             <pubDate>Tue, 22 Sep 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[🚀 Discover our new Postman documentation https://documenter.getpostman.com/view/3000526/TVKD3xcz]]></description>
+            <description><![CDATA[L'atelier annoncing new Postman collection documentation website]]></description>
         </item>
         <item>
-            <title><![CDATA[What's new ? Using DUNS with WebServices SOAP v3]]></title>
+            <title><![CDATA[Using DUNS with WebServices SOAP v3]]></title>
             <link>https://e-attestations.io/blog/news_Webservices_SOAP_v3_20200914</link>
             <guid>news_Webservices_SOAP_v3_20200914</guid>
             <pubDate>Mon, 14 Sep 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[e-Attestations WebServices SOAP v3 now implements the DUNS for two major functionalities :]]></description>
+            <description><![CDATA[L'atelier annoncing new SOAP v3 capabilities]]></description>
         </item>
         <item>
             <title><![CDATA[Welcome !]]></title>
             <link>https://e-attestations.io/blog/welcome</link>
             <guid>welcome</guid>
             <pubDate>Thu, 20 Aug 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[Welcome to your new e-attestations.io experience.]]></description>
+            <description><![CDATA[L'atelier says hello and welcome to their new Blog !]]></description>
         </item>
     </channel>
 </rss>

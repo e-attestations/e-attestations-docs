@@ -9,24 +9,24 @@
     <icon>https://e-attestations.io/img/favicon.png</icon>
     <rights>Copyright © 2020 e-Attestations.com.</rights>
     <entry>
-        <title type="html"><![CDATA[What's new ? Check out our new Postman documentation !]]></title>
+        <title type="html"><![CDATA[Check out our new Postman documentation !]]></title>
         <id>news_Postman_collection_documentaiton_20200922</id>
         <link href="https://e-attestations.io/blog/news_Postman_collection_documentaiton_20200922"/>
         <updated>2020-09-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[🚀 Discover our new Postman documentation https://documenter.getpostman.com/view/3000526/TVKD3xcz]]></summary>
+        <summary type="html"><![CDATA[L'atelier annoncing new Postman collection documentation website]]></summary>
     </entry>
     <entry>
-        <title type="html"><![CDATA[What's new ? Using DUNS with WebServices SOAP v3]]></title>
+        <title type="html"><![CDATA[Using DUNS with WebServices SOAP v3]]></title>
         <id>news_Webservices_SOAP_v3_20200914</id>
         <link href="https://e-attestations.io/blog/news_Webservices_SOAP_v3_20200914"/>
         <updated>2020-09-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[e-Attestations WebServices SOAP v3 now implements the DUNS for two major functionalities :]]></summary>
+        <summary type="html"><![CDATA[L'atelier annoncing new SOAP v3 capabilities]]></summary>
     </entry>
     <entry>
         <title type="html"><![CDATA[Welcome !]]></title>
         <id>welcome</id>
         <link href="https://e-attestations.io/blog/welcome"/>
         <updated>2020-08-20T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Welcome to your new e-attestations.io experience.]]></summary>
+        <summary type="html"><![CDATA[L'atelier says hello and welcome to their new Blog !]]></summary>
     </entry>
 </feed>
