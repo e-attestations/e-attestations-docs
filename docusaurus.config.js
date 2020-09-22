@@ -156,7 +156,7 @@ module.exports = {
           },
           // Please change this to your repo.
           editUrl:
-            'https://github.com/e-attestations/e-attestations-docs/tree/master/blog',
+            'https://github.com/e-attestations/e-attestations-docs/tree/master',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
