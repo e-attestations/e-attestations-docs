@@ -4,10 +4,17 @@
         <title>e-Attestations APIs Blog</title>
         <link>https://e-attestations.io/blog</link>
         <description>e-Attestations APIs Blog</description>
-        <lastBuildDate>Mon, 14 Sep 2020 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 22 Sep 2020 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <copyright>Copyright © 2020 e-Attestations.com.</copyright>
+        <item>
+            <title><![CDATA[What's new ? Check out our new Postman documentation !]]></title>
+            <link>https://e-attestations.io/blog/news_Postman_collection_documentaiton_20200922</link>
+            <guid>news_Postman_collection_documentaiton_20200922</guid>
+            <pubDate>Tue, 22 Sep 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[🚀 Discover our new Postman documentation https://documenter.getpostman.com/view/3000526/TVKD3xcz]]></description>
+        </item>
         <item>
             <title><![CDATA[What's new ? Using DUNS with WebServices SOAP v3]]></title>
             <link>https://e-attestations.io/blog/news_Webservices_SOAP_v3_20200914</link>
