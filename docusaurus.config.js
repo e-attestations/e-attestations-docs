@@ -50,11 +50,6 @@ module.exports = {
           label: 'GitHub',
           position: 'right',
         },
-        {
-          href: 'https://discordapp.com/channels/656160917591162903',
-          label: 'Discord',
-          position: 'right',
-        }
       ],
     },
     footer: {
@@ -89,8 +84,8 @@ module.exports = {
               href: 'https://github.com/e-attestations',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/channels/656160917591162903',
+              label: 'Postman',
+              href: 'https://documenter.getpostman.com/view/3000526/TVKD3xcz',
             },
           ],
         },
@@ -152,9 +147,11 @@ module.exports = {
           showReadingTime: true,
           feedOptions: {
             type: 'all',
+            title: "Atelier's blog",
+            description: "Find here articles, news, tips and tricks !",
             copyright: `Copyright © ${new Date().getFullYear()} e-Attestations.com.`,
+            language: 'en'
           },
-          // Please change this to your repo.
           editUrl:
             'https://github.com/e-attestations/e-attestations-docs/tree/master',
         },

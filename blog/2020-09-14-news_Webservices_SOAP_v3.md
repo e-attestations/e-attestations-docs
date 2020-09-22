@@ -1,5 +1,5 @@
 ---
-slug: news_Webservices_SOAP_v3_20200914
+slug: news_Webservices_SOAP_v3
 title: Using DUNS with WebServices SOAP v3
 author: Vincent DAGOURY
 author_title: Atelier Core Team

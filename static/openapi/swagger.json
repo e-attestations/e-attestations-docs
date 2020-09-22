@@ -21,11 +21,11 @@
   },
   "servers": [
   {
-    "url": "https://rs.e-attestations.com/api/v1",
+    "url": "https://edge.e-attestations.com/api/v1",
     "description": "PROD"
   },
   {
-    "url": "https://rs.test-e-attestations.com/api/v1",
+    "url": "https://edge.test-e-attestations.com/api/v1",
     "description": "SANDBOX"
   }
   ],
@@ -1366,7 +1366,7 @@
             "description": "Successful dossier update"
           },
           "400": {
-            "description": "Malformed request ou Erreurs dans les valeurs transmises au serveur. Voir la liste des erreurs."
+            "description": "Malformed request or bad request."
           },
           "401": {
             "description": "Authorization not understood or invalid"

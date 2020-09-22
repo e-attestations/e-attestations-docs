@@ -1,5 +1,5 @@
 ---
-slug: news_Postman_collection_documentaiton_20200922
+slug: news_Postman_collection_documentation
 title: Check out our new Postman documentation !
 author: Vincent DAGOURY
 author_title: Atelier Core Team
