@@ -4,11 +4,18 @@
         <title>Atelier's blog</title>
         <link>https://e-attestations.io/blog</link>
         <description>Find here articles, news, tips and tricks !</description>
-        <lastBuildDate>Tue, 22 Sep 2020 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 23 Sep 2020 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>Copyright © 2020 e-Attestations.com.</copyright>
+        <item>
+            <title><![CDATA[Check out our last EDGE API documentation !]]></title>
+            <link>https://e-attestations.io/blog/news_EDGE_API_docs_release</link>
+            <guid>news_EDGE_API_docs_release</guid>
+            <pubDate>Wed, 23 Sep 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[L'atelier annoncing new EDGE API documentation]]></description>
+        </item>
         <item>
             <title><![CDATA[Check out our new Postman documentation !]]></title>
             <link>https://e-attestations.io/blog/news_Postman_collection_documentation</link>

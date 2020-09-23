@@ -2,12 +2,19 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://e-attestations.io/blog</id>
     <title>Atelier's blog</title>
-    <updated>2020-09-22T00:00:00.000Z</updated>
+    <updated>2020-09-23T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://e-attestations.io/blog"/>
     <subtitle>Find here articles, news, tips and tricks !</subtitle>
     <icon>https://e-attestations.io/img/favicon.png</icon>
     <rights>Copyright © 2020 e-Attestations.com.</rights>
+    <entry>
+        <title type="html"><![CDATA[Check out our last EDGE API documentation !]]></title>
+        <id>news_EDGE_API_docs_release</id>
+        <link href="https://e-attestations.io/blog/news_EDGE_API_docs_release"/>
+        <updated>2020-09-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[L'atelier annoncing new EDGE API documentation]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Check out our new Postman documentation !]]></title>
         <id>news_Postman_collection_documentation</id>
