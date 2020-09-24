@@ -172,7 +172,10 @@
 
         await Redoc.init('/openapi/swagger.json', {
             scrollYOffset: 10,
-            expandResponses: "200",
+            expandResponses: "all",
+            jsonSampleExpandLevel: "all",
+            pathInMiddlePanel: true,
+            requiredPropsFirst: true,
             hideHostname: false,
             untrustedSpec: true
         }, document.getElementById('redoc-container'), () => {
