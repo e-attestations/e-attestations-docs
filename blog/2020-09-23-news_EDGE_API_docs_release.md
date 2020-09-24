@@ -29,8 +29,8 @@ You have two flavours for this documentation :
 Bookmark them quick !
 
 
-And stay tuned, we'll launch eAttestations 'EDGE' very soon !
+And stay tuned, we'll launch e-Attestations 'EDGE' API very soon !
 
-And as always, more is comming 😁
+And as always, more is coming 😁
 
 L'Atelier !

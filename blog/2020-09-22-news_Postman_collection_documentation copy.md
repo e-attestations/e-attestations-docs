@@ -14,16 +14,16 @@ tags: [news,edge, ea-api-edge, e-attestations]
 
 <!--truncate-->
 
-This will be the reference website for the postman collection for 'EDGE'. 
+This will be the reference website for the postman collection for 'EDGE'.
 
 So bookmark it quick !
 
-With this new website, L'atelier at e-Attestations provides you with new ways for discovering the powerfulness of e-Attestations EDGE API.
+With this new website, L'Atelier at e-Attestations provides you with new ways for discovering the powerfulness of e-Attestations EDGE API.
 
 You'll find more scenarios and detailed explanation on how to use our endpoints.
 
 And stay tuned, we'll launch eAttestations 'EDGE' very soon !
 
-And as always, more is comming 😁
+And as always, more is coming 😁
 
 L'Atelier !

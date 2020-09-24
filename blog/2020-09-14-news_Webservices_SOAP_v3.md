@@ -25,6 +25,6 @@ No breaking change ! Just use 'CIT003' as CompanyIDType if you have a DUNS and y
 
 > This new feature will be available (with a lot more) in API EDGE very soon ! Stay tune.com...
 
-And as always, more is comming 😁
+And as always, more is coming 😁
 
 L'Atelier !
