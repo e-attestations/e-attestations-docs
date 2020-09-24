@@ -28,26 +28,8 @@
             -ms-text-size-adjust: 100%;
         }
 
-        div.banner {
-            width: fit-content;
-            height: 160px !important;
-        }
-
-        div.banner > pre {
-            transform: scale(0.7);
-            transform-origin: 0 0;
-        }
-
-        img.imglink {
-            transform: scale(0.8);
-            transform-origin: 0 0;
-            width: fit-content;
-            margin: auto;
-            padding: 1rem;
-        }
-
         .menu-content {
-            border-right: gainsboro inset 1px;
+            border-right: gainsboro solid 2px;
         }
 
         article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
@@ -95,64 +77,6 @@
             hyphens: auto;
         }
 
-        .imglink {
-            width: 100%;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-        }
-
-
-
-        .imglink:hover {
-            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);
-        }
-
-        aside {
-            padding: 1em;
-            line-height: 1.6;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);
-        }
-
-        aside:hover {
-            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-            text-shadow: 1px 1px 1px darkgray;
-            color: white;
-            cursor: help;
-        }
-
-        aside.warning:before, aside.notice:before, aside.success:before {
-            font-family: "Font Awesome 5 Free", monospace;
-            font-style: normal;
-            font-variant: normal;
-            font-weight: 600;
-            font-size: large;
-            margin: 0.5rem;
-        }
-
-        aside.warning {
-            background-color: orange;
-        }
-
-        aside.warning:before {
-            content: "\f071";
-        }
-
-        aside.notice {
-            background-color: #96caf6;
-        }
-
-        aside.notice:before {
-            content: "\f05a";
-        }
-
-        aside.success {
-            background-color: #92dd91;
-        }
-
-        aside.success:before {
-            content: "\f058";
-        }
-
         div.mermaid {
             /* font-family: 'trebuchet ms', verdana, arial; */
             font-family: 'Courier New', Courier, monospace !important;
@@ -177,7 +101,8 @@
             pathInMiddlePanel: true,
             requiredPropsFirst: true,
             hideHostname: false,
-            untrustedSpec: true
+            untrustedSpec: false,
+            sortPropsAlphabetically: true
         }, document.getElementById('redoc-container'), () => {
             console.log('Redoc is done !')
         });
