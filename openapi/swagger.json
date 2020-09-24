@@ -711,7 +711,7 @@
                     }
                 ],
                 "summary": "Update on dossier",
-                "description": "Update one data's dossier (synchronously)"
+                "description": "Update one data's dossier (synchronously)\n\n## Error codes\n\nDuring the update, the API can raise an error that you have to interpret and adapt you logic/coding on.\n\nThis is the error code list you need to know.\n\nCodes | Errors when updating a folder\n-----|---------------------------------\nE200 | There is no dossier for this criteria\nE201 | This dossier is disabled\nE202 | This dossier reference already exists for this client / supplier couple\nE203 | There is no dossier for this reference\nE204 | This dossier is already active\nE205 | This dossier to reactivate has an outdated date for its re-activation. Please provide a date in the future.\nE301 | This document/requirement is deactivated\nE302 | This document/requirement is not authorized\n\n"
             }
         },
         "/account/{accountId}/dossiers/{dossierId}/documents": {
@@ -2321,7 +2321,7 @@
                     }
                 ],
                 "summary": "Dossiers paginated and with multi-criteria",
-                "description": "Fetch dossiers list, paginated.\n\nYou can specify pageSize and page for navigation between pages.\n\nYou can also use criteria and combine query parameters."
+                "description": "Fetch dossiers list, paginated.\n\nYou can specify pageSize and page for navigation between pages.\n\nYou can also use criteria and combine query parameters.\n\n## Error codes \n\nDuring your search API can send an error that you need to interpret.\n\nHere the error codes you can have.\n\nCodes| Search errors\n-----|---------------------------------\nE001 | Missing parameter\nE002 | Unknown parameter\nE003 | Empty parameter\nE010 | Incorrect format\nE011 | Maximum size exceeded\nE021 | Expiration date in the past\nE022 | Date in the future\nE030 | Invalid email domain"
             },
             "post": {
                 "requestBody": {
@@ -2386,7 +2386,7 @@
                     }
                 },
                 "summary": "Create/add a 'dossier'",
-                "description": "Launch e-Attestations internal processes for continuus monitoring for thirdparty compliancy.\n\nCreate a dossier for a new thirdparty (not already monitored) starts the invitation workflow (by email). Thus, all information are important during this phase.\n\n### Purpose of a 'dossier'\n\nThe 'dossier' allows the client to monitor one of his thirdparty for one or a number of required documents.\n\nIt is the management unit of requirements (documents) for one thirdparty.\n\nAvailable requirements/documents depends your subscription and account configuration. \n\nContact your key account manager for any questions on configuration. \n\n### Forge your compliance requirements through document type codes\n\nA dossier will process and manage gathering of data or invite your third party if the evidence for this document is not available or is not valid anymore (expiretion date). \n\nEach requirement is also called a documents (for which we aim to obtain an evidence) is represented through a 'document code' that you have to recognize in order to ask for the good requirements and reach evidences for this 'dossier'.\n\nThis document code as been designed by e-Attestations for years.\n\n### Asynchronous process for a better control\n\nWe process dossier creation asynchronously so you don't have to wait :-)\n\nIt's a very powerful mecanism, giving a lot of flexibility and adaptability for the customer/system using APIs.\n\n'Dossier' creation is an **asynchronous process**. This asynchronism is induced by the process (itself of an asynchronous nature) of qualification of Thirdparty information by our internal data sources.\n\nThis endpoint launches the import process and returns a process identifier (processId).\n\nThe processing can last few minutes. In order to follow the progress of the import process and to know its result, a client can check the specific processid and know if the asynchronous creation process is complete and successful.\n\n![Dossier creation illustration](https://e-attestations.io/img/ea-create-dossier-async.png)\n\n### What if the thirdparty doesn't exist ?\n\nIf the thirdparty does not exist, it is created in the eAttestations platform.\n\nThis is why we need thirdparty identifier composed using `companyIdType` code and `companyIdalue` value.\n\nWe advise you to always use your own keys (from your database or system) with the field `thirdpartyCode`.\n\n### Contact us for more explenation\n\n"
+                "description": "Launch e-Attestations internal processes for continuus monitoring for thirdparty compliancy.\n\nCreate a dossier for a new thirdparty (not already monitored) starts the invitation workflow (by email). Thus, all information are important during this phase.\n\n### Purpose of a 'dossier'\n\nThe 'dossier' allows the client to monitor one of his thirdparty for one or a number of required documents.\n\nIt is the management unit of requirements (documents) for one thirdparty.\n\nAvailable requirements/documents depends your subscription and account configuration. \n\nContact your key account manager for any questions on configuration. \n\n### Forge your compliance requirements through document type codes\n\nA dossier will process and manage gathering of data or invite your third party if the evidence for this document is not available or is not valid anymore (expiretion date). \n\nEach requirement is also called a documents (for which we aim to obtain an evidence) is represented through a 'document code' that you have to recognize in order to ask for the good requirements and reach evidences for this 'dossier'.\n\nThis document code as been designed by e-Attestations for years.\n\n### Asynchronous process for a better control\n\nWe process dossier creation asynchronously so you don't have to wait :-)\n\nIt's a very powerful mecanism, giving a lot of flexibility and adaptability for the customer/system using APIs.\n\n'Dossier' creation is an **asynchronous process**. This asynchronism is induced by the process (itself of an asynchronous nature) of qualification of Thirdparty information by our internal data sources.\n\nThis endpoint launches the import process and returns a process identifier (processId).\n\nThe processing can last few minutes. In order to follow the progress of the import process and to know its result, a client can check the specific processid and know if the asynchronous creation process is complete and successful.\n\n![Dossier creation illustration](https://e-attestations.io/img/ea-create-dossier-async.png)\n\n### What if the thirdparty doesn't exist ?\n\nIf the thirdparty does not exist, it is created in the eAttestations platform.\n\nThis is why we need thirdparty identifier composed using `companyIdType` code and `companyIdalue` value.\n\nWe advise you to always use your own keys (from your database or system) with the field `thirdpartyCode`.\n\n### Error codes\n\nDuring dossier creation API can raise error codes.\n\nthis is the error codes you need to know and adapt you logic uppon.\n\nCodes | Errors when creating a folder\n-----|----------------------------------\nE100 | There is no third party for this criteria\nE101 | Error when qualifying the establishment\nE102 | The establishment does not exist\nE103 | The establishment is closed\nE104 | Too many third parties for this criteria\nE112 | The supplier code (thirdpartyCode) already used for another supplier\nE113 | Non active ordering account\nE121 | Impossible to create a dossier based on TVA for a french thirdparty. Plesae use SIRET number\nE122 | Impossible to import a non French thirdparty, subscription is inactive for international third parties\n\n"
             }
         },
         "/account/{accountId}/thirdparties": {
@@ -2999,7 +2999,7 @@
                         "type": "string"
                     },
                     "thirdpartyCode": {
-                        "description": "Thirdparty code. We advise you to use it as an internal identifier on client side",
+                        "description": "Thirdparty code. It is an internal identifier for the client",
                         "type": "string"
                     },
                     "dossierReference": {
@@ -4634,8 +4634,8 @@
                 "type": "object",
                 "properties": {
                     "code": {
-                        "description": "The error code. Please consult the error nomenclature documentation for details.",
-                        "type": "string"
+                        "$ref": "#/components/schemas/ErrorCode",
+                        "description": "The error code. Please consult the error nomenclature documentation for details."
                     },
                     "message": {
                         "description": "The english errors for this code",
@@ -4656,6 +4656,10 @@
                     "request": "some text",
                     "reason": "some text"
                 }
+            },
+            "ErrorCode": {
+                "description": "An error code to check.\n",
+                "type": "string"
             }
         },
         "responses": {
