@@ -216,7 +216,7 @@
                     }
                 ],
                 "summary": "Account statistics",
-                "description": "Restore the overall statistics of the account. The statistics relate only to the third parties monitored. A monitored Thirdparty is a Thirdparty for which there is at least one active dossier. The statistics relate to third parties and dossiers completeness."
+                "description": "Fetches the overall statistics of the account. The statistics relate only to the third parties monitored. A monitored Thirdparty is a Thirdparty for which there is at least one active dossier. The statistics relate to third parties and dossiers completeness."
             }
         },
         "/account/{accountId}/thirdparties/{thirdpartyId}": {
