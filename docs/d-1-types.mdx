@@ -4,26 +4,36 @@ title: Nomenclature
 sidebar_label: Nomenclature
 ---
 
-## Identifier type
+## Company Identifier types
 
-An establishment or a company (in the legal person sense) is identified in the e-Attestations system using a national identifier code (SIRET, SIREN for France) or an international number (eg VAT identifier ).
+An establishment or a company (in the legal person sense) is identified in the e-Attestations system using a national identifier code :
 
-e-Attestations APIs offer two types of identifiers for Thirdparties
+- The SIRET for French companies
+- The TVA for EU companies (but french)
+- The DUNS (Dun & Bradstreet identifier) for any company
+
+
+thus, e-Attestations EDGE API offers several types of company identifiers :
 
 Code    |Type|Country|Description
 --------|----|----------|------------------------
 CIT001  |SIRET|France|Identifier used in France to qualify establishments. Number of 14 digits verifying Luhn's algorithm [Wikipedia](https://fr.wikipedia.org/wiki/Formule_de_Luhn)
 CIT002  |TVA|CEE|Identifier used by the EEC for companies subject to corporation tax. More information on [Wikipedia](https://en.wikipedia.org/wiki/VAT_identification_number)
+CIT003  |DUNS|Any|Dun & BradStreet identifier used as an international and owned by the customer. More information on [D&B](https://www.dnb.com/ca-fr/duns-number.html) website
 
-New types of identifiers may be implemented as the API evolves.
+New types of identifiers will be implemented in the future as the API evolves.
 
-## Completeness indicator
+## Indicators
 
-e-Attestations completeness indicator provides simple information that the third party has fully covered the requirements for compliance required by client compliance.
+e-Attestations indicators provide customer with information
+that the third party has fully covered and andswer the compliancy (and requirementsà for in **all 'dossiers'**.
 
-Example: a third party surveillance file is considered complete for the "due diligence" indicator, if all the documents relating to the due diligence are present and validated.
+The main completeness indicator is the "due diligence" indicator, 
+which is "true" if all the documents relating to the due diligence are present and valid.
 
 
 Code |Description
 -----|------------------------
 I001 |Due diligence
+
+New indicators will be implemented in the future as the API evolves.

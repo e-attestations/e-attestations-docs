@@ -4,7 +4,7 @@ title: Requirements
 sidebar_label: Requirements
 ---
 
-Requirements are resource related to a set of requests in the business area of ​​the client (legal, compliance, business, etc.).
+Requirements are resources related to a set of requests in the business area of ​​the client (legal, compliance, business, etc.).
 
 As part of the continuous monitoring of third party compliance, a requirement is materialized in the workflow by a requested evidence ('document') and awaiting a response.
 
@@ -20,24 +20,31 @@ The answer can also be given by the thirdparty himself in several cases:
 - a dated and auditable electronic signature
 - any other element requested constituting proof of compliance in the context of monitoring.
 
+
 > Example of GET one's 'dossier' requirements `/api/v1/account/{{account_id}}/dossiers/{{dossierId}}/requirements`
 
 ```json
 {
     "content": [
         {
-            "documentId": 1,
+            "documentId": 494,
             "accountId": 119631,
-            "code": "ATT_VIGI",
-            "name": "Attestationdevigilance6mois",
-            "dossierId": 836261
+            "code": "NIT0RSS",
+            "name": "NOTE-INSTRUCTIONS-TECHNIQUES-003-2012-Renseignements-surfaces-sinistrees",
+            "descriptionCategoryFr": "DOCUMENTS CONTRACTUELS",
+            "descriptionCategoryEn": "Contractual documents",
+            "descriptionFr": "NOTE INSTRUCTIONS TECHNIQUES 003-2012 Renseignements surfaces sinistrées",
+            "descriptionEn": "NOTE INSTRUCTIONS TECHNIQUES 003-2012 Renseignements surfaces sinistrées"
         },
         {
-            "documentId": 2,
+            "documentId": 5,
             "accountId": 119631,
-            "code": "JUSTIF_IMM",
-            "name": "Justificatifdimmatriculation",
-            "dossierId": 836261
+            "code": "LST_SAL_ETR",
+            "name": "Autorisationsdetravail",
+            "descriptionCategoryFr": "REGULARITE SOCIALE",
+            "descriptionCategoryEn": "Social regularity",
+            "descriptionFr": "Liste nominative des salariés étrangers soumis à autorisation de travail",
+            "descriptionEn": "List of names of posted workers subjected to work permit"
         }
     ]
 }

@@ -6,12 +6,16 @@ sidebar_label: Error Codes
 
 If necessary, error codes are returned during certain actions and in particular:
 
-- when creating a 'dossier'
-- when updating a 'dossier'
-- when activating a 'dossier'
-- when deactivating a 'dossier'
+- when searching dossiers
+- when creating one dossier
+- when updating one dossier
+- when activating one dossier
+- when deactivating one dossier
 
 These are errors codes with description which must be taken into account to interpret them.
+
+
+## Errors during a 'dossier' research query
 
 Codes| Search errors
 -----|---------------------------------
@@ -24,6 +28,8 @@ E021 | Expiration date in the past
 E022 | Date in the future
 E030 | Invalid email domain
 
+## Errors during a 'dossier' creation query
+
 Codes | Errors when creating a folder
 -----|----------------------------------
 E100 | There is no third party for this criteria
@@ -35,6 +41,8 @@ E112 | The supplier code (thirdpartyCode) already used for another supplier
 E113 | Non active ordering account
 E121 | Impossible to create a dossier based on TVA for a french thirdparty. Plesae use SIRET number
 E122 | Impossible to import a non French thirdparty, subscription is inactive for international third parties
+
+## Errors during a 'dossier' update query
 
 Codes | Errors when updating a folder
 -----|---------------------------------

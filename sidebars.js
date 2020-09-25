@@ -16,9 +16,8 @@ module.exports = {
       'b-2-environments'
     ],
     'Security': [
-      's-1-security',
-      's-2-jwt',
-      's-6-jwt-2',
+      's-1-jwt',
+      's-2-requests-limits',
       's-7-urls',
     ],
     'Tutorials': [
@@ -37,8 +36,9 @@ module.exports = {
       'd-1-types', 
       'd-2-error-codes'
     ],      
-    'Resources': [
-      'r-1-postman'
+    'Technical aids': [
+      'r-1-postman',
+      'r-2-cli'
     ],
     'Under the hood': [
       'z-0-about', 

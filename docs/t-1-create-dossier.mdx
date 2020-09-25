@@ -12,13 +12,13 @@ This step is also the recruitment phase of your third party who will then be inf
 
 ## How ?
 
-You can create a dossier by using the POST http verb with `/account/{account}/dossiers` enpoint with a JSON body containing the parameters of your dossier.
+You can create a dossier by using the POST http verb with `/account/{accountId}/dossiers` enpoint with a JSON body containing the parameters of your dossier.
 
-> Create a 'dossier' with POST to `/account/{account}/dossiers`
+> Create a 'dossier' with POST to `/account/{accountId}/dossiers`
 
 ```shell
 curl --request POST \
-  --url https://rs.test-e-attestations.com/api/v1/account/119631/dossiers \
+  --url https://edge.test-e-attestations.com/api/v1/account/{{accountId}}/dossiers \
   --header 'Authorization: Bearer {{token}}' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -61,21 +61,50 @@ But also :
 
 ## The asynchronous nature of dossier creation
 
-Since the dossier creation processing can last several seconds, the process is **asynchronous **.
+We process dossier creation asynchronously so you don't have to wait :-)
 
-When creating an identifier for monitoring the import processing (processId) is returned.
+It's a very powerful mecanism, giving a lot of flexibility and adaptability for the customer/system using APIs.
+
+'Dossier' creation is an **asynchronous process**. This asynchronism is induced by the process (itself of an asynchronous nature) of qualification of Thirdparty information by our internal data sources.
+
+This endpoint launches the import process and returns a process identifier (processId).
 You will need to use it to know the result of the import asynchronously.
 
 ![Async dossier creation](/img/ea-create-dossier-async.png)
 
 ### Fetch creation results
 
-The endpoint (GET) `/account/{accountId}/dossier/processes` makes it easy to follow and catch the import results.
-
-
-thanks to the identifier of the import process returned during the call "Creation of a folder "(POST / account / {accountId} / folders).
+The endpoint (GET) `/account/{accountId}/dossier/processes` makes it easy to follow and catch the import results 
+thanks to the identifier `processId` of the import process returned during the call "Creation of a folder "(POST / account / {accountId} / folders).
 
 > It is important to check the call parameters carefully and to take into account the error codes and their meaning.
+
+### What if the thirdparty doesn't exist ?
+
+If the thirdparty does not exist, it is created in the eAttestations platform.
+
+This is why we need thirdparty identifier composed using `companyIdType` code and `companyIdalue` value.
+
+We advise you to always use your own keys (from your database or system) with the field `thirdpartyCode`.
+
+
+### Error codes
+
+During dossier creation API can raise error codes.
+
+this is the error codes you need to know and adapt you logic uppon.
+
+Codes | Errors when creating a folder
+-----|----------------------------------
+E100 | There is no third party for this criteria
+E101 | Error when qualifying the establishment
+E102 | The establishment does not exist
+E103 | The establishment is closed
+E104 | Too many third parties for this criteria
+E112 | The supplier code (thirdpartyCode) already used for another supplier
+E113 | Non active ordering account
+E121 | Impossible to create a dossier based on TVA for a french thirdparty. Plesae use SIRET number
+E122 | Impossible to import a non French thirdparty, subscription is inactive for international third parties
 
 
 
