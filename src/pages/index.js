@@ -13,7 +13,7 @@ const features = [
     imageUrl: 'img/200px-Cloud-API-Logo.svg.png',
     description: (
       <>
-        e-Attestation APIs are very easy to use and to implement in the
+        e-Attestations`&apos;` APIs are very easy to use and to implement in the
         programming language of your choice. You should use OpenAPIv3
         documentation as a standard and gives you various capabilities for
         generating your client side code.
@@ -49,16 +49,17 @@ const features = [
 const documentations = [
   {
     key: 1,
-    title: <>e-Attestation API 'EDGE'</>,
+    title: <>e-Attestations 'EDGE' API</>,
     imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
+        <h3>The ever-geening API</h3>
         <p>
-          This is the most avanced and activaly tested version of our RESTful
-          API. With this version you'll find more features and more data.{' '}
+          This is the most advanced and actively tested version of our RESTful
+          API. With this version you will find more features and more data.{' '}
         </p>
         <p>
-          'EDGE' adopts an "evergreening" strategy so you'll benefit
+          e-Attestations 'EDGE' adopts an ever-greening strategy so you will benefit
           enhancements automagicaly.
         </p>
         You have two flavours for the documentation:
