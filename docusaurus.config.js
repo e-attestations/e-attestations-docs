@@ -26,25 +26,20 @@ module.exports = {
         {
           to: 'docs/a-1-introduction',
           activeBasePath: 'docs',
-          label: 'Docs',
+          label: 'Documentation',
           position: 'left',
         },
         {
           href: 'https://e-attestations.io/openapi/swagger.html',
-          label: 'EDGE',
+          label: 'OpenAPI v3 specs',
           position: 'left',
         },
         {
-          href: 'https://e-attestations.io/EAttestationsRESTAPIv1.1/index.html',
-          label: 'REST 1.1 (fr)',
+          href: 'https://documenter.getpostman.com/view/12824294/TVRpzjoE',
+          label: 'Use Postman !',
           position: 'left',
         },
         {to: 'blog', label: 'Blog', position: 'right'},
-        {
-          href: 'https://e-attestations.io/EAttestationsWSAPI/index.html',
-          label: 'SOAP (fr)',
-          position: 'left',
-        },
         {
           href: 'https://github.com/e-attestations',
           label: 'GitHub',
@@ -85,7 +80,7 @@ module.exports = {
             },
             {
               label: 'Postman',
-              href: 'https://documenter.getpostman.com/view/3000526/TVKD3xcz',
+              href: 'https://documenter.getpostman.com/view/12824294/TVRpzjoE',
             },
           ],
         },

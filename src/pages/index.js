@@ -62,18 +62,24 @@ const documentations = [
           e-Attestations 'EDGE' adopts an ever-greening strategy so you will benefit
           enhancements automagicaly.
         </p>
-        You have two flavours for the documentation:
+        You have now three flavours for the documentation:
         <ul>
-          <li>
+        <li>
+          <a target="_blank" href="https://documenter.getpostman.com/view/12824294/TVRpzjoE">
+            Postman Documentation
+          </a>
+        </li>
+        <li>
             <a target="_blank" href="openapi/swagger.html">
-              OpenAPI v3
+              OpenAPI v3 specs
             </a>
           </li>
-          <li>
-            <a target="_blank" href="openapi/redoc.html">
-              Redoc format
-            </a>
-          </li>
+        <li>
+          <a target="_blank" href="openapi/redoc.html">
+            Redoc format
+          </a>
+        </li>
+
         </ul>
       </>
     ),
@@ -144,16 +150,24 @@ const channels = [
           Find more with our{' '}
           <a
             target="_blank"
-            href="https://documenter.getpostman.com/view/3000526/TVKD3xcz">
+            href="https://documenter.getpostman.com/view/12824294/TVRpzjoE">
             Postman documentation
-          </a>{' '} and discover all the diveristy of 'EDGE' API.
+          </a>{' '} and discover all the diveristy of 'EDGE' API with our <a target="_blank" href="https://documenter.getpostman.com/view/3000526/TVKD3xcz">
+          Postman requests collection</a>.
         </p>
         <Link
           className={clsx(
             'button button--outline button--secondary button--lg',
           )}
+          to="https://documenter.getpostman.com/view/12824294/TVRpzjoE">
+          Postman Documentations
+        </Link>
+          <Link
+          className={clsx(
+            'button button--outline button--secondary button--lg',
+          )}
           to="https://documenter.getpostman.com/view/3000526/TVKD3xcz">
-          Visit Postman collection docs
+          Postman Requests Collection
         </Link>
       </div>
     ),
@@ -271,8 +285,8 @@ function Home() {
         <div className="container">
           <h1 className="hero__title">Build with the community !</h1>
           <p className="hero__subtitle">
-            The "Atelier" as e-Attestations provides you with docs, tools, code samples, tips and tricks on
-            its GitHub organizaion. Don't forget to 'watch' our open-source repositories and joins us !
+            "L'Atelier" by e-Attestations provides you with docs, tools, code samples, tips and tricks on
+            its GitHub organization. Don't forget to <i>Watch</i> our open-source repositories and joins us !
           </p>
         </div>
       </header>

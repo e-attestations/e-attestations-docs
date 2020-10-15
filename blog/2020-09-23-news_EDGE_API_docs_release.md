@@ -1,5 +1,5 @@
 ---
-slug: news_EDGE_API_docs_release
+slug: news_EDGE_API_docs_Postman
 title: Check out our last EDGE API documentation !
 author: Vincent DAGOURY
 author_title: Atelier Core Team
