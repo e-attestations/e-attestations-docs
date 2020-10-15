@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[42],{101:function(a){a.exports=JSON.parse('{"allTagsPath":"/blog/tags","slug":"ea-api-edge","name":"ea-api-edge","count":2,"permalink":"/blog/tags/ea-api-edge"}')}}]);
