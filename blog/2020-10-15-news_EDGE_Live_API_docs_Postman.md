@@ -16,7 +16,7 @@ tags: [news,edge, ea-api-edge, postman, e-attestations]
 
 <!--truncate-->
 
-L'Atelier by e-Attestations is very proud to annonce that EDGE is live since a few days now. 
+L'Atelier by e-Attestations is very proud to announce that EDGE is live since a few days now. 
 
 We invite you to discover also the Postman Documentation website.
 
@@ -24,7 +24,6 @@ It provides a interactive production with automated code samples aside of the ev
 
 Check them out ! 
 
-- [Postman documentation](https://documenter.getpostman.com/view/12824294/TVRpzjoE)
 - [Postman collection](https://documenter.getpostman.com/view/3000526/TVKD3xcz)
 
 

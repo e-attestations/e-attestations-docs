@@ -35,7 +35,7 @@ module.exports = {
           position: 'left',
         },
         {
-          href: 'https://documenter.getpostman.com/view/12824294/TVRpzjoE',
+          href: 'https://documenter.getpostman.com/view/3000526/TVKD3xcz',
           label: 'Use Postman !',
           position: 'left',
         },
@@ -80,7 +80,7 @@ module.exports = {
             },
             {
               label: 'Postman',
-              href: 'https://documenter.getpostman.com/view/12824294/TVRpzjoE',
+              href: 'https://documenter.getpostman.com/view/3000526/TVKD3xcz',
             },
           ],
         },

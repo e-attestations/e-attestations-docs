@@ -65,7 +65,7 @@ const documentations = [
         You have now three flavours for the documentation:
         <ul>
         <li>
-          <a target="_blank" href="https://documenter.getpostman.com/view/12824294/TVRpzjoE">
+          <a target="_blank" href="https://documenter.getpostman.com/view/3000526/TVKD3xcz">
             Postman Documentation
           </a>
         </li>
@@ -150,7 +150,7 @@ const channels = [
           Find more with our{' '}
           <a
             target="_blank"
-            href="https://documenter.getpostman.com/view/12824294/TVRpzjoE">
+            href="https://documenter.getpostman.com/view/3000526/TVKD3xcz">
             Postman documentation
           </a>{' '} and discover all the diveristy of 'EDGE' API with our <a target="_blank" href="https://documenter.getpostman.com/view/3000526/TVKD3xcz">
           Postman requests collection</a>.
@@ -159,7 +159,7 @@ const channels = [
           className={clsx(
             'button button--outline button--secondary button--lg',
           )}
-          to="https://documenter.getpostman.com/view/12824294/TVRpzjoE">
+          to="https://documenter.getpostman.com/view/3000526/TVKD3xcz">
           Postman Documentations
         </Link>
           <Link
