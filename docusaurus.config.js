@@ -35,7 +35,7 @@ module.exports = {
           position: 'left',
         },
         {
-          href: 'https://documenter.getpostman.com/view/3000526/TVKD3xcz',
+          href: 'https://documenter.getpostman.com/view/2727694/Tz5ndeyb',
           label: 'Use Postman !',
           position: 'left',
         },
