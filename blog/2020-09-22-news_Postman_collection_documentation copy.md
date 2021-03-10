@@ -10,7 +10,7 @@ image: img/cropped-logo-eattestations-2.png
 tags: [news,edge, ea-api-edge, e-attestations]
 ---
 
-🚀 Discover our new Postman documentation [https://documenter.getpostman.com/view/3000526/TVKD3xcz](https://documenter.getpostman.com/view/3000526/TVKD3xcz)
+🚀 Discover our new Postman documentation [https://documenter.getpostman.com/view/3000526/Tz5ndeyb](https://documenter.getpostman.com/view/3000526/Tz5ndeyb)
 
 <!--truncate-->
 

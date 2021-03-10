@@ -24,7 +24,7 @@ It provides a interactive production with automated code samples aside of the ev
 
 Check them out ! 
 
-- [Postman collection](https://documenter.getpostman.com/view/3000526/TVKD3xcz)
+- [Postman collection](https://documenter.getpostman.com/view/3000526/Tz5ndeyb)
 
 
 And you can still find our documentations format as well :

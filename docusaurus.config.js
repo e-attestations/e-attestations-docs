@@ -80,7 +80,7 @@ module.exports = {
             },
             {
               label: 'Postman',
-              href: 'https://documenter.getpostman.com/view/3000526/TVKD3xcz',
+              href: 'https://documenter.getpostman.com/view/3000526/Tz5ndeyb',
             },
           ],
         },
