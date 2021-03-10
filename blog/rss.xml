@@ -8,7 +8,7 @@
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
-        <copyright>Copyright © 2020 e-Attestations.com.</copyright>
+        <copyright>Copyright © 2021 e-Attestations.com.</copyright>
         <item>
             <title><![CDATA[API EDGE is LIVE with new Postman docs !]]></title>
             <link>https://e-attestations.io/blog/news_EDGE_API_docs_release</link>
