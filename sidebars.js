@@ -8,8 +8,7 @@
 module.exports = {
   docs: {    
     'Introduction': [
-      'a-1-introduction', 
-      'a-2-motivations'
+      'a-1-introduction'
     ],
     'Get started': [
       'b-1-get-started', 
@@ -17,7 +16,6 @@ module.exports = {
     ],
     'Security': [
       's-1-jwt',
-      's-2-requests-limits',
       's-7-urls',
     ],
     'Tutorials': [

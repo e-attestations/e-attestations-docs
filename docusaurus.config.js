@@ -137,20 +137,6 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            'https://github.com/e-attestations/e-attestations-docs/tree/master',
-        },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: 'all',
-            title: "Atelier's blog",
-            description: "Find here articles, news, tips and tricks !",
-            copyright: `Copyright © ${new Date().getFullYear()} e-Attestations.com.`,
-            language: 'en'
-          },
-          editUrl:
-            'https://github.com/e-attestations/e-attestations-docs/tree/master',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
