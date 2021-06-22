@@ -5,21 +5,14 @@ sidebar_label: Postman Collection
 ---
 
 
-To go even faster and facilitate the exploration and the implementation of our EDGE API and exploration of our API we provide you with a pretty huge Postman collection that you can find  [here](https://documenter.getpostman.com/view/3000526/Tz5ndeyb)
+To go even faster and facilitate the exploration and the implementation of our EDGE API and exploration of our API we provide you with a pretty huge Postman collection that you can find  [here](https://edge.e-attestations.io)
 
 You can explore many scenarios and use cases to functionally understand the infinite possibilities.
 
 
 We invite you to use both of following resources : 
 
-- [Postman collection documentation](https://documenter.getpostman.com/view/3000526/Tz5ndeyb)
-
-
-Base on our OpenApi v3 specifications you will find also the provided documentation within our Postman team resource center :
-
-- [Postman EDGE API documentation](https://documenter.getpostman.com/view/12824294/TVRpzjoE)
-
-
+- [Postman collection documentation](https://edge.e-attestations.io)
 
 ## Using Postman 'environnement'
 
@@ -37,15 +30,4 @@ To use this test suite, you'll have to set :
 
 ## Install Postman
 
-You can download Postman via <a href="https://www.getpostman.com/downloads/"> this link </a> or use newman via <a href = "https://github.com/postmanlabs/newman "> this link </a>.
-
-You can also use [newman](https://github.com/postmanlabs/newman) for automatic testing, like we do :-)
-
-```shell
-npx newman run "eAttestations-API-REST-multi-version.postman_collection.json" \
-  --global-var username="<user>" \
-  --global-var password="<password>" \
-  --global-var ea_auth_serv="https://auth.test-e-attestations.com" \
-  --global-var ea_api_serv="https://rs.test-e-attestations.com"
-```
-
+You can download Postman via <a href="https://www.getpostman.com/downloads/"> this link</a>.

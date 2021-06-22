@@ -13,10 +13,8 @@ const features = [
     imageUrl: 'img/200px-Cloud-API-Logo.svg.png',
     description: (
       <>
-        e-Attestations`&apos;` APIs are very easy to use and to implement in the
-        programming language of your choice. You should use OpenAPIv3
-        documentation as a standard and gives you various capabilities for
-        generating your client side code.
+        e-Attestations' APIs are very easy to use and to implement in the
+        programming language of your choice.
       </>
     ),
   },
@@ -38,7 +36,7 @@ const features = [
     imageUrl: 'img/postman-logo.png',
     description: (
       <>
-        You can go even quicker with the Postman collection we provide you.
+        You can go even faster with the Postman collection we provide you.
         Install postman, complete Postman variables with your credentials and
         you can test the API right away without writing a single line of code.
       </>
@@ -53,7 +51,6 @@ const documentations = [
     imageUrl: 'img/logo-e-Attestations.png',
     description: (
       <>
-        <h3>The ever-geening API</h3>
         <p>
           This is the most advanced and actively tested version of our RESTful
           API. With this version you will find more features and more data.{' '}
@@ -62,25 +59,9 @@ const documentations = [
           e-Attestations 'EDGE' adopts an ever-greening strategy so you will benefit
           enhancements automagicaly.
         </p>
-        You have now three flavours for the documentation:
-        <ul>
-        <li>
-          <a target="_blank" href="https://documenter.getpostman.com/view/3000526/Tz5ndeyb">
+          <a target="_blank" href="https://edge.e-attestations.io">
             Postman Documentation
           </a>
-        </li>
-        <li>
-            <a target="_blank" href="openapi/swagger.html">
-              OpenAPI v3 specs
-            </a>
-          </li>
-        <li>
-          <a target="_blank" href="openapi/redoc.html">
-            Redoc format
-          </a>
-        </li>
-
-        </ul>
       </>
     ),
   },
@@ -94,13 +75,10 @@ const documentations = [
         This is our first REST API.
         <br />
         It will be replaced soon by the 'EDGE' version.
-        <ul>
-          <li>
-            <a target="_blank" href="EAttestationsRESTAPIv1.1/index.html">
-              Documentation of e-Attestations REST API v1.1 (fr)
-            </a>
-          </li>
-        </ul>
+        <br/><br/>
+          <a target="_blank" href="EAttestationsRESTAPIv1.1/index.html">
+            Documentation of e-Attestations REST API v1.1 (fr)
+          </a>
       </>
     ),
   },
@@ -113,9 +91,7 @@ const documentations = [
         This API is still maintained for our customers forced to use SOAP.
         <p>We recommend choosing our REST API.</p>
         <a target="_blank" href="EAttestationsWSAPI/index.html">
-          <ul>
-            <li>Documentation of e-Attestations SOAP API v3 (fr)</li>
-          </ul>
+            Documentation of e-Attestations SOAP API v3 (fr)
         </a>
       </>
     ),
@@ -150,23 +126,23 @@ const channels = [
           Find more with our{' '}
           <a
             target="_blank"
-            href="https://documenter.getpostman.com/view/3000526/Tz5ndeyb">
+            href="https://edge.e-attestations.io">
             Postman documentation
-          </a>{' '} and discover all the diveristy of 'EDGE' API with our <a target="_blank" href="https://documenter.getpostman.com/view/3000526/Tz5ndeyb">
+          </a>{' '} and discover all the diveristy of 'EDGE' API with our <a target="_blank" href="https://edge.e-attestations.io">
           Postman requests collection</a>.
         </p>
         <Link
           className={clsx(
             'button button--outline button--secondary button--lg',
           )}
-          to="https://documenter.getpostman.com/view/3000526/Tz5ndeyb">
+          to="https://edge.e-attestations.io">
           Postman Documentations
         </Link>
           <Link
           className={clsx(
             'button button--outline button--secondary button--lg',
           )}
-          to="https://documenter.getpostman.com/view/3000526/Tz5ndeyb">
+          to="https://edge.e-attestations.io">
           Postman Requests Collection
         </Link>
       </div>
@@ -206,7 +182,7 @@ function Home() {
                 styles.getstarted,
                 'getstarted button button--outline button--secondary button--lg',
               )}
-              to={useBaseUrl('docs/a-1-introduction')}>
+              to={useBaseUrl('https://edge.e-attestations.io')}>
               Get Started
             </Link>
 
@@ -217,17 +193,17 @@ function Home() {
       <main>
         <div className={clsx('hero shadow--lw')}>
           <div className="container">
-            <img src="img/logo-e-Attestations-tech.png" alt="welcome" />
+            <img src="img/dev_ea.svg" alt="welcome" />
 
               <h1 className="text--center"><span role="img">🚀</span></h1>
               <div className="hero__subtitle">
               <p>
                 You are a developer and you want to find information,
-                documentations, tools, CLI (soon), samples codes and so on...
+                documentations, tools, samples codes and so on...
                 for your e-attestations data integration project ?                
               </p>
               <p className="text--center">
-                You're at the good place !
+                You're at the right place !
               </p>
               </div>
           </div>
@@ -281,35 +257,6 @@ function Home() {
         )}
       </main>
 
-      <header className={clsx('hero shadow--md', styles.heroBanner)}>
-        <div className="container">
-          <h1 className="hero__title">Build with the community !</h1>
-          <p className="hero__subtitle">
-            "L'Atelier" by e-Attestations provides you with docs, tools, code samples, tips and tricks on
-            its GitHub organization. Don't forget to <i>Watch</i> our open-source repositories and joins us !
-          </p>
-        </div>
-      </header>
-
-      <main style={{margin: "4rem" }}>
-        {channels && channels.length > 0 && (
-          <section className={styles.features}>
-            <div className="container">
-              <div className="row">
-                {channels.map(({key, title, imageUrl, description}) => (
-                  <Feature
-                    gridSize="col--6"
-                    key={key}
-                    title={title}
-                    imageUrl={imageUrl}
-                    description={description}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-      </main>
     </Layout>
   );
 }
