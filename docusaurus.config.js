@@ -7,8 +7,8 @@
  */
 
 module.exports = {
-  title: 'e-Attestations APIs',
-  tagline: 'All technical resources you need for your e-Attestations data integration projects, and more !',
+  title: 'e-Attestations API',
+  tagline: 'All technical resources you need for your e-Attestations data integration projects with API Edge',
   url: 'https://e-attestations.io',
   baseUrl: '/',
   onBrokenLinks: 'warn',
@@ -16,6 +16,9 @@ module.exports = {
   organizationName: 'e-attestations', // Usually your GitHub org/user name.
   projectName: 'e-attestations-docs', // Usually your repo name.
   themeConfig: {
+    colorMode: {
+      disableSwitch: true
+    },
     navbar: {
       title: '',
       logo: {
@@ -30,21 +33,20 @@ module.exports = {
           position: 'left',
         },
         {
-          href: 'https://e-attestations.io/openapi/swagger.html',
-          label: 'OpenAPI v3 specs',
+          href: 'https://edge.e-attestations.io',
+          label: 'EDGE doc (Postman)',
           position: 'left',
         },
         {
-          href: 'https://documenter.getpostman.com/view/2727694/Tz5ndeyb',
-          label: 'Use Postman !',
+          href: './EAttestationsRESTAPIv1.1/index.html',
+          label: 'REST API doc (deprecated)',
           position: 'left',
         },
-        {to: 'blog', label: 'Blog', position: 'right'},
         {
-          href: 'https://github.com/e-attestations',
-          label: 'GitHub',
-          position: 'right',
-        },
+          href: './EAttestationsWSAPI/index.html',
+          label: 'SOAP API doc',
+          position: 'left',
+        }
       ],
     },
     footer: {
@@ -62,10 +64,6 @@ module.exports = {
               to: 'docs/b-1-get-started',
             },
             {
-              label: 'API EDGE Reference',
-              to: 'docs/c-1-account',
-            },
-            {
               label: 'Lists and codes',
               to: 'docs/d-2-error-codes',
             },
@@ -75,31 +73,35 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/e-attestations',
-            },
-            {
               label: 'Postman',
-              href: 'https://documenter.getpostman.com/view/3000526/Tz5ndeyb',
+              href: 'https://edge.e-attestations.io',
             },
           ],
         },
         {
-          title: 'Blog',
+          title: 'Follow us',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
+              label: 'Twitter',
+              href: 'https://twitter.com/eattestations',
+            },
+            {
+              label: 'Linkedin',
+              href: 'https://www.linkedin.com/company/e-attestations-certicorps-/?originalSubdomain=fr',
+            },
+            {
+              label: 'Youtube',
+              href: 'https://www.youtube.com/channel/UCuoU6l_DHIGS67UdFmk_WEQ',
             },
           ],
         },
       ],
       logo: {
         alt: 'e-Attestations',
-        src: 'https://www.e-attestations.com/images/logo-eattestations.png',
+        src: 'https://www.e-attestations.com/images/2019/01/20/logo_footer.png',
         href: 'https://www.e-attestations.com',
       },
-      copyright: `Developed with ❤️ by l'Atelier with Docusaurus - e-Attestations ${new Date().getFullYear()}`,
+      copyright: `Developed by l'Atelier with Docusaurus - e-Attestations ${new Date().getFullYear()}`,
     },
   },
   themes: ['@docusaurus/theme-live-codeblock'],

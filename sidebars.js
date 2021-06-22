@@ -37,12 +37,7 @@ module.exports = {
       'd-2-error-codes'
     ],      
     'Technical aids': [
-      'r-1-postman',
-      'r-2-cli'
-    ],
-    'Under the hood': [
-      'z-0-about', 
-      'z-1-mdx',
-    ],
+      'r-1-postman'
+    ]
   },
 };

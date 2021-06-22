@@ -16,7 +16,7 @@
 /* You can override the default Infima variables here. */
 :root {
   /*--ifm-color-primary: #25c2a0;*/
-  --ifm-color-primary: #2980b9;
+  --ifm-color-primary: #619439;
   --ifm-color-primary-dark: rgb(33, 175, 144);
   --ifm-color-primary-darker: rgb(31, 165, 136);
   --ifm-color-primary-darkest: rgb(26, 136, 112);
@@ -31,4 +31,16 @@
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+}
+
+.hero--dark, .footer{
+  background: #252525;
+}
+
+.hero.shadow--lw .container{
+  text-align: center;
+}
+
+.hero.shadow--lw .container img{
+  width: 60%;
 }
