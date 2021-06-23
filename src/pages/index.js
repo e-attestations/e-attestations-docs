@@ -48,7 +48,7 @@ const documentations = [
   {
     key: 1,
     title: <>e-Attestations 'EDGE' API</>,
-    imageUrl: 'img/logo-e-Attestations.png',
+    imageUrl: 'img/shuttle.svg',
     description: (
       <>
         <p>
@@ -65,11 +65,24 @@ const documentations = [
       </>
     ),
   },
-
   {
     key: 2,
+    title: <>API SOAP v3 (fr)</>,
+    imageUrl: 'img/shuttle_1.svg',
+    description: (
+      <>
+        This API is still maintained for our customers forced to use SOAP.
+        <p>We recommend choosing our REST API.</p>
+        <a target="_blank" href="EAttestationsWSAPI/index.html">
+            Documentation of e-Attestations SOAP API v3 (fr)
+        </a>
+      </>
+    ),
+  },
+  {
+    key: 3,
     title: <>API REST 1.1 (fr)</>,
-    imageUrl: 'img/logo-e-Attestations.png',
+    imageUrl: 'img/shuttle_2.svg',
     description: (
       <>
         This is our first REST API.
@@ -79,20 +92,6 @@ const documentations = [
           <a target="_blank" href="EAttestationsRESTAPIv1.1/index.html">
             Documentation of e-Attestations REST API v1.1 (fr)
           </a>
-      </>
-    ),
-  },
-  {
-    key: 3,
-    title: <>API SOAP v3 (fr)</>,
-    imageUrl: 'img/logo-e-Attestations.png',
-    description: (
-      <>
-        This API is still maintained for our customers forced to use SOAP.
-        <p>We recommend choosing our REST API.</p>
-        <a target="_blank" href="EAttestationsWSAPI/index.html">
-            Documentation of e-Attestations SOAP API v3 (fr)
-        </a>
       </>
     ),
   },
@@ -194,9 +193,8 @@ function Home() {
         <div className={clsx('hero shadow--lw')}>
           <div className="container">
             <img src="img/dev_ea.svg" alt="welcome" />
-
-              <h1 className="text--center"><span role="img">🚀</span></h1>
               <div className="hero__subtitle">
+              <br/>
               <p>
                 You are a developer and you want to find information,
                 documentations, tools, samples codes and so on...
@@ -210,10 +208,10 @@ function Home() {
         </div>
       </main>
 
-      <main style={{margin: "4rem" }}>
+      <main style={{margin: "1rem" }}>
         {features && features.length > 0 && (
           <section className={styles.features}>
-            <div className="container">
+            <div className="container home-feature">
               <div className="row">
                 {features.map(({key, title, imageUrl, description}) => (
                   <Feature
@@ -238,10 +236,10 @@ function Home() {
         </div>
       </header>
 
-      <main style={{margin: "4rem" }}>
+      <main style={{margin: "1rem" }}>
         {documentations && documentations.length > 0 && (
           <section className={styles.features}>
-            <div className="container">
+            <div className="container home-feature">
               <div className="row">
                 {documentations.map(({key, title, imageUrl, description}) => (
                   <Feature

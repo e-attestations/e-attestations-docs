@@ -38,13 +38,13 @@ module.exports = {
           position: 'left',
         },
         {
-          href: './EAttestationsRESTAPIv1.1/index.html',
-          label: 'REST API doc (deprecated)',
+          href: './EAttestationsWSAPI/index.html',
+          label: 'SOAP API doc',
           position: 'left',
         },
         {
-          href: './EAttestationsWSAPI/index.html',
-          label: 'SOAP API doc',
+          href: './EAttestationsRESTAPIv1.1/index.html',
+          label: 'REST API doc (deprecated)',
           position: 'left',
         }
       ],
@@ -101,7 +101,8 @@ module.exports = {
         src: 'https://www.e-attestations.com/images/2019/01/20/logo_footer.png',
         href: 'https://www.e-attestations.com',
       },
-      copyright: `Developed by l'Atelier with Docusaurus - e-Attestations ${new Date().getFullYear()}`,
+      copyright: `Developed by l'Atelier with Docusaurus - e-Attestations ${new Date().getFullYear()} <br/>
+      <div style="font-size:10px">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>`,
     },
   },
   themes: ['@docusaurus/theme-live-codeblock'],

@@ -44,3 +44,7 @@
 .hero.shadow--lw .container img{
   width: 60%;
 }
+
+.home-feature img{
+  max-height: 8rem;
+}
