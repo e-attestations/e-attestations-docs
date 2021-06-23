@@ -16,7 +16,6 @@ module.exports = {
     ],
     'Security': [
       's-1-jwt',
-      's-7-urls',
     ],
     'Tutorials': [
       't-1-create-dossier'

@@ -1,7 +1,7 @@
 ---
 id: c-2-thirdparties
-title: Thirdparties
-sidebar_label: Thirdparties
+title: Third parties
+sidebar_label: Third parties
 ---
 
 This resource is 'third party', the 'supplier', the 'subcontractor', the 'contractant' etc. 
@@ -53,29 +53,20 @@ You can request thirdparties details with a query search criteria parameter.
 This is a very powerful and flexible search tool.
 
 
-The general form for this search is :
+For example, you can search by the third party name:
 
-`q?search=<your criteria>`
+`?name=E-ATTESTATIONS.COM`
 
+You can combine multiple criteria:
 
-The criteria is/are composed of :
-
-- a field name that as one of types : string, date or a numeric (but not a boolean)
-- an operator which could be either :
-    * `:` : equals
-    * `~` : contains/like
-    * `!` : not equals
-    * `>` : greater than
-    * `<` : less than
-- a value to search for
-
+`?name=E-ATTESTATIONS.COM&&monitored=true`
 
 Example of request and response:
 
 The query
 
 ```sh
-curl --location --request GET '{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties/q?search=name~ATTESTATIONS' \
+curl --location --request GET '{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties?name=E-ATTESTATIONS.COM \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer <access_token>'
 ```
@@ -87,145 +78,54 @@ The result
     "content": [
         {
             "thirdpartyId": 875,
-            "accountId": xxxxx,
             "companyIdType": "CIT001",
-            "siret": "50382936800045",
+            "companyIdValue": "50382936800045",
+            "thirdpartyCode": "123",
             "siren": "503829368",
+            "siret": "50382936800045",
             "tva": "FR69503829368",
+            "name": "E-ATTESTATIONS.COM",
             "dateCreation": "2010-11-24",
+            "companyStartDate": "2008-04-07",
             "legalCategoryLabel": "Société par actions simplifiée",
             "legalCategoryCode": "5710",
             "acronym": null,
             "activityLabel": "Edition de logiciels applicatifs",
             "activityCode": "5829C",
+            "etabActivityCode": "5829C",
+            "etabActivityType": "CODE_APE",
+            "etabActivityLabel": "Edition de logiciels applicatifs",
             "ceo": "POIDEVIN Emmanuel",
+            "principals": [
+                {
+                    "name": "POIDEVIN",
+                    "firstname": "Emmanuel",
+                    "function": "Président"
+                }
+            ],
             "capital": 3642000,
             "capitalCurrency": "EUR",
             "turnover": 2771996.0,
             "turnoverCurrency": "EUR",
-            "lastBalanceSheetDate": "2017-12-31T00:00:00.000",
+            "lastBalanceSheetDate": "2017-12-31",
             "workforce": 13,
-            "companyIdValue": "50382936800045",
-            "thirdpartyCode": "123",
-            "monitored": true,
-            "isMonitored": "true",
-            "name": "E-ATTESTATIONS.COM",
-            "addressStreet": "1 rue ANONYME",
+            "addressStreet": "CERTICORPS 2 12 2 RUE DU CHEMIN DES FEMMES",
             "addressCity": "MASSY",
             "addressPostCode": "91300",
             "addressCountryCode": "FR",
-            "registered": true,
-            "isRegistered": "true",
-            "registrationDate": "2010-11-24",
-            "active": true,
-            "isActive": "true",
-            "outOfBusiness": false,
-            "isOutOfBusiness": "false",
-            "stateLastChangeDate": "2019-01-08",
-            "complete": false,
-            "isComplete": "false",
-            "thirdpartyUsers": [
-                {
-                    "firstName": "Jojo",
-                    "lastName": "Jojo",
-                    "email": "jojo@test.com",
-                    "phone": "+33 1 01 01 01 01"
-                },
-                {
-                    "firstName": "Prénom_259976",
-                    "lastName": "Nom_259976",
-                    "email": "259976@e-attestations.com",
-                    "phone": "+33101010101"
-                },
-                {
-                    "firstName": "Toto",
-                    "lastName": "Toto",
-                    "email": "toto@gmail.com",
-                    "phone": "+33 1 01 01 01 01"
-                },
-                {
-                    "firstName": "Prénom_502408",
-                    "lastName": "Nom_502408",
-                    "email": "502408@e-attestations.com",
-                    "phone": "+33101010101"
-                },
-                {
-                    "firstName": "Prénom_141152",
-                    "lastName": "Nom_141152",
-                    "email": "141152@e-attestations.com",
-                    "phone": "+33101010101"
-                },
-                {
-                    "firstName": "A",
-                    "lastName": "Aa",
-                    "email": "aaa@gmail.com",
-                    "phone": "+33 1 01 01 01 01"
-                },
-                {
-                    "firstName": "Prénom_3241",
-                    "lastName": "Nom_3241",
-                    "email": "3241@e-attestations.com",
-                    "phone": "+33 1 01 01 01 01"
-                },
-                {
-                    "firstName": "Prénom_35695",
-                    "lastName": "Nom_35695",
-                    "email": "35695@e-attestations.com",
-                    "phone": "+33101010101"
-                }
-            ]
+            "etabPhoneNumber": null,
+            "website": null,
+            "category": "PME",
+            "subCategory": "PE",
+            "headquarter": true,
+            "groupCompanyName": null,
+            "groupSiren": null,
+            "groupPercentageOwnership": null,
+            "listRegistrationNumber": []
         }
     ],
     "page": 0,
     "size": 10,
     "totalElements": 1
 }
-```
-
-The request can be done on any field/attributes of thirdparty details :
-
-Another exemple on workforce which is a integer and can be use with `<` : 
-
-```http
-{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties/q?search=workforce<2000
-```
-
-
-### Using more than on criteria and combine them with 'AND' and 'OR'
-
-With this feature you can request **thirdparties details** by a composition of search criteria composed with the help of AND/and, OR/or with parenthesis.
-
-The general form for this search is :
-
-`q?search=( <first criteria> <AND|OR> <second criteria> )`
-
-or 
-
-`q?search=( <first criteria> <AND|OR> <second criteria> ) <AND|OR> <third criteria>`
-
-
-Note that you can use per criteria :
-
-- 'AND' or 'and' for the AND operator
-- 'OR' or 'or' for the OR operator
-
-
-Note the parenthesis need a space after and before it in order to let the search engine to find the criteria token.
-
-Example : 
-
-- Requesting thirdparties with workforce > 200 and are active OR workforce < 2 :
-
-```http
-{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties/q?search=( workforce>200 AND isActive:true ) OR workforce<2
-```
-
-With curl :
-
-Notice then encoded characters for spaces and operators
-
-```sh
-curl '{{ea_api_serv}}/api/v1/account/{{account_id}}/thirdparties/q?search=(%20workforce%3E200%20AND%20isActive:true%20)%20OR%20workforce%3C2' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer <your access_token>'
 ```
