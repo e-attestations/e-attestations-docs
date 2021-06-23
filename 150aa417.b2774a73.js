@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{60:function(s){s.exports=JSON.parse('{"allTagsPath":"/blog/tags","slug":"webservices-soap-v-3","name":"webservices_soap-v3","count":1,"permalink":"/blog/tags/webservices-soap-v-3"}')}}]);
