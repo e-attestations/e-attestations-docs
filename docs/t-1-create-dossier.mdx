@@ -6,7 +6,7 @@ sidebar_label: Create a dossier
 
 ## Why ?
 
-The creation of a compliance monitoring 'dossier' in e-Attestations is at the heart of the thirdparty recruitment process.
+The creation of a compliance monitoring 'dossier' in e-Attestations is at the heart of the third party recruitment process.
 
 This step is also the recruitment phase of your third party who will then be informed by email that a follow-up file is pending.
 
@@ -36,12 +36,12 @@ curl --request POST \
 ```
 
 
-<aside>The compliance to be required depends on your needs, the nature of your third party, the market, exogenous parameters, etc.
+<aside>The documents to be required depends on your needs, the nature of your third party, the market, exogenous parameters, etc.
 Your e-Attestations account manager is there to advise you.</aside>
 
-## Create a dossier launches the workflow to thirdparty
+## Create a dossier launches the workflow to third party
 
-A continuous workflow then starts for the third party who will then have to file the proofs required by your dossier.
+A continuous workflow then starts for the third party who will have to fill the proofs required by your dossier.
 
 When creating a dossier, the triggered workflow is asynchronous and is described as follows:
 
@@ -61,11 +61,11 @@ But also :
 
 ## The asynchronous nature of dossier creation
 
-We process dossier creation asynchronously so you don't have to wait :-)
+We process dossier creation asynchronously so you don't have to wait.
 
 It's a very powerful mecanism, giving a lot of flexibility and adaptability for the customer/system using APIs.
 
-'Dossier' creation is an **asynchronous process**. This asynchronism is induced by the process (itself of an asynchronous nature) of qualification of Thirdparty information by our internal data sources.
+'Dossier' creation is an **asynchronous process**. This asynchronism is induced by the process (itself of an asynchronous nature) of qualification of third parties' information by our internal data sources.
 
 This endpoint launches the import process and returns a process identifier (processId).
 You will need to use it to know the result of the import asynchronously.
@@ -75,17 +75,20 @@ You will need to use it to know the result of the import asynchronously.
 ### Fetch creation results
 
 The endpoint (GET) `/account/{accountId}/dossier/processes` makes it easy to follow and catch the import results 
-thanks to the identifier `processId` of the import process returned during the call "Creation of a folder "(POST / account / {accountId} / folders).
+thanks to the identifier `processId` of the import process returned during the call "Creation of a dossier "(POST / account / {accountId} / dossiers).
 
 > It is important to check the call parameters carefully and to take into account the error codes and their meaning.
 
-### What if the thirdparty doesn't exist ?
+### What if the third party doesn't exist ?
 
-If the thirdparty does not exist, it is created in the eAttestations platform.
+If the third party does not exist, it is created in the e-Attestations platform.
 
-This is why we need thirdparty identifier composed using `companyIdType` code and `companyIdalue` value.
+This is why we need third party identifier composed using `companyIdType` code and `companyIdalue` value.
 
 We advise you to always use your own keys (from your database or system) with the field `thirdpartyCode`.
+:::caution
+For a given third party, the field `thirdpartyCode` must always be the same even if you create several dossiers for this third party.
+:::
 
 
 ### Error codes

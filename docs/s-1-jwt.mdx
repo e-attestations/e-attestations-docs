@@ -31,7 +31,7 @@ But you need credenials in order to obtain a JWT.
 
 :::caution
 
-Your credentials have to be issued at <strong>your request via a techDesk ticket</strong> sent and after activation of your subscription by your account manager.
+Your credentials have to be issued at <strong>your request via a techDesk ticket</strong> and after activation of your subscription by your account manager.
 
 Please send an email to [api@eattestationscom.zohodesk.eu](mailto:api@eattestationscom.zohodesk.eu)
 :::
@@ -40,7 +40,7 @@ Please send an email to [api@eattestationscom.zohodesk.eu](mailto:api@eattestati
 ## Obtain a JSON Web Token
 
 
-Get a JWT token is based on a POST type request with user and password and some additional parameters to the authentication server.
+To get a JWT token you need to do a POST type request with user and password and some additional parameters to the authentication server.
 
 Parameter | Mandatory | Value | Description
 ----------|-----------|-------|-------------------
@@ -66,7 +66,7 @@ curl --request POST 'https://auth.test-e-attestations.com/auth/realms/eat_realm/
 
 
 
-The authentication server will return a JSON word in which it is necessary to preserve 'access_token'.
+The authentication server will return a JSON word in which it is necessary to preserve the 'access_token'.
 
 ![auth illustration](/img/EA_Graph_Security_Get_JWT_010.png)
 
@@ -90,7 +90,7 @@ Credentials are verified by the auth server which send back a JWT (JSON Web Toke
 }
 ```
 
-The token has a limited time which can be verified with `expires_in` expressed in seconds and fixed to 1800s (30 minutes).
+The token has a limited life time which can be verified with `expires_in` expressed in seconds and fixed to 1800s (30 minutes).
 
 Each request are authenticated with this `access_token` placed in a `Authorization: bearer <your access_token>` header for each request.
 
@@ -107,8 +107,6 @@ We provide you with a auth server per environment like so :
 
 You can also ask for an renewed `access_token` by using the `refresh token`so that you don't have to send again your credentials.
 
-This token is provided event quickly (les that 50ms in most cases).
-
 Note that it depends on expiration (`refresh_expires_in`) of the parent request expiration.
 
 
@@ -124,7 +122,7 @@ refresh_token: <your-refresh-token>
 
 ## Keep in mind that, the JWT ...
 
-- is valid for a few seconds. You must make sure of the duration of validity of your TOKEN thanks to the data "expires_in" which indicates to you in number of seconds before it expires at the time of its obtaining (for example 1800 seconds corresponding to 30 ')
+- is valid for a limited time. You must make sure of the duration of validity of your TOKEN thanks to the data "expires_in" which indicates the number of seconds before it expires (for example 1800 seconds corresponding to 30 ')
 - is to be used in all API requests
 - resides in the **access_token** property
 - needs to be set within an `Authorization` HTTP Header
